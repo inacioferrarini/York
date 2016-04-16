@@ -28,7 +28,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.frameworks = 'UIKit'
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
-  s.osx.deployment_target = '10.7'
-  #s.dependency 'AFNetworking', '~> 2.3'
+
+  s.dependency 'EasyMapping', '0.16.1'
+  s.dependency 'SDWebImage', '3.7.5'
+  s.dependency 'JLRoutes', '1.5.5'
+  s.dependency 'AFNetworking', '3.1.0'
+  s.dependency 'CocoaLumberjack/Swift', '2.2.0'
 
 end
