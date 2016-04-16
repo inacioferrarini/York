@@ -1,0 +1,21 @@
+PODS:
+  - FBSnapshotTestCase (2.1.0):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.0)
+  - FBSnapshotTestCase/Core (2.1.0)
+  - FBSnapshotTestCase/SwiftSupport (2.1.0):
+    - FBSnapshotTestCase/Core
+  - York (0.1.0)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - York (from `../`)
+
+EXTERNAL SOURCES:
+  York:
+    :path: ../
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 366ecd378511d7716c79991cd8067d1eed23578d
+  York: 20b1d5ce6966583b2c64c21c3ac44b1023a9cf2f
+
+COCOAPODS: 0.39.0
