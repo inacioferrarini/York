@@ -8,8 +8,8 @@ language: objective-c
 # cache: cocoapods
 # podfile: Example/Podfile
 before_install:
-- brew update
-- brew install xctool
+#- brew update
+#- brew install xctool
 #  gem install cocoapods -v '= 0.34.0'
 - gem install cocoapods -v '= 0.38.0'
 - pod install --project-directory=Example
