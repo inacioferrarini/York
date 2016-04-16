@@ -6,7 +6,8 @@ language: objective-c
 # cache: cocoapods
 # podfile: Example/Podfile
 before_install:
-- gem install cocoapods -v '0.39.0'
+#  gem install cocoapods -v '= 0.34.0'
+- gem install cocoapods -v '= 0.38.0'
 - pod install --project-directory=Example
 script:
 - set -o pipefail && xcodebuild test -workspace Example/York.xcworkspace -scheme York-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
