@@ -14,5 +14,7 @@ before_install:
 script:
 # - set -o pipefail && xcodebuild test -workspace Example/York.xcworkspace -scheme York-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
 #- set -o pipefail && xcodebuild test -workspace Example/York.xcworkspace -scheme York-Example -sdk iphonesimulator -arch i386 test | xcpretty
-- xctool -project Example/York.xcworkspace -scheme 'York-Example' -configuration Debug -sdk iphonesimulator -arch i386 test
+# - xctool -project Example/York.xcworkspace -scheme 'York-Example' -configuration Debug -sdk iphonesimulator -arch i386 test
+#- set -o pipefail && xcodebuild test -workspace Example/York.xcworkspace -scheme York-Example -sdk iphonesimulator -arch i386 test | xcpretty
+- set -o pipefail && xcodebuild test -workspace Example/York.xcworkspace -scheme York-Example -sdk iphonesimulator -configuration Release TEST_AFTER_BUILD=YES
 - pod lib lint
