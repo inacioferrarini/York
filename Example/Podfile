@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'York_Example', :exclusive => true do
+  pod 'York', :path => '../'
+end
+
+target 'York_Tests', :exclusive => true do
+  pod 'York', :path => '../'
+
+  pod 'FBSnapshotTestCase'
+end
