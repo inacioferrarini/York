@@ -7,11 +7,13 @@ class TestUtil: NSObject {
     static let databaseFileName = "DataSyncRulesDB"
     
     func appContext() -> AppContext {
+        
+        let appBundle = NSBundle.mainBundle()
         let logger = Logger()
         let rootNavigationController = self.rootViewController()
-        let stack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger)
+        let stack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
         let router = NavigationRouter(schema: "GitHubSpy", logger: logger)
-        let syncRulesStack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger)
+        let syncRulesStack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
         let syncRules = DataSyncRules(coreDataStack: syncRulesStack)
         
         return AppContext(navigationController: rootNavigationController,
