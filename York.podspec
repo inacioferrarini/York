@@ -30,10 +30,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.ios.deployment_target = '8.0'
 
   s.resource_bundles = {
-   '${POD_NAME}' => [
-     '${POD_NAME}/Assets/*.png',
-     '${POD_NAME}/Assets/*.storyboard',
-     '${POD_NAME}/Assets/*.xib'
+   'York' => [
+     'York/Assets/.xcdatamodel'
+     'York/Assets/*.png',
+     'York/Assets/*.storyboard',
+     'York/Assets/*.xib'
    ]
   }
 
