@@ -39,7 +39,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   }
 
   s.dependency 'York-Swift-Try-Catch', '0.1.0'
-  s.dependency 'EasyMapping', '0.16.1'
   s.dependency 'JLRoutes', '1.5.5'
   s.dependency 'CocoaLumberjack/Swift', '2.2.0'
 

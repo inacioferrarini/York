@@ -23,7 +23,7 @@
 
 import Foundation
 
-protocol AppContextAwareProtocol {
+public protocol AppContextAwareProtocol {
 
     var appContext: AppContext! { get set }
     
