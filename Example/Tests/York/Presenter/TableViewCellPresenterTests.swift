@@ -41,20 +41,20 @@ class TableViewCellPresenterTests: XCTestCase {
         return presenter
     }
     
-//    func test_tableViewCellPresenterFields_configureCellBlock() {
-//        let logger = Logger()
-//        let dataSyncRulesStack = CoreDataStack(modelFileName: TableViewCellPresenterTests.modelFileName, databaseFileName: TableViewCellPresenterTests.databaseFileName, logger: logger)        
-//        let presenter = self.createTableViewCellPresenter()
-//        let cell = UITableViewCell()
-//        let ctx = dataSyncRulesStack.managedObjectContext
-//        let obj = EntitySyncHistory.entityAutoSyncHistoryByName("xpto", lastExecutionDate: nil, inManagedObjectContext: ctx)!
-//        presenter.configureCellBlock(cell, obj)
-//        XCTAssertEqual(TableViewCellPresenterTests.blockExecutionTest, "testExecuted")
-//    }
-//
-//    func test_tableViewCellPresenterFields_reuseIdentifier() {
-//        let presenter = self.createTableViewCellPresenter()
-//         XCTAssertEqual(presenter.cellReuseIdentifier, TableViewCellPresenterTests.cellReuseId)
-//    }
+    func test_tableViewCellPresenterFields_configureCellBlock() {
+        let logger = Logger()
+        let dataSyncRulesStack = CoreDataStack(modelFileName: TableViewCellPresenterTests.modelFileName, databaseFileName: TableViewCellPresenterTests.databaseFileName, logger: logger)        
+        let presenter = self.createTableViewCellPresenter()
+        let cell = UITableViewCell()
+        let ctx = dataSyncRulesStack.managedObjectContext
+        let obj = EntitySyncHistory.entityAutoSyncHistoryByName("xpto", lastExecutionDate: nil, inManagedObjectContext: ctx)!
+        presenter.configureCellBlock(cell, obj)
+        XCTAssertEqual(TableViewCellPresenterTests.blockExecutionTest, "testExecuted")
+    }
+
+    func test_tableViewCellPresenterFields_reuseIdentifier() {
+        let presenter = self.createTableViewCellPresenter()
+         XCTAssertEqual(presenter.cellReuseIdentifier, TableViewCellPresenterTests.cellReuseId)
+    }
     
 }
