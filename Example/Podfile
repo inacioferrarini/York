@@ -6,6 +6,4 @@ end
 
 target 'York_Tests', :exclusive => true do
   pod 'York', :path => '../'
-
-# pod 'FBSnapshotTestCase'
 end
