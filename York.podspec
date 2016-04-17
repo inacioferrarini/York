@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/inacioferrarini/York"
 
   s.license      = {
-  :type => 'BSD',
+  :type => 'MIT',
   :text => <<-LICENSE
 Copyright (c) 2016 Inácio Ferrarini
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -29,10 +29,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
 
+  s.resource_bundles = {
+   '${POD_NAME}' => [
+     '${POD_NAME}/Assets/*.png',
+     '${POD_NAME}/Assets/*.storyboard',
+     '${POD_NAME}/Assets/*.xib'
+   ]
+  }
+
+  s.dependency 'York-Swift-Try-Catch', '0.1.0'
   s.dependency 'EasyMapping', '0.16.1'
-  s.dependency 'SDWebImage', '3.7.5'
   s.dependency 'JLRoutes', '1.5.5'
-  s.dependency 'AFNetworking', '3.1.0'
   s.dependency 'CocoaLumberjack/Swift', '2.2.0'
 
 end

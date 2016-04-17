@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="EntityBaseSyncRules" representedClassName=".EntityBaseSyncRules" isAbstract="YES" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="EntityDailySyncRule" representedClassName=".EntityDailySyncRule" parentEntity="EntityBaseSyncRules" syncable="YES">
+        <attribute name="days" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="EntityHourlySyncRule" representedClassName=".EntityHourlySyncRule" parentEntity="EntityBaseSyncRules" syncable="YES">
+        <attribute name="hours" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="EntitySyncHistory" representedClassName=".EntitySyncHistory" syncable="YES">
+        <attribute name="lastExecutionDate" attributeType="Date" syncable="YES"/>
+        <attribute name="ruleName" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="EntityBaseSyncRules" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="EntityDailySyncRule" positionX="-18" positionY="27" width="128" height="60"/>
+        <element name="EntityHourlySyncRule" positionX="-36" positionY="18" width="128" height="60"/>
+        <element name="EntitySyncHistory" positionX="-54" positionY="-9" width="128" height="75"/>
+    </elements>
+</model>

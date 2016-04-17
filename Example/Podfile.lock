@@ -34,6 +34,8 @@ PODS:
     - EasyMapping (= 0.16.1)
     - JLRoutes (= 1.5.5)
     - SDWebImage (= 3.7.5)
+    - York-Swift-Try-Catch (= 0.1.0)
+  - York-Swift-Try-Catch (0.1.0)
 
 DEPENDENCIES:
   - York (from `../`)
@@ -48,6 +50,7 @@ SPEC CHECKSUMS:
   EasyMapping: 6e0cdd966bf7e028378539ee10eaa7c792c990b4
   JLRoutes: d191a496b820f60d70225202d04289582da962df
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  York: 691763da46d2390fa9cda04e743b746e77522257
+  York: ea6eaa91025c910621550c50dba4cd17d94a998e
+  York-Swift-Try-Catch: 0f1e5032d9d3bd32715b42f02ec16f6c1985513e
 
 COCOAPODS: 0.39.0
