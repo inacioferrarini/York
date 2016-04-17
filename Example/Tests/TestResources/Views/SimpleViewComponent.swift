@@ -1,6 +1,7 @@
 import UIKit
 import York
 
-class SimpleViewComponent: ViewComponent {
+public class SimpleViewComponent: ViewComponent {
 
+    
 }

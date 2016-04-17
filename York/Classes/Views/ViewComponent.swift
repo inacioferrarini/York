@@ -28,26 +28,39 @@ public class ViewComponent: UIView {
     
     public let bundle:NSBundle?
 
-    public required convenience init?(coder aDecoder: NSCoder) {
-        self.init(coder: aDecoder, bundle: nil)
-    }
-    
-    public override convenience init(frame: CGRect) {
-        self.init(frame: frame, bundle: nil)
-    }
-    
-    
-    public init?(coder aDecoder: NSCoder, bundle: NSBundle?) {
-        self.bundle = bundle
+    public required init?(coder aDecoder: NSCoder) {
+        self.bundle = nil
         super.init(coder: aDecoder)
         self.load()
     }
-    
-    public init(frame: CGRect, bundle: NSBundle?) {
-        self.bundle = bundle
+
+    public override init(frame: CGRect) {
+        self.bundle = nil
         super.init(frame: frame)
         self.load()
-    }    
+    }
+    
+    
+//    public required convenience init?(coder aDecoder: NSCoder) {
+//        self.init(coder: aDecoder, bundle: nil)
+//    }
+//    
+//    public override convenience init(frame: CGRect) {
+//        self.init(frame: frame, bundle: nil)
+//    }
+//    
+//    
+//    public required init?(coder aDecoder: NSCoder, bundle: NSBundle?) {
+//        self.bundle = bundle
+//        super.init(coder: aDecoder)
+//        self.load()
+//    }
+//    
+//    public init(frame: CGRect, bundle: NSBundle?) {
+//        self.bundle = bundle
+//        super.init(frame: frame)
+//        self.load()
+//    }    
     
     public func load() {
         let className = self.dynamicType.simpleClassName()
