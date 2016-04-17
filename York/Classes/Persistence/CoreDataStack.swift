@@ -28,12 +28,18 @@ public class CoreDataStack: NSObject {
     public let modelFileName:String
     public let databaseFileName:String
     public let logger:Logger
+    public let bundle:NSBundle?
     
-    public init(modelFileName:String, databaseFileName:String, logger:Logger) {
+    public init(modelFileName:String, databaseFileName:String, logger:Logger, bundle:NSBundle?) {
         self.modelFileName = modelFileName
         self.databaseFileName = databaseFileName
         self.logger = logger
+        self.bundle = bundle
         super.init()
+    }
+    
+    public convenience init(modelFileName:String, databaseFileName:String, logger:Logger) {
+        self.init(modelFileName: modelFileName, databaseFileName: databaseFileName, logger:logger, bundle: nil)
     }
     
     public lazy var applicationDocumentsDirectory: NSURL = {
@@ -42,7 +48,12 @@ public class CoreDataStack: NSObject {
     }()
     
     public lazy var managedObjectModel: NSManagedObjectModel = {
-        let modelURL = NSBundle(forClass: self.dynamicType).URLForResource(self.modelFileName, withExtension: "momd")!
+        var modelURL:NSURL!
+        if let bundle = self.bundle {
+            modelURL = bundle.URLForResource(self.modelFileName, withExtension: "momd")!
+        } else {
+            modelURL = NSBundle(forClass: self.dynamicType).URLForResource(self.modelFileName, withExtension: "momd")!
+        }
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
     
