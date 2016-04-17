@@ -22,24 +22,24 @@ class TableViewBlockDelegateTests: XCTestCase {
             loadMoreDataBlock: self.loadMoreDataBlock)
     }
     
-    func test_tableViewBlockDelegate_itemSelection() {
-        let delegate = self.createTableViewBlockDelegate()
-        delegate.tableView(self.tableView, didSelectRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
-        XCTAssertTrue(self.itemSelectionBlockWasCalled)
-    }
-    
-    func test_tableViewBlockDelegate_viewScrollNegativeContentOffset() {
-        let delegate = self.createTableViewBlockDelegate()
-        self.tableView.contentOffset.y = -20
-        delegate.scrollViewDidScroll(UIScrollView())
-        XCTAssertFalse(self.loadMoreDataBlockWasCalled)
-    }
-    
-    func test_tableViewBlockDelegate_viewScroll() {
-        let delegate = self.createTableViewBlockDelegate()
-        self.tableView.contentOffset.y = 0
-        delegate.scrollViewDidScroll(UIScrollView())
-        XCTAssertTrue(self.loadMoreDataBlockWasCalled)
-    }
+//    func test_tableViewBlockDelegate_itemSelection() {
+//        let delegate = self.createTableViewBlockDelegate()
+//        delegate.tableView(self.tableView, didSelectRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+//        XCTAssertTrue(self.itemSelectionBlockWasCalled)
+//    }
+//    
+//    func test_tableViewBlockDelegate_viewScrollNegativeContentOffset() {
+//        let delegate = self.createTableViewBlockDelegate()
+//        self.tableView.contentOffset.y = -20
+//        delegate.scrollViewDidScroll(UIScrollView())
+//        XCTAssertFalse(self.loadMoreDataBlockWasCalled)
+//    }
+//    
+//    func test_tableViewBlockDelegate_viewScroll() {
+//        let delegate = self.createTableViewBlockDelegate()
+//        self.tableView.contentOffset.y = 0
+//        delegate.scrollViewDidScroll(UIScrollView())
+//        XCTAssertTrue(self.loadMoreDataBlockWasCalled)
+//    }
     
 }

@@ -23,29 +23,29 @@ class AppContextTests: XCTestCase {
             logger: self.logger)
     }
     
-    func test_AppContextFields_logger() {
-        let appContext = self.createAppContext()
-        XCTAssertEqual(appContext.logger, self.logger)
-    }
+//    func test_AppContextFields_logger() {
+//        let appContext = self.createAppContext()
+//        XCTAssertEqual(appContext.logger, self.logger)
+//    }
     
-    func test_AppContextFields_navigationController() {
-        let appContext = self.createAppContext()
-        XCTAssertEqual(appContext.navigationController, self.navigationController)
-    }
+//    func test_AppContextFields_navigationController() {
+//        let appContext = self.createAppContext()
+//        XCTAssertEqual(appContext.navigationController, self.navigationController)
+//    }
     
-    func test_AppContextFields_coreDataStack() {
-        let appContext = self.createAppContext()
-        XCTAssertEqual(appContext.coreDataStack, self.coreDataStack)
-    }
+//    func test_AppContextFields_coreDataStack() {
+//        let appContext = self.createAppContext()
+//        XCTAssertEqual(appContext.coreDataStack, self.coreDataStack)
+//    }
     
-    func test_AppContextFields_syncRules() {
-        let appContext = self.createAppContext()
-        XCTAssertEqual(appContext.syncRules, self.syncRules)
-    }
+//    func test_AppContextFields_syncRules() {
+//        let appContext = self.createAppContext()
+//        XCTAssertEqual(appContext.syncRules, self.syncRules)
+//    }
     
-    func test_AppContextFields_router() {
-        let appContext = self.createAppContext()
-        XCTAssertEqual(appContext.router, self.router)
-    }
+//    func test_AppContextFields_router() {
+//        let appContext = self.createAppContext()
+//        XCTAssertEqual(appContext.router, self.router)
+//    }
     
 }

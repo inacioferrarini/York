@@ -13,15 +13,15 @@ class RoutingElementTests: XCTestCase {
         })
     }
     
-    func test_routingElementFields_configureHandlerBlock() {
-        let route = self.createRoute()
-        route.handler(["" : ""])
-        XCTAssertEqual(RoutingElementTests.blockExecutionTest, "testExecuted")
-    }
+//    func test_routingElementFields_configureHandlerBlock() {
+//        let route = self.createRoute()
+//        route.handler(["" : ""])
+//        XCTAssertEqual(RoutingElementTests.blockExecutionTest, "testExecuted")
+//    }
     
-    func test_routingElementFields_pattern() {
-        let route = self.createRoute()
-        XCTAssertEqual(route.pattern, RoutingElementTests.pattern)
-    }
+//    func test_routingElementFields_pattern() {
+//        let route = self.createRoute()
+//        XCTAssertEqual(route.pattern, RoutingElementTests.pattern)
+//    }
     
 }
