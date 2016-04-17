@@ -52,7 +52,7 @@ public class CoreDataStack: NSObject {
         if let bundle = self.bundle {
             modelURL = bundle.URLForResource(self.modelFileName, withExtension: "momd")!
         } else {
-            modelURL = NSBundle(forClass: self.dynamicType).URLForResource(self.modelFileName, withExtension: "momd")!
+            modelURL = NSBundle.mainBundle().URLForResource(self.modelFileName, withExtension: "momd")!
         }
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()

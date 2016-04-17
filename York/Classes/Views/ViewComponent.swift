@@ -25,20 +25,39 @@ import UIKit
 
 @IBDesignable
 public class ViewComponent: UIView {
+    
+    public let bundle:NSBundle?
 
-    public required init?(coder aDecoder: NSCoder) {
+    public required convenience init?(coder aDecoder: NSCoder) {
+        self.init(coder: aDecoder, bundle: nil)
+    }
+    
+    public override convenience init(frame: CGRect) {
+        self.init(frame: frame, bundle: nil)
+    }
+    
+    
+    public init?(coder aDecoder: NSCoder, bundle: NSBundle?) {
+        self.bundle = bundle
         super.init(coder: aDecoder)
         self.load()
     }
     
-    public override init(frame: CGRect) {
+    public init(frame: CGRect, bundle: NSBundle?) {
+        self.bundle = bundle
         super.init(frame: frame)
-        self.load()        
-    }
+        self.load()
+    }    
     
     public func load() {
         let className = self.dynamicType.simpleClassName()
-        let view = NSBundle(forClass: self.dynamicType).loadNibNamed(className, owner: self, options: nil).first as! UIView
+        var view:UIView!
+        
+        if let bundle = self.bundle {
+            view = bundle.loadNibNamed(className, owner: self, options: nil).first as! UIView
+        } else {
+            view = NSBundle.mainBundle().loadNibNamed(className, owner: self, options: nil).first as! UIView
+        }
         self.addSubview(view)
         view.frame = self.bounds
     }

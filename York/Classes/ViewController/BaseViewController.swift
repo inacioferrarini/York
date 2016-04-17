@@ -28,8 +28,7 @@ public class BaseViewController: UIViewController, AppContextAwareProtocol {
     // MARK: - Properties
     
     public var appContext: AppContext!
-    
-    
+    public var bundle: NSBundle?
     // MARK: - Lifecycle
     
     override public func viewDidLoad() {
@@ -64,7 +63,13 @@ public class BaseViewController: UIViewController, AppContextAwareProtocol {
     }
     
     public func localizedBundleString(key: String) -> String {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        var bundle:NSBundle!
+        if let stringBundle = self.bundle {
+            bundle = stringBundle
+        } else {
+            bundle = NSBundle.mainBundle()
+        }
+
         return NSLocalizedString(key, tableName: nil, bundle: bundle, value: "", comment: "")
     }
     
