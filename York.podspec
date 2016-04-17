@@ -31,7 +31,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.resource_bundles = {
    'York' => [
-     'York/Assets/.xcdatamodel'
+     'York/Assets/.xcdatamodel',
      'York/Assets/*.png',
      'York/Assets/*.storyboard',
      'York/Assets/*.xib'
