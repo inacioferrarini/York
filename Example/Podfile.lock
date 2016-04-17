@@ -1,13 +1,41 @@
 PODS:
-  - FBSnapshotTestCase (2.1.0):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.0)
-  - FBSnapshotTestCase/Core (2.1.0)
-  - FBSnapshotTestCase/SwiftSupport (2.1.0):
-    - FBSnapshotTestCase/Core
-  - York (0.1.0)
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.2.0):
+    - CocoaLumberjack/Default
+  - CocoaLumberjack/Swift (2.2.0):
+    - CocoaLumberjack/Extensions
+  - EasyMapping (0.16.1):
+    - EasyMapping/Core (= 0.16.1)
+  - EasyMapping/Core (0.16.1)
+  - JLRoutes (1.5.5)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - York (0.1.0):
+    - AFNetworking (= 3.1.0)
+    - CocoaLumberjack/Swift (= 2.2.0)
+    - EasyMapping (= 0.16.1)
+    - JLRoutes (= 1.5.5)
+    - SDWebImage (= 3.7.5)
 
 DEPENDENCIES:
-  - FBSnapshotTestCase
   - York (from `../`)
 
 EXTERNAL SOURCES:
@@ -15,7 +43,11 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  FBSnapshotTestCase: 366ecd378511d7716c79991cd8067d1eed23578d
-  York: 20b1d5ce6966583b2c64c21c3ac44b1023a9cf2f
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  EasyMapping: 6e0cdd966bf7e028378539ee10eaa7c792c990b4
+  JLRoutes: d191a496b820f60d70225202d04289582da962df
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  York: 691763da46d2390fa9cda04e743b746e77522257
 
 COCOAPODS: 0.39.0
