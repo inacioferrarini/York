@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "York"
-  s.version          = "0.1.2"
+  s.version          = "0.1.3"
   s.summary          = "Foundation classes used to eliminate boiler-plate code and provide an accelerated startup time."
   s.homepage         = "https://github.com/inacioferrarini/York"
 
