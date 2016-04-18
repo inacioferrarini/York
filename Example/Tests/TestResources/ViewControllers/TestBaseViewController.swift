@@ -10,4 +10,8 @@ class TestBaseViewController: BaseViewController {
         return NSLocalizedString("VC_TEST_BASE_VIEW_CONTROLLER", tableName: nil, bundle: bundle, value: "", comment: "")
     }
     
+    override func bundleForMessages() -> NSBundle {
+        return TestUtil().unitTestsBundle()
+    }
+    
 }

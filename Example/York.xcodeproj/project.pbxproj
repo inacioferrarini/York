@@ -194,8 +194,8 @@
 			children = (
 				34C91A321CC342750033AC8B /* TestBaseDataBasedViewController.swift */,
 				34C91A331CC342750033AC8B /* TestBaseTableViewController.swift */,
-				34C91A341CC342750033AC8B /* TestBaseViewController.swift */,
 				34C91A351CC342750033AC8B /* TestClassicTableViewController.swift */,
+				34C91A341CC342750033AC8B /* TestBaseViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -330,8 +330,8 @@
 				34C91A581CC342750033AC8B /* BaseTableViewControllerTests.swift */,
 				34C91A591CC342750033AC8B /* TestBaseDataBasedViewControllerTests.swift */,
 				34C91A5A1CC342750033AC8B /* TestBaseTableViewControllerTests.swift */,
-				34C91A5B1CC342750033AC8B /* TestBaseViewControllerTests.swift */,
 				34C91A5C1CC342750033AC8B /* TestClassicTableViewControllerTests.swift */,
+				34C91A5B1CC342750033AC8B /* TestBaseViewControllerTests.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

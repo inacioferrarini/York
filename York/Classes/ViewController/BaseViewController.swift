@@ -62,14 +62,18 @@ public class BaseViewController: UIViewController, AppContextAwareProtocol {
         
     }
     
-    public func localizedBundleString(key: String) -> String {
+    public func bundleForMessages() -> NSBundle {
         var bundle:NSBundle!
         if let stringBundle = self.bundle {
             bundle = stringBundle
         } else {
             bundle = NSBundle.mainBundle()
         }
-
+        return bundle
+    }
+    
+    public func localizedBundleString(key: String) -> String {
+        let bundle = self.bundleForMessages()
         return NSLocalizedString(key, tableName: nil, bundle: bundle, value: "", comment: "")
     }
     

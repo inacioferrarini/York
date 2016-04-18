@@ -10,14 +10,17 @@ class TestUtil: NSObject {
         return NSBundle(forClass: AppContext.self)
     }
     
-    func appBundle() -> NSBundle {
+    func mainBundle() -> NSBundle {
         return NSBundle.mainBundle()
     }
     
+    func unitTestsBundle() -> NSBundle {
+        return NSBundle(forClass: self.dynamicType)
+    }
     
     func appContext() -> AppContext {
         
-        let appBundle = self.appBundle()
+        let appBundle = self.mainBundle()
         let logger = Logger()
         let rootNavigationController = self.rootViewController()
         let stack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
@@ -37,13 +40,13 @@ class TestUtil: NSObject {
     }
     
     func rootViewController() -> UINavigationController {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
         return storyBoard.instantiateInitialViewController() as! UINavigationController
     }
     
     func testBaseViewController(appContext: AppContext!) -> TestBaseViewController {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
         let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseViewController") as! TestBaseViewController
         viewController.appContext = appContext
@@ -51,7 +54,7 @@ class TestUtil: NSObject {
     }
     
     func baseDataBasedViewController(appContext: AppContext!) -> BaseDataBasedViewController {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
         let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseDataBasedViewController") as! BaseDataBasedViewController
         viewController.appContext = appContext
@@ -59,7 +62,7 @@ class TestUtil: NSObject {
     }
     
     func testBaseDataBasedViewController(appContext: AppContext!) -> TestBaseDataBasedViewController {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
         let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseDataBasedViewController") as! TestBaseDataBasedViewController
         viewController.appContext = appContext
@@ -67,7 +70,7 @@ class TestUtil: NSObject {
     }
 
     func baseTableViewController(appContext: AppContext!) -> BaseTableViewController {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
         let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseTableViewController") as! BaseTableViewController
         viewController.appContext = appContext
@@ -75,7 +78,7 @@ class TestUtil: NSObject {
     }
     
     func testBaseTableViewController(appContext: AppContext!) -> TestBaseTableViewController {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
         let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseTableViewController") as! TestBaseTableViewController
         viewController.appContext = appContext
@@ -83,7 +86,7 @@ class TestUtil: NSObject {
     }
     
     func testClassicTableViewController(appContext: AppContext!) -> TestClassicTableViewController {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
         let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestClassicTableViewController") as! TestClassicTableViewController
         viewController.appContext = appContext

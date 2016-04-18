@@ -28,18 +28,18 @@ class TestBaseTableViewControllerTests: XCTestCase {
     
     var viewController: TestBaseTableViewController!
     
-    override func setUp() {
-        super.setUp()
-        let appContext = TestUtil().appContext()
-        let navigationController = TestUtil().rootViewController()
-        viewController = TestUtil().testBaseTableViewController(appContext)
-        navigationController.pushViewController(viewController, animated: true)
-        
-        UIApplication.sharedApplication().keyWindow!.rootViewController = navigationController
-        
-        let _ = navigationController.view
-        let _ = viewController.view
-    }
+//    override func setUp() {
+//        super.setUp()
+//        let appContext = TestUtil().appContext()
+//        let navigationController = TestUtil().rootViewController()
+//        viewController = TestUtil().testBaseTableViewController(appContext)
+//        navigationController.pushViewController(viewController, animated: true)
+//        
+//        UIApplication.sharedApplication().keyWindow!.rootViewController = navigationController
+//        
+//        let _ = navigationController.view
+//        let _ = viewController.view
+//    }
     
     
 //    func test_viewDidLoad_mustNotCrash() {
