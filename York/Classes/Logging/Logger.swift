@@ -42,7 +42,6 @@ public class Logger: NSObject {
         DDLogError("\(error), \(error.userInfo)")
     }
 
-    // TODO: Disable this method.
     public func logErrorMessage(errorMessage:String) {
         DDLogError(errorMessage)
     }
