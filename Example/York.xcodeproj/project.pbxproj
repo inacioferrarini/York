@@ -287,7 +287,6 @@
 			children = (
 				34C91A4E1CC342750033AC8B /* CoreDataStackTests.swift */,
 				34C91A4F1CC342750033AC8B /* DataSource */,
-				34C91A511CC342750033AC8B /* TableViewCells */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -298,13 +297,6 @@
 				34C91A501CC342750033AC8B /* FetcherDataSourceTests.swift */,
 			);
 			path = DataSource;
-			sourceTree = "<group>";
-		};
-		34C91A511CC342750033AC8B /* TableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		34C91A521CC342750033AC8B /* Presenter */ = {
