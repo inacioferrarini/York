@@ -28,18 +28,18 @@ class BaseDataBasedViewControllerTests: XCTestCase {
     
     var viewController: BaseDataBasedViewController!
     
-    override func setUp() {
-        super.setUp()
-        let appContext = TestUtil().appContext()
-        let navigationController = TestUtil().rootViewController()
-        viewController = TestUtil().baseDataBasedViewController(appContext)
-        navigationController.pushViewController(viewController, animated: true)
-        
-        UIApplication.sharedApplication().keyWindow!.rootViewController = navigationController
-        
-        let _ = navigationController.view
-        let _ = viewController.view
-    }
+//    override func setUp() {
+//        super.setUp()
+//        let appContext = TestUtil().appContext()
+//        let navigationController = TestUtil().rootViewController()
+//        viewController = TestUtil().baseDataBasedViewController(appContext)
+//        navigationController.pushViewController(viewController, animated: true)
+//        
+//        UIApplication.sharedApplication().keyWindow!.rootViewController = navigationController
+//        
+//        let _ = navigationController.view
+//        let _ = viewController.view
+//    }
     
 //    func test_viewDidAppear() {
 //        self.viewController.viewDidAppear(true)

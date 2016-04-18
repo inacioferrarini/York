@@ -6,13 +6,18 @@ class TestUtil: NSObject {
     static let modelFileName = "DataSyncRules"
     static let databaseFileName = "DataSyncRulesDB"
     
-    func yorkPODBundle() -> NSBundle {
-        return NSBundle(forClass: AppContext.dynamicType)
+    func yorkPODBundle() -> NSBundle {        
+        return NSBundle(forClass: AppContext.self)
     }
+    
+    func appBundle() -> NSBundle {
+        return NSBundle.mainBundle()
+    }
+    
     
     func appContext() -> AppContext {
         
-        let appBundle = NSBundle.mainBundle()
+        let appBundle = self.appBundle()
         let logger = Logger()
         let rootNavigationController = self.rootViewController()
         let stack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
