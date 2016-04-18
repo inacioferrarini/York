@@ -6,6 +6,10 @@ class TestUtil: NSObject {
     static let modelFileName = "DataSyncRules"
     static let databaseFileName = "DataSyncRulesDB"
     
+    func yorkPODBundle() -> NSBundle {
+        return NSBundle(forClass: AppContext.dynamicType)
+    }
+    
     func appContext() -> AppContext {
         
         let appBundle = NSBundle.mainBundle()
