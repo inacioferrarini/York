@@ -42,8 +42,10 @@ class TableViewCellPresenterTests: XCTestCase {
     }
     
     func test_tableViewCellPresenterFields_configureCellBlock() {
+        let yorkBundle = TestUtil().yorkPODBundle()
         let logger = Logger()
-        let dataSyncRulesStack = CoreDataStack(modelFileName: TableViewCellPresenterTests.modelFileName, databaseFileName: TableViewCellPresenterTests.databaseFileName, logger: logger)        
+        let dataSyncRulesStack = CoreDataStack(modelFileName: TableViewCellPresenterTests.modelFileName, databaseFileName: TableViewCellPresenterTests.databaseFileName, logger: logger,
+            bundle: yorkBundle)
         let presenter = self.createTableViewCellPresenter()
         let cell = UITableViewCell()
         let ctx = dataSyncRulesStack.managedObjectContext
