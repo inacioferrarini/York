@@ -63,7 +63,9 @@ public class CoreDataStack: NSObject {
         self.logger.logInfo("\(url)")        
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            let isRunningUnitTests = NSClassFromString("XCTest") != nil
+            let storeType = isRunningUnitTests ? NSInMemoryStoreType : NSSQLiteStoreType
+            try coordinator.addPersistentStoreWithType(storeType, configuration: nil, URL: url, options: nil)
         } catch let error as NSError {
             var dict = [String: AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
