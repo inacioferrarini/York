@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "York"
-  s.version          = "0.1.3"
+  s.version          = "0.1.4"
   s.summary          = "Foundation classes used to eliminate boiler-plate code and provide an accelerated startup time."
   s.homepage         = "https://github.com/inacioferrarini/York"
 
@@ -25,6 +25,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.source           = { :git => "https://github.com/inacioferrarini/York.git", :tag => s.version.to_s }
 
   s.source_files = 'York/Classes/**/*'
+  s.preserve_paths = 'York/Classes/**/*'
+  
   s.frameworks = 'UIKit'
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
