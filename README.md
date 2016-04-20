@@ -3,6 +3,8 @@
 [![Version](https://img.shields.io/cocoapods/v/York.svg?style=flat)](http://cocoapods.org/pods/York)
 [![License](https://img.shields.io/cocoapods/l/York.svg?style=flat)](http://cocoapods.org/pods/York)
 [![Platform](https://img.shields.io/cocoapods/p/York.svg?style=flat)](http://cocoapods.org/pods/York)
+[![codecov.io](https://codecov.io/github/inacioferrarini/York/coverage.svg?branch=master)](https://codecov.io/github/inacioferrarini/York)
+
 
 ### What is it? ###
 York is a set of classes, that can be used together or not.
