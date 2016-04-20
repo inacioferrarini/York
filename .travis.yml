@@ -11,4 +11,4 @@ script:
 - xctool -workspace Example/York.xcworkspace -scheme York test -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 - pod lib lint
 after_success:
-- bash <(curl -s https://codecov.io/bash) -t 'f6afc54e-7662-4f93-b3ba-2916072328f4'
+- bash <(curl -s https://codecov.io/bash)
