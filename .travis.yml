@@ -8,5 +8,8 @@ before_install:
 - gem install cocoapods -v '= 0.39.0'
 - pod install --project-directory=Example
 script:
-- xctool -workspace Example/York.xcworkspace -scheme York-Example test -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+#- xctool -workspace Example/York.xcworkspace -scheme York-Example test -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+- xctool -workspace Example/York.xcworkspace -scheme York test -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 - pod lib lint
+after_success:
+- bash <(curl -s https://codecov.io/bash)
