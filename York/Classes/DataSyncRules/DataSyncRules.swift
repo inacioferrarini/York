@@ -29,22 +29,22 @@ public enum SyncRule {
 }
 
 public class DataSyncRules: NSObject {
-    
+
     // MARK: - Properties
-    
+
     public let coreDataStack: CoreDataStack
-    
-    
+
+
     // MARK: - Initialization
-    
+
     public init(coreDataStack: CoreDataStack) {    // rules: [String, SyncRule]
         self.coreDataStack = coreDataStack
         super.init()
     }
-    
-    
+
+
     // MARK: - Public Methods
-    
+
     public func addSyncRule(ruleName: String, rule: SyncRule) {
         let context = self.coreDataStack.managedObjectContext
         switch rule {
@@ -55,16 +55,16 @@ public class DataSyncRules: NSObject {
         }
         self.coreDataStack.saveContext()
     }
-    
-    public func shouldPerformSyncRule(ruleName: String, atDate date:NSDate) -> Bool {
+
+    public func shouldPerformSyncRule(ruleName: String, atDate date: NSDate) -> Bool {
         let context = self.coreDataStack.managedObjectContext
         if let rule = EntityBaseSyncRules.fetchEntityBaseSyncRulesByName(ruleName, inManagedObjectContext: context) {
             return rule.shouldRunSyncRuleWithName(ruleName, date: date, inManagedObjectContext: context)
         }
-        
+
         return false
     }
-    
+
     public func updateSyncRuleHistoryExecutionTime(ruleName: String, lastExecutionDate: NSDate) {
         let context = self.coreDataStack.managedObjectContext
         if let rule = EntitySyncHistory.fetchEntityAutoSyncHistoryByName(ruleName, inManagedObjectContext: context) {
@@ -74,5 +74,5 @@ public class DataSyncRules: NSObject {
                 lastExecutionDate: lastExecutionDate, inManagedObjectContext: context)
         }
     }
-    
+
 }
