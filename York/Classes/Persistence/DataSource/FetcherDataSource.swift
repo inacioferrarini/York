@@ -183,7 +183,7 @@ public class FetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedO
 
         return _fetchedResultsController!
     }
-    public var _fetchedResultsController: NSFetchedResultsController? = nil
+    private var _fetchedResultsController: NSFetchedResultsController? = nil
 
     public func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
