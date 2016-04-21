@@ -24,14 +24,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.author           = { "Inácio Ferrarini" => "inacio.ferrarini@gmail.com" }
   s.source           = { :git => "https://github.com/inacioferrarini/York.git", :tag => s.version.to_s }
 
-  s.source_files = 'York/Classes/**/*'
+  s.source_files = 'York/Classes/**/*.swift'
   s.preserve_paths = 'York/Classes/*', 'York/Classes/**/*'
-
   s.frameworks = 'UIKit'
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
-  s.resources = 'York/Classes/**/*.xcdatamodeld'
-
+  s.resource = 'York/Classes/**/*.xcdatamodeld'
   s.dependency 'York-Swift-Try-Catch', '0.1.1'
   s.dependency 'JLRoutes', '1.6'
   s.dependency 'CocoaLumberjack/Swift', '2.2.0'
