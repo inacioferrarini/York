@@ -44,9 +44,9 @@ public class ViewComponent: UIView {
         var view: UIView!
 
         if let bundle = self.bundle {
-            view = bundle.loadNibNamed(className, owner: self, options: nil).first as! UIView
+            view = bundle.loadNibNamed(className, owner: self, options: nil).first as? UIView
         } else {
-            view = NSBundle(forClass: self.dynamicType).loadNibNamed(className, owner: self, options: nil).first as! UIView
+            view = NSBundle(forClass: self.dynamicType).loadNibNamed(className, owner: self, options: nil).first as? UIView
         }
         self.addSubview(view)
         view.frame = self.bounds
