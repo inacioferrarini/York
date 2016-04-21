@@ -24,31 +24,31 @@
 import CoreData
 
 public class CoreDataStack: NSObject {
-    
-    public let modelFileName:String
-    public let databaseFileName:String
-    public let logger:Logger
-    public let bundle:NSBundle?
-    
-    public init(modelFileName:String, databaseFileName:String, logger:Logger, bundle:NSBundle?) {
+
+    public let modelFileName: String
+    public let databaseFileName: String
+    public let logger: Logger
+    public let bundle: NSBundle?
+
+    public init(modelFileName: String, databaseFileName: String, logger: Logger, bundle: NSBundle?) {
         self.modelFileName = modelFileName
         self.databaseFileName = databaseFileName
         self.logger = logger
         self.bundle = bundle
         super.init()
     }
-    
-    public convenience init(modelFileName:String, databaseFileName:String, logger:Logger) {
+
+    public convenience init(modelFileName: String, databaseFileName: String, logger: Logger) {
         self.init(modelFileName: modelFileName, databaseFileName: databaseFileName, logger:logger, bundle: nil)
     }
-    
+
     public lazy var applicationDocumentsDirectory: NSURL = {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count-1]
     }()
-    
+
     public lazy var managedObjectModel: NSManagedObjectModel = {
-        var modelURL:NSURL!
+        var modelURL: NSURL!
         if let bundle = self.bundle {
             modelURL = bundle.URLForResource(self.modelFileName, withExtension: "momd")!
         } else {
@@ -56,11 +56,11 @@ public class CoreDataStack: NSObject {
         }
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
-    
+
     public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.databaseFileName).sqlite")
-        self.logger.logInfo("\(url)")        
+        self.logger.logInfo("\(url)")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             let isRunningUnitTests = NSClassFromString("XCTest") != nil
@@ -70,25 +70,23 @@ public class CoreDataStack: NSObject {
             var dict = [String: AnyObject]()
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
-            
             dict[NSUnderlyingErrorKey] = error
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             self.logger.logError(wrappedError)
         }
-        
         return coordinator
     }()
-    
+
     public lazy var managedObjectContext: NSManagedObjectContext = {
         let coordinator = self.persistentStoreCoordinator
         var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
-    
-    
+
+
     // MARK: - Core Data Saving support
-    
+
     public func saveContext () {
         if managedObjectContext.hasChanges {
             do {
@@ -99,5 +97,5 @@ public class CoreDataStack: NSObject {
             }
         }
     }
-    
+
 }
