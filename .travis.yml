@@ -9,7 +9,10 @@ before_install:
 - gem install cocoapods -v '= 0.39.0'
 - pod install --project-directory=Example
 script:
+- cd York/Classes
 - swiftlint
+- cd ..
+- cd ..
 - set -o pipefail
 - xcodebuild -workspace Example/York.xcworkspace -scheme York test -sdk iphonesimulator9.2 -destination "platform=iOS Simulator,name=iPhone 6" | xcpretty -c
 - pod lib lint
