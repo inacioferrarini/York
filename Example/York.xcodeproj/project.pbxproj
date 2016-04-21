@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */; };
 		34C91A5F1CC342750033AC8B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A241CC342750033AC8B /* Info.plist */; };
 		34C91A601CC342750033AC8B /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A261CC342750033AC8B /* default-avatar.png */; };
 		34C91A611CC342750033AC8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A271CC342750033AC8B /* Localizable.strings */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		2CB95DBF5676518A5D7ECA76 /* Pods-York_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-York_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-York_Example/Pods-York_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensionTests.swift; sourceTree = "<group>"; };
 		34C91A241CC342750033AC8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C91A261CC342750033AC8B /* default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar.png"; sourceTree = "<group>"; };
 		34C91A271CC342750033AC8B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			children = (
 				34C91A491CC342750033AC8B /* NSObjectExtensionsTests.swift */,
 				34C91A4A1CC342750033AC8B /* UIImageExtensionTests.swift */,
+				34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				34C91A821CC342750033AC8B /* TestBaseViewControllerTests.swift in Sources */,
 				34C91A6F1CC342750033AC8B /* DataSyncDailyRulesTests.swift in Sources */,
 				34C91A6E1CC342750033AC8B /* AppContextTests.swift in Sources */,
+				34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */,
 				34C91A661CC342750033AC8B /* TestUtil.swift in Sources */,
 				34C91A811CC342750033AC8B /* TestBaseTableViewControllerTests.swift in Sources */,
 				34C91A6D1CC342750033AC8B /* TestsTableView.swift in Sources */,
