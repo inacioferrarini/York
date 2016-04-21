@@ -35,8 +35,12 @@ public class EntityBaseSyncRules: NSManagedObject {
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        let matches = (try! context.executeFetchRequest(request)) as! [EntityBaseSyncRules]
-        if matches.count > 0 {
+        var searchResults: [EntityBaseSyncRules]?
+        do {
+            searchResults = try context.executeFetchRequest(request) as? [EntityBaseSyncRules]
+        } catch { }
+
+        if let matches = searchResults where matches.count > 0 {
             return matches.last
         }
 
