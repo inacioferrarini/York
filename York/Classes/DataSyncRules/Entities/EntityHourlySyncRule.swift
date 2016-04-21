@@ -35,8 +35,12 @@ public class EntityHourlySyncRule: EntityBaseSyncRules {
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        let matches = (try! context.executeFetchRequest(request)) as! [EntityHourlySyncRule]
-        if matches.count > 0 {
+        var searchResults: [EntityHourlySyncRule]?
+        do {
+            searchResults = try context.executeFetchRequest(request) as? [EntityHourlySyncRule]
+        } catch { }
+
+        if let matches = searchResults where matches.count > 0 {
             return matches.last
         }
 
@@ -51,8 +55,10 @@ public class EntityHourlySyncRule: EntityBaseSyncRules {
 
         var entityHourlySyncRule: EntityHourlySyncRule? = fetchEntityHourlySyncRuleByName(name, inManagedObjectContext: context)
         if entityHourlySyncRule == nil {
-            let newEntityHourlySyncRule = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as! EntityHourlySyncRule
-            newEntityHourlySyncRule.name = name
+            let newEntityHourlySyncRule = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as? EntityHourlySyncRule
+            if let entity = newEntityHourlySyncRule {
+                entity.name = name
+            }
             entityHourlySyncRule = newEntityHourlySyncRule
         }
 
