@@ -28,7 +28,17 @@ public class EntitySyncHistory: NSManagedObject {
 
     public class func fetchAllEntitiesAutoSyncHistory(inManagedObjectContext context: NSManagedObjectContext) -> [EntitySyncHistory] {
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
-        return (try! context.executeFetchRequest(request)) as! [EntitySyncHistory]
+
+        var searchResults: [EntitySyncHistory]?
+        do {
+            searchResults = try context.executeFetchRequest(request) as? [EntitySyncHistory]
+        } catch { }
+
+        if let matches = searchResults {
+            return matches
+        } else {
+            return [EntitySyncHistory]()
+        }
     }
 
     public class func fetchEntityAutoSyncHistoryByName(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntitySyncHistory? {
@@ -40,8 +50,12 @@ public class EntitySyncHistory: NSManagedObject {
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "ruleName = %@", name)
 
-        let matches = (try! context.executeFetchRequest(request)) as! [EntitySyncHistory]
-        if matches.count > 0 {
+        var searchResults: [EntitySyncHistory]?
+        do {
+            searchResults = try context.executeFetchRequest(request) as? [EntitySyncHistory]
+        } catch { }
+
+        if let matches = searchResults where matches.count > 0 {
             return matches.last
         }
 
@@ -56,8 +70,10 @@ public class EntitySyncHistory: NSManagedObject {
 
         var entityAutoSyncHistory: EntitySyncHistory? = fetchEntityAutoSyncHistoryByName(name, inManagedObjectContext: context)
         if entityAutoSyncHistory == nil {
-            let newEntityAutoSyncHistory = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as! EntitySyncHistory
-            newEntityAutoSyncHistory.ruleName = name
+            let newEntityAutoSyncHistory = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as? EntitySyncHistory
+            if let entity = newEntityAutoSyncHistory {
+                entity.ruleName = name
+            }
             entityAutoSyncHistory = newEntityAutoSyncHistory
         }
 
