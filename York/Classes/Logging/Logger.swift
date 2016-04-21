@@ -29,7 +29,7 @@ public class Logger: NSObject {
     public override init() {
         DDLog.addLogger(DDASLLogger.sharedInstance())
         DDLog.addLogger(DDTTYLogger.sharedInstance())
-        
+
         let fileLogger: DDFileLogger = DDFileLogger()
         fileLogger.maximumFileSize = 1024 * 1024
         fileLogger.rollingFrequency = 60 * 60 * 24
@@ -37,17 +37,17 @@ public class Logger: NSObject {
         DDLog.addLogger(fileLogger)
         super.init()
     }
-    
-    public func logError(error:NSError) {
+
+    public func logError(error: NSError) {
         DDLogError("\(error), \(error.userInfo)")
     }
 
-    public func logErrorMessage(errorMessage:String) {
+    public func logErrorMessage(errorMessage: String) {
         DDLogError(errorMessage)
     }
-    
-    public func logInfo(message:String) {
+
+    public func logInfo(message: String) {
         DDLogInfo(message)
     }
-    
+
 }
