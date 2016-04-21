@@ -49,10 +49,15 @@ class TableViewFetcherDataSourceTests: XCTestCase {
     
     func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?, tableView: UITableView!) -> TableViewFetcherDataSource<UITableViewCell, EntitySyncHistory> {
         self.tableView = tableView
+
+        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+            return "TableViewCell"
+        }
+
         self.presenter = TableViewCellPresenter<UITableViewCell, EntitySyncHistory>(
             configureCellBlock: { (cell: UITableViewCell, entity:EntitySyncHistory) -> Void in
                 self.configureCellBlockWasCalled = true
-            }, cellReuseIdentifier: "TableViewCell")
+            }, cellReuseIdentifierBlock: cellReuseIdBlock)
         self.entityName = "EntitySyncHistory"
         self.sortDescriptors = []
         self.coreDataStack = TestUtil().appContext().coreDataStack

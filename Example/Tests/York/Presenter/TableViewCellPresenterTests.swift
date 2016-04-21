@@ -29,15 +29,19 @@ class TableViewCellPresenterTests: XCTestCase {
     
     static let modelFileName = "DataSyncRules"
     static let databaseFileName = "DataSyncHourlyRulesTests"
-    
-    static let cellReuseId = "ReuseCellID"
+
+    static let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+        return "ReuseCellID"
+    }
+
     static var blockExecutionTest = ""
-    
+
     func createTableViewCellPresenter() -> TableViewCellPresenter<UITableViewCell, EntitySyncHistory> {
+        
         let presenter = TableViewCellPresenter<UITableViewCell, EntitySyncHistory>(
             configureCellBlock: { (cell: UITableViewCell, entity:EntitySyncHistory) -> Void in
                 TableViewCellPresenterTests.blockExecutionTest = "testExecuted"
-            }, cellReuseIdentifier: TableViewCellPresenterTests.cellReuseId)
+            }, cellReuseIdentifierBlock: TableViewCellPresenterTests.cellReuseIdBlock)
         return presenter
     }
     
@@ -56,7 +60,9 @@ class TableViewCellPresenterTests: XCTestCase {
 
     func test_tableViewCellPresenterFields_reuseIdentifier() {
         let presenter = self.createTableViewCellPresenter()
-         XCTAssertEqual(presenter.cellReuseIdentifier, TableViewCellPresenterTests.cellReuseId)
+        let presenterReuseId = presenter.cellReuseIdentifierBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
+        let testReuseId = TableViewCellPresenterTests.cellReuseIdBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
+        XCTAssertEqual(presenterReuseId, testReuseId)
     }
-    
+
 }

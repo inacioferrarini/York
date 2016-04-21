@@ -120,7 +120,7 @@ public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: N
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let value = self.objectAtIndexPath(indexPath)
 
-        let reuseIdentifier = self.presenter.cellReuseIdentifier
+        let reuseIdentifier = self.presenter.cellReuseIdentifierBlock(indexPath: indexPath)
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as? CellType
         if let cell = cell,
             let value = value {

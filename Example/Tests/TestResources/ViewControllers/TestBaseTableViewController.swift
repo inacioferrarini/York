@@ -2,12 +2,17 @@ import UIKit
 import York
 
 class TestBaseTableViewController: BaseTableViewController {
-    
+
     override func createDataSource() -> UITableViewDataSource? {
+
+        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+            return "TableViewCell"
+        }
+
         let presenter = TableViewCellPresenter<UITableViewCell, EntitySyncHistory>(
             configureCellBlock: { (cell: UITableViewCell, entity:EntitySyncHistory) -> Void in
                 
-            }, cellReuseIdentifier: "TableViewCell")
+            }, cellReuseIdentifierBlock: cellReuseIdBlock)
         
         let sortDescriptors:[NSSortDescriptor] = []
         let context = self.appContext.coreDataStack.managedObjectContext
