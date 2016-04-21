@@ -25,24 +25,24 @@ import UIKit
 
 @IBDesignable
 public class ViewComponent: UIView {
-    
-    public let bundle:NSBundle?
-    
+
+    public let bundle: NSBundle?
+
     public required init(frame: CGRect, bundle: NSBundle?) {
         self.bundle = bundle
         super.init(frame: frame)
         self.load()
     }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         self.bundle = nil
         super.init(coder: aDecoder)
     }
-    
+
     public func load() {
         let className = self.dynamicType.simpleClassName()
-        var view:UIView!
-        
+        var view: UIView!
+
         if let bundle = self.bundle {
             view = bundle.loadNibNamed(className, owner: self, options: nil).first as! UIView
         } else {
@@ -51,5 +51,5 @@ public class ViewComponent: UIView {
         self.addSubview(view)
         view.frame = self.bounds
     }
-    
+
 }
