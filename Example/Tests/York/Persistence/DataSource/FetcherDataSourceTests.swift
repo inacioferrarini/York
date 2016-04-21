@@ -80,14 +80,24 @@ class FetcherDataSourceTests: XCTestCase {
     func test_refresh_mustSucceed() {
         let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.sortDescriptors = []
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
     }
 
     
     func test_refresh_mustIgnoreExceptionCrash() {
         let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.sortDescriptors = [ NSSortDescriptor(key: "nonExistingField", ascending: true) ]
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
     }
     
     
@@ -98,7 +108,13 @@ class FetcherDataSourceTests: XCTestCase {
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
         self.coreDataStack.saveContext()
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+
         let object = dataSource.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
         XCTAssertNotNil(object)
     }
@@ -111,7 +127,13 @@ class FetcherDataSourceTests: XCTestCase {
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
         self.coreDataStack.saveContext()
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+
         let indexPath = dataSource.indexPathForObject(entity!)
         XCTAssertNotNil(indexPath)
     }
@@ -123,7 +145,13 @@ class FetcherDataSourceTests: XCTestCase {
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
         self.coreDataStack.saveContext()
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+
         let indexPath = dataSource.indexPathForObject(entity!)
         XCTAssertNotNil(indexPath)
     }
@@ -151,7 +179,13 @@ class FetcherDataSourceTests: XCTestCase {
         EntitySyncHistory.entityAutoSyncHistoryByName("rule-test-name",
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+
         let numberOfRows = dataSource.tableView(self.tableView, numberOfRowsInSection: 0)
         XCTAssertEqual(numberOfRows, 1)
     }
@@ -169,7 +203,13 @@ class FetcherDataSourceTests: XCTestCase {
             inManagedObjectContext: self.managedObjectContext)
         
         self.coreDataStack.saveContext()
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+
         tableView.reloadData()
         
         let cell = dataSource.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
@@ -240,8 +280,13 @@ class FetcherDataSourceTests: XCTestCase {
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
         
-        dataSource.refreshData()
-        
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+
         let ruleName3 = TestUtil().randomRuleName()
         EntitySyncHistory.entityAutoSyncHistoryByName(ruleName3,
             lastExecutionDate: nil,
@@ -253,7 +298,12 @@ class FetcherDataSourceTests: XCTestCase {
             didChangeSection: section,
             atIndex: 0,
             forChangeType: .Insert)
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
         self.tableView.endUpdates()
     }
 
@@ -280,8 +330,12 @@ class FetcherDataSourceTests: XCTestCase {
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
         
-        dataSource.refreshData()
-        
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
         dataSource.managedObjectContext.deleteObject(entityRule!)
         
         self.tableView.beginUpdates()
@@ -290,7 +344,12 @@ class FetcherDataSourceTests: XCTestCase {
             didChangeSection: section,
             atIndex: 0,
             forChangeType: .Delete)
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
         self.tableView.endUpdates()
     }
 
@@ -317,15 +376,24 @@ class FetcherDataSourceTests: XCTestCase {
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
         
-        dataSource.refreshData()
-        
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
         self.tableView.beginUpdates()
         let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
         dataSource.controller(dataSource.fetchedResultsController,
             didChangeSection: section,
             atIndex: 0,
             forChangeType: .Update)
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
         self.tableView.endUpdates()
     }
     
@@ -352,7 +420,12 @@ class FetcherDataSourceTests: XCTestCase {
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
         
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
 
         let ruleName3 = TestUtil().randomRuleName()
         let entityRule = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName3,
@@ -365,7 +438,13 @@ class FetcherDataSourceTests: XCTestCase {
             atIndexPath: nil,
             forChangeType: .Insert,
             newIndexPath: NSIndexPath(forRow: 1, inSection: 0))
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+        
         self.tableView.endUpdates()
     }
 
@@ -393,15 +472,25 @@ class FetcherDataSourceTests: XCTestCase {
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
 
-        dataSource.refreshData()
-        
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
             didChangeObject: entityRule!,
             atIndexPath: NSIndexPath(forRow: 1, inSection: 0),
             forChangeType: .Update,
             newIndexPath: nil)
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
         self.tableView.endUpdates()
     }
     
@@ -431,9 +520,14 @@ class FetcherDataSourceTests: XCTestCase {
         let entityRule = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName3,
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
-        
-        dataSource.refreshData()
-        
+
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+
         dataSource.managedObjectContext.deleteObject(entityRule!)
         
         self.tableView.beginUpdates()
@@ -442,7 +536,12 @@ class FetcherDataSourceTests: XCTestCase {
             atIndexPath: NSIndexPath(forRow: 2, inSection: 0),
             forChangeType: .Delete,
             newIndexPath: nil)
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
         self.tableView.endUpdates()
     }
     
@@ -468,7 +567,12 @@ class FetcherDataSourceTests: XCTestCase {
             lastExecutionDate: nil,
             inManagedObjectContext: self.managedObjectContext)
 
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
 
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,

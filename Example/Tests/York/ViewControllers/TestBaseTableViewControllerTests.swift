@@ -56,7 +56,13 @@ class TestBaseTableViewControllerTests: XCTestCase {
             inManagedObjectContext: context)
         
         let dataSource = self.viewController.dataSource as! FetcherDataSource<UITableViewCell, EntitySyncHistory>
-        dataSource.refreshData()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+        
         self.viewController.tableView!.reloadData()
 
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)

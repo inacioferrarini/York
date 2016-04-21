@@ -23,7 +23,6 @@
 
 import UIKit
 import CoreData
-import York_Swift_Try_Catch
 
 public class FetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
 
@@ -90,16 +89,9 @@ public class FetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedO
 
     // MARK: - Public Methods
 
-    public func refreshData() {
-        TryCatchFinally.handleTryBlock({ () -> Void in
-            do {
-                try self.fetchedResultsController.performFetch()
-            } catch {}
-            self.tableView.reloadData()
-        }) { (exception: NSException!) -> Void in
-            let error = NSError(domain: "", code: 9999, userInfo: exception.userInfo)
-            self.logger.logError(error)
-        }
+    public func refreshData() throws {
+        try self.fetchedResultsController.performFetch()
+        self.tableView.reloadData()
     }
 
     public func objectAtIndexPath(indexPath: NSIndexPath) -> EntityType? {
