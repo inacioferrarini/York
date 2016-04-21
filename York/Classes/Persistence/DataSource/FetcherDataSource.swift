@@ -92,16 +92,18 @@ public class FetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedO
 
     public func refreshData() {
         TryCatchFinally.handleTryBlock({ () -> Void in
-                try! self.fetchedResultsController.performFetch()
-                self.tableView.reloadData()
-            }) { (exception: NSException!) -> Void in
-                let error = NSError(domain: "", code: 9999, userInfo: exception.userInfo)
-                self.logger.logError(error)
+            do {
+                try self.fetchedResultsController.performFetch()
+            } catch {}
+            self.tableView.reloadData()
+        }) { (exception: NSException!) -> Void in
+            let error = NSError(domain: "", code: 9999, userInfo: exception.userInfo)
+            self.logger.logError(error)
         }
     }
 
-    public func objectAtIndexPath(indexPath: NSIndexPath) -> EntityType {
-        return self.fetchedResultsController.objectAtIndexPath(indexPath) as! EntityType
+    public func objectAtIndexPath(indexPath: NSIndexPath) -> EntityType? {
+        return self.fetchedResultsController.objectAtIndexPath(indexPath) as? EntityType
     }
 
     public func indexPathForObject(object: EntityType) -> NSIndexPath? {
@@ -127,11 +129,12 @@ public class FetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedO
         let value = self.objectAtIndexPath(indexPath)
 
         let reuseIdentifier = self.presenter.cellReuseIdentifier
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CellType
-
-        self.presenter.configureCellBlock(cell, value)
-
-        return cell
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as? CellType
+        if let cell = cell,
+            let value = value {
+            self.presenter.configureCellBlock(cell, value)
+        }
+        return cell!
     }
 
     public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -206,8 +209,8 @@ public class FetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedO
         case .Delete:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         case .Update:
-            let value = self.objectAtIndexPath(indexPath!)
-            if let cell = tableView.cellForRowAtIndexPath(indexPath!) as? CellType {
+            if let cell = tableView.cellForRowAtIndexPath(indexPath!) as? CellType,
+                let value = self.objectAtIndexPath(indexPath!) {
                 self.presenter.configureCellBlock(cell, value)
             }
         case .Move:
