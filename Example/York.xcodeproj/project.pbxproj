@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */; };
-		34C91A5F1CC342750033AC8B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A241CC342750033AC8B /* Info.plist */; };
 		34C91A601CC342750033AC8B /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A261CC342750033AC8B /* default-avatar.png */; };
 		34C91A611CC342750033AC8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A271CC342750033AC8B /* Localizable.strings */; };
 		34C91A621CC342750033AC8B /* TestStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A281CC342750033AC8B /* TestStoryboard.storyboard */; };
@@ -525,7 +524,6 @@
 				34C91A6C1CC342750033AC8B /* SimpleViewComponent.xib in Resources */,
 				34C91A621CC342750033AC8B /* TestStoryboard.storyboard in Resources */,
 				34C91A611CC342750033AC8B /* Localizable.strings in Resources */,
-				34C91A5F1CC342750033AC8B /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
