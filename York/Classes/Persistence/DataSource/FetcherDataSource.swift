@@ -173,7 +173,8 @@ public class FetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedO
         fetchRequest.fetchBatchSize = 100
         fetchRequest.sortDescriptors = self.sortDescriptors
 
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: self.sectionNameKeyPath, cacheName: self.cacheName)
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext,
+            sectionNameKeyPath: self.sectionNameKeyPath, cacheName: self.cacheName)
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
 
@@ -185,7 +186,8 @@ public class FetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedO
         self.tableView.beginUpdates()
     }
 
-    public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+    public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
+        atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         switch type {
         case .Insert:
             self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
@@ -196,7 +198,8 @@ public class FetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedO
         }
     }
 
-    public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?,
+        forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Insert:
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
