@@ -26,5 +26,5 @@ import Foundation
 public protocol AppContextAwareProtocol {
 
     var appContext: AppContext! { get set }
-    
+
 }
