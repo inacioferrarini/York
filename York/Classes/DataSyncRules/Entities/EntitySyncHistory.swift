@@ -26,19 +26,10 @@ import CoreData
 
 public class EntitySyncHistory: NSManagedObject {
 
-    public class func fetchAllEntitiesAutoSyncHistory(inManagedObjectContext context: NSManagedObjectContext) -> [EntitySyncHistory] {
+    public class func fetchAllEntitiesAutoSyncHistory(inManagedObjectContext context: NSManagedObjectContext) -> [EntitySyncHistory]? {
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
 
-        var searchResults: [EntitySyncHistory]?
-        do {
-            searchResults = try context.executeFetchRequest(request) as? [EntitySyncHistory]
-        } catch { }
-
-        if let matches = searchResults {
-            return matches
-        } else {
-            return [EntitySyncHistory]()
-        }
+        return self.allObjectsFromRequest(request, inManagedObjectContext: context) as? [EntitySyncHistory]
     }
 
     public class func fetchEntityAutoSyncHistoryByName(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntitySyncHistory? {
@@ -50,16 +41,7 @@ public class EntitySyncHistory: NSManagedObject {
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "ruleName = %@", name)
 
-        var searchResults: [EntitySyncHistory]?
-        do {
-            searchResults = try context.executeFetchRequest(request) as? [EntitySyncHistory]
-        } catch { }
-
-        if let matches = searchResults where matches.count > 0 {
-            return matches.last
-        }
-
-        return nil
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntitySyncHistory
     }
 
     public class func entityAutoSyncHistoryByName(name: String, lastExecutionDate: NSDate?, inManagedObjectContext context: NSManagedObjectContext) -> EntitySyncHistory? {
@@ -85,9 +67,10 @@ public class EntitySyncHistory: NSManagedObject {
     }
 
     public class func removeAll(inManagedObjectContext context: NSManagedObjectContext) {
-        let allEntities = self.fetchAllEntitiesAutoSyncHistory(inManagedObjectContext: context)
-        for entity in allEntities {
-            context.deleteObject(entity)
+        if let allEntities = self.fetchAllEntitiesAutoSyncHistory(inManagedObjectContext: context) {
+            for entity in allEntities {
+                context.deleteObject(entity)
+            }
         }
     }
 

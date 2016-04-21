@@ -35,16 +35,7 @@ public class EntityHourlySyncRule: EntityBaseSyncRules {
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        var searchResults: [EntityHourlySyncRule]?
-        do {
-            searchResults = try context.executeFetchRequest(request) as? [EntityHourlySyncRule]
-        } catch { }
-
-        if let matches = searchResults where matches.count > 0 {
-            return matches.last
-        }
-
-        return nil
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityHourlySyncRule
     }
 
     public class func entityHourlySyncRuleByName(name: String, hours: NSNumber?, inManagedObjectContext context: NSManagedObjectContext) -> EntityHourlySyncRule? {

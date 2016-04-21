@@ -35,16 +35,7 @@ public class EntityDailySyncRule: EntityBaseSyncRules {
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        var searchResults: [EntityDailySyncRule]?
-        do {
-            searchResults = try context.executeFetchRequest(request) as? [EntityDailySyncRule]
-        } catch { }
-
-        if let matches = searchResults where matches.count > 0 {
-            return matches.last
-        }
-
-        return nil
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityDailySyncRule
     }
 
     public class func entityDailySyncRuleByName(name: String, days: NSNumber?, inManagedObjectContext context: NSManagedObjectContext) -> EntityDailySyncRule? {

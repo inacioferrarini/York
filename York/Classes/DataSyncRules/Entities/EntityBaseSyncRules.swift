@@ -35,16 +35,7 @@ public class EntityBaseSyncRules: NSManagedObject {
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        var searchResults: [EntityBaseSyncRules]?
-        do {
-            searchResults = try context.executeFetchRequest(request) as? [EntityBaseSyncRules]
-        } catch { }
-
-        if let matches = searchResults where matches.count > 0 {
-            return matches.last
-        }
-
-        return nil
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityBaseSyncRules
     }
 
     public func shouldRunSyncRuleWithName(name: String, date: NSDate, inManagedObjectContext context: NSManagedObjectContext) -> Bool {
