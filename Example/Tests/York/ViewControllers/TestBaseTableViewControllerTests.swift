@@ -55,7 +55,7 @@ class TestBaseTableViewControllerTests: XCTestCase {
             lastExecutionDate: nil,
             inManagedObjectContext: context)
         
-        let dataSource = self.viewController.dataSource as! FetcherDataSource<UITableViewCell, EntitySyncHistory>
+        let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntitySyncHistory>
         do {
             try dataSource.refreshData()
             XCTAssertTrue(true)
@@ -78,7 +78,7 @@ class TestBaseTableViewControllerTests: XCTestCase {
     
     func test_dataSource_checkPresenterConfigureCellBlock() {
         self.viewController.viewDidLoad()
-        let dataSource = self.viewController.dataSource as! FetcherDataSource<UITableViewCell, EntitySyncHistory>
+        let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntitySyncHistory>
         let coreDataStack = TestUtil().appContext().coreDataStack
         let ctx = coreDataStack.managedObjectContext
         let ruleName = TestUtil().randomRuleName()

@@ -24,7 +24,7 @@
 import UIKit
 import CoreData
 
-public class FetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
+public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
 
     // MARK: - Properties
 

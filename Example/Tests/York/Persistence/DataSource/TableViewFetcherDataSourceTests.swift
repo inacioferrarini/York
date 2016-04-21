@@ -25,7 +25,7 @@ import XCTest
 import CoreData
 import York
 
-class FetcherDataSourceTests: XCTestCase {    
+class TableViewFetcherDataSourceTests: XCTestCase {
     
     var tableView:UITableView!
     var entityName: String!
@@ -41,13 +41,13 @@ class FetcherDataSourceTests: XCTestCase {
     var configureCellBlockWasCalled:Bool = false
     
     
-    func createFetcherDataSource(sectionNameKeyPath nameKeyPath: String?) -> FetcherDataSource<UITableViewCell, EntitySyncHistory> {
+    func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?) -> TableViewFetcherDataSource<UITableViewCell, EntitySyncHistory> {
         let frame = CGRectMake(0, 0, 200, 200)
         let tableView = UITableView(frame: frame, style: .Plain)
-        return self.createFetcherDataSource(sectionNameKeyPath: nameKeyPath, tableView: tableView)
+        return self.createTableViewFetcherDataSource(sectionNameKeyPath: nameKeyPath, tableView: tableView)
     }
     
-    func createFetcherDataSource(sectionNameKeyPath nameKeyPath: String?, tableView: UITableView!) -> FetcherDataSource<UITableViewCell, EntitySyncHistory> {
+    func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?, tableView: UITableView!) -> TableViewFetcherDataSource<UITableViewCell, EntitySyncHistory> {
         self.tableView = tableView
         self.presenter = TableViewCellPresenter<UITableViewCell, EntitySyncHistory>(
             configureCellBlock: { (cell: UITableViewCell, entity:EntitySyncHistory) -> Void in
@@ -63,7 +63,7 @@ class FetcherDataSourceTests: XCTestCase {
         self.sectionNameKeyPath = nameKeyPath
         self.cacheName = "cacheName"
         
-        let dataSource = FetcherDataSource(targetingTableView: self.tableView,
+        let dataSource = TableViewFetcherDataSource(targetingTableView: self.tableView,
             presenter: self.presenter,
             entityName: self.entityName,
             sortDescriptors: self.sortDescriptors,
@@ -78,7 +78,7 @@ class FetcherDataSourceTests: XCTestCase {
     }
         
     func test_refresh_mustSucceed() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.sortDescriptors = []
         do {
             try dataSource.refreshData()
@@ -90,7 +90,7 @@ class FetcherDataSourceTests: XCTestCase {
 
     
     func test_refresh_mustIgnoreExceptionCrash() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.sortDescriptors = [ NSSortDescriptor(key: "nonExistingField", ascending: true) ]
         do {
             try dataSource.refreshData()
@@ -102,7 +102,7 @@ class FetcherDataSourceTests: XCTestCase {
     
     
     func test_objectAtIndexPath_mustReturnEntity() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
         EntitySyncHistory.entityAutoSyncHistoryByName("rule-test-name",
             lastExecutionDate: nil,
@@ -121,7 +121,7 @@ class FetcherDataSourceTests: XCTestCase {
     
     
     func test_indexPathForObject_mustReturnObject() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
         let entity = EntitySyncHistory.entityAutoSyncHistoryByName("rule-test-name",
             lastExecutionDate: nil,
@@ -139,7 +139,7 @@ class FetcherDataSourceTests: XCTestCase {
     }
     
     func test_indexPathForObject_mustReturnNil() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
         let entity = EntitySyncHistory.entityAutoSyncHistoryByName("rule-test-name",
             lastExecutionDate: nil,
@@ -158,7 +158,7 @@ class FetcherDataSourceTests: XCTestCase {
     
     
     func test_numberOfSections_mustReturnZero() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: "ruleName")
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "ruleName")
         EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
         self.coreDataStack.saveContext()
         let numberOfSections = dataSource.numberOfSectionsInTableView(self.tableView)
@@ -167,14 +167,14 @@ class FetcherDataSourceTests: XCTestCase {
 
     
     func test_numberOfRowsInSection_mustReturnZero() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
         let numberOfRows = dataSource.tableView(self.tableView, numberOfRowsInSection: 0)
         XCTAssertEqual(numberOfRows, 0)
     }
     
     func test_numberOfRowsInSection_mustReturnNonZero() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
         EntitySyncHistory.entityAutoSyncHistoryByName("rule-test-name",
             lastExecutionDate: nil,
@@ -191,7 +191,7 @@ class FetcherDataSourceTests: XCTestCase {
     }
     
     func test_cellForRowAtIndexPath_mustReturnCell() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
@@ -218,7 +218,7 @@ class FetcherDataSourceTests: XCTestCase {
 
     
     func test_canEditRowAtIndexPath_withBlock_mustSucceed() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
             return true
         }
@@ -227,7 +227,7 @@ class FetcherDataSourceTests: XCTestCase {
     }
     
     func test_canEditRowAtIndexPath_withoutBlock_mustFail() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.presenter.canEditRowAtIndexPathBlock = nil
         let canEdit = dataSource.tableView(self.tableView, canEditRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
         XCTAssertFalse(canEdit)
@@ -235,7 +235,7 @@ class FetcherDataSourceTests: XCTestCase {
     
     
     func test_commitEditingStyle_withBlock_mustExecuteBlock() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         var executedCommitEditingStyleBlock = false
         dataSource.presenter.commitEditingStyleBlock = { (editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) -> Void in
             executedCommitEditingStyleBlock = true
@@ -245,21 +245,21 @@ class FetcherDataSourceTests: XCTestCase {
     }
 
     func test_commitEditingStyle_withoutBlock_mustDoNothing() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.presenter.commitEditingStyleBlock = nil
         dataSource.tableView(self.tableView!, commitEditingStyle: .None, forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
     }
     
     
     func test_controllerWillChangeContent_mustNotCrash() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         self.tableView.dataSource = dataSource
         dataSource.controllerWillChangeContent(dataSource.fetchedResultsController)
     }
     
     
     func test_didChangeSection_forInsert_mustNotCrash() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: "ruleName")
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "ruleName")
         dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath:NSIndexPath) -> Bool in
             return true
         }
@@ -308,7 +308,7 @@ class FetcherDataSourceTests: XCTestCase {
     }
 
     func test_didChangeSection_forDelete_mustNotCrash() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: "ruleName")
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "ruleName")
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
@@ -354,7 +354,7 @@ class FetcherDataSourceTests: XCTestCase {
     }
 
     func test_didChangeSection_forDefault_mustNotCrash() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: "ruleName")
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "ruleName")
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
@@ -399,7 +399,7 @@ class FetcherDataSourceTests: XCTestCase {
     
     
     func test_didChangeObject_forInsert_mustNotCrash() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath:NSIndexPath) -> Bool in
             return true
         }
@@ -454,7 +454,7 @@ class FetcherDataSourceTests: XCTestCase {
         tableView.cellForRowAtIndexPathBlock = { () -> UITableViewCell? in
             return TableViewCell()
         }
-        let dataSource = createFetcherDataSource(sectionNameKeyPath: nil, tableView: tableView)
+        let dataSource = createTableViewFetcherDataSource(sectionNameKeyPath: nil, tableView: tableView)
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
@@ -495,7 +495,7 @@ class FetcherDataSourceTests: XCTestCase {
     }
     
     func test_didChangeObject_forDelete_mustNotCrash() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath:NSIndexPath) -> Bool in
             return true
         }
@@ -546,7 +546,7 @@ class FetcherDataSourceTests: XCTestCase {
     }
     
     func test_didChangeObject_forMove_mustNotCrash() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath:NSIndexPath) -> Bool in
             return true
         }
@@ -584,7 +584,7 @@ class FetcherDataSourceTests: XCTestCase {
     }
     
     func test_controllerDidChangeContent_mustNotCrash() {
-        let dataSource = self.createFetcherDataSource(sectionNameKeyPath: nil)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.controllerDidChangeContent(dataSource.fetchedResultsController)
     }
     
