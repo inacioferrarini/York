@@ -26,9 +26,9 @@ In order to make easier to understand every class role, they were grouped togeth
 * Presenter: Classes used to handle how TableViewCells will be presented.
 * TableViewDelegate: UITableViewDelegate alternative implementations, using blocks to handle used interaction events.
 * ViewController: View Controllers implementations, supporting internationalization out of the box, data synchronization and Table View Implementations.
-** BaseViewController: The simplest UIViewController supporting internationalization out of the box.
-** BaseDataBasedViewController: Adds data synchronization capabilities to BaseViewController.
-** BaseTableViewController: Adds TableViewController capabilities to BaseDataBasedViewController. Allows the ViewController itself to be the Delegate or/and DataSource of the TableView, or, using the proper method, return the Delegate or/and DataSource to be used.
+  * BaseViewController: The simplest UIViewController supporting internationalization out of the box.
+  * BaseDataBasedViewController: Adds data synchronization capabilities to BaseViewController.
+  * BaseTableViewController: Adds TableViewController capabilities to BaseDataBasedViewController. Allows the ViewController itself to be the Delegate or/and DataSource of the TableView, or, using the proper method, return the Delegate or/and DataSource to be used.
 * ViewController: Basic class for Xib-based view components.
 
 ## Requirements

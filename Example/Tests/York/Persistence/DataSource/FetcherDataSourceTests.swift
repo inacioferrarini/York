@@ -99,7 +99,6 @@ class FetcherDataSourceTests: XCTestCase {
             inManagedObjectContext: self.managedObjectContext)
         self.coreDataStack.saveContext()
         dataSource.refreshData()
-        // let indexPath = dataSource.indexPathForObject(entity!)
         let object = dataSource.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
         XCTAssertNotNil(object)
     }

@@ -20,7 +20,6 @@ class TestUtil: NSObject {
     
     func appContext() -> AppContext {
         
-        // let appBundle = self.mainBundle()
         let appBundle = self.yorkPODBundle()
         let logger = Logger()
         let rootNavigationController = self.rootViewController()

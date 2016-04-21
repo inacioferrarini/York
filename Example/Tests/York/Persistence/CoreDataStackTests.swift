@@ -26,6 +26,14 @@ import York
 
 class CoreDataStackTests: XCTestCase {
     
+    
+    func test_convenienceInit_mustNotCrash() {
+        let logger = Logger()
+        let stack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger)
+        XCTAssertNotNil(stack)
+    }
+    
+    
     func test_saveContext_mustThrowException() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let ctx = coreDataStack.managedObjectContext
