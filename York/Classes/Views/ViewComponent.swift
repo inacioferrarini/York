@@ -37,6 +37,7 @@ public class ViewComponent: UIView {
     public required init?(coder aDecoder: NSCoder) {
         self.bundle = nil
         super.init(coder: aDecoder)
+        self.load()
     }
 
     public func load() {
