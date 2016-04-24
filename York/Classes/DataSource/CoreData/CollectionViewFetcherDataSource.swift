@@ -23,7 +23,6 @@
 
 import UIKit
 import CoreData
-import York
 
 public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, EntityType: NSManagedObject>: FetcherDataSource<EntityType>, UICollectionViewDataSource {
     
@@ -46,7 +45,11 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
                   entityName: entityName,
                   sortDescriptors: sortDescriptors,
                   managedObjectContext: context,
-                  logger: logger)
+                  logger: logger,
+                  predicate: nil,
+                  fetchLimit: nil,
+                  sectionNameKeyPath: nil,
+                  cacheName: nil)
     }
     
     public init(targetingCollectionView collectionView: UICollectionView,
@@ -72,16 +75,16 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
                    sectionNameKeyPath: sectionNameKeyPath,
                    cacheName: cacheName)
     }
-    
-    
+
+
     // MARK: - Public Methods
     
     public override func refreshData() throws {
         try super.refreshData()
         self.collectionView.reloadData()
     }
-    
-    
+
+
     // MARK: - Collection View Data Source
 
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
