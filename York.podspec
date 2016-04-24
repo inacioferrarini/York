@@ -33,6 +33,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.dependency 'York-Swift-Try-Catch', '0.1.1'
   s.dependency 'JLRoutes', '1.6'
   s.dependency 'CocoaLumberjack/Swift', '2.2.0'
-  s.dependency 'UICollectionView+NSFetchedResultsController', '1.2.1'
 
 end
