@@ -242,7 +242,7 @@ class TableViewFetcherDataSourceTests: XCTestCase {
     func test_commitEditingStyle_withBlock_mustExecuteBlock() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         var executedCommitEditingStyleBlock = false
-        dataSource.presenter.commitEditingStyleBlock = { (editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) -> Void in
+        dataSource.presenter.commitEditingStyleBlock = { (editingStyle: UITableViewCellEditingStyle, indexPath: NSIndexPath) -> Void in
             executedCommitEditingStyleBlock = true
         }
         dataSource.tableView(self.tableView!, commitEditingStyle: .None, forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
