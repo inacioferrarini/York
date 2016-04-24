@@ -35,7 +35,6 @@
 		34C91A781CC342750033AC8B /* UIImageExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A4A1CC342750033AC8B /* UIImageExtensionTests.swift */; };
 		34C91A791CC342750033AC8B /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A4C1CC342750033AC8B /* LoggerTests.swift */; };
 		34C91A7A1CC342750033AC8B /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A4E1CC342750033AC8B /* CoreDataStackTests.swift */; };
-		34C91A7B1CC342750033AC8B /* TableViewFetcherDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A501CC342750033AC8B /* TableViewFetcherDataSourceTests.swift */; };
 		34C91A7C1CC342750033AC8B /* TableViewCellPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A531CC342750033AC8B /* TableViewCellPresenterTests.swift */; };
 		34C91A7D1CC342750033AC8B /* TableViewBlockDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A551CC342750033AC8B /* TableViewBlockDelegateTests.swift */; };
 		34C91A7E1CC342750033AC8B /* BaseDataBasedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A571CC342750033AC8B /* BaseDataBasedViewControllerTests.swift */; };
@@ -45,6 +44,8 @@
 		34C91A821CC342750033AC8B /* TestBaseViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A5B1CC342750033AC8B /* TestBaseViewControllerTests.swift */; };
 		34C91A831CC342750033AC8B /* TestClassicTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A5C1CC342750033AC8B /* TestClassicTableViewControllerTests.swift */; };
 		34C91A841CC342750033AC8B /* ViewComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A5E1CC342750033AC8B /* ViewComponentTests.swift */; };
+		34EFE1E31CCD31DC00264D0E /* FetcherDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1E21CCD31DC00264D0E /* FetcherDataSourceTests.swift */; };
+		34EFE1E41CCD320600264D0E /* TableViewFetcherDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1E01CCD31C600264D0E /* TableViewFetcherDataSourceTests.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -95,7 +96,6 @@
 		34C91A4A1CC342750033AC8B /* UIImageExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtensionTests.swift; sourceTree = "<group>"; };
 		34C91A4C1CC342750033AC8B /* LoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
 		34C91A4E1CC342750033AC8B /* CoreDataStackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
-		34C91A501CC342750033AC8B /* TableViewFetcherDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFetcherDataSourceTests.swift; sourceTree = "<group>"; };
 		34C91A531CC342750033AC8B /* TableViewCellPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellPresenterTests.swift; sourceTree = "<group>"; };
 		34C91A551CC342750033AC8B /* TableViewBlockDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewBlockDelegateTests.swift; sourceTree = "<group>"; };
 		34C91A571CC342750033AC8B /* BaseDataBasedViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDataBasedViewControllerTests.swift; sourceTree = "<group>"; };
@@ -105,6 +105,8 @@
 		34C91A5B1CC342750033AC8B /* TestBaseViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBaseViewControllerTests.swift; sourceTree = "<group>"; };
 		34C91A5C1CC342750033AC8B /* TestClassicTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClassicTableViewControllerTests.swift; sourceTree = "<group>"; };
 		34C91A5E1CC342750033AC8B /* ViewComponentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewComponentTests.swift; sourceTree = "<group>"; };
+		34EFE1E01CCD31C600264D0E /* TableViewFetcherDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFetcherDataSourceTests.swift; sourceTree = "<group>"; };
+		34EFE1E21CCD31DC00264D0E /* FetcherDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetcherDataSourceTests.swift; sourceTree = "<group>"; };
 		486499EF4230042C03762DE7 /* Pods-York_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-York_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-York_Example/Pods-York_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4871DBC163926B4853E22235 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4B69132A93CA90C05C96E8CB /* York.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = York.podspec; path = ../York.podspec; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				34C91A3B1CC342750033AC8B /* Context */,
+				34EFE1DE1CCD31C600264D0E /* DataSource */,
 				34C91A3D1CC342750033AC8B /* DataSyncRules */,
 				34C91A451CC342750033AC8B /* DeepLinkingNavigation */,
 				34C91A481CC342750033AC8B /* Extensions */,
@@ -288,17 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				34C91A4E1CC342750033AC8B /* CoreDataStackTests.swift */,
-				34C91A4F1CC342750033AC8B /* DataSource */,
 			);
 			path = Persistence;
-			sourceTree = "<group>";
-		};
-		34C91A4F1CC342750033AC8B /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				34C91A501CC342750033AC8B /* TableViewFetcherDataSourceTests.swift */,
-			);
-			path = DataSource;
 			sourceTree = "<group>";
 		};
 		34C91A521CC342750033AC8B /* Presenter */ = {
@@ -336,6 +330,23 @@
 				34C91A5E1CC342750033AC8B /* ViewComponentTests.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		34EFE1DE1CCD31C600264D0E /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				34EFE1DF1CCD31C600264D0E /* CoreData */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		34EFE1DF1CCD31C600264D0E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				34EFE1E21CCD31DC00264D0E /* FetcherDataSourceTests.swift */,
+				34EFE1E01CCD31C600264D0E /* TableViewFetcherDataSourceTests.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -658,14 +669,15 @@
 				34C91A701CC342750033AC8B /* DataSyncHourlyRulesTests.swift in Sources */,
 				34C91A711CC342750033AC8B /* EntityBaseSyncRulesTests.swift in Sources */,
 				34C91A841CC342750033AC8B /* ViewComponentTests.swift in Sources */,
+				34EFE1E41CCD320600264D0E /* TableViewFetcherDataSourceTests.swift in Sources */,
 				34C91A771CC342750033AC8B /* NSObjectExtensionsTests.swift in Sources */,
 				34C91A681CC342750033AC8B /* TestBaseTableViewController.swift in Sources */,
 				34C91A7E1CC342750033AC8B /* BaseDataBasedViewControllerTests.swift in Sources */,
-				34C91A7B1CC342750033AC8B /* TableViewFetcherDataSourceTests.swift in Sources */,
 				34C91A671CC342750033AC8B /* TestBaseDataBasedViewController.swift in Sources */,
 				34C91A721CC342750033AC8B /* EntityDailySyncRuleTests.swift in Sources */,
 				34C91A731CC342750033AC8B /* EntityHourlySyncRuleTests.swift in Sources */,
 				34C91A791CC342750033AC8B /* LoggerTests.swift in Sources */,
+				34EFE1E31CCD31DC00264D0E /* FetcherDataSourceTests.swift in Sources */,
 				34C91A781CC342750033AC8B /* UIImageExtensionTests.swift in Sources */,
 				34C91A7D1CC342750033AC8B /* TableViewBlockDelegateTests.swift in Sources */,
 				34C91A7A1CC342750033AC8B /* CoreDataStackTests.swift in Sources */,
