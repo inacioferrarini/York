@@ -15,6 +15,6 @@ script:
 - cd ..
 - set -o pipefail
 - xcodebuild -workspace Example/York.xcworkspace -scheme TravisCI test -sdk iphonesimulator9.3 -destination "platform=iOS Simulator,name=iPhone 6" | xcpretty -c
-- pod lib lint
+- pod lib lint --allow-warnings
 after_success:
 - bash <(curl -s https://codecov.io/bash)
