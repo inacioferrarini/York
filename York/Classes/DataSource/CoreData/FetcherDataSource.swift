@@ -23,7 +23,6 @@
 
 import UIKit
 import CoreData
-import York
 
 public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
     
