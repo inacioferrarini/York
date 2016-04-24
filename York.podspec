@@ -26,12 +26,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.source_files = 'York/Classes/**/*.swift'
   s.preserve_paths = 'York/Classes/*', 'York/Classes/**/*'
-  s.frameworks = 'UIKit'
+  s.frameworks = 'UIKit', 'CoreData'
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
   s.resource = 'York/Classes/**/*.xcdatamodeld'
   s.dependency 'York-Swift-Try-Catch', '0.1.1'
   s.dependency 'JLRoutes', '1.6'
   s.dependency 'CocoaLumberjack/Swift', '2.2.0'
+  s.dependency 'UICollectionView+NSFetchedResultsController', '1.2.1'
 
 end
