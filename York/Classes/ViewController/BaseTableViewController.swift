@@ -64,7 +64,7 @@ public class BaseTableViewController: BaseDataBasedViewController {
             if let refreshControl = self.refreshControl {
                 refreshControl.backgroundColor = UIColor.blackColor()
                 refreshControl.tintColor = UIColor.whiteColor()
-                refreshControl.addTarget(self, action: Selector("performDataSync"), forControlEvents: .ValueChanged)
+                refreshControl.addTarget(self, action: #selector(self.performDataSync), forControlEvents: .ValueChanged)
 
                 tableView.addSubview(refreshControl)
                 tableView.reloadData()
