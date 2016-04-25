@@ -27,33 +27,26 @@ import York
 
 class TableViewCellPresenterTests: XCTestCase {
     
-    static let modelFileName = "DataSyncRules"
-    static let databaseFileName = "DataSyncHourlyRulesTests"
-
     static let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
         return "ReuseCellID"
     }
 
     static var blockExecutionTest = ""
 
-    func createTableViewCellPresenter() -> TableViewCellPresenter<UITableViewCell, EntitySyncHistory> {
-        
-        let presenter = TableViewCellPresenter<UITableViewCell, EntitySyncHistory>(
-            configureCellBlock: { (cell: UITableViewCell, entity:EntitySyncHistory) -> Void in
+    func createTableViewCellPresenter() -> TableViewCellPresenter<UITableViewCell, EntityTest> {
+        let presenter = TableViewCellPresenter<UITableViewCell, EntityTest>(
+            configureCellBlock: { (cell: UITableViewCell, entity:EntityTest) -> Void in
                 TableViewCellPresenterTests.blockExecutionTest = "testExecuted"
             }, cellReuseIdentifierBlock: TableViewCellPresenterTests.cellReuseIdBlock)
         return presenter
     }
     
     func test_tableViewCellPresenterFields_configureCellBlock() {
-        let yorkBundle = TestUtil().yorkPODBundle()
-        let logger = Logger()
-        let dataSyncRulesStack = CoreDataStack(modelFileName: TableViewCellPresenterTests.modelFileName, databaseFileName: TableViewCellPresenterTests.databaseFileName, logger: logger,
-            bundle: yorkBundle)
+        let testAppContext = TestUtil().testAppContext()
+        let context = testAppContext.coreDataStack.managedObjectContext
         let presenter = self.createTableViewCellPresenter()
         let cell = UITableViewCell()
-        let ctx = dataSyncRulesStack.managedObjectContext
-        let obj = EntitySyncHistory.entityAutoSyncHistoryByName("xpto", lastExecutionDate: nil, inManagedObjectContext: ctx)!
+        let obj = EntityTest.entityTest(nil, name: "name", order: nil, inManagedObjectContext: context)!
         presenter.configureCellBlock(cell, obj)
         XCTAssertEqual(TableViewCellPresenterTests.blockExecutionTest, "testExecuted")
     }
