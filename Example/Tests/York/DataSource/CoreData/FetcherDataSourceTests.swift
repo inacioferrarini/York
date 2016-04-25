@@ -35,7 +35,6 @@ class FetcherDataSourceTests: XCTestCase {
     var cacheName: String?
     var coreDataStack: CoreDataStack!
     var managedObjectContext:NSManagedObjectContext!
-    var presenter:TableViewCellPresenter<UITableViewCell, EntitySyncHistory>!
     var logger:Logger!
     
     func createFetcherDataSourceConvenienceInitializer() -> FetcherDataSource<EntitySyncHistory> {
