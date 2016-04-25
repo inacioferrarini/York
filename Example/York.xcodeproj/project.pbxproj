@@ -48,6 +48,12 @@
 		34EFE1E41CCD320600264D0E /* TableViewFetcherDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1E01CCD31C600264D0E /* TableViewFetcherDataSourceTests.swift */; };
 		34EFE1E61CCD561200264D0E /* ArrayRemoveObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1E51CCD561200264D0E /* ArrayRemoveObjectExtensionTests.swift */; };
 		34EFE1E81CCD6C5900264D0E /* CollectionViewCellPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1E71CCD6C5900264D0E /* CollectionViewCellPresenterTests.swift */; };
+		34EFE1EA1CCD729C00264D0E /* CollectionViewFetcherDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1E91CCD729C00264D0E /* CollectionViewFetcherDataSourceTests.swift */; };
+		34EFE1EE1CCD959000264D0E /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1EC1CCD959000264D0E /* CollectionViewCell.swift */; };
+		34EFE1EF1CCD959000264D0E /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34EFE1ED1CCD959000264D0E /* CollectionViewCell.xib */; };
+		34EFE1F41CCE819700264D0E /* YorkTests.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1F21CCE819700264D0E /* YorkTests.xcdatamodeld */; };
+		34EFE1F71CCE828A00264D0E /* EntityTest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1F51CCE828A00264D0E /* EntityTest+CoreDataProperties.swift */; };
+		34EFE1F81CCE828A00264D0E /* EntityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1F61CCE828A00264D0E /* EntityTest.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -111,6 +117,12 @@
 		34EFE1E21CCD31DC00264D0E /* FetcherDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetcherDataSourceTests.swift; sourceTree = "<group>"; };
 		34EFE1E51CCD561200264D0E /* ArrayRemoveObjectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayRemoveObjectExtensionTests.swift; sourceTree = "<group>"; };
 		34EFE1E71CCD6C5900264D0E /* CollectionViewCellPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCellPresenterTests.swift; sourceTree = "<group>"; };
+		34EFE1E91CCD729C00264D0E /* CollectionViewFetcherDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewFetcherDataSourceTests.swift; sourceTree = "<group>"; };
+		34EFE1EC1CCD959000264D0E /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		34EFE1ED1CCD959000264D0E /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		34EFE1F31CCE819700264D0E /* YorkTests.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YorkTests.xcdatamodel; sourceTree = "<group>"; };
+		34EFE1F51CCE828A00264D0E /* EntityTest+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EntityTest+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		34EFE1F61CCE828A00264D0E /* EntityTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityTest.swift; sourceTree = "<group>"; };
 		486499EF4230042C03762DE7 /* Pods-York_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-York_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-York_Example/Pods-York_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4871DBC163926B4853E22235 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4B69132A93CA90C05C96E8CB /* York.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = York.podspec; path = ../York.podspec; sourceTree = "<group>"; };
@@ -164,6 +176,7 @@
 			children = (
 				34C91A301CC342750033AC8B /* TestUtil.swift */,
 				34C91A2A1CC342750033AC8B /* Persistence */,
+				34EFE1EB1CCD955F00264D0E /* CollectionViewCells */,
 				34C91A2D1CC342750033AC8B /* TableViewCells */,
 				34C91A311CC342750033AC8B /* ViewControllers */,
 				34C91A361CC342750033AC8B /* Views */,
@@ -174,6 +187,7 @@
 		34C91A2A1CC342750033AC8B /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				34EFE1F01CCE816100264D0E /* CoreData */,
 				34C91A2B1CC342750033AC8B /* DataSource */,
 			);
 			path = Persistence;
@@ -351,8 +365,36 @@
 			children = (
 				34EFE1E21CCD31DC00264D0E /* FetcherDataSourceTests.swift */,
 				34EFE1E01CCD31C600264D0E /* TableViewFetcherDataSourceTests.swift */,
+				34EFE1E91CCD729C00264D0E /* CollectionViewFetcherDataSourceTests.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		34EFE1EB1CCD955F00264D0E /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				34EFE1EC1CCD959000264D0E /* CollectionViewCell.swift */,
+				34EFE1ED1CCD959000264D0E /* CollectionViewCell.xib */,
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		34EFE1F01CCE816100264D0E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				34EFE1F11CCE816100264D0E /* Entities */,
+				34EFE1F21CCE819700264D0E /* YorkTests.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		34EFE1F11CCE816100264D0E /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				34EFE1F51CCE828A00264D0E /* EntityTest+CoreDataProperties.swift */,
+				34EFE1F61CCE828A00264D0E /* EntityTest.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -538,6 +580,7 @@
 			files = (
 				34C91A601CC342750033AC8B /* default-avatar.png in Resources */,
 				34C91A651CC342750033AC8B /* TableViewCell.xib in Resources */,
+				34EFE1EF1CCD959000264D0E /* CollectionViewCell.xib in Resources */,
 				34C91A6C1CC342750033AC8B /* SimpleViewComponent.xib in Resources */,
 				34C91A621CC342750033AC8B /* TestStoryboard.storyboard in Resources */,
 				34C91A611CC342750033AC8B /* Localizable.strings in Resources */,
@@ -663,18 +706,22 @@
 				34C91A6D1CC342750033AC8B /* TestsTableView.swift in Sources */,
 				34C91A761CC342750033AC8B /* RoutingElementTests.swift in Sources */,
 				34C91A7C1CC342750033AC8B /* TableViewCellPresenterTests.swift in Sources */,
+				34EFE1EE1CCD959000264D0E /* CollectionViewCell.swift in Sources */,
 				34C91A801CC342750033AC8B /* TestBaseDataBasedViewControllerTests.swift in Sources */,
 				34C91A6A1CC342750033AC8B /* TestClassicTableViewController.swift in Sources */,
 				34C91A741CC342750033AC8B /* EntitySyncHistoryTests.swift in Sources */,
+				34EFE1F71CCE828A00264D0E /* EntityTest+CoreDataProperties.swift in Sources */,
 				34C91A831CC342750033AC8B /* TestClassicTableViewControllerTests.swift in Sources */,
 				34EFE1E61CCD561200264D0E /* ArrayRemoveObjectExtensionTests.swift in Sources */,
 				34C91A641CC342750033AC8B /* TableViewCell.swift in Sources */,
 				34C91A6B1CC342750033AC8B /* SimpleViewComponent.swift in Sources */,
 				34C91A751CC342750033AC8B /* NavigationRouterTests.swift in Sources */,
+				34EFE1F81CCE828A00264D0E /* EntityTest.swift in Sources */,
 				34C91A691CC342750033AC8B /* TestBaseViewController.swift in Sources */,
 				34C91A7F1CC342750033AC8B /* BaseTableViewControllerTests.swift in Sources */,
 				34C91A701CC342750033AC8B /* DataSyncHourlyRulesTests.swift in Sources */,
 				34C91A711CC342750033AC8B /* EntityBaseSyncRulesTests.swift in Sources */,
+				34EFE1F41CCE819700264D0E /* YorkTests.xcdatamodeld in Sources */,
 				34C91A841CC342750033AC8B /* ViewComponentTests.swift in Sources */,
 				34EFE1E41CCD320600264D0E /* TableViewFetcherDataSourceTests.swift in Sources */,
 				34C91A771CC342750033AC8B /* NSObjectExtensionsTests.swift in Sources */,
@@ -685,6 +732,7 @@
 				34C91A731CC342750033AC8B /* EntityHourlySyncRuleTests.swift in Sources */,
 				34C91A791CC342750033AC8B /* LoggerTests.swift in Sources */,
 				34EFE1E31CCD31DC00264D0E /* FetcherDataSourceTests.swift in Sources */,
+				34EFE1EA1CCD729C00264D0E /* CollectionViewFetcherDataSourceTests.swift in Sources */,
 				34C91A781CC342750033AC8B /* UIImageExtensionTests.swift in Sources */,
 				34C91A7D1CC342750033AC8B /* TableViewBlockDelegateTests.swift in Sources */,
 				34C91A7A1CC342750033AC8B /* CoreDataStackTests.swift in Sources */,
@@ -897,6 +945,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		34EFE1F21CCE819700264D0E /* YorkTests.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				34EFE1F31CCE819700264D0E /* YorkTests.xcdatamodel */,
+			);
+			currentVersion = 34EFE1F31CCE819700264D0E /* YorkTests.xcdatamodel */;
+			path = YorkTests.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 607FACC81AFB9204008FA782 /* Project object */;
 }
