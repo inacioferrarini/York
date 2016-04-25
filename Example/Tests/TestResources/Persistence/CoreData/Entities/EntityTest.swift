@@ -75,7 +75,7 @@ public class EntityTest: NSManagedObject {
     }
     
     public class func removeAll(inManagedObjectContext context: NSManagedObjectContext) {
-        if let allEntities = self.fetchAllEntitiesTest(inManagedObjectContext: context) {
+        if let allEntities = self.fetchAll(inManagedObjectContext: context) {
             for entity in allEntities {
                 context.deleteObject(entity)
             }
