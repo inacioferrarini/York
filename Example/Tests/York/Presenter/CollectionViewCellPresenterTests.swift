@@ -27,33 +27,26 @@ import York
 
 class CollectionViewCellPresenterTests: XCTestCase {
     
-    static let modelFileName = "DataSyncRules"
-    static let databaseFileName = "DataSyncHourlyRulesTests"
-    
     static let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
         return "ReuseCellID"
     }
     
     static var blockExecutionTest = ""
     
-    func createCollectionViewCellPresenter() -> CollectionViewCellPresenter<UICollectionViewCell, EntitySyncHistory> {
-        
-        let presenter = CollectionViewCellPresenter<UICollectionViewCell, EntitySyncHistory>(
-            configureCellBlock: { (cell: UICollectionViewCell, entity:EntitySyncHistory) -> Void in
+    func createCollectionViewCellPresenter() -> CollectionViewCellPresenter<UICollectionViewCell, EntityTest> {
+        let presenter = CollectionViewCellPresenter<UICollectionViewCell, EntityTest>(
+            configureCellBlock: { (cell: UICollectionViewCell, entity:EntityTest) -> Void in
                 CollectionViewCellPresenterTests.blockExecutionTest = "testExecuted"
             }, cellReuseIdentifierBlock: CollectionViewCellPresenterTests.cellReuseIdBlock)
         return presenter
     }
     
     func test_collectionViewCellPresenterFields_configureCellBlock() {
-        let yorkBundle = TestUtil().yorkPODBundle()
-        let logger = Logger()
-        let dataSyncRulesStack = CoreDataStack(modelFileName: CollectionViewCellPresenterTests.modelFileName, databaseFileName: CollectionViewCellPresenterTests.databaseFileName, logger: logger,
-                                               bundle: yorkBundle)
+        let testAppContext = TestUtil().testAppContext()
+        let context = testAppContext.coreDataStack.managedObjectContext
         let presenter = self.createCollectionViewCellPresenter()
         let cell = UICollectionViewCell()
-        let ctx = dataSyncRulesStack.managedObjectContext
-        let obj = EntitySyncHistory.entityAutoSyncHistoryByName("xpto", lastExecutionDate: nil, inManagedObjectContext: ctx)!
+        let obj = EntityTest.entityTest(nil, name: "name", order: nil, inManagedObjectContext: context)!
         presenter.configureCellBlock(cell, obj)
         XCTAssertEqual(CollectionViewCellPresenterTests.blockExecutionTest, "testExecuted")
     }
