@@ -25,22 +25,15 @@ import XCTest
 import CoreData
 import York
 
-class FetcherDataSourceTests: XCTestCase {
+class FetcherDataSourceTests: BaseFetcherDataSourceTests {
 
-    var entityName: String!
-    var predicate: NSPredicate?
-    var fetchLimit: NSInteger?
-    var sortDescriptors: [NSSortDescriptor]!
-    var sectionNameKeyPath: String?
-    var cacheName: String?
-    var coreDataStack: CoreDataStack!
-    var managedObjectContext:NSManagedObjectContext!
-    var logger:Logger!
+    
+    // MARK: - Supporting Methods
     
     func createFetcherDataSourceConvenienceInitializer() -> FetcherDataSource<EntityTest> {
         self.entityName = EntityTest.simpleClassName()
         self.sortDescriptors = []
-        self.coreDataStack = TestUtil().appContext().coreDataStack
+        self.coreDataStack = TestUtil().testAppContext().coreDataStack
         self.managedObjectContext = self.coreDataStack.managedObjectContext
         self.logger = Logger()
         self.predicate = nil
@@ -58,12 +51,12 @@ class FetcherDataSourceTests: XCTestCase {
     func createFetcherDataSourceDesignatedInitializer() -> FetcherDataSource<EntityTest> {
         self.entityName = EntityTest.simpleClassName()
         self.sortDescriptors = []
-        self.coreDataStack = TestUtil().appContext().coreDataStack
+        self.coreDataStack = TestUtil().testAppContext().coreDataStack
         self.managedObjectContext = self.coreDataStack.managedObjectContext
         self.logger = Logger()
-        self.predicate = NSPredicate(format: "name = %@", "rule01")
+        self.predicate = nil
         self.fetchLimit = 100
-        self.sectionNameKeyPath = "sectionName"
+        self.sectionNameKeyPath = nil
         self.cacheName = "cacheName"
         
         let dataSource = FetcherDataSource<EntityTest>(entityName: self.entityName,
@@ -77,6 +70,8 @@ class FetcherDataSourceTests: XCTestCase {
         return dataSource
     }
     
+    
+    // MARK: - Tests - Initialization
     
     func test_convenienceInitializer_FetcherDataSourceFields_entityName() {
         let dataSource = self.createFetcherDataSourceConvenienceInitializer()
@@ -159,6 +154,74 @@ class FetcherDataSourceTests: XCTestCase {
     func test_designatedInitializer_FetcherDataSourceFields_logger() {
         let dataSource = self.createFetcherDataSourceDesignatedInitializer()
         XCTAssertEqual(dataSource.logger, self.logger)
+    }
+    
+    
+    func test_FetcherDataSource_refresh_mustSucceed() {
+        let dataSource = self.createFetcherDataSourceDesignatedInitializer()
+        dataSource.sortDescriptors = []
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+    }
+    
+    
+    func test_FetcherDataSource_refresh_mustIgnoreExceptionCrash() {
+        let dataSource = self.createFetcherDataSourceDesignatedInitializer()
+        dataSource.sortDescriptors = [ NSSortDescriptor(key: "nonExistingField", ascending: true) ]
+        dataSource.predicate = nil
+        
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+    }
+   
+
+    func test_FetcherDataSource_objectAtIndexPath_mustReturnEntity() {
+        let dataSource = self.createFetcherDataSourceDesignatedInitializer()
+        dataSource.sortDescriptors = [ NSSortDescriptor(key: "order", ascending: true) ]
+        self.removeAllTestEntities()
+        
+        let entityTest0 = self.createTestEntity(nil, name: "EntityTest-0", order: 0)
+        self.createTestEntity(nil, name: "EntityTest-1", order: 1)
+        self.coreDataStack.saveContext()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+        
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        let entityAtIndexPath = dataSource.objectAtIndexPath(indexPath)
+        XCTAssertEqual(entityAtIndexPath, entityTest0!)
+    }
+    
+    
+    func test_FetcherDataSource_indexPathForObject_mustSucceed() {
+        let dataSource = self.createFetcherDataSourceDesignatedInitializer()
+        dataSource.sortDescriptors = [ NSSortDescriptor(key: "order", ascending: true) ]
+        self.removeAllTestEntities()
+        
+        let entityTest0 = self.createTestEntity(nil, name: "EntityTest-0", order: 0)
+        self.createTestEntity(nil, name: "EntityTest-1", order: 1)
+        self.coreDataStack.saveContext()
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+        
+        let entityIndexPath = dataSource.indexPathForObject(entityTest0!)!
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        XCTAssertEqual(entityIndexPath, indexPath)
     }
     
 }
