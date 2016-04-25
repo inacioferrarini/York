@@ -37,8 +37,8 @@ class FetcherDataSourceTests: XCTestCase {
     var managedObjectContext:NSManagedObjectContext!
     var logger:Logger!
     
-    func createFetcherDataSourceConvenienceInitializer() -> FetcherDataSource<EntitySyncHistory> {
-        self.entityName = EntitySyncHistory.simpleClassName()
+    func createFetcherDataSourceConvenienceInitializer() -> FetcherDataSource<EntityTest> {
+        self.entityName = EntityTest.simpleClassName()
         self.sortDescriptors = []
         self.coreDataStack = TestUtil().appContext().coreDataStack
         self.managedObjectContext = self.coreDataStack.managedObjectContext
@@ -48,32 +48,32 @@ class FetcherDataSourceTests: XCTestCase {
         self.sectionNameKeyPath = nil
         self.cacheName = nil
         
-        let dataSource = FetcherDataSource<EntitySyncHistory>(entityName: self.entityName,
-                                                              sortDescriptors: self.sortDescriptors,
-                                                              managedObjectContext: self.managedObjectContext,
-                                                              logger: self.logger)
+        let dataSource = FetcherDataSource<EntityTest>(entityName: self.entityName,
+                                                       sortDescriptors: self.sortDescriptors,
+                                                       managedObjectContext: self.managedObjectContext,
+                                                       logger: self.logger)
         return dataSource
     }
 
-    func createFetcherDataSourceDesignatedInitializer() -> FetcherDataSource<EntitySyncHistory> {
-        self.entityName = EntitySyncHistory.simpleClassName()
+    func createFetcherDataSourceDesignatedInitializer() -> FetcherDataSource<EntityTest> {
+        self.entityName = EntityTest.simpleClassName()
         self.sortDescriptors = []
         self.coreDataStack = TestUtil().appContext().coreDataStack
         self.managedObjectContext = self.coreDataStack.managedObjectContext
         self.logger = Logger()
-        self.predicate = NSPredicate(format: "ruleName = %@", "rule01")
+        self.predicate = NSPredicate(format: "name = %@", "rule01")
         self.fetchLimit = 100
-        self.sectionNameKeyPath = "ruleName"
+        self.sectionNameKeyPath = "sectionName"
         self.cacheName = "cacheName"
         
-        let dataSource = FetcherDataSource<EntitySyncHistory>(entityName: self.entityName,
-                                           sortDescriptors: self.sortDescriptors,
-                                           managedObjectContext: self.managedObjectContext,
-                                           logger: self.logger,
-                                           predicate: self.predicate,
-                                           fetchLimit: self.fetchLimit,
-                                           sectionNameKeyPath: self.sectionNameKeyPath,
-                                           cacheName: self.cacheName)
+        let dataSource = FetcherDataSource<EntityTest>(entityName: self.entityName,
+                                                       sortDescriptors: self.sortDescriptors,
+                                                       managedObjectContext: self.managedObjectContext,
+                                                       logger: self.logger,
+                                                       predicate: self.predicate,
+                                                       fetchLimit: self.fetchLimit,
+                                                       sectionNameKeyPath: self.sectionNameKeyPath,
+                                                       cacheName: self.cacheName)
         return dataSource
     }
     
