@@ -32,8 +32,8 @@ class TestBaseTableViewController: BaseTableViewController {
             return "TableViewCell"
         }
 
-        let presenter = TableViewCellPresenter<UITableViewCell, EntitySyncHistory>(
-            configureCellBlock: { (cell: UITableViewCell, entity:EntitySyncHistory) -> Void in
+        let presenter = TableViewCellPresenter<UITableViewCell, EntityTest>(
+            configureCellBlock: { (cell: UITableViewCell, entity:EntityTest) -> Void in
                 
             }, cellReuseIdentifierBlock: cellReuseIdBlock)
         
@@ -41,10 +41,10 @@ class TestBaseTableViewController: BaseTableViewController {
         let context = self.appContext.coreDataStack.managedObjectContext
         let logger = appContext.logger
         
-        let dataSource = TableViewFetcherDataSource<UITableViewCell, EntitySyncHistory>(
+        let dataSource = TableViewFetcherDataSource<UITableViewCell, EntityTest>(
             targetingTableView: self.tableView!,
             presenter: presenter,
-            entityName: EntitySyncHistory.simpleClassName(),
+            entityName: EntityTest.simpleClassName(),
             sortDescriptors: sortDescriptors,
             managedObjectContext: context,
             logger: logger)
