@@ -27,9 +27,9 @@ import York
 
 public class EntityTest: NSManagedObject {
 
-    public class func fetchAll(inManagedObjectContext context: NSManagedObjectContext) -> [EntityTest]? {
+    public class func fetchAll(inManagedObjectContext context: NSManagedObjectContext, usingSortDescriptor sortDescriptors: [NSSortDescriptor]?) -> [EntityTest]? {
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
-        
+        request.sortDescriptors = sortDescriptors
         return self.allObjectsFromRequest(request, inManagedObjectContext: context) as? [EntityTest]
     }
     
@@ -75,7 +75,7 @@ public class EntityTest: NSManagedObject {
     }
     
     public class func removeAll(inManagedObjectContext context: NSManagedObjectContext) {
-        if let allEntities = self.fetchAll(inManagedObjectContext: context) {
+        if let allEntities = self.fetchAll(inManagedObjectContext: context, usingSortDescriptor: nil) {
             for entity in allEntities {
                 context.deleteObject(entity)
             }
