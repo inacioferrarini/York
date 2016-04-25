@@ -34,7 +34,6 @@ public class EntityTest: NSManagedObject {
     }
     
     public class func fetchEntityTest(sectionName: String?, name: String?, inManagedObjectContext context: NSManagedObjectContext) -> EntityTest? {
-        
         var predicates = [NSPredicate]()
         
         if let sectionName = sectionName where sectionName.characters.count > 0 {
