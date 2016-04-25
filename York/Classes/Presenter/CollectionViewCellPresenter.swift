@@ -28,7 +28,6 @@ public class CollectionViewCellPresenter<CellType: UICollectionViewCell, EntityT
 
     public var configureCellBlock: ((CellType, EntityType) -> Void)
     public var cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)
-    public var canEditRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> Bool)?
     
     public init(configureCellBlock: ((CellType, EntityType) -> Void), cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)) {
         self.configureCellBlock = configureCellBlock
