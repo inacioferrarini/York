@@ -5,7 +5,11 @@
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="sectionName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="EntityTestMandatoryField" representedClassName=".EntityTestMandatoryField" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="EntityTest" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="EntityTestMandatoryField" positionX="-54" positionY="18" width="128" height="60"/>
     </elements>
 </model>
