@@ -29,6 +29,11 @@ class TestUtil: NSObject {
     static let modelFileName = "DataSyncRules"
     static let databaseFileName = "DataSyncRulesDB"
     
+    static let testModelFileName = "YorkTests"
+    static let testDatabaseFileName = "YorkTestsDB"
+    
+    
+    
     func yorkPODBundle() -> NSBundle {        
         return NSBundle(forClass: AppContext.self)
     }
@@ -56,6 +61,24 @@ class TestUtil: NSObject {
             syncRules: syncRules,
             router: router,
             logger: logger)
+    }
+
+    func testAppContext() -> AppContext {
+        
+        let appBundle = self.yorkPODBundle()
+        let testsBundle = self.unitTestsBundle()
+        let logger = Logger()
+        let rootNavigationController = self.rootViewController()
+        let stack = CoreDataStack(modelFileName: TestUtil.testModelFileName, databaseFileName: TestUtil.testDatabaseFileName, logger: logger, bundle: testsBundle)
+        let router = NavigationRouter(schema: "GitHubSpy", logger: logger)
+        let syncRulesStack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
+        let syncRules = DataSyncRules(coreDataStack: syncRulesStack)
+        
+        return AppContext(navigationController: rootNavigationController,
+                          coreDataStack: stack,
+                          syncRules: syncRules,
+                          router: router,
+                          logger: logger)
     }
     
     func randomRuleName() -> String {
