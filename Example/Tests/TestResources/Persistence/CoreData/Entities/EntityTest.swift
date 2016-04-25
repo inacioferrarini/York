@@ -27,6 +27,12 @@ import York
 
 public class EntityTest: NSManagedObject {
 
+    public class func fetchAll(inManagedObjectContext context: NSManagedObjectContext) -> [EntityTest]? {
+        let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
+        
+        return self.allObjectsFromRequest(request, inManagedObjectContext: context) as? [EntityTest]
+    }
+    
     public class func fetchEntityTest(sectionName: String?, name: String?, inManagedObjectContext context: NSManagedObjectContext) -> EntityTest? {
         
         var predicates = [NSPredicate]()
@@ -68,4 +74,12 @@ public class EntityTest: NSManagedObject {
         return entityTest
     }
     
+    public class func removeAll(inManagedObjectContext context: NSManagedObjectContext) {
+        if let allEntities = self.fetchAllEntitiesTest(inManagedObjectContext: context) {
+            for entity in allEntities {
+                context.deleteObject(entity)
+            }
+        }
+    }
+
 }
