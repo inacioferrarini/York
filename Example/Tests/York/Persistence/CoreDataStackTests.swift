@@ -35,11 +35,10 @@ class CoreDataStackTests: XCTestCase {
     
     
     func test_saveContext_mustThrowException() {
-        let coreDataStack = TestUtil().appContext().coreDataStack
+        let coreDataStack = TestUtil().testAppContext().coreDataStack
         let ctx = coreDataStack.managedObjectContext
-        let ruleName = TestUtil().randomRuleName()
-        if let testEntity = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName, lastExecutionDate: nil, inManagedObjectContext: ctx) {
-            testEntity.ruleName = nil
+        if let testEntity = EntityTestMandatoryField.entityTestMandatoryField("name", inManagedObjectContext: ctx) {
+            testEntity.name = nil
         }
         coreDataStack.saveContext()
     }
