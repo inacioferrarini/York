@@ -117,7 +117,8 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     
     func test_numberOfSections_mustReturnZero() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "sectionName")
-        EntityTest.removeAll(inManagedObjectContext: self.managedObjectContext)
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
         self.coreDataStack.saveContext()
         let numberOfSections = dataSource.numberOfSectionsInTableView(self.tableView)
         XCTAssertEqual(numberOfSections, 0)
@@ -128,15 +129,21 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     
     func test_numberOfRowsInSection_mustReturnZero() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        EntityTest.removeAll(inManagedObjectContext: self.managedObjectContext)
+        
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
+        
         let numberOfRows = dataSource.tableView(self.tableView, numberOfRowsInSection: 0)
         XCTAssertEqual(numberOfRows, 0)
     }
     
     func test_numberOfRowsInSection_mustReturnNonZero() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        EntityTest.removeAll(inManagedObjectContext: self.managedObjectContext)
-        EntityTest.entityTest(nil, name: "test-name", order: nil, inManagedObjectContext: self.managedObjectContext)
+        
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        
         do {
             try dataSource.refreshData()
             XCTAssertTrue(true)
