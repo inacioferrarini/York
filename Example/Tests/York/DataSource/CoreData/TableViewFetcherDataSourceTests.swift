@@ -25,50 +25,46 @@ import XCTest
 import CoreData
 import York
 
-class TableViewFetcherDataSourceTests: XCTestCase {
+class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
+    
+    
+    // MARK: - Properties
     
     var tableView:UITableView!
-    var entityName: String!
-    var predicate: NSPredicate?
-    var fetchLimit: NSInteger?
-    var sortDescriptors: [NSSortDescriptor]!
-    var sectionNameKeyPath: String?
-    var cacheName: String?
-    var coreDataStack: CoreDataStack!
-    var managedObjectContext:NSManagedObjectContext!
-    var presenter:TableViewCellPresenter<UITableViewCell, EntitySyncHistory>!
-    var logger:Logger!
+    var presenter:TableViewCellPresenter<UITableViewCell, EntityTest>!
     var configureCellBlockWasCalled:Bool = false
     
     
-    func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?) -> TableViewFetcherDataSource<UITableViewCell, EntitySyncHistory> {
+    // MARK: - Supporting Methods
+    
+    func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?) -> TableViewFetcherDataSource<UITableViewCell, EntityTest> {
         let frame = CGRectMake(0, 0, 200, 200)
         let tableView = UITableView(frame: frame, style: .Plain)
         return self.createTableViewFetcherDataSource(sectionNameKeyPath: nameKeyPath, tableView: tableView)
     }
     
-    func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?, tableView: UITableView!) -> TableViewFetcherDataSource<UITableViewCell, EntitySyncHistory> {
+    func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?, tableView: UITableView!) -> TableViewFetcherDataSource<UITableViewCell, EntityTest> {
         self.tableView = tableView
 
         let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
             return "TableViewCell"
         }
 
-        self.presenter = TableViewCellPresenter<UITableViewCell, EntitySyncHistory>(
-            configureCellBlock: { (cell: UITableViewCell, entity:EntitySyncHistory) -> Void in
+        self.presenter = TableViewCellPresenter<UITableViewCell, EntityTest>(
+            configureCellBlock: { (cell: UITableViewCell, entity:EntityTest) -> Void in
                 self.configureCellBlockWasCalled = true
             }, cellReuseIdentifierBlock: cellReuseIdBlock)
-        self.entityName = "EntitySyncHistory"
+        self.entityName = EntityTest.simpleClassName()
         self.sortDescriptors = []
-        self.coreDataStack = TestUtil().appContext().coreDataStack
+        self.coreDataStack = TestUtil().testAppContext().coreDataStack
         self.managedObjectContext = self.coreDataStack.managedObjectContext
         self.logger = Logger()
-        self.predicate = NSPredicate(format: "ruleName = %@", "rule01")
+        self.predicate = nil
         self.fetchLimit = 100
         self.sectionNameKeyPath = nameKeyPath
         self.cacheName = "cacheName"
         
-        let dataSource = TableViewFetcherDataSource(targetingTableView: self.tableView,
+        let dataSource = TableViewFetcherDataSource<UITableViewCell, EntityTest>(targetingTableView: self.tableView,
             presenter: self.presenter,
             entityName: self.entityName,
             sortDescriptors: self.sortDescriptors,
@@ -81,7 +77,10 @@ class TableViewFetcherDataSourceTests: XCTestCase {
         dataSource.predicate = nil
         return dataSource
     }
-        
+    
+    
+    // MARK: - Tests - Refresh
+
     func test_refresh_mustSucceed() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.sortDescriptors = []
@@ -92,7 +91,7 @@ class TableViewFetcherDataSourceTests: XCTestCase {
             XCTAssertTrue(false)
         }
     }
-
+    
     
     func test_refresh_mustIgnoreExceptionCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
@@ -105,66 +104,12 @@ class TableViewFetcherDataSourceTests: XCTestCase {
         }
     }
     
-    
-    func test_objectAtIndexPath_mustReturnEntity() {
-        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
-        EntitySyncHistory.entityAutoSyncHistoryByName("rule-test-name",
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        self.coreDataStack.saveContext()
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
 
-        let object = dataSource.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
-        XCTAssertNotNil(object)
-    }
-    
-    
-    func test_indexPathForObject_mustReturnObject() {
-        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
-        let entity = EntitySyncHistory.entityAutoSyncHistoryByName("rule-test-name",
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        self.coreDataStack.saveContext()
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
-
-        let indexPath = dataSource.indexPathForObject(entity!)
-        XCTAssertNotNil(indexPath)
-    }
-    
-    func test_indexPathForObject_mustReturnNil() {
-        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
-        let entity = EntitySyncHistory.entityAutoSyncHistoryByName("rule-test-name",
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        self.coreDataStack.saveContext()
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
-
-        let indexPath = dataSource.indexPathForObject(entity!)
-        XCTAssertNotNil(indexPath)
-    }
-    
+    // MARK: - Tests - numberOfSections
     
     func test_numberOfSections_mustReturnZero() {
-        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "ruleName")
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "sectionName")
+        EntityTest.removeAll(inManagedObjectContext: self.managedObjectContext)
         self.coreDataStack.saveContext()
         let numberOfSections = dataSource.numberOfSectionsInTableView(self.tableView)
         XCTAssertEqual(numberOfSections, 0)
@@ -173,17 +118,15 @@ class TableViewFetcherDataSourceTests: XCTestCase {
     
     func test_numberOfRowsInSection_mustReturnZero() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
+        EntityTest.removeAll(inManagedObjectContext: self.managedObjectContext)
         let numberOfRows = dataSource.tableView(self.tableView, numberOfRowsInSection: 0)
         XCTAssertEqual(numberOfRows, 0)
     }
     
     func test_numberOfRowsInSection_mustReturnNonZero() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
-        EntitySyncHistory.entityAutoSyncHistoryByName("rule-test-name",
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
+        EntityTest.removeAll(inManagedObjectContext: self.managedObjectContext)
+        EntityTest.entityTest(nil, name: "test-name", order: nil, inManagedObjectContext: self.managedObjectContext)
         do {
             try dataSource.refreshData()
             XCTAssertTrue(true)
@@ -195,32 +138,30 @@ class TableViewFetcherDataSourceTests: XCTestCase {
         XCTAssertEqual(numberOfRows, 1)
     }
     
-    func test_cellForRowAtIndexPath_mustReturnCell() {
-        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
-        self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
-        self.tableView.dataSource = dataSource
-        
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
-        let ruleName = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        
-        self.coreDataStack.saveContext()
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
-
-        tableView.reloadData()
-        
-        let cell = dataSource.tableView(tableView, cellForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
-        XCTAssertNotNil(cell)
-    }
-
+//    func test_cellForRowAtIndexPath_mustReturnCell() {
+//        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
+//        dataSource.sortDescriptors = [ NSSortDescriptor(key: "order", ascending: true) ]
+//        self.removeAllTestEntities()
+//        
+//        self.createTestEntity(nil, name: "EntityTest-0", order: 0)
+//        self.createTestEntity(nil, name: "EntityTest-1", order: 1)
+//        self.coreDataStack.saveContext()
+//        do {
+//            try dataSource.refreshData()
+//            XCTAssertTrue(true)
+//        } catch {
+//            XCTAssertTrue(false)
+//        }
+//        
+//        tableView.reloadData()
+//        
+//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+//        let cell = dataSource.tableView(tableView, cellForRowAtIndexPath: indexPath)
+//        XCTAssertNotNil(cell)
+//    }
+    
+    
+    // MARK: - Tests - canEditRowAtIndexPath
     
     func test_canEditRowAtIndexPath_withBlock_mustSucceed() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
@@ -237,7 +178,9 @@ class TableViewFetcherDataSourceTests: XCTestCase {
         let canEdit = dataSource.tableView(self.tableView, canEditRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
         XCTAssertFalse(canEdit)
     }
+
     
+    // MARK: - Tests - commitEditingStyle
     
     func test_commitEditingStyle_withBlock_mustExecuteBlock() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
@@ -256,6 +199,8 @@ class TableViewFetcherDataSourceTests: XCTestCase {
     }
     
     
+    // MARK: - Tests - controllerWillChangeContent
+    
     func test_controllerWillChangeContent_mustNotCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         self.tableView.dataSource = dataSource
@@ -263,8 +208,12 @@ class TableViewFetcherDataSourceTests: XCTestCase {
     }
     
     
+    // MARK: - Tests - didChangeSection
+    
     func test_didChangeSection_forInsert_mustNotCrash() {
-        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "ruleName")
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "sectionName")
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+        
         dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath:NSIndexPath) -> Bool in
             return true
         }
@@ -273,17 +222,10 @@ class TableViewFetcherDataSourceTests: XCTestCase {
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
         
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
         
-        let ruleName = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        
-        let ruleName2 = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName2,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 2)
         
         do {
             try dataSource.refreshData()
@@ -292,10 +234,7 @@ class TableViewFetcherDataSourceTests: XCTestCase {
             XCTAssertTrue(false)
         }
 
-        let ruleName3 = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName3,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 3)
         
         self.tableView.beginUpdates()
         let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
@@ -313,27 +252,18 @@ class TableViewFetcherDataSourceTests: XCTestCase {
     }
 
     func test_didChangeSection_forDelete_mustNotCrash() {
-        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "ruleName")
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "sectionName")
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+        
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
         
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
         
-        let ruleName = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        
-        let ruleName2 = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName2,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        
-        let ruleName3 = TestUtil().randomRuleName()
-        let entityRule = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName3,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
+        let entityTest = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).last
         
         do {
             try dataSource.refreshData()
@@ -341,7 +271,7 @@ class TableViewFetcherDataSourceTests: XCTestCase {
         } catch {
             XCTAssertTrue(false)
         }
-        dataSource.managedObjectContext.deleteObject(entityRule!)
+        dataSource.managedObjectContext.deleteObject(entityTest!)
         
         self.tableView.beginUpdates()
         let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
@@ -359,27 +289,18 @@ class TableViewFetcherDataSourceTests: XCTestCase {
     }
 
     func test_didChangeSection_forDefault_mustNotCrash() {
-        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "ruleName")
+        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "sectionName")
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+        
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
         
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
         
-        let ruleName = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        
-        let ruleName2 = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName2,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        
-        let ruleName3 = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName3,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1)
         
         do {
             try dataSource.refreshData()
@@ -403,27 +324,23 @@ class TableViewFetcherDataSourceTests: XCTestCase {
     }
     
     
+    // MARK: - Tests - didChangeObject
+    
     func test_didChangeObject_forInsert_mustNotCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath:NSIndexPath) -> Bool in
             return true
         }
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
         
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
         
-        let ruleName = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        
-        let ruleName2 = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName2,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
         
         do {
             try dataSource.refreshData()
@@ -431,11 +348,8 @@ class TableViewFetcherDataSourceTests: XCTestCase {
         } catch {
             XCTAssertTrue(false)
         }
-
-        let ruleName3 = TestUtil().randomRuleName()
-        let entityRule = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName3,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
+        
+        let entityRule = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).first
         
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
@@ -459,24 +373,17 @@ class TableViewFetcherDataSourceTests: XCTestCase {
         tableView.cellForRowAtIndexPathBlock = { () -> UITableViewCell? in
             return TableViewCell()
         }
+        
         let dataSource = createTableViewFetcherDataSource(sectionNameKeyPath: nil, tableView: tableView)
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
-
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         
+        helper.removeAllTestEntities()
         
-        let ruleName = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-
-        let ruleName2 = TestUtil().randomRuleName()
-        let entityRule = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName2,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-
+        let entityTest = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
+        
         do {
             try dataSource.refreshData()
             XCTAssertTrue(true)
@@ -486,7 +393,7 @@ class TableViewFetcherDataSourceTests: XCTestCase {
 
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
-            didChangeObject: entityRule!,
+            didChangeObject: entityTest!,
             atIndexPath: NSIndexPath(forRow: 1, inSection: 0),
             forChangeType: .Update,
             newIndexPath: nil)
@@ -508,24 +415,12 @@ class TableViewFetcherDataSourceTests: XCTestCase {
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
         
-        let ruleName = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
+        let testEntity = helper.createTestMass(withSize: 3, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
         
-        let ruleName2 = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName2,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-        
-        let ruleName3 = TestUtil().randomRuleName()
-        let entityRule = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName3,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-
         do {
             try dataSource.refreshData()
             XCTAssertTrue(true)
@@ -533,11 +428,11 @@ class TableViewFetcherDataSourceTests: XCTestCase {
             XCTAssertTrue(false)
         }
 
-        dataSource.managedObjectContext.deleteObject(entityRule!)
+        dataSource.managedObjectContext.deleteObject(testEntity!)
         
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
-            didChangeObject: entityRule!,
+            didChangeObject: testEntity!,
             atIndexPath: NSIndexPath(forRow: 2, inSection: 0),
             forChangeType: .Delete,
             newIndexPath: nil)
@@ -559,19 +454,12 @@ class TableViewFetcherDataSourceTests: XCTestCase {
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
         self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
         self.tableView.dataSource = dataSource
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
 
-        EntitySyncHistory.removeAll(inManagedObjectContext: self.managedObjectContext)
-
-        let ruleName = TestUtil().randomRuleName()
-        let entityRule = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
         
-        let ruleName2 = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName2,
-            lastExecutionDate: nil,
-            inManagedObjectContext: self.managedObjectContext)
-
+        let testEntity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
+        
         do {
             try dataSource.refreshData()
             XCTAssertTrue(true)
@@ -581,12 +469,15 @@ class TableViewFetcherDataSourceTests: XCTestCase {
 
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
-            didChangeObject: entityRule!,
+            didChangeObject: testEntity!,
             atIndexPath: NSIndexPath(forRow: 0, inSection: 0),
             forChangeType: .Move,
             newIndexPath: NSIndexPath(forRow: 1, inSection: 0))
         self.tableView.endUpdates()
     }
+    
+    
+    // MARK: - Tests - controllerDidChangeContent
     
     func test_controllerDidChangeContent_mustNotCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
