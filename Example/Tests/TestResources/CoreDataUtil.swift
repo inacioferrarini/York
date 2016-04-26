@@ -56,7 +56,7 @@ public class CoreDataUtil: NSObject {
             let sectionName = "section\(section)"
             let name = "s\(section)-e\(currentIndex)"
             
-            if let entity = self.createTestEntity(sectionName, name: name, order: order, inManagedObjectContext: self.context) {
+            if let entity = self.createTestEntity(sectionName, name: name, order: order) {
                 entities.append(entity)
             }
         }
