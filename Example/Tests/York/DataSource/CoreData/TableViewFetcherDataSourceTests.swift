@@ -40,7 +40,14 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?) -> TableViewFetcherDataSource<UITableViewCell, EntityTest> {
         let frame = CGRectMake(0, 0, 200, 200)
         let tableView = UITableView(frame: frame, style: .Plain)
+        self.registerCellForTableView(tableView)
+        
         return self.createTableViewFetcherDataSource(sectionNameKeyPath: nameKeyPath, tableView: tableView)
+    }
+    
+    func registerCellForTableView(tableView: UITableView) {
+        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
+        tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
     }
     
     func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?, tableView: UITableView!) -> TableViewFetcherDataSource<UITableViewCell, EntityTest> {
@@ -75,6 +82,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
             sectionNameKeyPath: self.sectionNameKeyPath,
             cacheName: self.cacheName)
         dataSource.predicate = nil
+        self.tableView.dataSource = dataSource
         return dataSource
     }
     
@@ -198,10 +206,6 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
             return true
         }
         
-        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
-        self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
-        self.tableView.dataSource = dataSource
-        
         helper.removeAllTestEntities()
         
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
@@ -235,10 +239,6 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "sectionName")
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         
-        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
-        self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
-        self.tableView.dataSource = dataSource
-        
         helper.removeAllTestEntities()
         
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
@@ -271,10 +271,6 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     func test_didChangeSection_forDefault_mustNotCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "sectionName")
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
-        
-        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
-        self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
-        self.tableView.dataSource = dataSource
         
         helper.removeAllTestEntities()
         
@@ -313,10 +309,6 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         }
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         
-        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
-        self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
-        self.tableView.dataSource = dataSource
-        
         helper.removeAllTestEntities()
         
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
@@ -353,11 +345,9 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         tableView.cellForRowAtIndexPathBlock = { () -> UITableViewCell? in
             return TableViewCell()
         }
+        self.registerCellForTableView(tableView)
         
         let dataSource = createTableViewFetcherDataSource(sectionNameKeyPath: nil, tableView: tableView)
-        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
-        self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
-        self.tableView.dataSource = dataSource
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         
         helper.removeAllTestEntities()
@@ -392,9 +382,6 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
             return true
         }
         
-        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
-        self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
-        self.tableView.dataSource = dataSource
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         
         helper.removeAllTestEntities()
@@ -431,9 +418,6 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
             return true
         }
         
-        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
-        self.tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
-        self.tableView.dataSource = dataSource
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
 
         helper.removeAllTestEntities()
