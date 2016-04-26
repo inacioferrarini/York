@@ -40,15 +40,4 @@ class BaseFetcherDataSourceTests: XCTestCase {
     var managedObjectContext:NSManagedObjectContext!
     var logger:Logger!
     
-    
-    // MARK: - Supporting Methods
-    
-    func removeAllTestEntities() {
-        EntityTest.removeAll(inManagedObjectContext: self.managedObjectContext)
-    }
-    
-    func createTestEntity(sectionName: String?, name: String?, order: Int?) -> EntityTest? {
-        return EntityTest.entityTest(sectionName, name: name, order: order, inManagedObjectContext: self.managedObjectContext)
-    }
-    
 }
