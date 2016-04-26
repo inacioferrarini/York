@@ -28,88 +28,84 @@ import York
 class NSManagedObjectExtensionTests: XCTestCase {
 
     func test_lastObjectFromRequest_mustReturnObject() {
-        let coreDataStack = TestUtil().appContext().coreDataStack
+        let coreDataStack = TestUtil().testAppContext().coreDataStack
         let context = coreDataStack.managedObjectContext
 
-        let historyName = "rule-test-name"
-        EntitySyncHistory.removeAll(inManagedObjectContext: context)
-        EntitySyncHistory.entityAutoSyncHistoryByName(historyName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: context)
+        let name = "test-name"
+        EntityTest.removeAll(inManagedObjectContext: context)
+        EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: context)
         coreDataStack.saveContext()
 
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntitySyncHistory.simpleClassName())
-        request.predicate = NSPredicate(format: "ruleName = %@", historyName)
+        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        request.predicate = NSPredicate(format: "name = %@", name)
 
-        let object = EntitySyncHistory.lastObjectFromRequest(request, inManagedObjectContext: context)
+        let object = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
         XCTAssertNotNil(object)
     }
 
     func test_lastObjectFromRequest_mustNotThrow() {
-        let coreDataStack = TestUtil().appContext().coreDataStack
+        let coreDataStack = TestUtil().testAppContext().coreDataStack
         let context = coreDataStack.managedObjectContext
 
         let name = "unkown"
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntitySyncHistory.simpleClassName())
-        request.predicate = NSPredicate(format: "ruleName = %@", name)
+        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        request.predicate = NSPredicate(format: "name = %@", name)
 
-        let object = EntitySyncHistory.lastObjectFromRequest(request, inManagedObjectContext: context)
+        let object = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
         XCTAssertNil(object)
     }
 
     func test_lastObjectFromRequest_mustThrow() {
-        let coreDataStack = TestUtil().appContext().coreDataStack
+        let coreDataStack = TestUtil().testAppContext().coreDataStack
         let context = coreDataStack.managedObjectContext
 
         let name = "unkown"
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntitySyncHistory.simpleClassName())
-        request.predicate = NSPredicate(format: "nonExistingRuleName = %@", name)
+        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        request.predicate = NSPredicate(format: "nonExistingName = %@", name)
 
-        let object = EntitySyncHistory.lastObjectFromRequest(request, inManagedObjectContext: context)
+        let object = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
         XCTAssertNil(object)
     }
 
 
 
     func test_allObjectsFromRequest_mustReturnObjects() {
-        let coreDataStack = TestUtil().appContext().coreDataStack
+        let coreDataStack = TestUtil().testAppContext().coreDataStack
         let context = coreDataStack.managedObjectContext
         
-        let historyName = "rule-test-name"
-        EntitySyncHistory.removeAll(inManagedObjectContext: context)
-        EntitySyncHistory.entityAutoSyncHistoryByName(historyName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: context)
+        let name = "test-name"
+        EntityTest.removeAll(inManagedObjectContext: context)
+        EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: context)
         coreDataStack.saveContext()
         
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntitySyncHistory.simpleClassName())
-        request.predicate = NSPredicate(format: "ruleName = %@", historyName)
+        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        request.predicate = NSPredicate(format: "name = %@", name)
         
-        let objects = EntitySyncHistory.allObjectsFromRequest(request, inManagedObjectContext: context)
+        let objects = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
         XCTAssertEqual(objects.count, 1)
     }
 
     func test_allObjectsFromRequest_mustNotThrow() {
-        let coreDataStack = TestUtil().appContext().coreDataStack
+        let coreDataStack = TestUtil().testAppContext().coreDataStack
         let context = coreDataStack.managedObjectContext
 
         let name = "unkown"
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntitySyncHistory.simpleClassName())
-        request.predicate = NSPredicate(format: "ruleName = %@", name)
+        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        request.predicate = NSPredicate(format: "name = %@", name)
 
-        let objects = EntitySyncHistory.allObjectsFromRequest(request, inManagedObjectContext: context)
+        let objects = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
         XCTAssertEqual(objects.count, 0)
     }
 
     func test_allObjectsFromRequest_mustThrow() {
-        let coreDataStack = TestUtil().appContext().coreDataStack
+        let coreDataStack = TestUtil().testAppContext().coreDataStack
         let context = coreDataStack.managedObjectContext
 
         let number = NSNumber(int: 20)
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntitySyncHistory.simpleClassName())
-        request.predicate = NSPredicate(format: "ruleName = %@", number)
+        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        request.predicate = NSPredicate(format: "name = %@", number)
 
-        let objects = EntitySyncHistory.allObjectsFromRequest(request, inManagedObjectContext: context)
+        let objects = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
         XCTAssertEqual(objects.count, 0)
     }
 
