@@ -81,7 +81,7 @@ class TestUtil: NSObject {
                           logger: logger)
     }
     
-    func randomRuleName() -> String {
+    func randomString() -> String {
         return NSUUID().UUIDString.stringByReplacingOccurrencesOfString("-", withString: "")
     }
     

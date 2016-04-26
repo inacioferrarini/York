@@ -34,7 +34,7 @@ class EntityHourlySyncRuleTests: XCTestCase {
     }
     
     func test_fetchEntityHourlySyncRule_withName_mustReturnEntity() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
         if let _ = EntityHourlySyncRule.entityHourlySyncRuleByName(ruleName, hours: nil, inManagedObjectContext:context) {
@@ -54,7 +54,7 @@ class EntityHourlySyncRuleTests: XCTestCase {
     func test_shouldRunSyncRule_withEmptyName_mustReturnNil() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         if let rule = EntityHourlySyncRule.entityHourlySyncRuleByName(ruleName, hours: nil, inManagedObjectContext:context) {
             let shouldExecuteRule = rule.shouldRunSyncRuleWithName("", date: NSDate(), inManagedObjectContext: context)
             XCTAssertTrue(shouldExecuteRule)

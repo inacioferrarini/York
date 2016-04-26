@@ -34,7 +34,7 @@ class EntityDailySyncRuleTests: XCTestCase {
     }
 
     func test_fetchEntityDailySyncRule_withName_mustReturnEntity() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
         if let _ = EntityDailySyncRule.entityDailySyncRuleByName(ruleName, days: nil, inManagedObjectContext:context) {
@@ -53,7 +53,7 @@ class EntityDailySyncRuleTests: XCTestCase {
     func test_shouldRunSyncRule_withEmptyName_mustReturnNil() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         if let rule = EntityDailySyncRule.entityDailySyncRuleByName(ruleName, days: nil, inManagedObjectContext:context) {
             let shouldExecuteRule = rule.shouldRunSyncRuleWithName("", date: NSDate(), inManagedObjectContext: context)
             XCTAssertTrue(shouldExecuteRule)
@@ -63,7 +63,7 @@ class EntityDailySyncRuleTests: XCTestCase {
     func test_shouldRunSyncRule_withNonExistingRuleName_mustReturnNil() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
-        let ruleName2 = TestUtil().randomRuleName()
+        let ruleName2 = TestUtil().randomString()
         if let rule = EntityDailySyncRule.entityDailySyncRuleByName(ruleName2, days: nil, inManagedObjectContext:context) {
             let shouldExecuteRule = rule.shouldRunSyncRuleWithName("", date: NSDate(), inManagedObjectContext: context)
             XCTAssertTrue(shouldExecuteRule)

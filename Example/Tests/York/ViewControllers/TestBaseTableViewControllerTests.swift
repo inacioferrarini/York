@@ -50,7 +50,7 @@ class TestBaseTableViewControllerTests: XCTestCase {
         let context = self.viewController.appContext.coreDataStack.managedObjectContext
         EntityTest.removeAll(inManagedObjectContext: context)
         
-        let name = TestUtil().randomRuleName()
+        let name = TestUtil().randomString()
         EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: context)
         
         let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
@@ -79,7 +79,7 @@ class TestBaseTableViewControllerTests: XCTestCase {
         let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let ctx = coreDataStack.managedObjectContext
-        let name = TestUtil().randomRuleName()
+        let name = TestUtil().randomString()
         let testEntity = EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: ctx)
         let cell = UITableViewCell()
         dataSource.presenter.configureCellBlock(cell, testEntity!)
