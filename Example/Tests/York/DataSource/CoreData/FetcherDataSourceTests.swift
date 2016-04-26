@@ -189,10 +189,11 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
     func test_FetcherDataSource_objectAtIndexPath_mustReturnEntity() {
         let dataSource = self.createFetcherDataSourceDesignatedInitializer()
         dataSource.sortDescriptors = [ NSSortDescriptor(key: "order", ascending: true) ]
-        self.removeAllTestEntities()
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
         
-        let entityTest0 = self.createTestEntity(nil, name: "EntityTest-0", order: 0)
-        self.createTestEntity(nil, name: "EntityTest-1", order: 1)
+        let entityTest0 = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
+        
         self.coreDataStack.saveContext()
         do {
             try dataSource.refreshData()
@@ -212,10 +213,11 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
     func test_FetcherDataSource_indexPathForObject_mustSucceed() {
         let dataSource = self.createFetcherDataSourceDesignatedInitializer()
         dataSource.sortDescriptors = [ NSSortDescriptor(key: "order", ascending: true) ]
-        self.removeAllTestEntities()
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+        helper.removeAllTestEntities()
         
-        let entityTest0 = self.createTestEntity(nil, name: "EntityTest-0", order: 0)
-        self.createTestEntity(nil, name: "EntityTest-1", order: 1)
+        let entityTest0 = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
+        
         self.coreDataStack.saveContext()
         do {
             try dataSource.refreshData()
