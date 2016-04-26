@@ -138,28 +138,6 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         XCTAssertEqual(numberOfRows, 1)
     }
     
-//    func test_cellForRowAtIndexPath_mustReturnCell() {
-//        let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-//        dataSource.sortDescriptors = [ NSSortDescriptor(key: "order", ascending: true) ]
-//        self.removeAllTestEntities()
-//        
-//        self.createTestEntity(nil, name: "EntityTest-0", order: 0)
-//        self.createTestEntity(nil, name: "EntityTest-1", order: 1)
-//        self.coreDataStack.saveContext()
-//        do {
-//            try dataSource.refreshData()
-//            XCTAssertTrue(true)
-//        } catch {
-//            XCTAssertTrue(false)
-//        }
-//        
-//        tableView.reloadData()
-//        
-//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-//        let cell = dataSource.tableView(tableView, cellForRowAtIndexPath: indexPath)
-//        XCTAssertNotNil(cell)
-//    }
-    
     
     // MARK: - Tests - canEditRowAtIndexPath
     
