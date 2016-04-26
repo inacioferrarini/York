@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		34AAB9971CCFD4C600E0CE0F /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AAB9961CCFD4C600E0CE0F /* CoreDataUtil.swift */; };
+		34AAB9991CCFFAA200E0CE0F /* TestsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */; };
 		34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */; };
 		34C91A601CC342750033AC8B /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A261CC342750033AC8B /* default-avatar.png */; };
 		34C91A611CC342750033AC8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A271CC342750033AC8B /* Localizable.strings */; };
@@ -80,6 +81,7 @@
 /* Begin PBXFileReference section */
 		2CB95DBF5676518A5D7ECA76 /* Pods-York_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-York_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-York_Example/Pods-York_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		34AAB9961CCFD4C600E0CE0F /* CoreDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
+		34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsCollectionView.swift; sourceTree = "<group>"; };
 		34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensionTests.swift; sourceTree = "<group>"; };
 		34C91A241CC342750033AC8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C91A261CC342750033AC8B /* default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar.png"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				34C91A371CC342750033AC8B /* SimpleViewComponent.swift */,
 				34C91A381CC342750033AC8B /* SimpleViewComponent.xib */,
 				34C91A391CC342750033AC8B /* TestsTableView.swift */,
+				34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				34EFE2001CCEBEDF00264D0E /* EntityTestMandatoryField+CoreDataProperties.swift in Sources */,
 				34AAB9971CCFD4C600E0CE0F /* CoreDataUtil.swift in Sources */,
 				34C91A841CC342750033AC8B /* ViewComponentTests.swift in Sources */,
+				34AAB9991CCFFAA200E0CE0F /* TestsCollectionView.swift in Sources */,
 				34EFE1E41CCD320600264D0E /* TableViewFetcherDataSourceTests.swift in Sources */,
 				34C91A771CC342750033AC8B /* NSObjectExtensionsTests.swift in Sources */,
 				34C91A681CC342750033AC8B /* TestBaseTableViewController.swift in Sources */,
