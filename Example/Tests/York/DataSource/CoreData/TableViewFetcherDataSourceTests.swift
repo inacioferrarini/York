@@ -39,7 +39,10 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     
     func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?) -> TableViewFetcherDataSource<UITableViewCell, EntityTest> {
         let frame = CGRectMake(0, 0, 200, 200)
-        let tableView = UITableView(frame: frame, style: .Plain)
+        let tableView = TestsTableView(frame: frame, style: .Plain)
+        tableView.cellForRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> UITableViewCell? in
+            return TableViewCell()
+        }
         self.registerCellForTableView(tableView)
         
         return self.createTableViewFetcherDataSource(sectionNameKeyPath: nameKeyPath, tableView: tableView)
@@ -347,14 +350,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     }
 
     func test_didChangeObject_forUpdate_mustNotCrash() {
-        let frame = CGRectMake(0, 0, 200, 200)
-        let tableView = TestsTableView(frame: frame, style: .Plain)
-        tableView.cellForRowAtIndexPathBlock = { () -> UITableViewCell? in
-            return TableViewCell()
-        }
-        self.registerCellForTableView(tableView)
-        
-        let dataSource = createTableViewFetcherDataSource(sectionNameKeyPath: nil, tableView: tableView)
+        let dataSource = createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         
         helper.removeAllTestEntities()
