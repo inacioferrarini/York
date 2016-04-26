@@ -114,7 +114,9 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let numberOfSections = dataSource.numberOfSectionsInTableView(self.tableView)
         XCTAssertEqual(numberOfSections, 0)
     }
-
+    
+    
+    // MARK: - Tests - numberOfRowsInSection
     
     func test_numberOfRowsInSection_mustReturnZero() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
