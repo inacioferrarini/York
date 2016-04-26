@@ -26,10 +26,16 @@ import CoreData
 
 class FetchedResultsSectionInfo: NSObject, NSFetchedResultsSectionInfo {
     
+    
+    // MARK: - Properties
+    
     let numberOfObjects: Int
     let objects: [AnyObject]?
     let name: String
     let indexTitle: String?
+    
+    
+    // MARK: - Initialization
     
     init(numberOfObjects: Int, objects: [AnyObject]?, name: String, indexTitle: String?) {
         self.numberOfObjects = numberOfObjects

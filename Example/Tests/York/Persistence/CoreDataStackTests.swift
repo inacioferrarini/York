@@ -27,6 +27,8 @@ import York
 class CoreDataStackTests: XCTestCase {
     
     
+    // MARK: - Tests
+    
     func test_convenienceInit_mustNotCrash() {
         let logger = Logger()
         let stack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger)

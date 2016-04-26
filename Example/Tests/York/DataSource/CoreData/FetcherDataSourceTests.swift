@@ -71,7 +71,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
     }
     
     
-    // MARK: - Tests - Initialization
+    // MARK: - Tests - Initialization With Convenience Initializer
     
     func test_convenienceInitializer_FetcherDataSourceFields_entityName() {
         let dataSource = self.createFetcherDataSourceConvenienceInitializer()
@@ -114,7 +114,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
     }
     
     
-    
+    // MARK: - Tests - Initialization With Designated Initializer
     
     func test_designatedInitializer_FetcherDataSourceFields_entityName() {
         let dataSource = self.createFetcherDataSourceDesignatedInitializer()
@@ -157,6 +157,8 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
     }
     
     
+    // MARK: - Tests - refresh
+    
     func test_FetcherDataSource_refresh_mustSucceed() {
         let dataSource = self.createFetcherDataSourceDesignatedInitializer()
         dataSource.sortDescriptors = []
@@ -167,7 +169,6 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
             XCTAssertTrue(false)
         }
     }
-    
     
     func test_FetcherDataSource_refresh_mustIgnoreExceptionCrash() {
         let dataSource = self.createFetcherDataSourceDesignatedInitializer()
@@ -181,8 +182,10 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
             XCTAssertTrue(false)
         }
     }
-   
-
+    
+    
+    // MARK: - Tests - objectAtIndexPath
+    
     func test_FetcherDataSource_objectAtIndexPath_mustReturnEntity() {
         let dataSource = self.createFetcherDataSourceDesignatedInitializer()
         dataSource.sortDescriptors = [ NSSortDescriptor(key: "order", ascending: true) ]
@@ -203,6 +206,8 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         XCTAssertEqual(entityAtIndexPath, entityTest0!)
     }
     
+    
+    // MARK: - Tests - indexPathForObject
     
     func test_FetcherDataSource_indexPathForObject_mustSucceed() {
         let dataSource = self.createFetcherDataSourceDesignatedInitializer()

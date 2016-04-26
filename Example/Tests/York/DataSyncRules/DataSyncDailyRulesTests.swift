@@ -26,10 +26,16 @@ import York
 
 class DataSyncDailyRulesTests: XCTestCase {
     
+    
+    // MARK: - Supporting Methods
+    
     func createRules() -> DataSyncRules {
         let coreDataStack = TestUtil().appContext().coreDataStack
         return DataSyncRules(coreDataStack: coreDataStack)
     }
+    
+    
+    // MARK: - Tests
     
     func test_nonExistingDailyRule_mustReturnFalse() {
         let ruleName = TestUtil().randomString()

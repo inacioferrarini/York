@@ -26,6 +26,9 @@ import York
 
 class LoggerTests: XCTestCase {
     
+    
+    // MARK: - Tests
+    
     func test_logger_mustNotCrash() {
         Logger().logErrorMessage("Error Message")
     }

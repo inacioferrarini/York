@@ -26,6 +26,9 @@ import York
 
 class ArrayRemoveObjectExtensionTests: XCTestCase {
     
+    
+    // MARK: - Tests
+    
     func test_removeObject_existingObject_mustSucceed() {
         var strings: [String] = ["A", "B", "C"]
         strings.removeObject("B")

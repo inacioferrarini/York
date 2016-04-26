@@ -27,11 +27,17 @@ import York
 
 class CollectionViewCellPresenterTests: XCTestCase {
     
+    
+    // MARK: - Properties
+    
     static let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
         return "ReuseCellID"
     }
     
     static var blockExecutionTest = ""
+    
+    
+    // MARK: - Supporting Methods
     
     func createCollectionViewCellPresenter() -> CollectionViewCellPresenter<UICollectionViewCell, EntityTest> {
         let presenter = CollectionViewCellPresenter<UICollectionViewCell, EntityTest>(
@@ -40,6 +46,9 @@ class CollectionViewCellPresenterTests: XCTestCase {
             }, cellReuseIdentifierBlock: CollectionViewCellPresenterTests.cellReuseIdBlock)
         return presenter
     }
+    
+    
+    // MARK: - Tests
     
     func test_collectionViewCellPresenterFields_configureCellBlock() {
         let testAppContext = TestUtil().testAppContext()

@@ -26,7 +26,13 @@ import York
 
 class TestBaseTableViewControllerTests: XCTestCase {
     
+    
+    // MARK: - Properties
+        
     var viewController: TestBaseTableViewController!
+    
+    
+    // MARK: - Tests Setup
     
     override func setUp() {
         super.setUp()
@@ -39,6 +45,8 @@ class TestBaseTableViewControllerTests: XCTestCase {
         let _ = viewController.view
     }
     
+    
+    // MARK: - Tests
     
     func test_viewDidLoad_mustNotCrash() {
         self.viewController.viewDidLoad()

@@ -25,9 +25,15 @@ import XCTest
 import York
 
 class RoutingElementTests: XCTestCase {
-
+    
+    
+    // MARK: - Properties
+    
     static let pattern = "TestRoute"
     static var blockExecutionTest = ""
+    
+    
+    // MARK: - Supporting Methods
     
     func createRoute() -> RoutingElement {
         return RoutingElement(pattern: RoutingElementTests.pattern, handler: { (parameters:[NSObject : AnyObject]) -> Bool in
@@ -35,6 +41,9 @@ class RoutingElementTests: XCTestCase {
             return true
         })
     }
+    
+    
+    // MARK: - Tests
     
     func test_routingElementFields_configureHandlerBlock() {
         let route = self.createRoute()

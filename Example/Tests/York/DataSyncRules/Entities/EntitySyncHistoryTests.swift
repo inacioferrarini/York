@@ -26,6 +26,9 @@ import York
 
 class EntitySyncHistoryTests: XCTestCase {
     
+    
+    // MARK: - Tests
+    
     func test_fetchEntityAutoSyncHistory_withEmptyName_mustReturnNil() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext

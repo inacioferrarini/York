@@ -26,6 +26,15 @@ import JLRoutes
 import York
 
 class NavigationRouterTests: XCTestCase {
+
+    
+    // MARK: - Properties
+    
+    var routeWasCalled:Bool = false
+    var router:NavigationRouter!
+    
+    
+    // MARK: - Tests Setup
     
     override func setUp() {
         self.router = self.createNavigationRouter()
@@ -33,8 +42,8 @@ class NavigationRouterTests: XCTestCase {
         super.setUp()
     }
     
-    var routeWasCalled:Bool = false
-    var router:NavigationRouter!
+    
+    // MARK: - Supporting Methods
     
     func createNavigationRouter() -> NavigationRouter {
         JLRoutes.setVerboseLoggingEnabled(true)
@@ -46,6 +55,9 @@ class NavigationRouterTests: XCTestCase {
         navigationRouter.registerRoutes([route])
         return navigationRouter
     }
+    
+    
+    // MARK: - Tests
     
     func test_dispatch_mustReturnTrue() {
         let result = self.router.dispatch(NSURL(string: "TesteScheme://testUrlScheme")!)

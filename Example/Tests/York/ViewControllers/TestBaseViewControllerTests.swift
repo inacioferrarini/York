@@ -26,7 +26,13 @@ import York
 
 class TestBaseViewControllerTests: XCTestCase {
     
+    
+    // MARK: - Properties
+        
     var viewController: TestBaseViewController!
+    
+    
+    // MARK: - Supporting Methods
     
     func instantiateViewController(bundle: NSBundle?) {
         let appContext = TestUtil().appContext()
@@ -38,6 +44,9 @@ class TestBaseViewControllerTests: XCTestCase {
         let _ = navigationController.view
         let _ = viewController.view
     }
+    
+    
+    // MARK: - Tests
     
     func test_appContext_notNil() {
         let bundle = TestUtil().unitTestsBundle()

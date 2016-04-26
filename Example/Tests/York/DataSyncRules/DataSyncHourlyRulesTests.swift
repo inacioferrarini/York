@@ -26,10 +26,16 @@ import York
 
 class DataSyncHourlyRulesTests: XCTestCase {
     
+    
+    // MARK: - Supporting Methods
+    
     func createRules() -> DataSyncRules {
         let coreDataStack = TestUtil().appContext().coreDataStack
         return DataSyncRules(coreDataStack: coreDataStack)
     }
+    
+    
+    // MARK: - Tests
     
     func test_nonExistingHourlyRule_mustReturnFalse() {
         let ruleName = TestUtil().randomString()

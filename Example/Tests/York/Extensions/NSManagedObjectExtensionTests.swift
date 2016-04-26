@@ -26,7 +26,10 @@ import CoreData
 import York
 
 class NSManagedObjectExtensionTests: XCTestCase {
-
+    
+    
+    // MARK: - Tests
+    
     func test_lastObjectFromRequest_mustReturnObject() {
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let context = coreDataStack.managedObjectContext

@@ -25,7 +25,10 @@ import XCTest
 import York
 
 class EntityHourlySyncRuleTests: XCTestCase {
-
+    
+    
+    // MARK: - Tests
+    
     func test_fetchEntityHourlySyncRule_withEmptyName_mustReturnNil() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
