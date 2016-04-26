@@ -22,11 +22,15 @@
 
 import UIKit
 
-class TestsCollectionView: UICollectionView {
+public class TestsCollectionView: UICollectionView {
 
-    var cellForItemAtIndexPathBlock: ((indexPath: NSIndexPath) -> UICollectionViewCell?)?
+    public var cellForItemAtIndexPathBlock: ((indexPath: NSIndexPath) -> UICollectionViewCell?)?
     
-    override func cellForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewCell? {
+    public override var window: UIWindow? {
+        return UIWindow()
+    }
+    
+    public override func cellForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewCell? {
         if let block = self.cellForItemAtIndexPathBlock {
             return block(indexPath: indexPath)
         } else {
