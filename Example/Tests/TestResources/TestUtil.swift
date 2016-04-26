@@ -26,6 +26,9 @@ import York
 
 class TestUtil: NSObject {
 
+    
+    // MARK: - Constants
+    
     static let modelFileName = "DataSyncRules"
     static let databaseFileName = "DataSyncRulesDB"
     
@@ -33,6 +36,7 @@ class TestUtil: NSObject {
     static let testDatabaseFileName = "YorkTestsDB"
     
     
+    // MARK: - Test Bundles
     
     func yorkPODBundle() -> NSBundle {        
         return NSBundle(forClass: AppContext.self)
@@ -45,6 +49,8 @@ class TestUtil: NSObject {
     func unitTestsBundle() -> NSBundle {
         return NSBundle(forClass: self.dynamicType)
     }
+    
+    // MARK: - Utility Methods
     
     func appContext() -> AppContext {
         
@@ -84,6 +90,9 @@ class TestUtil: NSObject {
     func randomString() -> String {
         return NSUUID().UUIDString.stringByReplacingOccurrencesOfString("-", withString: "")
     }
+    
+    
+    // MARK: - Test View Controllers
     
     func rootViewController() -> UINavigationController {
         let bundle = self.unitTestsBundle()
