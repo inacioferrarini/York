@@ -192,7 +192,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         helper.removeAllTestEntities()
         
-        let entityTest0 = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
+        let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
         
         self.coreDataStack.saveContext()
         do {
@@ -204,7 +204,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         let entityAtIndexPath = dataSource.objectAtIndexPath(indexPath)
-        XCTAssertEqual(entityAtIndexPath, entityTest0!)
+        XCTAssertEqual(entityAtIndexPath, entity!)
     }
     
     
@@ -216,7 +216,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         helper.removeAllTestEntities()
         
-        let entityTest0 = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
+        let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
         
         self.coreDataStack.saveContext()
         do {
@@ -226,7 +226,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
             XCTAssertTrue(false)
         }
         
-        let entityIndexPath = dataSource.indexPathForObject(entityTest0!)!
+        let entityIndexPath = dataSource.indexPathForObject(entity!)!
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         XCTAssertEqual(entityIndexPath, indexPath)
     }

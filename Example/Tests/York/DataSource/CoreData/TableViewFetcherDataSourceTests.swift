@@ -253,7 +253,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
-        let entityTest = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).last
+        let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).last
         
         do {
             try dataSource.refreshData()
@@ -261,7 +261,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         } catch {
             XCTAssertTrue(false)
         }
-        dataSource.managedObjectContext.deleteObject(entityTest!)
+        dataSource.managedObjectContext.deleteObject(entity!)
         
         self.tableView.beginUpdates()
         let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
@@ -355,7 +355,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         helper.removeAllTestEntities()
         
-        let entityTest = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
+        let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
         
         do {
             try dataSource.refreshData()
@@ -366,7 +366,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
-            didChangeObject: entityTest!,
+            didChangeObject: entity!,
             atIndexPath: NSIndexPath(forRow: 1, inSection: 0),
             forChangeType: .Update,
             newIndexPath: nil)
@@ -389,7 +389,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         helper.removeAllTestEntities()
         
-        let testEntity = helper.createTestMass(withSize: 3, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
+        let entity = helper.createTestMass(withSize: 3, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
         
         do {
             try dataSource.refreshData()
@@ -398,11 +398,11 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
             XCTAssertTrue(false)
         }
 
-        dataSource.managedObjectContext.deleteObject(testEntity!)
+        dataSource.managedObjectContext.deleteObject(entity!)
         
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
-            didChangeObject: testEntity!,
+            didChangeObject: entity!,
             atIndexPath: NSIndexPath(forRow: 2, inSection: 0),
             forChangeType: .Delete,
             newIndexPath: nil)
@@ -425,7 +425,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
         helper.removeAllTestEntities()
         
-        let testEntity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
+        let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
         
         do {
             try dataSource.refreshData()
@@ -436,7 +436,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
-            didChangeObject: testEntity!,
+            didChangeObject: entity!,
             atIndexPath: NSIndexPath(forRow: 0, inSection: 0),
             forChangeType: .Move,
             newIndexPath: NSIndexPath(forRow: 1, inSection: 0))

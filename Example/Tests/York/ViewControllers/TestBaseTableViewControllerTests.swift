@@ -88,9 +88,9 @@ class TestBaseTableViewControllerTests: XCTestCase {
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let ctx = coreDataStack.managedObjectContext
         let name = TestUtil().randomString()
-        let testEntity = EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: ctx)
+        let entity = EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: ctx)
         let cell = UITableViewCell()
-        dataSource.presenter.configureCellBlock(cell, testEntity!)
+        dataSource.presenter.configureCellBlock(cell, entity!)
     }
     
     

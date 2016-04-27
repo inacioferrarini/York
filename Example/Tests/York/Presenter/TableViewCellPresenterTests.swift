@@ -55,8 +55,8 @@ class TableViewCellPresenterTests: XCTestCase {
         let context = testAppContext.coreDataStack.managedObjectContext
         let presenter = self.createTableViewCellPresenter()
         let cell = UITableViewCell()
-        let obj = EntityTest.entityTest(nil, name: "name", order: nil, inManagedObjectContext: context)!
-        presenter.configureCellBlock(cell, obj)
+        let entity = EntityTest.entityTest(nil, name: "name", order: nil, inManagedObjectContext: context)!
+        presenter.configureCellBlock(cell, entity)
         XCTAssertEqual(TableViewCellPresenterTests.blockExecutionTest, "testExecuted")
     }
 

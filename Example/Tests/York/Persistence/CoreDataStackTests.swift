@@ -39,8 +39,8 @@ class CoreDataStackTests: XCTestCase {
     func test_saveContext_mustThrowException() {
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let ctx = coreDataStack.managedObjectContext
-        if let testEntity = EntityTestMandatoryField.entityTestMandatoryField("name", inManagedObjectContext: ctx) {
-            testEntity.name = nil
+        if let entity = EntityTestMandatoryField.entityTestMandatoryField("name", inManagedObjectContext: ctx) {
+            entity.name = nil
         }
         coreDataStack.saveContext()
     }

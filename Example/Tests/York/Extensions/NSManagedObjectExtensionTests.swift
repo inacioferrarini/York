@@ -42,8 +42,8 @@ class NSManagedObjectExtensionTests: XCTestCase {
         let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        let object = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
-        XCTAssertNotNil(object)
+        let entity = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
+        XCTAssertNotNil(entity)
     }
 
     func test_lastObjectFromRequest_mustNotThrow() {
@@ -54,8 +54,8 @@ class NSManagedObjectExtensionTests: XCTestCase {
         let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        let object = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
-        XCTAssertNil(object)
+        let entity = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
+        XCTAssertNil(entity)
     }
 
     func test_lastObjectFromRequest_mustThrow() {
@@ -66,8 +66,8 @@ class NSManagedObjectExtensionTests: XCTestCase {
         let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "nonExistingName = %@", name)
 
-        let object = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
-        XCTAssertNil(object)
+        let entity = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
+        XCTAssertNil(entity)
     }
 
 
@@ -84,8 +84,8 @@ class NSManagedObjectExtensionTests: XCTestCase {
         let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
         
-        let objects = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
-        XCTAssertEqual(objects.count, 1)
+        let entities = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
+        XCTAssertEqual(entities.count, 1)
     }
 
     func test_allObjectsFromRequest_mustNotThrow() {
@@ -96,8 +96,8 @@ class NSManagedObjectExtensionTests: XCTestCase {
         let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        let objects = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
-        XCTAssertEqual(objects.count, 0)
+        let entities = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
+        XCTAssertEqual(entities.count, 0)
     }
 
     func test_allObjectsFromRequest_mustThrow() {
@@ -108,8 +108,8 @@ class NSManagedObjectExtensionTests: XCTestCase {
         let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", number)
 
-        let objects = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
-        XCTAssertEqual(objects.count, 0)
+        let entities = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
+        XCTAssertEqual(entities.count, 0)
     }
 
 }
