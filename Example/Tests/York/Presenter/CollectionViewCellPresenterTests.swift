@@ -55,7 +55,10 @@ class CollectionViewCellPresenterTests: XCTestCase {
         let context = testAppContext.coreDataStack.managedObjectContext
         let presenter = self.createCollectionViewCellPresenter()
         let cell = UICollectionViewCell()
-        let entity = EntityTest.entityTest(nil, name: "name", order: nil, inManagedObjectContext: context)!
+        
+        let helper = CoreDataUtil(inManagedObjectContext: context)
+        let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first!
+        
         presenter.configureCellBlock(cell, entity)
         XCTAssertEqual(CollectionViewCellPresenterTests.blockExecutionTest, "testExecuted")
     }

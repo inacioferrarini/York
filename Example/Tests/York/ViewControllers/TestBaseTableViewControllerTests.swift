@@ -56,10 +56,10 @@ class TestBaseTableViewControllerTests: XCTestCase {
     func test_viewWillDisappear_mustNotCrash() {
         self.viewController.viewDidLoad()
         let context = self.viewController.appContext.coreDataStack.managedObjectContext
-        EntityTest.removeAll(inManagedObjectContext: context)
         
-        let name = TestUtil().randomString()
-        EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: context)
+        let helper = CoreDataUtil(inManagedObjectContext: context)
+        helper.removeAllTestEntities()
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         
         let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
         do {
@@ -87,8 +87,8 @@ class TestBaseTableViewControllerTests: XCTestCase {
         let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let ctx = coreDataStack.managedObjectContext
-        let name = TestUtil().randomString()
-        let entity = EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: ctx)
+        let helper = CoreDataUtil(inManagedObjectContext: ctx)
+        let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first!
         let cell = UITableViewCell()
         dataSource.presenter.configureCellBlock(cell, entity!)
     }
