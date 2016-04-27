@@ -1,3 +1,4 @@
+//    The MIT License (MIT)
 //
 //    Copyright (c) 2016 Inácio Ferrarini
 //
@@ -20,18 +21,14 @@
 //    SOFTWARE.
 //
 
-import UIKit
+import Foundation
+import CoreData
+import York
 
-class TestsTableView: UITableView {
+extension EntityTest {
 
-    var cellForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> UITableViewCell?)?
-    
-    override func cellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell? {
-        if let block = self.cellForRowAtIndexPathBlock {
-            return block(indexPath: indexPath)
-        } else {
-            return super.cellForRowAtIndexPath(indexPath)
-        }
-    }
+    @NSManaged var sectionName: String?
+    @NSManaged var name: String?
+    @NSManaged var order: NSNumber?
 
 }

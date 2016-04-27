@@ -26,6 +26,9 @@ import York
 
 class ViewComponentTests: XCTestCase {
     
+    
+    // MARK: - Tests
+    
     func test_initWithFrameWithBundle_mustSucceed() {
         let testsBundle = TestUtil().unitTestsBundle()
         let view = SimpleViewComponent(frame: CGRectMake(0, 0, 100, 100), bundle: testsBundle)

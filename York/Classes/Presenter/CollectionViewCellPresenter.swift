@@ -1,3 +1,4 @@
+//    The MIT License (MIT)
 //
 //    Copyright (c) 2016 Inácio Ferrarini
 //
@@ -21,17 +22,17 @@
 //
 
 import UIKit
+import CoreData
 
-class TestsTableView: UITableView {
+public class CollectionViewCellPresenter<CellType: UICollectionViewCell, EntityType: NSManagedObject>: NSObject {
 
-    var cellForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> UITableViewCell?)?
-    
-    override func cellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell? {
-        if let block = self.cellForRowAtIndexPathBlock {
-            return block(indexPath: indexPath)
-        } else {
-            return super.cellForRowAtIndexPath(indexPath)
-        }
+    public var configureCellBlock: ((CellType, EntityType) -> Void)
+    public var cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)
+
+    public init(configureCellBlock: ((CellType, EntityType) -> Void), cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)) {
+        self.configureCellBlock = configureCellBlock
+        self.cellReuseIdentifierBlock = cellReuseIdentifierBlock
+        super.init()
     }
 
 }

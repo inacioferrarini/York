@@ -26,13 +26,19 @@ import York
 
 class DataSyncHourlyRulesTests: XCTestCase {
     
+    
+    // MARK: - Supporting Methods
+    
     func createRules() -> DataSyncRules {
         let coreDataStack = TestUtil().appContext().coreDataStack
         return DataSyncRules(coreDataStack: coreDataStack)
     }
     
+    
+    // MARK: - Tests
+    
     func test_nonExistingHourlyRule_mustReturnFalse() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         rules.addSyncRule(ruleName, rule: SyncRule.Hourly(12))
         let result = rules.shouldPerformSyncRule("NonExistingRule", atDate: NSDate())
@@ -40,13 +46,13 @@ class DataSyncHourlyRulesTests: XCTestCase {
     }
     
     func test_nonExistingHourlyRule_update_doesNotcrash() {
-        let ruleName = TestUtil().randomRuleName()        
+        let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: NSDate())
     }
 
     func test_existingHourlyRuleHistory_update_doesNotcrash() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         let context = rules.coreDataStack.managedObjectContext
         EntitySyncHistory.entityAutoSyncHistoryByName(ruleName, lastExecutionDate: NSDate(), inManagedObjectContext: context)
@@ -54,14 +60,14 @@ class DataSyncHourlyRulesTests: XCTestCase {
     }
     
     func test_updatingExistingHourlyRule_doesNotCrash() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         rules.addSyncRule(ruleName, rule: SyncRule.Hourly(12))
         rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: NSDate())
     }
     
     func test_existingHourlyRuleWithoutLastExecutionDate_mustReturnTrue() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         rules.addSyncRule(ruleName, rule: SyncRule.Hourly(12))
         let result = rules.shouldPerformSyncRule(ruleName, atDate: NSDate())
@@ -69,7 +75,7 @@ class DataSyncHourlyRulesTests: XCTestCase {
     }
     
     func test_existingHourlyRule_withDaysEquals3AndlastExecutionDateEquals3_mustReturnTrue() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let lastExecutionDate = formatter.dateFromString("2015-03-23T01:20:20")!
@@ -84,7 +90,7 @@ class DataSyncHourlyRulesTests: XCTestCase {
     }
 
     func test_existingHourlyRule_withDaysEqual32AndlastExecutionDateEquals2_mustReturnFalse() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let lastExecutionDate = formatter.dateFromString("2015-03-23T01:20:20")!

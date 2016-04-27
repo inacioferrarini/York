@@ -25,7 +25,7 @@ import XCTest
 import CoreData
 import York
 
-class TableViewCellPresenterTests: XCTestCase {
+class CollectionViewCellPresenterTests: XCTestCase {
     
     
     // MARK: - Properties
@@ -33,38 +33,41 @@ class TableViewCellPresenterTests: XCTestCase {
     static let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
         return "ReuseCellID"
     }
-
+    
     static var blockExecutionTest = ""
     
     
     // MARK: - Supporting Methods
     
-    func createTableViewCellPresenter() -> TableViewCellPresenter<UITableViewCell, EntityTest> {
-        let presenter = TableViewCellPresenter<UITableViewCell, EntityTest>(
-            configureCellBlock: { (cell: UITableViewCell, entity:EntityTest) -> Void in
-                TableViewCellPresenterTests.blockExecutionTest = "testExecuted"
-            }, cellReuseIdentifierBlock: TableViewCellPresenterTests.cellReuseIdBlock)
+    func createCollectionViewCellPresenter() -> CollectionViewCellPresenter<UICollectionViewCell, EntityTest> {
+        let presenter = CollectionViewCellPresenter<UICollectionViewCell, EntityTest>(
+            configureCellBlock: { (cell: UICollectionViewCell, entity:EntityTest) -> Void in
+                CollectionViewCellPresenterTests.blockExecutionTest = "testExecuted"
+            }, cellReuseIdentifierBlock: CollectionViewCellPresenterTests.cellReuseIdBlock)
         return presenter
     }
     
     
     // MARK: - Tests
     
-    func test_tableViewCellPresenterFields_configureCellBlock() {
+    func test_collectionViewCellPresenterFields_configureCellBlock() {
         let testAppContext = TestUtil().testAppContext()
         let context = testAppContext.coreDataStack.managedObjectContext
-        let presenter = self.createTableViewCellPresenter()
-        let cell = UITableViewCell()
-        let entity = EntityTest.entityTest(nil, name: "name", order: nil, inManagedObjectContext: context)!
+        let presenter = self.createCollectionViewCellPresenter()
+        let cell = UICollectionViewCell()
+        
+        let helper = CoreDataUtil(inManagedObjectContext: context)
+        let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first!
+        
         presenter.configureCellBlock(cell, entity)
-        XCTAssertEqual(TableViewCellPresenterTests.blockExecutionTest, "testExecuted")
+        XCTAssertEqual(CollectionViewCellPresenterTests.blockExecutionTest, "testExecuted")
     }
-
-    func test_tableViewCellPresenterFields_reuseIdentifier() {
-        let presenter = self.createTableViewCellPresenter()
+    
+    func test_collectionViewCellPresenterFields_reuseIdentifier() {
+        let presenter = self.createCollectionViewCellPresenter()
         let presenterReuseId = presenter.cellReuseIdentifierBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
-        let testReuseId = TableViewCellPresenterTests.cellReuseIdBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
+        let testReuseId = CollectionViewCellPresenterTests.cellReuseIdBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
         XCTAssertEqual(presenterReuseId, testReuseId)
     }
-
+    
 }

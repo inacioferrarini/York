@@ -25,12 +25,18 @@ import XCTest
 import York
 
 class TableViewBlockDelegateTests: XCTestCase {
-
+    
+    
+    // MARK: - Properties
+    
     var tableView:UITableView!
     var itemSelectionBlock:((indexPath: NSIndexPath) -> Void)!
     var loadMoreDataBlock:(() -> Void)!
     var itemSelectionBlockWasCalled:Bool = false
     var loadMoreDataBlockWasCalled:Bool = false
+    
+    
+    // MARK: - Supporting Methods
     
     func createTableViewBlockDelegate() -> TableViewBlockDelegate {
         self.tableView = UITableView()
@@ -44,6 +50,9 @@ class TableViewBlockDelegateTests: XCTestCase {
             itemSelectionBlock: self.itemSelectionBlock,
             loadMoreDataBlock: self.loadMoreDataBlock)
     }
+    
+    
+    // MARK: - Tests
     
     func test_tableViewBlockDelegate_itemSelection() {
         let delegate = self.createTableViewBlockDelegate()

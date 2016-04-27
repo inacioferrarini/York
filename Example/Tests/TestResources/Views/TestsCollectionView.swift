@@ -22,16 +22,29 @@
 
 import UIKit
 
-class TestsTableView: UITableView {
+public class TestsCollectionView: UICollectionView {
 
-    var cellForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> UITableViewCell?)?
+    public var cellForItemAtIndexPathBlock: ((indexPath: NSIndexPath) -> UICollectionViewCell?)?
     
-    override func cellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell? {
-        if let block = self.cellForRowAtIndexPathBlock {
+    public override var window: UIWindow? {
+        return UIWindow()
+    }
+    
+    public override func cellForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewCell? {
+        if let block = self.cellForItemAtIndexPathBlock {
             return block(indexPath: indexPath)
         } else {
-            return super.cellForRowAtIndexPath(indexPath)
+            return super.cellForItemAtIndexPath(indexPath)
         }
     }
-
+    
+    public override func performBatchUpdates(updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
+        if let updates = updates {
+            updates()
+        }
+        if let completion = completion {
+            completion(true)
+        }
+    }
+    
 }

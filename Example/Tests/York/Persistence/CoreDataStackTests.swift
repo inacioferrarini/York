@@ -27,6 +27,8 @@ import York
 class CoreDataStackTests: XCTestCase {
     
     
+    // MARK: - Tests
+    
     func test_convenienceInit_mustNotCrash() {
         let logger = Logger()
         let stack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger)
@@ -35,11 +37,10 @@ class CoreDataStackTests: XCTestCase {
     
     
     func test_saveContext_mustThrowException() {
-        let coreDataStack = TestUtil().appContext().coreDataStack
+        let coreDataStack = TestUtil().testAppContext().coreDataStack
         let ctx = coreDataStack.managedObjectContext
-        let ruleName = TestUtil().randomRuleName()
-        if let testEntity = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName, lastExecutionDate: nil, inManagedObjectContext: ctx) {
-            testEntity.ruleName = nil
+        if let entity = EntityTestMandatoryField.entityTestMandatoryField("name", inManagedObjectContext: ctx) {
+            entity.name = nil
         }
         coreDataStack.saveContext()
     }

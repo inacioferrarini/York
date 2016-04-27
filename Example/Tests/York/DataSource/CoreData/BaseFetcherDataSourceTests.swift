@@ -1,3 +1,4 @@
+//    The MIT License (MIT)
 //
 //    Copyright (c) 2016 Inácio Ferrarini
 //
@@ -20,18 +21,23 @@
 //    SOFTWARE.
 //
 
-import UIKit
+import XCTest
+import CoreData
+import York
 
-class TestsTableView: UITableView {
-
-    var cellForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> UITableViewCell?)?
+class BaseFetcherDataSourceTests: XCTestCase {
     
-    override func cellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell? {
-        if let block = self.cellForRowAtIndexPathBlock {
-            return block(indexPath: indexPath)
-        } else {
-            return super.cellForRowAtIndexPath(indexPath)
-        }
-    }
-
+    
+    // MARK: - Properties
+    
+    var entityName: String!
+    var predicate: NSPredicate?
+    var fetchLimit: NSInteger?
+    var sortDescriptors: [NSSortDescriptor]!
+    var sectionNameKeyPath: String?
+    var cacheName: String?
+    var coreDataStack: CoreDataStack!
+    var managedObjectContext:NSManagedObjectContext!
+    var logger:Logger!
+    
 }

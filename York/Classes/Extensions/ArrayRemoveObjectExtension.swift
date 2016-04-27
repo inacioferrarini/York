@@ -1,3 +1,4 @@
+//    The MIT License (MIT)
 //
 //    Copyright (c) 2016 Inácio Ferrarini
 //
@@ -20,17 +21,19 @@
 //    SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-class TestsTableView: UITableView {
+extension Array where Element: Equatable {
 
-    var cellForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> UITableViewCell?)?
-    
-    override func cellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell? {
-        if let block = self.cellForRowAtIndexPathBlock {
-            return block(indexPath: indexPath)
-        } else {
-            return super.cellForRowAtIndexPath(indexPath)
+    public mutating func removeObject(object: Element) {
+        if let index = self.indexOf(object) {
+            self.removeAtIndex(index)
+        }
+    }
+
+    public mutating func removeObjectsInArray(array: [Element]) {
+        for object in array {
+            self.removeObject(object)
         }
     }
 

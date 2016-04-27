@@ -26,6 +26,9 @@ import York
 
 class NSObjectExtensionsTests: XCTestCase {
     
+    
+    // MARK: - Tests
+    
     func test_simpleClassName_mustReturnName() {
         let simpleClassName = AppContext.simpleClassName()
         let name = "AppContext"

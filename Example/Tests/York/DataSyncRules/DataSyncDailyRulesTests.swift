@@ -26,13 +26,19 @@ import York
 
 class DataSyncDailyRulesTests: XCTestCase {
     
+    
+    // MARK: - Supporting Methods
+    
     func createRules() -> DataSyncRules {
         let coreDataStack = TestUtil().appContext().coreDataStack
         return DataSyncRules(coreDataStack: coreDataStack)
     }
     
+    
+    // MARK: - Tests
+    
     func test_nonExistingDailyRule_mustReturnFalse() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         rules.addSyncRule(ruleName, rule: SyncRule.Daily(3))
         let result = rules.shouldPerformSyncRule("NonExistingRule", atDate: NSDate())
@@ -40,13 +46,13 @@ class DataSyncDailyRulesTests: XCTestCase {
     }
     
     func test_nonExistingDailyRule_update_doesNotcrash() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: NSDate())
     }
 
     func test_existingDailyRuleHistory_update_doesNotcrash() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         let context = rules.coreDataStack.managedObjectContext
         EntitySyncHistory.entityAutoSyncHistoryByName(ruleName, lastExecutionDate: NSDate(), inManagedObjectContext: context)
@@ -54,14 +60,14 @@ class DataSyncDailyRulesTests: XCTestCase {
     }
     
     func test_updatingExistingDailyRule_doesNotCrash() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         rules.addSyncRule(ruleName, rule: SyncRule.Daily(12))
         rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: NSDate())
     }
     
     func test_existingDailyRuleWithoutLastExecutionDate_mustReturnTrue() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         rules.addSyncRule(ruleName, rule: SyncRule.Daily(3))
         let result = rules.shouldPerformSyncRule(ruleName, atDate: NSDate())
@@ -69,7 +75,7 @@ class DataSyncDailyRulesTests: XCTestCase {
     }
     
     func test_existingDailyRule_withDaysEquals3AndlastExecutionDateEquals3_mustReturnTrue() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let lastExecutionDate = formatter.dateFromString("2015-03-23T12:20:20")!
@@ -84,7 +90,7 @@ class DataSyncDailyRulesTests: XCTestCase {
     }
     
     func test_existingDailyRule_withDaysEqual32AndlastExecutionDateEquals2_mustReturnFalse() {
-        let ruleName = TestUtil().randomRuleName()
+        let ruleName = TestUtil().randomString()
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let lastExecutionDate = formatter.dateFromString("2015-03-23T12:20:20")!

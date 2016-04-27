@@ -21,21 +21,28 @@
 //    SOFTWARE.
 //
 
-import XCTest
+import Foundation
+import CoreData
 import York
 
-class UIImageExtensionTests: XCTestCase {
-    
-    
-    // MARK: - Tests
-    
-    func test_circularScaleAndCropImage_image() {
-        var finalImage:UIImage?
-        let bundle = TestUtil().unitTestsBundle()
-        if let image = UIImage(named: "default-avatar", inBundle: bundle, compatibleWithTraitCollection: nil) {
-            finalImage = UIImage.circularScaleAndCropImage(image, frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        }
-        XCTAssertNotNil(finalImage)
-    }
+public class EntityTestMandatoryField: NSManagedObject {
 
+    public class func fetchEntityTestMandatoryField(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityTestMandatoryField? {
+        let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
+        request.predicate = NSPredicate(format: "name = %@", name)
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityTestMandatoryField
+    }
+    
+    public class func entityTestMandatoryField(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityTestMandatoryField? {
+        var entityTest: EntityTestMandatoryField? = self.fetchEntityTestMandatoryField(name, inManagedObjectContext: context)
+        if entityTest == nil {
+            let newEntityTest = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as? EntityTestMandatoryField
+            if let entity = newEntityTest {
+                entity.name = name
+            }
+            entityTest = newEntityTest
+        }
+        return entityTest
+    }
+    
 }

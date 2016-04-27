@@ -26,7 +26,13 @@ import York
 
 class TestBaseDataBasedViewControllerTests: XCTestCase {
     
+    
+    // MARK: - Properties
+    
     var viewController: BaseDataBasedViewController!
+    
+    
+    // MARK: - Tests Setup
     
     override func setUp() {
         super.setUp()
@@ -39,6 +45,8 @@ class TestBaseDataBasedViewControllerTests: XCTestCase {
         let _ = viewController.view
     }
     
+    
+    // MARK: - Tests
     
     func test_shouldSyncData_mustReturnsTrue() {
         XCTAssertTrue(self.viewController.shouldSyncData())

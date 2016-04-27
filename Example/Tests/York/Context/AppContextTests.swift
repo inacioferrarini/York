@@ -26,11 +26,17 @@ import York
 
 class AppContextTests: XCTestCase {
     
+    
+    // MARK: - Properties
+    
     var logger: Logger!
     var navigationController: UINavigationController!
     var coreDataStack: CoreDataStack!
     var syncRules: DataSyncRules!
     var router: NavigationRouter!
+    
+    
+    // MARK: - Supporting Methods
     
     func createAppContext() -> AppContext {
         self.logger = Logger()
@@ -45,6 +51,9 @@ class AppContextTests: XCTestCase {
             router: self.router,
             logger: self.logger)
     }
+    
+    
+    // MARK: - Tests - Fields
     
     func test_AppContextFields_logger() {
         let appContext = self.createAppContext()

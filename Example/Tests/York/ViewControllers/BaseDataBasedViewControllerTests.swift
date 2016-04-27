@@ -26,7 +26,13 @@ import York
 
 class BaseDataBasedViewControllerTests: XCTestCase {
     
+    
+    // MARK: - Properties
+    
     var viewController: BaseDataBasedViewController!
+    
+    
+    // MARK: - Tests Setup
     
     override func setUp() {
         super.setUp()
@@ -38,6 +44,9 @@ class BaseDataBasedViewControllerTests: XCTestCase {
         let _ = navigationController.view
         let _ = viewController.view
     }
+    
+    
+    // MARK: - Tests
     
     func test_viewDidAppear() {
         self.viewController.viewDidAppear(true)

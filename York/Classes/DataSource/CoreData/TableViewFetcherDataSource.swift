@@ -24,82 +24,64 @@
 import UIKit
 import CoreData
 
-public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate, UITableViewDataSource {
+public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedObject>: FetcherDataSource<EntityType>, UITableViewDataSource {
 
     // MARK: - Properties
 
     public let tableView: UITableView
-    public private(set) var entityName: String
-    public var predicate: NSPredicate? {
-        didSet {
-            self.fetchedResultsController.fetchRequest.predicate = predicate
-           // self.refreshData()
-        }
-    }
-    public var fetchLimit: NSInteger?
-    public var sortDescriptors: [NSSortDescriptor] {
-        didSet {
-            self.fetchedResultsController.fetchRequest.sortDescriptors = sortDescriptors
-           // self.refreshData()
-        }
-    }
-    public var sectionNameKeyPath: String?
-    public var cacheName: String?
-    public let managedObjectContext: NSManagedObjectContext
     public private(set) var presenter: TableViewCellPresenter<CellType, EntityType>
-    public let logger: Logger
-
 
     // MARK: - Initialization
 
+    public convenience init(targetingTableView tableView: UITableView,
+                presenter: TableViewCellPresenter<CellType, EntityType>,
+                entityName: String,
+                sortDescriptors: [NSSortDescriptor],
+                managedObjectContext context: NSManagedObjectContext,
+                logger: Logger) {
+
+        self.init(targetingTableView: tableView,
+                  presenter: presenter,
+                  entityName: entityName,
+                  sortDescriptors: sortDescriptors,
+                  managedObjectContext: context,
+                  logger: logger,
+                  predicate: nil,
+                  fetchLimit: nil,
+                  sectionNameKeyPath: nil,
+                  cacheName: nil)
+    }
+
     public init(targetingTableView tableView: UITableView,
-        presenter: TableViewCellPresenter<CellType, EntityType>,
-         entityName: String,
-         sortDescriptors: [NSSortDescriptor],
-         managedObjectContext context: NSManagedObjectContext,
-         logger: Logger) {
+                presenter: TableViewCellPresenter<CellType, EntityType>,
+                entityName: String,
+                sortDescriptors: [NSSortDescriptor],
+                managedObjectContext context: NSManagedObjectContext,
+                logger: Logger,
+                predicate: NSPredicate?,
+                fetchLimit: NSInteger?,
+                sectionNameKeyPath: String?,
+                cacheName: String?) {
 
         self.tableView = tableView
         self.presenter = presenter
-        self.entityName = entityName
-        self.sortDescriptors = sortDescriptors
-        self.managedObjectContext = context
-        self.logger = logger
-        super.init()
-    }
 
-    public convenience init(targetingTableView tableView: UITableView,
-         presenter: TableViewCellPresenter<CellType, EntityType>,
-         entityName: String,
-         sortDescriptors: [NSSortDescriptor],
-         managedObjectContext context: NSManagedObjectContext,
-         logger: Logger,
-         predicate: NSPredicate?,
-         fetchLimit: NSInteger?,
-         sectionNameKeyPath: String?,
-         cacheName: String?) {
-
-        self.init(targetingTableView: tableView, presenter: presenter, entityName: entityName, sortDescriptors: sortDescriptors, managedObjectContext: context, logger:logger)
-        self.predicate = predicate
-        self.fetchLimit = fetchLimit
-        self.sectionNameKeyPath = sectionNameKeyPath
-        self.cacheName = cacheName
+        super.init(entityName: entityName,
+                   sortDescriptors: sortDescriptors,
+                   managedObjectContext: context,
+                   logger: logger,
+                   predicate: predicate,
+                   fetchLimit: fetchLimit,
+                   sectionNameKeyPath: sectionNameKeyPath,
+                   cacheName: cacheName)
     }
 
 
     // MARK: - Public Methods
 
-    public func refreshData() throws {
-        try self.fetchedResultsController.performFetch()
+    public override func refreshData() throws {
+        try super.refreshData()
         self.tableView.reloadData()
-    }
-
-    public func objectAtIndexPath(indexPath: NSIndexPath) -> EntityType? {
-        return self.fetchedResultsController.objectAtIndexPath(indexPath) as? EntityType
-    }
-
-    public func indexPathForObject(object: EntityType) -> NSIndexPath? {
-        return self.fetchedResultsController.indexPathForObject(object)
     }
 
 
@@ -148,34 +130,6 @@ public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: N
 
 
     // MARK: - Fetched results controller
-
-    public var fetchedResultsController: NSFetchedResultsController {
-
-        if _fetchedResultsController != nil {
-            return _fetchedResultsController!
-        }
-
-        let fetchRequest = NSFetchRequest()
-        let entity = NSEntityDescription.entityForName(self.entityName, inManagedObjectContext: self.managedObjectContext)
-        fetchRequest.entity = entity
-
-        fetchRequest.predicate = self.predicate
-
-        if let fetchLimit = self.fetchLimit where fetchLimit > 0 {
-            fetchRequest.fetchLimit = fetchLimit
-        }
-
-        fetchRequest.fetchBatchSize = 100
-        fetchRequest.sortDescriptors = self.sortDescriptors
-
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext,
-            sectionNameKeyPath: self.sectionNameKeyPath, cacheName: self.cacheName)
-        aFetchedResultsController.delegate = self
-        _fetchedResultsController = aFetchedResultsController
-
-        return _fetchedResultsController!
-    }
-    private var _fetchedResultsController: NSFetchedResultsController? = nil
 
     public func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()

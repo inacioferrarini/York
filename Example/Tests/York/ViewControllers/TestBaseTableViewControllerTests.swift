@@ -26,11 +26,17 @@ import York
 
 class TestBaseTableViewControllerTests: XCTestCase {
     
+    
+    // MARK: - Properties
+        
     var viewController: TestBaseTableViewController!
+    
+    
+    // MARK: - Tests Setup
     
     override func setUp() {
         super.setUp()
-        let appContext = TestUtil().appContext()
+        let appContext = TestUtil().testAppContext()
         let navigationController = TestUtil().rootViewController()
         viewController = TestUtil().testBaseTableViewController(appContext)
         navigationController.pushViewController(viewController, animated: true)
@@ -40,6 +46,8 @@ class TestBaseTableViewControllerTests: XCTestCase {
     }
     
     
+    // MARK: - Tests
+    
     func test_viewDidLoad_mustNotCrash() {
         self.viewController.viewDidLoad()
     }
@@ -48,14 +56,12 @@ class TestBaseTableViewControllerTests: XCTestCase {
     func test_viewWillDisappear_mustNotCrash() {
         self.viewController.viewDidLoad()
         let context = self.viewController.appContext.coreDataStack.managedObjectContext
-        EntitySyncHistory.removeAll(inManagedObjectContext: context)
         
-        let ruleName = TestUtil().randomRuleName()
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
-            lastExecutionDate: nil,
-            inManagedObjectContext: context)
+        let helper = CoreDataUtil(inManagedObjectContext: context)
+        helper.removeAllTestEntities()
+        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         
-        let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntitySyncHistory>
+        let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
         do {
             try dataSource.refreshData()
             XCTAssertTrue(true)
@@ -78,13 +84,13 @@ class TestBaseTableViewControllerTests: XCTestCase {
     
     func test_dataSource_checkPresenterConfigureCellBlock() {
         self.viewController.viewDidLoad()
-        let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntitySyncHistory>
-        let coreDataStack = TestUtil().appContext().coreDataStack
+        let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
+        let coreDataStack = TestUtil().testAppContext().coreDataStack
         let ctx = coreDataStack.managedObjectContext
-        let ruleName = TestUtil().randomRuleName()
-        let testEntity = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName, lastExecutionDate: nil, inManagedObjectContext: ctx)
+        let helper = CoreDataUtil(inManagedObjectContext: ctx)
+        let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first!
         let cell = UITableViewCell()
-        dataSource.presenter.configureCellBlock(cell, testEntity!)
+        dataSource.presenter.configureCellBlock(cell, entity)
     }
     
     

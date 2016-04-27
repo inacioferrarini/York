@@ -1,3 +1,4 @@
+//    The MIT License (MIT)
 //
 //    Copyright (c) 2016 Inácio Ferrarini
 //
@@ -20,18 +21,36 @@
 //    SOFTWARE.
 //
 
-import UIKit
+import XCTest
+import York
 
-class TestsTableView: UITableView {
-
-    var cellForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> UITableViewCell?)?
+class ArrayRemoveObjectExtensionTests: XCTestCase {
     
-    override func cellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell? {
-        if let block = self.cellForRowAtIndexPathBlock {
-            return block(indexPath: indexPath)
-        } else {
-            return super.cellForRowAtIndexPath(indexPath)
-        }
+    
+    // MARK: - Tests
+    
+    func test_removeObject_existingObject_mustSucceed() {
+        var strings: [String] = ["A", "B", "C"]
+        strings.removeObject("B")
+        XCTAssertEqual(strings, ["A", "C"])
     }
-
+    
+    func test_removeObject_nonExistingObject_mustSucceed() {
+        var strings: [String] = ["A", "B", "C"]
+        strings.removeObject("D")
+        XCTAssertEqual(strings, ["A", "B", "C"])
+    }
+    
+    func test_removeObjectsInArray_existingObject_mustSucceed() {
+        var strings: [String] = ["A", "B", "C"]
+        strings.removeObjectsInArray(["A", "B"])
+        XCTAssertEqual(strings, ["C"])
+    }
+    
+    func test_removeObjectsInArray_nonExistingObject_mustSucceed() {
+        var strings: [String] = ["A", "B", "C"]
+        strings.removeObjectsInArray(["D", "E"])
+        XCTAssertEqual(strings, ["A", "B", "C"])
+    }
+    
 }

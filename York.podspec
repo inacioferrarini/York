@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "York"
-  s.version          = "0.2.0"
+  s.version          = "0.2.1"
   s.summary          = "Foundation classes used to eliminate boiler-plate code and provide an accelerated startup time."
   s.homepage         = "https://github.com/inacioferrarini/York"
 
@@ -26,7 +26,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.source_files = 'York/Classes/**/*.swift'
   s.preserve_paths = 'York/Classes/*', 'York/Classes/**/*'
-  s.frameworks = 'UIKit'
+  s.frameworks = 'UIKit', 'CoreData'
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
   s.resource = 'York/Classes/**/*.xcdatamodeld'

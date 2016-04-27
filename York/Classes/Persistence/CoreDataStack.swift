@@ -60,7 +60,6 @@ public class CoreDataStack: NSObject {
     public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.databaseFileName).sqlite")
-        self.logger.logInfo("\(url)")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             let isRunningUnitTests = NSClassFromString("XCTest") != nil
