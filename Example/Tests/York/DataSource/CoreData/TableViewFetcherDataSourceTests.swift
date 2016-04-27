@@ -49,7 +49,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     }
     
     func registerCellForTableView(tableView: UITableView) {
-        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: NSBundle(forClass: self.dynamicType))
+        let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: TestUtil().unitTestsBundle())
         tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
     }
     

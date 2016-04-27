@@ -51,7 +51,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     }
     
     func registerCellForCollectionView(collectionView: UICollectionView) {
-        let collectionViewCellNib = UINib(nibName: "CollectionViewCell", bundle: NSBundle(forClass: self.dynamicType))
+        let collectionViewCellNib = UINib(nibName: "CollectionViewCell", bundle: TestUtil().unitTestsBundle())
         collectionView.registerNib(collectionViewCellNib, forCellWithReuseIdentifier: "CollectionViewCell")
     }    
     
