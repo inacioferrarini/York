@@ -773,20 +773,6 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK: - Tests - clearChanges
     
     func test_clearChanges_mustNotCrash() {
