@@ -214,11 +214,11 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
             self.collectionView.reloadData()
         }
         
-        let totalChanges = (self.deletedSectionIndexes.count ?? 0) +
-            (self.insertedSectionIndexes.count ?? 0) +
-            (self.deletedItemIndexPaths.count ?? 0) +
-            (self.insertedItemIndexPaths.count ?? 0) +
-            (self.updatedItemIndexPaths.count ?? 0)
+        let totalChanges = self.deletedSectionIndexes.count +
+            self.insertedSectionIndexes.count +
+            self.deletedItemIndexPaths.count +
+            self.insertedItemIndexPaths.count +
+            self.updatedItemIndexPaths.count
         
         if totalChanges > 50 {
             self.clearChanges()
