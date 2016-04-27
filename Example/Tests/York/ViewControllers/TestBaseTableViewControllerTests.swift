@@ -90,7 +90,7 @@ class TestBaseTableViewControllerTests: XCTestCase {
         let helper = CoreDataUtil(inManagedObjectContext: ctx)
         let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first!
         let cell = UITableViewCell()
-        dataSource.presenter.configureCellBlock(cell, entity!)
+        dataSource.presenter.configureCellBlock(cell, entity)
     }
     
     
