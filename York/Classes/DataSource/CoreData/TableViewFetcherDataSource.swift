@@ -65,7 +65,7 @@ public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: N
 
         self.tableView = tableView
         self.presenter = presenter
-        
+
         super.init(entityName: entityName,
                    sortDescriptors: sortDescriptors,
                    managedObjectContext: context,
@@ -78,7 +78,7 @@ public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: N
 
 
     // MARK: - Public Methods
-    
+
     public override func refreshData() throws {
         try super.refreshData()
         self.tableView.reloadData()

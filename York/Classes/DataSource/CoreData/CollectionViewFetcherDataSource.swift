@@ -25,21 +25,21 @@ import UIKit
 import CoreData
 
 public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, EntityType: NSManagedObject>: FetcherDataSource<EntityType>, UICollectionViewDataSource {
-    
+
     // MARK: - Properties
-    
+
     public let collectionView: UICollectionView
     public let presenter: CollectionViewCellPresenter<CellType, EntityType>
-    
+
     // MARK: - Initialization
-    
+
     public convenience init(targetingCollectionView collectionView: UICollectionView,
                 presenter: CollectionViewCellPresenter<CellType, EntityType>,
                 entityName: String,
                 sortDescriptors: [NSSortDescriptor],
                 managedObjectContext context: NSManagedObjectContext,
                 logger: Logger) {
-        
+
         self.init(targetingCollectionView: collectionView,
                   presenter: presenter,
                   entityName: entityName,
@@ -51,7 +51,7 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
                   sectionNameKeyPath: nil,
                   cacheName: nil)
     }
-    
+
     public init(targetingCollectionView collectionView: UICollectionView,
                 presenter: CollectionViewCellPresenter<CellType, EntityType>,
                 entityName: String,
@@ -62,10 +62,10 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
                 fetchLimit: NSInteger?,
                 sectionNameKeyPath: String?,
                 cacheName: String?) {
-        
+
         self.collectionView = collectionView
         self.presenter = presenter
-        
+
         super.init(entityName: entityName,
                    sortDescriptors: sortDescriptors,
                    managedObjectContext: context,
@@ -78,7 +78,7 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
 
 
     // MARK: - Public Methods
-    
+
     public override func refreshData() throws {
         try super.refreshData()
         self.collectionView.reloadData()
@@ -90,7 +90,7 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
-    
+
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let sections = self.fetchedResultsController.sections {
             let sectionInfo = sections[section]
@@ -98,7 +98,7 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
         }
         return 0
     }
-    
+
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let value = self.objectAtIndexPath(indexPath)
 
@@ -113,19 +113,19 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
 
 
     // MARK: - private properties
-    
+
     private var deletedSectionIndexes = NSMutableIndexSet()
     private var insertedSectionIndexes = NSMutableIndexSet()
     private var deletedItemIndexPaths = [NSIndexPath]()
     private var insertedItemIndexPaths = [NSIndexPath]()
     private var updatedItemIndexPaths = [NSIndexPath]()
-    
-    
+
+
     // MARK: - Fetched results controller
-    
+
     public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
                            atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        
+
         switch type {
         case .Insert:
             self.insertedSectionIndexes.addIndex(sectionIndex)
@@ -133,7 +133,7 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
         case .Delete:
             self.deletedSectionIndexes.addIndex(sectionIndex)
             var indexPathsInSection = [NSIndexPath]()
-            
+
             for indexPath in self.deletedItemIndexPaths {
                 if indexPath.section == sectionIndex {
                     indexPathsInSection.append(indexPath)
@@ -141,7 +141,7 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
             }
             self.deletedItemIndexPaths.removeObjectsInArray(indexPathsInSection)
             indexPathsInSection.removeAll()
-            
+
             for indexPath in self.updatedItemIndexPaths {
                 if indexPath.section == sectionIndex {
                     indexPathsInSection.append(indexPath)
@@ -158,7 +158,7 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
     public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject,
                            atIndexPath indexPath: NSIndexPath?,
                            forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        
+
         switch type {
         case .Insert:
             if let newIndexPath = newIndexPath {
@@ -186,7 +186,7 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
                     self.deletedItemIndexPaths.append(indexPath)
                 }
             }
-            break;
+            break
         case .Update:
             if let indexPath = indexPath {
                 if self.deletedSectionIndexes.containsIndex(indexPath.section) || self.deletedItemIndexPaths.contains(indexPath) {
@@ -203,29 +203,29 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
     public func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.commitChanges()
     }
-    
-    
+
+
     // MARK: - Collection View Helper
-    
+
     public func commitChanges() {
 
         if self.collectionView.window == nil {
             self.clearChanges()
             self.collectionView.reloadData()
         }
-        
+
         let totalChanges = self.deletedSectionIndexes.count +
             self.insertedSectionIndexes.count +
             self.deletedItemIndexPaths.count +
             self.insertedItemIndexPaths.count +
             self.updatedItemIndexPaths.count
-        
+
         if totalChanges > 50 {
             self.clearChanges()
             self.collectionView.reloadData()
             return
         }
-        
+
         self.collectionView.performBatchUpdates({
             self.collectionView.deleteSections(self.deletedSectionIndexes)
             self.collectionView.insertSections(self.insertedSectionIndexes)
@@ -244,5 +244,5 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
         self.insertedItemIndexPaths.removeAll()
         self.updatedItemIndexPaths.removeAll()
     }
-    
+
 }

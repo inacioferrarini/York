@@ -25,7 +25,7 @@ import UIKit
 import CoreData
 
 public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
-    
+
     // MARK: - Properties
 
     public private(set) var entityName: String
@@ -47,12 +47,12 @@ public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetched
 
 
     // MARK: - Initialization
-    
+
     public convenience init(entityName: String,
                 sortDescriptors: [NSSortDescriptor],
                 managedObjectContext context: NSManagedObjectContext,
                 logger: Logger) {
-        
+
         self.init(entityName: entityName,
                   sortDescriptors: sortDescriptors,
                   managedObjectContext: context,
@@ -62,7 +62,7 @@ public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetched
                   sectionNameKeyPath: nil,
                   cacheName: nil)
     }
-    
+
     public init(entityName: String,
                 sortDescriptors: [NSSortDescriptor],
                 managedObjectContext context: NSManagedObjectContext,
@@ -71,7 +71,7 @@ public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetched
                 fetchLimit: NSInteger?,
                 sectionNameKeyPath: String?,
                 cacheName: String?) {
-        
+
         self.entityName = entityName
         self.sortDescriptors = sortDescriptors
         self.managedObjectContext = context
@@ -82,53 +82,53 @@ public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetched
         self.cacheName = cacheName
         super.init()
     }
-    
-    
+
+
     // MARK: - Public Methods
-    
+
     public func refreshData() throws {
         try self.fetchedResultsController.performFetch()
     }
-    
+
     public func objectAtIndexPath(indexPath: NSIndexPath) -> EntityType? {
         return self.fetchedResultsController.objectAtIndexPath(indexPath) as? EntityType
     }
-    
+
     public func indexPathForObject(object: EntityType) -> NSIndexPath? {
         return self.fetchedResultsController.indexPathForObject(object)
     }
-    
-    
+
+
     // MARK: - Fetched results controller
-    
+
     public var fetchedResultsController: NSFetchedResultsController {
-        
+
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
         }
-        
+
         let fetchRequest = NSFetchRequest()
         let entity = NSEntityDescription.entityForName(self.entityName, inManagedObjectContext: self.managedObjectContext)
         fetchRequest.entity = entity
-        
+
         fetchRequest.predicate = self.predicate
-        
+
         if let fetchLimit = self.fetchLimit where fetchLimit > 0 {
             fetchRequest.fetchLimit = fetchLimit
         }
-        
+
         fetchRequest.fetchBatchSize = 100
         fetchRequest.sortDescriptors = self.sortDescriptors
-        
+
         let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                                    managedObjectContext: self.managedObjectContext,
                                                                    sectionNameKeyPath: self.sectionNameKeyPath,
                                                                    cacheName: self.cacheName)
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
-        
+
         return _fetchedResultsController!
     }
     private var _fetchedResultsController: NSFetchedResultsController? = nil
-    
+
 }
