@@ -123,7 +123,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let sectionNameKeyPath: String? = nil
         let cacheName = "cacheName"
         
-        CollectionViewFetcherDataSource<UICollectionViewCell, EntityTest>(
+        let dataSource = CollectionViewFetcherDataSource<UICollectionViewCell, EntityTest>(
             targetingCollectionView: collectionView,
             presenter: presenter,
             entityName: entityName,
@@ -134,6 +134,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
             fetchLimit: fetchLimit,
             sectionNameKeyPath: sectionNameKeyPath,
             cacheName: cacheName)
+        XCTAssertNotNil(dataSource)
     }
     
     func test_designatedInitializer_mustSucceed() {
@@ -159,13 +160,14 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let managedObjectContext = coreDataStack.managedObjectContext
         let logger = Logger()
 
-        CollectionViewFetcherDataSource<UICollectionViewCell, EntityTest>(
+        let dataSource = CollectionViewFetcherDataSource<UICollectionViewCell, EntityTest>(
             targetingCollectionView: collectionView,
             presenter: presenter,
             entityName: entityName,
             sortDescriptors: sortDescriptors,
             managedObjectContext: managedObjectContext,
             logger: logger)
+        XCTAssertNotNil(dataSource)
     }
     
     
@@ -696,6 +698,100 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     func test_controllerDidChangeContent_mustNotCrash() {
         let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.controllerDidChangeContent(dataSource.fetchedResultsController)
+    }
+    
+    
+    // MARK: - Tests - commitChanges
+    
+    func test_commitChanges_withoutWindow_mustNotCrash() {
+        let frame = CGRectMake(0, 0, 200, 200)
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
+        
+        self.registerCellForCollectionView(collectionView)
+        
+        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+            return "CollectionViewCell"
+        }
+        
+        let presenter = CollectionViewCellPresenter<UICollectionViewCell, EntityTest>(
+            configureCellBlock: { (cell: UICollectionViewCell, entity: EntityTest) -> Void in
+                self.configureCellBlockWasCalled = true
+            }, cellReuseIdentifierBlock: cellReuseIdBlock)
+        let entityName = EntityTest.simpleClassName()
+        let sortDescriptors = [NSSortDescriptor]()
+        let coreDataStack = TestUtil().testAppContext().coreDataStack
+        let managedObjectContext = coreDataStack.managedObjectContext
+        let logger = Logger()
+        
+        let dataSource = CollectionViewFetcherDataSource<UICollectionViewCell, EntityTest>(
+            targetingCollectionView: collectionView,
+            presenter: presenter,
+            entityName: entityName,
+            sortDescriptors: sortDescriptors,
+            managedObjectContext: managedObjectContext,
+            logger: logger)
+        
+        dataSource.commitChanges()
+    }
+    
+    func test_commitChanges_mustNotCrash() {
+        let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
+        dataSource.commitChanges()
+    }
+    
+    func test_commitChanges_MoreThan50Inserts_mustNotCrash() {
+        let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
+        
+        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+        
+        helper.removeAllTestEntities()
+        self.coreDataStack.saveContext()
+        
+        do {
+            try dataSource.refreshData()
+            XCTAssertTrue(true)
+        } catch {
+            XCTAssertTrue(false)
+        }
+        
+        let totalObjects = 54
+        let objects = helper.createTestMass(withSize: totalObjects, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        self.coreDataStack.saveContext()        
+        
+        for x in 0...totalObjects - 1 {
+            let object = objects[x]
+            let indexPath = NSIndexPath(forRow: x, inSection: 0)
+            dataSource.controller(dataSource.fetchedResultsController,
+                                  didChangeObject: object,
+                                  atIndexPath: nil,
+                                  forChangeType: .Insert,
+                                  newIndexPath: indexPath)
+        }
+        
+        dataSource.commitChanges()
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // MARK: - Tests - clearChanges
+    
+    func test_clearChanges_mustNotCrash() {
+        let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
+        dataSource.clearChanges()
     }
     
 }
