@@ -43,6 +43,18 @@ public class CoreDataUtil: NSObject {
         EntityTest.removeAll(inManagedObjectContext: self.context)
     }
     
+    public func removeTestEntity(entity: EntityTest) {
+        self.context.deleteObject(entity)
+    }
+    
+    public func removeTestEntitiesFromArray(entities: [EntityTest]?) {
+        if let allEntities = entities {
+            for entity in allEntities {
+                self.removeTestEntity(entity)
+            }
+        }
+    }
+    
     public func createTestEntity(sectionName: String?, name: String?, order: Int?) -> EntityTest? {
         return EntityTest.entityTest(sectionName, name: name, order: order, inManagedObjectContext: self.context)
     }
@@ -62,6 +74,5 @@ public class CoreDataUtil: NSObject {
         }
         return entities
     }
-
     
 }
