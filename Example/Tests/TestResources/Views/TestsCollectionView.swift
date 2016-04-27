@@ -38,4 +38,13 @@ public class TestsCollectionView: UICollectionView {
         }
     }
     
+    public override func performBatchUpdates(updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
+        if let updates = updates {
+            updates()
+        }
+        if let completion = completion {
+            completion(true)
+        }
+    }
+    
 }
