@@ -7,10 +7,12 @@
 [![CI Status](http://img.shields.io/travis/inacioferrarini/York.svg?style=flat)](https://travis-ci.org/inacioferrarini/York)
 [![Platform](https://img.shields.io/cocoapods/p/York.svg?style=flat)](http://cocoapods.org/pods/York)
 
+
 ### What is it?
 
 York is a set of classes, that can be used together or not.
 Every class has one responsibility and one responsibility only, being fully adherent to S.O.L.I.D. principles.
+
 
 ### Goals
 
@@ -44,6 +46,13 @@ In order to make easier to understand every class role, they were grouped togeth
 * iOS 8.0+
 
 
+## Backwards Compatibility
+
+Use:
+* York version 0.3.0 for Swift 2.2
+
+
+
 ## Last Version (0.3.0) Release Notes:
 
 * Added more badges to README.md
@@ -56,6 +65,7 @@ In order to make easier to understand every class role, they were grouped togeth
 
 All release notes are grouped here: (https://github.com/inacioferrarini/York/ReleaseNotes.md)
 
+
 ## Installation
 
 York is available through [CocoaPods](http://cocoapods.org). To install
@@ -65,9 +75,11 @@ it, simply add the following line to your Podfile:
 pod "York"
 ```
 
+
 ## Author
 
 Inácio Ferrarini, inacio.ferrarini@gmail.com
+
 
 ## License
 
