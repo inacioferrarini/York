@@ -1,15 +1,9 @@
 PODS:
-  - CocoaLumberjack/Core (2.2.0)
-  - CocoaLumberjack/Default (2.2.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.2.0):
-    - CocoaLumberjack/Default
-  - CocoaLumberjack/Swift (2.2.0):
-    - CocoaLumberjack/Extensions
   - JLRoutes (1.6)
-  - York (0.2.1):
-    - CocoaLumberjack/Swift (= 2.2.0)
+  - XCGLogger (3.3)
+  - York (0.3.0):
     - JLRoutes (= 1.6)
+    - XCGLogger (= 3.3)
     - York-Swift-Try-Catch (= 0.1.1)
   - York-Swift-Try-Catch (0.1.1)
 
@@ -21,9 +15,9 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   JLRoutes: 435d791422e96c9b9b5e1c4db1aedb3ae1b1a08f
-  York: 9aded587fec28b04d4d5cd37c570e312655201f7
+  XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
+  York: b927b1da558864454084dc9a80b284f0807cc210
   York-Swift-Try-Catch: ac0d410504c56c181ee40404e95ea835a817e7b6
 
 COCOAPODS: 0.39.0
