@@ -1,21 +1,28 @@
 # York
-[![CI Status](http://img.shields.io/travis/inacioferrarini/York.svg?style=flat)](https://travis-ci.org/inacioferrarini/York)
 [![Version](https://img.shields.io/cocoapods/v/York.svg?style=flat)](http://cocoapods.org/pods/York)
+[![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg?style=flat)](https://swift.org/)
 [![License](https://img.shields.io/cocoapods/l/York.svg?style=flat)](http://cocoapods.org/pods/York)
-[![Platform](https://img.shields.io/cocoapods/p/York.svg?style=flat)](http://cocoapods.org/pods/York)
 [![codecov.io](https://codecov.io/github/inacioferrarini/York/coverage.svg?branch=master)](https://codecov.io/github/inacioferrarini/York)
 
+[![CI Status](http://img.shields.io/travis/inacioferrarini/York.svg?style=flat)](https://travis-ci.org/inacioferrarini/York)
+[![Platform](https://img.shields.io/cocoapods/p/York.svg?style=flat)](http://cocoapods.org/pods/York)
 
-### What is it? ###
+### What is it?
+
 York is a set of classes, that can be used together or not.
 Every class has one responsibility and one responsibility only, being fully adherent to S.O.L.I.D. principles.
 
-### Goals ###
+### Goals
+
 * Eliminate Singleton usage (you don't need it)
 * Dramatically reduce ViewControllers' size.
 * Provide a block-based approach to common situations.
+* Provide an easy project startup and reduce project startup time.
+* Through the usage of a well designed base classes, provide a standard that will keep the project as standardized as possible.
 
-### Structure ###
+
+### Structure
+
 In order to make easier to understand every class role, they were grouped together:
 * Context: Essentially, a way I found to avoid Singleton usage by injecting the App's Context.
 * DataSyncRules: A basic time rule engine used to handle data synchronization gracefully and without hassle.
@@ -31,8 +38,23 @@ In order to make easier to understand every class role, they were grouped togeth
   * BaseTableViewController: Adds TableViewController capabilities to BaseDataBasedViewController. Allows the ViewController itself to be the Delegate or/and DataSource of the TableView, or, using the proper method, return the Delegate or/and DataSource to be used.
 * ViewController: Basic class for Xib-based view components.
 
+
 ## Requirements
+
 * iOS 8.0+
+
+
+## Last Version (0.3.0) Release Notes:
+
+* Added more badges to README.md
+* Replaced Cocoa Lumberjack as Log Provider in favor of XCGLogger, since XCGLogger is more adherent to Swift 2.2
+* CoreDataStack
+  * Added an ErrorHandler, provided by the user, allowing the user to define how CoreData errors will be handled. A default one is provided to keep the behaviour consistent with previous versions.
+  * Simplified refreshData. It no longer throws exceptions, using the ErrorHandler instead.
+* Included Uncrustify in the build process.
+* Schema Navigation improved, allowing easier usage of modal presentation or traditional push transition.
+
+All release notes are grouped here: (https://github.com/inacioferrarini/York/ReleaseNotes.md)
 
 ## Installation
 
