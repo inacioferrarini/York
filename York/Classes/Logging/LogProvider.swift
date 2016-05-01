@@ -21,27 +21,12 @@
 //    SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-public class Logger: NSObject {
+public protocol LogProvider {
 
-    private var logProvider: LogProvider
-
-    public init(logProvider: LogProvider) {
-        self.logProvider = logProvider
-        super.init()
-    }
-
-    public func logError(error: NSError) {
-        self.logProvider.logError(error)
-    }
-
-    public func logErrorMessage(errorMessage: String) {
-        self.logProvider.logErrorMessage(errorMessage)
-    }
-
-    public func logInfo(message: String) {
-        self.logProvider.logInfo(message)
-    }
+    func logError(error: NSError)
+    func logErrorMessage(errorMessage: String)
+    func logInfo(message: String)
 
 }

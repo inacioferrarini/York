@@ -56,7 +56,7 @@ Use:
 ## Last Version (0.3.0) Release Notes:
 
 * Added more badges to README.md
-* Replaced Cocoa Lumberjack as Log Provider in favor of XCGLogger, since XCGLogger is more adherent to Swift 2.2
+* Added LogProvider protocol, allowing the user to use any logging framework he wants, and allowing all York-based classes to use the same logging framework and configuration.
 * CoreDataStack
   * Added an ErrorHandler, provided by the user, allowing the user to define how CoreData errors will be handled. A default one is provided to keep the behaviour consistent with previous versions.
   * Simplified refreshData. It no longer throws exceptions, using the ErrorHandler instead.
