@@ -90,9 +90,8 @@ public class CoreDataStack: NSObject {
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()
-            } catch {
-                let nserror = error as NSError
-                self.logger.logError(nserror)
+            } catch let error as NSError {
+                self.logger.logError(error)
             }
         }
     }
