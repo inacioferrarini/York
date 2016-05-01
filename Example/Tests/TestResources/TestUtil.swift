@@ -55,7 +55,7 @@ class TestUtil: NSObject {
     func appContext() -> AppContext {
         
         let appBundle = self.yorkPODBundle()
-        let logger = Logger()
+        let logger = Logger(logProvider: TestLogProvider())
         let rootNavigationController = self.rootViewController()
         let stack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
         let router = NavigationRouter(schema: "GitHubSpy", logger: logger)
@@ -73,7 +73,7 @@ class TestUtil: NSObject {
         
         let appBundle = self.yorkPODBundle()
         let testsBundle = self.unitTestsBundle()
-        let logger = Logger()
+        let logger = Logger(logProvider: TestLogProvider())
         let rootNavigationController = self.rootViewController()
         let stack = CoreDataStack(modelFileName: TestUtil.testModelFileName, databaseFileName: TestUtil.testDatabaseFileName, logger: logger, bundle: testsBundle)
         let router = NavigationRouter(schema: "GitHubSpy", logger: logger)

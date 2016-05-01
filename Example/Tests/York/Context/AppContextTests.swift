@@ -39,7 +39,7 @@ class AppContextTests: XCTestCase {
     // MARK: - Supporting Methods
     
     func createAppContext() -> AppContext {
-        self.logger = Logger()
+        self.logger = Logger(logProvider: TestLogProvider())
         self.navigationController = UINavigationController()
         self.coreDataStack = TestUtil().appContext().coreDataStack
         self.syncRules = DataSyncRules(coreDataStack: coreDataStack)

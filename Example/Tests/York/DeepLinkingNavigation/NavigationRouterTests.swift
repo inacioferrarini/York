@@ -47,7 +47,7 @@ class NavigationRouterTests: XCTestCase {
     
     func createNavigationRouter() -> NavigationRouter {
         JLRoutes.setVerboseLoggingEnabled(true)
-        let navigationRouter = NavigationRouter(schema: "TesteScheme", logger: Logger())
+        let navigationRouter = NavigationRouter(schema: "TesteScheme", logger: Logger(logProvider: TestLogProvider()))
         let route = RoutingElement(pattern: "/testUrlScheme") { (params: [NSObject : AnyObject]) -> Bool in
             self.routeWasCalled = true
             return true

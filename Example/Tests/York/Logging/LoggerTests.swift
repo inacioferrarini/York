@@ -30,11 +30,11 @@ class LoggerTests: XCTestCase {
     // MARK: - Tests
 
     func test_logger_info_mustNotCrash() {
-        Logger().logInfo("Info Message")
+        Logger(logProvider: TestLogProvider()).logInfo("Info Message")
     }
     
     func test_logger_error_mustNotCrash() {
-        Logger().logErrorMessage("Error Message")
+        Logger(logProvider: TestLogProvider()).logErrorMessage("Error Message")
     }
     
 }

@@ -30,7 +30,7 @@ class CoreDataStackTests: XCTestCase {
     // MARK: - Tests
     
     func test_convenienceInit_mustNotCrash() {
-        let logger = Logger()
+        let logger = Logger(logProvider: TestLogProvider())
         let stack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger)
         XCTAssertNotNil(stack)
     }

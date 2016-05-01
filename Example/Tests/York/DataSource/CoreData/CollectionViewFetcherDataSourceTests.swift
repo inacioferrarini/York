@@ -70,7 +70,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         self.sortDescriptors = []
         self.coreDataStack = TestUtil().testAppContext().coreDataStack
         self.managedObjectContext = self.coreDataStack.managedObjectContext
-        self.logger = Logger()
+        self.logger = Logger(logProvider: TestLogProvider())
         self.predicate = nil
         self.fetchLimit = 100
         self.sectionNameKeyPath = nameKeyPath
@@ -117,7 +117,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let sortDescriptors = [NSSortDescriptor]()
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let managedObjectContext = coreDataStack.managedObjectContext
-        let logger = Logger()
+        let logger = Logger(logProvider: TestLogProvider())
         let predicate: NSPredicate? = nil
         let fetchLimit = 100
         let sectionNameKeyPath: String? = nil
@@ -158,7 +158,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let sortDescriptors = [NSSortDescriptor]()
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let managedObjectContext = coreDataStack.managedObjectContext
-        let logger = Logger()
+        let logger = Logger(logProvider: TestLogProvider())
 
         let dataSource = CollectionViewFetcherDataSource<UICollectionViewCell, EntityTest>(
             targetingCollectionView: collectionView,
@@ -722,7 +722,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let sortDescriptors = [NSSortDescriptor]()
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let managedObjectContext = coreDataStack.managedObjectContext
-        let logger = Logger()
+        let logger = Logger(logProvider: TestLogProvider())
         
         let dataSource = CollectionViewFetcherDataSource<UICollectionViewCell, EntityTest>(
             targetingCollectionView: collectionView,

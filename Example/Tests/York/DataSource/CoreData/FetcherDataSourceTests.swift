@@ -35,7 +35,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         self.sortDescriptors = []
         self.coreDataStack = TestUtil().testAppContext().coreDataStack
         self.managedObjectContext = self.coreDataStack.managedObjectContext
-        self.logger = Logger()
+        self.logger = Logger(logProvider: TestLogProvider())
         self.predicate = nil
         self.fetchLimit = nil
         self.sectionNameKeyPath = nil
@@ -53,7 +53,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         self.sortDescriptors = []
         self.coreDataStack = TestUtil().testAppContext().coreDataStack
         self.managedObjectContext = self.coreDataStack.managedObjectContext
-        self.logger = Logger()
+        self.logger = Logger(logProvider: TestLogProvider())
         self.predicate = nil
         self.fetchLimit = 100
         self.sectionNameKeyPath = nil
