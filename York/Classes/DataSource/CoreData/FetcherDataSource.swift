@@ -26,6 +26,7 @@ import CoreData
 
 public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
 
+
     // MARK: - Properties
 
     public private(set) var entityName: String
@@ -86,8 +87,12 @@ public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetched
 
     // MARK: - Public Methods
 
-    public func refreshData() throws {
-        try self.fetchedResultsController.performFetch()
+    public func refreshData() {
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            self.logger.logError(error)
+        }
     }
 
     public func objectAtIndexPath(indexPath: NSIndexPath) -> EntityType? {
@@ -120,15 +125,27 @@ public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetched
         fetchRequest.fetchBatchSize = 100
         fetchRequest.sortDescriptors = self.sortDescriptors
 
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                                   managedObjectContext: self.managedObjectContext,
-                                                                   sectionNameKeyPath: self.sectionNameKeyPath,
-                                                                   cacheName: self.cacheName)
+        let aFetchedResultsController = self.instantiateFetchedResultsController(fetchRequest,
+                                                                                 managedObjectContext: self.managedObjectContext,
+                                                                                 sectionNameKeyPath: self.sectionNameKeyPath,
+                                                                                 cacheName: self.cacheName)
+
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
 
         return _fetchedResultsController!
     }
     private var _fetchedResultsController: NSFetchedResultsController? = nil
+
+    public func instantiateFetchedResultsController(fetchRequest: NSFetchRequest,
+                                                    managedObjectContext: NSManagedObjectContext,
+                                                    sectionNameKeyPath: String?,
+                                                    cacheName: String?) -> NSFetchedResultsController {
+
+        return NSFetchedResultsController(fetchRequest: fetchRequest,
+                                          managedObjectContext: self.managedObjectContext,
+                                          sectionNameKeyPath: self.sectionNameKeyPath,
+                                          cacheName: self.cacheName)
+    }
 
 }

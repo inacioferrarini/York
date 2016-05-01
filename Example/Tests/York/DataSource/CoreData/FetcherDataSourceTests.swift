@@ -47,7 +47,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
                                                        logger: self.logger)
         return dataSource
     }
-
+    
     func createFetcherDataSourceDesignatedInitializer() -> FetcherDataSource<EntityTest> {
         self.entityName = EntityTest.simpleClassName()
         self.sortDescriptors = []
@@ -69,8 +69,27 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
                                                        cacheName: self.cacheName)
         return dataSource
     }
+
+    func createErrorProneFetcherDataSourceConvenienceInitializer() -> FetcherDataSource<EntityTest> {
+        self.entityName = EntityTest.simpleClassName()
+        self.sortDescriptors = []
+        self.coreDataStack = TestUtil().testAppContext().coreDataStack
+        self.managedObjectContext = self.coreDataStack.managedObjectContext
+        self.logger = Logger(logProvider: TestLogProvider())
+        self.predicate = nil
+        self.fetchLimit = nil
+        self.sectionNameKeyPath = nil
+        self.cacheName = nil
+        
+        let dataSource = ErrorProneFetcherDataSource<EntityTest>(entityName: self.entityName,
+                                                                 sortDescriptors: self.sortDescriptors,
+                                                                 managedObjectContext: self.managedObjectContext,
+                                                                 logger: self.logger)
+        
+        return dataSource
+    }
     
-    
+
     // MARK: - Tests - Initialization With Convenience Initializer
     
     func test_convenienceInitializer_FetcherDataSourceFields_entityName() {
@@ -162,25 +181,14 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
     func test_FetcherDataSource_refresh_mustSucceed() {
         let dataSource = self.createFetcherDataSourceDesignatedInitializer()
         dataSource.sortDescriptors = []
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
     
     func test_FetcherDataSource_refresh_mustIgnoreExceptionCrash() {
-        let dataSource = self.createFetcherDataSourceDesignatedInitializer()
+        let dataSource = self.createErrorProneFetcherDataSourceConvenienceInitializer()
         dataSource.sortDescriptors = [ NSSortDescriptor(key: "nonExistingField", ascending: true) ]
         dataSource.predicate = nil
-        
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
     
     
@@ -195,12 +203,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
         
         self.coreDataStack.saveContext()
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         let entityAtIndexPath = dataSource.objectAtIndexPath(indexPath)
@@ -219,12 +222,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
         
         self.coreDataStack.saveContext()
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         let entityIndexPath = dataSource.indexPathForObject(entity!)!
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)

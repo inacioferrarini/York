@@ -26,10 +26,12 @@ import CoreData
 
 public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: NSManagedObject>: FetcherDataSource<EntityType>, UITableViewDataSource {
 
+
     // MARK: - Properties
 
     public let tableView: UITableView
     public private(set) var presenter: TableViewCellPresenter<CellType, EntityType>
+
 
     // MARK: - Initialization
 
@@ -79,8 +81,8 @@ public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: N
 
     // MARK: - Public Methods
 
-    public override func refreshData() throws {
-        try super.refreshData()
+    public override func refreshData() {
+        super.refreshData()
         self.tableView.reloadData()
     }
 

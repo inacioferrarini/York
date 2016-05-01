@@ -176,25 +176,14 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     func test_refresh_mustSucceed() {
         let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.sortDescriptors = []
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
     
     func test_refresh_mustIgnoreExceptionCrash() {
         let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.sortDescriptors = [ NSSortDescriptor(key: "nonExistingField", ascending: true) ]
         dataSource.predicate = nil
-        
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
     
     
@@ -231,12 +220,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         helper.removeAllTestEntities()
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
 
         let numberOfRows = dataSource.collectionView(self.collectionView, numberOfItemsInSection: 0)
         XCTAssertEqual(numberOfRows, 1)
@@ -254,12 +238,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         
         self.coreDataStack.saveContext()
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         let cell = dataSource.collectionView(self.collectionView, cellForItemAtIndexPath: indexPath)
@@ -278,12 +257,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 2)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 3)
         
@@ -292,12 +266,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               didChangeSection: section,
                               atIndex: 0,
                               forChangeType: .Insert)
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
     
     func test_didChangeSection_forDelete_mustNotCrash() {
@@ -310,12 +279,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
         let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).last
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         dataSource.managedObjectContext.deleteObject(entity!)
         
         let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
@@ -323,12 +287,8 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               didChangeSection: section,
                               atIndex: 0,
                               forChangeType: .Delete)
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        
+        dataSource.refreshData()
     }
 
     func test_didChangeSection_forDelete_deletedItemFromOtherSection_mustNotCrash() {
@@ -339,12 +299,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeObject: entity!,
@@ -358,12 +313,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               atIndex: 0,
                               forChangeType: .Delete)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
     
     func test_didChangeSection_forDelete_deletedItemFromSameSection_mustNotCrash() {
@@ -374,12 +324,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeObject: entity!,
@@ -393,12 +338,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               atIndex: 0,
                               forChangeType: .Delete)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
     
     func test_didChangeSection_forDefault_mustNotCrash() {
@@ -411,24 +351,15 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeSection: section,
                               atIndex: 0,
                               forChangeType: .Update)
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        
+        dataSource.refreshData()
     }
     
     
@@ -443,12 +374,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         let entityRule = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).first
         
@@ -458,12 +384,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               forChangeType: .Insert,
                               newIndexPath: NSIndexPath(forRow: 1, inSection: 0))
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
 
     func test_didChangeObject_forInsert_insertedItemFromSameSection_mustNotCrash() {
@@ -475,12 +396,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         let entityRule = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).first
         
@@ -496,12 +412,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               forChangeType: .Insert,
                               newIndexPath: NSIndexPath(forRow: 1, inSection: 0))
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
 
     func test_didChangeObject_forUpdate_mustNotCrash() {
@@ -512,12 +423,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeObject: entity!,
@@ -525,12 +431,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               forChangeType: .Update,
                               newIndexPath: nil)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
 
 
@@ -542,12 +443,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
         dataSource.controller(dataSource.fetchedResultsController,
@@ -561,12 +457,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               forChangeType: .Update,
                               newIndexPath: nil)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
 
     func test_didChangeObject_forUpdate_deletedItemFromSameIndexPath_mustNotCrash() {
@@ -577,12 +468,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeObject: entity!,
@@ -596,12 +482,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               forChangeType: .Update,
                               newIndexPath: nil)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
 
     func test_didChangeObject_forDelete_mustNotCrash() {
@@ -612,12 +493,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         let entity = helper.createTestMass(withSize: 3, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         dataSource.managedObjectContext.deleteObject(entity!)
         
@@ -626,13 +502,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               atIndexPath: NSIndexPath(forRow: 2, inSection: 0),
                               forChangeType: .Delete,
                               newIndexPath: nil)
-        
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
     
     func test_didChangeObject_forDelete_deletedItemFromSameSection_mustNotCrash() {
@@ -655,12 +525,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
                               forChangeType: .Delete,
                               newIndexPath: nil)
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
 
     func test_didChangeObject_forMove_mustNotCrash() {
@@ -671,25 +536,14 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         
         let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeObject: entity!,
                               atIndexPath: NSIndexPath(forRow: 0, inSection: 0),
                               forChangeType: .Move,
                               newIndexPath: NSIndexPath(forRow: 1, inSection: 0))
-        
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
     }
     
     
@@ -748,12 +602,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         helper.removeAllTestEntities()
         self.coreDataStack.saveContext()
         
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         let totalObjects = 54
         let objects = helper.createTestMass(withSize: totalObjects, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)

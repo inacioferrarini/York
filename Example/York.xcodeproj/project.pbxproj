@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		346C8DDF1CD57FF000F1F831 /* TestLogProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346C8DDE1CD57FF000F1F831 /* TestLogProvider.swift */; };
+		346C8DE11CD62F0B00F1F831 /* ErrorProneFetcherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346C8DE01CD62F0B00F1F831 /* ErrorProneFetcherDataSource.swift */; };
+		346C8DE41CD6362400F1F831 /* ErrorProneFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346C8DE31CD6362400F1F831 /* ErrorProneFetchedResultsController.swift */; };
 		34AAB9971CCFD4C600E0CE0F /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AAB9961CCFD4C600E0CE0F /* CoreDataUtil.swift */; };
 		34AAB9991CCFFAA200E0CE0F /* TestsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */; };
 		34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */; };
@@ -82,6 +84,8 @@
 /* Begin PBXFileReference section */
 		2CB95DBF5676518A5D7ECA76 /* Pods-York_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-York_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-York_Example/Pods-York_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		346C8DDE1CD57FF000F1F831 /* TestLogProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestLogProvider.swift; sourceTree = "<group>"; };
+		346C8DE01CD62F0B00F1F831 /* ErrorProneFetcherDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProneFetcherDataSource.swift; sourceTree = "<group>"; };
+		346C8DE31CD6362400F1F831 /* ErrorProneFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProneFetchedResultsController.swift; sourceTree = "<group>"; };
 		34AAB9961CCFD4C600E0CE0F /* CoreDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsCollectionView.swift; sourceTree = "<group>"; };
 		34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensionTests.swift; sourceTree = "<group>"; };
@@ -181,6 +185,15 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
+		346C8DE21CD635EC00F1F831 /* FetchedResultsController */ = {
+			isa = PBXGroup;
+			children = (
+				346C8DE31CD6362400F1F831 /* ErrorProneFetchedResultsController.swift */,
+			);
+			name = FetchedResultsController;
+			path = CoreData/FetchedResultsController;
+			sourceTree = "<group>";
+		};
 		34C91A251CC342750033AC8B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				34EFE1F01CCE816100264D0E /* CoreData */,
+				346C8DE21CD635EC00F1F831 /* FetchedResultsController */,
 				34C91A2B1CC342750033AC8B /* DataSource */,
 			);
 			path = Persistence;
@@ -219,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				34C91A2C1CC342750033AC8B /* FetchedResultsSectionInfo.swift */,
+				346C8DE01CD62F0B00F1F831 /* ErrorProneFetcherDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -724,6 +739,7 @@
 			files = (
 				34C91A631CC342750033AC8B /* FetchedResultsSectionInfo.swift in Sources */,
 				34C91A821CC342750033AC8B /* TestBaseViewControllerTests.swift in Sources */,
+				346C8DE11CD62F0B00F1F831 /* ErrorProneFetcherDataSource.swift in Sources */,
 				34C91A6F1CC342750033AC8B /* DataSyncDailyRulesTests.swift in Sources */,
 				34C91A6E1CC342750033AC8B /* AppContextTests.swift in Sources */,
 				346C8DDF1CD57FF000F1F831 /* TestLogProvider.swift in Sources */,
@@ -753,6 +769,7 @@
 				34EFE2001CCEBEDF00264D0E /* EntityTestMandatoryField+CoreDataProperties.swift in Sources */,
 				34AAB9971CCFD4C600E0CE0F /* CoreDataUtil.swift in Sources */,
 				34C91A841CC342750033AC8B /* ViewComponentTests.swift in Sources */,
+				346C8DE41CD6362400F1F831 /* ErrorProneFetchedResultsController.swift in Sources */,
 				34AAB9991CCFFAA200E0CE0F /* TestsCollectionView.swift in Sources */,
 				34EFE1E41CCD320600264D0E /* TableViewFetcherDataSourceTests.swift in Sources */,
 				34C91A771CC342750033AC8B /* NSObjectExtensionsTests.swift in Sources */,

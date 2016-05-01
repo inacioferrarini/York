@@ -26,10 +26,12 @@ import CoreData
 
 public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, EntityType: NSManagedObject>: FetcherDataSource<EntityType>, UICollectionViewDataSource {
 
+
     // MARK: - Properties
 
     public let collectionView: UICollectionView
     public let presenter: CollectionViewCellPresenter<CellType, EntityType>
+
 
     // MARK: - Initialization
 
@@ -79,8 +81,8 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
 
     // MARK: - Public Methods
 
-    public override func refreshData() throws {
-        try super.refreshData()
+    public override func refreshData() {
+        super.refreshData()
         self.collectionView.reloadData()
     }
 

@@ -62,12 +62,7 @@ class TestBaseTableViewControllerTests: XCTestCase {
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         
         let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
-        do {
-            try dataSource.refreshData()
-            XCTAssertTrue(true)
-        } catch {
-            XCTAssertTrue(false)
-        }
+        dataSource.refreshData()
         
         self.viewController.tableView!.reloadData()
 
