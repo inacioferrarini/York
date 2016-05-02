@@ -45,9 +45,9 @@ public class PresentationPath: NSObject {
 
     // MARK: - Class Methods
 
-    public class func presentationMode(parameters: [String : String]) -> PresentationPathMode {
+    public class func presentationMode(parameters: [NSObject : AnyObject]) -> PresentationPathMode {
         var mode: PresentationPathMode = .Push
-        if let presentationModeValue = parameters[presentationParameterPathKey],
+        if let presentationModeValue = parameters[presentationParameterPathKey] as? String,
             let value = PresentationPathMode(rawValue: presentationModeValue) {
             mode = value
         }
