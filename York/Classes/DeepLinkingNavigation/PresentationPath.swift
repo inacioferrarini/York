@@ -40,13 +40,13 @@ public class PresentationPath: NSObject {
 
     // MARK: - Properties
 
-    public private (set) var path: String
+    public private (set) var pattern: String
 
 
     // MARK: - Initialization
 
-    public init(path: String) {
-        self.path = path
+    public init(pattern: String) {
+        self.pattern = pattern
         super.init()
     }
 
@@ -54,11 +54,11 @@ public class PresentationPath: NSObject {
     // MARK: - Public Methods
 
     public func absoluteString() -> String {
-        return self.removeLastPathSeparator(self.path) + self.presentationParameterPath
+        return self.removeLastPathSeparator(self.pattern) + self.presentationParameterPath
     }
 
     public func replacingValues(values: [String : String], mode: PresentationPathMode) -> String {
-        var path = self.removeLastPathSeparator(self.path)
+        var path = self.removeLastPathSeparator(self.pattern)
 
         for (key, value) in values {
             let range = path.rangeOfString(key)
@@ -83,7 +83,7 @@ public class PresentationPath: NSObject {
 
     public func presentationMode() -> PresentationPathMode {
         var mode:PresentationPathMode = .Push
-        let stringPath = self.path
+        let stringPath = self.pattern
         if let lastParameterPathIndexRange = stringPath.rangeOfString("/", options: .BackwardsSearch) {
             let lastParameterPathIndex = lastParameterPathIndexRange.startIndex.successor()
             let stringValue = stringPath.substringFromIndex(lastParameterPathIndex)
