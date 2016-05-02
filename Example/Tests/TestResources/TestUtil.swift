@@ -99,7 +99,10 @@ class TestUtil: NSObject {
         XCTAssertNotNil(bundle, "BUNDLE EXPECTED")
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
         XCTAssertNotNil(storyBoard, "storyBoard EXPECTED")
-        return storyBoard.instantiateInitialViewController() as! UINavigationController
+        if let viewController = storyBoard.instantiateInitialViewController() as? UINavigationController {
+            return viewController
+        }
+        return UINavigationController()
     }
 
     func testBaseViewController(appContext: AppContext!) -> TestBaseViewController {
