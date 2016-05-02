@@ -163,44 +163,64 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
 
         switch type {
         case .Insert:
-            if let newIndexPath = newIndexPath {
-                if self.insertedSectionIndexes.containsIndex(newIndexPath.section) {
-                    return
-                }
-                self.insertedItemIndexPaths.append(newIndexPath)
-            }
+            self.performInsertAtIndexPath(newIndexPath)
             break
         case .Delete:
-            if let indexPath = indexPath {
-                if self.deletedSectionIndexes.containsIndex(indexPath.section) {
-                    return
-                }
-                self.deletedItemIndexPaths.append(indexPath)
-            }
+            self.performRemoveFromIndexPath(atIndexPath: indexPath)
             break
         case .Move:
-            if let indexPath = indexPath,
-                let newIndexPath = newIndexPath {
-                if !self.insertedSectionIndexes.containsIndex(newIndexPath.section) {
-                    self.insertedItemIndexPaths.append(newIndexPath)
-                }
-                if !self.deletedSectionIndexes.containsIndex(indexPath.section) {
-                    self.deletedItemIndexPaths.append(indexPath)
-                }
-            }
+            self.performMoveObject(atIndexPath: indexPath, newIndexPath: newIndexPath)
             break
         case .Update:
-            if let indexPath = indexPath {
-                if self.deletedSectionIndexes.containsIndex(indexPath.section) || self.deletedItemIndexPaths.contains(indexPath) {
-                    return
-                }
-                if !self.updatedItemIndexPaths.contains(indexPath) {
-                    self.updatedItemIndexPaths.append(indexPath)
-                }
-            }
+            self.performUpdateObject(atIndexPath: indexPath)
             break
         }
     }
+
+
+    // MARK: - Helper Methods
+
+    func performInsertAtIndexPath(newIndexPath: NSIndexPath?) {
+        if let newIndexPath = newIndexPath {
+            if self.insertedSectionIndexes.containsIndex(newIndexPath.section) {
+                return
+            }
+            self.insertedItemIndexPaths.append(newIndexPath)
+        }
+    }
+
+    func performRemoveFromIndexPath(atIndexPath indexPath: NSIndexPath?) {
+        if let indexPath = indexPath {
+            if self.deletedSectionIndexes.containsIndex(indexPath.section) {
+                return
+            }
+            self.deletedItemIndexPaths.append(indexPath)
+        }
+    }
+
+    func performMoveObject(atIndexPath indexPath: NSIndexPath?, newIndexPath: NSIndexPath?) {
+        if let indexPath = indexPath,
+            let newIndexPath = newIndexPath {
+            if !self.insertedSectionIndexes.containsIndex(newIndexPath.section) {
+                self.insertedItemIndexPaths.append(newIndexPath)
+            }
+            if !self.deletedSectionIndexes.containsIndex(indexPath.section) {
+                self.deletedItemIndexPaths.append(indexPath)
+            }
+        }
+    }
+
+    func performUpdateObject(atIndexPath indexPath: NSIndexPath?) {
+        if let indexPath = indexPath {
+            if self.deletedSectionIndexes.containsIndex(indexPath.section) || self.deletedItemIndexPaths.contains(indexPath) {
+                return
+            }
+            if !self.updatedItemIndexPaths.contains(indexPath) {
+                self.updatedItemIndexPaths.append(indexPath)
+            }
+        }
+    }
+
 
     public func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.commitChanges()

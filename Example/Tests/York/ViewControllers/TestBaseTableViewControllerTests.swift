@@ -61,8 +61,9 @@ class TestBaseTableViewControllerTests: XCTestCase {
         helper.removeAllTestEntities()
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
 
-        let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
-        dataSource.refreshData()
+        if let dataSource = self.viewController.dataSource as? TableViewFetcherDataSource<UITableViewCell, EntityTest> {
+            dataSource.refreshData()
+        }
 
         self.viewController.tableView!.reloadData()
 
@@ -79,13 +80,14 @@ class TestBaseTableViewControllerTests: XCTestCase {
 
     func test_dataSource_checkPresenterConfigureCellBlock() {
         self.viewController.viewDidLoad()
-        let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let ctx = coreDataStack.managedObjectContext
         let helper = CoreDataUtil(inManagedObjectContext: ctx)
         let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).first!
         let cell = UITableViewCell()
-        dataSource.presenter.configureCellBlock(cell, entity)
+        if let dataSource = self.viewController.dataSource as? TableViewFetcherDataSource<UITableViewCell, EntityTest> {
+            dataSource.presenter.configureCellBlock(cell, entity)
+        }
     }
 
 
@@ -95,8 +97,9 @@ class TestBaseTableViewControllerTests: XCTestCase {
 
     func test_delegate_checkItemSelectionBlock() {
         self.viewController.viewDidLoad()
-        let delegate = self.viewController.delegate as! TableViewBlockDelegate
-        delegate.itemSelectionBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
+        if let delegate = self.viewController.delegate as? TableViewBlockDelegate {
+            delegate.itemSelectionBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
+        }
     }
 
 
