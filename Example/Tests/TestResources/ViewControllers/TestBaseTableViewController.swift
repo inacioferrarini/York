@@ -33,14 +33,14 @@ class TestBaseTableViewController: BaseTableViewController {
         }
 
         let presenter = TableViewCellPresenter<UITableViewCell, EntityTest>(
-            configureCellBlock: { (cell: UITableViewCell, entity:EntityTest) -> Void in
-                
+            configureCellBlock: { (cell: UITableViewCell, entity: EntityTest) -> Void in
+
             }, cellReuseIdentifierBlock: cellReuseIdBlock)
-        
-        let sortDescriptors:[NSSortDescriptor] = []
+
+        let sortDescriptors: [NSSortDescriptor] = []
         let context = self.appContext.coreDataStack.managedObjectContext
         let logger = appContext.logger
-        
+
         let dataSource = TableViewFetcherDataSource<UITableViewCell, EntityTest>(
             targetingTableView: self.tableView!,
             presenter: presenter,
@@ -48,15 +48,15 @@ class TestBaseTableViewController: BaseTableViewController {
             sortDescriptors: sortDescriptors,
             managedObjectContext: context,
             logger: logger)
-        
+
         return dataSource
     }
-    
+
     override func createDelegate() -> UITableViewDelegate? {
-        let itemSelectionBlock = { (indexPath:NSIndexPath) -> Void in
+        let itemSelectionBlock = { (indexPath: NSIndexPath) -> Void in
 
         }
         return TableViewBlockDelegate(tableView: self.tableView!, itemSelectionBlock: itemSelectionBlock, loadMoreDataBlock: nil)
     }
-    
+
 }

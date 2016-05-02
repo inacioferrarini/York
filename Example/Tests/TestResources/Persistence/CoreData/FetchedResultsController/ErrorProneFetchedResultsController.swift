@@ -25,12 +25,12 @@ import UIKit
 import CoreData
 
 public class ErrorProneFetchedResultsController: NSFetchedResultsController {
-    
-    
+
+
     // MARK: - Fetched results controller
-    
+
     override public func performFetch() throws {
         throw NSError(domain: "testDomain", code: -1, userInfo: nil)
     }
-    
+
 }

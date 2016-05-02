@@ -25,5 +25,4 @@ import York
 
 public class SimpleViewComponent: ViewComponent {
 
-    
 }

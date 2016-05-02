@@ -25,7 +25,7 @@ import UIKit
 class TestsTableView: UITableView {
 
     var cellForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> UITableViewCell?)?
-    
+
     override func cellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell? {
         if let block = self.cellForRowAtIndexPathBlock {
             return block(indexPath: indexPath)

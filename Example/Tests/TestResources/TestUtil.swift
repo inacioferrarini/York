@@ -26,34 +26,34 @@ import York
 
 class TestUtil: NSObject {
 
-    
+
     // MARK: - Constants
-    
+
     static let modelFileName = "DataSyncRules"
     static let databaseFileName = "DataSyncRulesDB"
-    
+
     static let testModelFileName = "YorkTests"
     static let testDatabaseFileName = "YorkTestsDB"
-    
-    
+
+
     // MARK: - Test Bundles
-    
+
     func yorkPODBundle() -> NSBundle {        
         return NSBundle(forClass: AppContext.self)
     }
-    
+
     func mainBundle() -> NSBundle {
         return NSBundle.mainBundle()
     }
-    
+
     func unitTestsBundle() -> NSBundle {
         return NSBundle(forClass: self.dynamicType)
     }
-    
+
     // MARK: - Utility Methods
-    
+
     func appContext() -> AppContext {
-        
+
         let appBundle = self.yorkPODBundle()
         let logger = Logger(logProvider: TestLogProvider())
         let rootNavigationController = self.rootViewController()
@@ -61,7 +61,7 @@ class TestUtil: NSObject {
         let router = NavigationRouter(schema: "GitHubSpy", logger: logger)
         let syncRulesStack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
         let syncRules = DataSyncRules(coreDataStack: syncRulesStack)
-        
+
         return AppContext(navigationController: rootNavigationController,
             coreDataStack: stack,
             syncRules: syncRules,
@@ -70,7 +70,7 @@ class TestUtil: NSObject {
     }
 
     func testAppContext() -> AppContext {
-        
+
         let appBundle = self.yorkPODBundle()
         let testsBundle = self.unitTestsBundle()
         let logger = Logger(logProvider: TestLogProvider())
@@ -79,21 +79,21 @@ class TestUtil: NSObject {
         let router = NavigationRouter(schema: "GitHubSpy", logger: logger)
         let syncRulesStack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
         let syncRules = DataSyncRules(coreDataStack: syncRulesStack)
-        
+
         return AppContext(navigationController: rootNavigationController,
                           coreDataStack: stack,
                           syncRules: syncRules,
                           router: router,
                           logger: logger)
     }
-    
+
     func randomString() -> String {
         return NSUUID().UUIDString.stringByReplacingOccurrencesOfString("-", withString: "")
     }
-    
-    
+
+
     // MARK: - Test View Controllers
-    
+
     func rootViewController() -> UINavigationController {
         let bundle = self.unitTestsBundle()
         XCTAssertNotNil(bundle, "BUNDLE EXPECTED")
@@ -101,7 +101,7 @@ class TestUtil: NSObject {
         XCTAssertNotNil(storyBoard, "storyBoard EXPECTED")
         return storyBoard.instantiateInitialViewController() as! UINavigationController
     }
-    
+
     func testBaseViewController(appContext: AppContext!) -> TestBaseViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
@@ -109,7 +109,7 @@ class TestUtil: NSObject {
         viewController.appContext = appContext
         return viewController
     }
-    
+
     func baseDataBasedViewController(appContext: AppContext!) -> BaseDataBasedViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
@@ -117,7 +117,7 @@ class TestUtil: NSObject {
         viewController.appContext = appContext
         return viewController
     }
-    
+
     func testBaseDataBasedViewController(appContext: AppContext!) -> TestBaseDataBasedViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
@@ -133,7 +133,7 @@ class TestUtil: NSObject {
         viewController.appContext = appContext
         return viewController
     }
-    
+
     func testBaseTableViewController(appContext: AppContext!) -> TestBaseTableViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
@@ -141,7 +141,7 @@ class TestUtil: NSObject {
         viewController.appContext = appContext
         return viewController
     }
-    
+
     func testClassicTableViewController(appContext: AppContext!) -> TestClassicTableViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
@@ -149,5 +149,5 @@ class TestUtil: NSObject {
         viewController.appContext = appContext
         return viewController
     }
-    
+
 }

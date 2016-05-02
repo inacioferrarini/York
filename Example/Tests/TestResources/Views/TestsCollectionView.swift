@@ -25,11 +25,11 @@ import UIKit
 public class TestsCollectionView: UICollectionView {
 
     public var cellForItemAtIndexPathBlock: ((indexPath: NSIndexPath) -> UICollectionViewCell?)?
-    
+
     public override var window: UIWindow? {
         return UIWindow()
     }
-    
+
     public override func cellForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewCell? {
         if let block = self.cellForItemAtIndexPathBlock {
             return block(indexPath: indexPath)
@@ -37,7 +37,7 @@ public class TestsCollectionView: UICollectionView {
             return super.cellForItemAtIndexPath(indexPath)
         }
     }
-    
+
     public override func performBatchUpdates(updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
         if let updates = updates {
             updates()
@@ -46,5 +46,5 @@ public class TestsCollectionView: UICollectionView {
             completion(true)
         }
     }
-    
+
 }

@@ -32,7 +32,7 @@ public class EntityTestMandatoryField: NSManagedObject {
         request.predicate = NSPredicate(format: "name = %@", name)
         return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityTestMandatoryField
     }
-    
+
     public class func entityTestMandatoryField(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityTestMandatoryField? {
         var entityTest: EntityTestMandatoryField? = self.fetchEntityTestMandatoryField(name, inManagedObjectContext: context)
         if entityTest == nil {
@@ -44,5 +44,5 @@ public class EntityTestMandatoryField: NSManagedObject {
         }
         return entityTest
     }
-    
+
 }
