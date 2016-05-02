@@ -30,13 +30,13 @@ class PresentationPathTests: XCTestCase {
     // MARK: - Tests
 
     func test_absoluteString_mustReturnPresentationParameter() {
-        let presentationPath = PresentationPath(path: "/path/to/viewcontroller")
+        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller")
         let stringPath = presentationPath.absoluteString()
         XCTAssertEqual(stringPath, "/path/to/viewcontroller/:presentation")
     }
 
     func test_absoluteStringEndingSlash_mustReturnPresentationParameter() {
-        let presentationPath = PresentationPath(path: "/path/to/viewcontroller/")
+        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/")
         let stringPath = presentationPath.absoluteString()
         XCTAssertEqual(stringPath, "/path/to/viewcontroller/:presentation")
     }
@@ -45,31 +45,31 @@ class PresentationPathTests: XCTestCase {
     // MARK: - Tests - PresentationMode
     
     func test_presentationModeForPath_withoutPresentationMode_mustReturnPush() {
-        let presentationPath = PresentationPath(path: "/path/to/viewcontroller/")
+        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/")
         let presentationMode = presentationPath.presentationMode()
         XCTAssertEqual(presentationMode, PresentationPathMode.Push)
     }
     
     func test_presentationModeForPath_withPushPresentationMode_mustReturnPush() {
-        let presentationPath = PresentationPath(path: "/path/to/viewcontroller/push")
+        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/push")
         let presentationMode = presentationPath.presentationMode()
         XCTAssertEqual(presentationMode, PresentationPathMode.Push)
     }
     
     func test_presentationModeForPath_withShowPresentationMode_mustReturnShow() {
-        let presentationPath = PresentationPath(path: "/path/to/viewcontroller/show")
+        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/show")
         let presentationMode = presentationPath.presentationMode()
         XCTAssertEqual(presentationMode, PresentationPathMode.Show)
     }
 
     func test_presentationModeForPath_withModalPresentationMode_mustReturnModal() {
-        let presentationPath = PresentationPath(path: "/path/to/viewcontroller/modal")
+        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/modal")
         let presentationMode = presentationPath.presentationMode()
         XCTAssertEqual(presentationMode, PresentationPathMode.Modal)
     }
 
     func test_presentationModeForPath_withPopoverPresentationMode_mustReturnPopover() {
-        let presentationPath = PresentationPath(path: "/path/to/viewcontroller/popover")
+        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/popover")
         let presentationMode = presentationPath.presentationMode()
         XCTAssertEqual(presentationMode, PresentationPathMode.Popover)
     }
@@ -78,40 +78,10 @@ class PresentationPathTests: XCTestCase {
     // MARK: - Tests - PresentationMode
     
     func test_pathWithValuesAndPresentationMode_mustSucceed() {
-        let presentationPath = PresentationPath(path: "/:param1/:param2/:param3/")
+        let presentationPath = PresentationPath(pattern: "/:param1/:param2/:param3/")
         let values = [ ":param1": "valueForParam1", ":param2": "valueForParam2", ":param3": "valueForParam3" ]
         let finalUrl = presentationPath.replacingValues(values, mode: .Push)        
         XCTAssertEqual(finalUrl, "/valueForParam1/valueForParam2/valueForParam3/push")
     }
-
-    
-    
-    
-//    public func path(mode: PresentationPathMode, values: [String : String]) -> String {
-//        var path = self.removeLastPathSeparator(self.path)
-//        
-//        for (key, value) in values {
-//            path = path.stringByReplacingOccurrencesOfString(key, withString: value, options: .CaseInsensitiveSearch, range: nil)
-//        }
-//        
-//        return self.removeLastPathSeparator(self.path) + "/" + mode.rawValue
-//    }
-
-    
-    
-    
-    
-//    public func presentationModeForPath(path: PresentationPath) -> PresentationPathMode {
-//        var mode:PresentationPathMode = .Push
-//        let stringPath = path.absoluteString()
-//        if let lastParameterPathIndexRange = stringPath.rangeOfString(":", options: .BackwardsSearch) {
-//            let lastParameterPathIndex = lastParameterPathIndexRange.startIndex
-//            let stringValue = stringPath.substringFromIndex(lastParameterPathIndex)
-//            if let value = PresentationPathMode(rawValue: stringValue) {
-//                mode = value
-//            }
-//        }
-//        return mode
-//    }
 
 }
