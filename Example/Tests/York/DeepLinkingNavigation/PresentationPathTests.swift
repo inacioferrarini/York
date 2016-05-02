@@ -45,32 +45,27 @@ class PresentationPathTests: XCTestCase {
     // MARK: - Tests - PresentationMode
 
     func test_presentationModeForPath_withoutPresentationMode_mustReturnPush() {
-        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/")
-        let presentationMode = presentationPath.presentationMode()
+        let presentationMode = PresentationPath.presentationMode(["" : ""])
         XCTAssertEqual(presentationMode, PresentationPathMode.Push)
     }
 
     func test_presentationModeForPath_withPushPresentationMode_mustReturnPush() {
-        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/push")
-        let presentationMode = presentationPath.presentationMode()
+        let presentationMode = PresentationPath.presentationMode([":presentation" : "push"])
         XCTAssertEqual(presentationMode, PresentationPathMode.Push)
     }
 
     func test_presentationModeForPath_withShowPresentationMode_mustReturnShow() {
-        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/show")
-        let presentationMode = presentationPath.presentationMode()
+        let presentationMode = PresentationPath.presentationMode([":presentation" : "show"])
         XCTAssertEqual(presentationMode, PresentationPathMode.Show)
     }
 
     func test_presentationModeForPath_withModalPresentationMode_mustReturnModal() {
-        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/modal")
-        let presentationMode = presentationPath.presentationMode()
+        let presentationMode = PresentationPath.presentationMode([":presentation" : "modal"])
         XCTAssertEqual(presentationMode, PresentationPathMode.Modal)
     }
 
     func test_presentationModeForPath_withPopoverPresentationMode_mustReturnPopover() {
-        let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/popover")
-        let presentationMode = presentationPath.presentationMode()
+        let presentationMode = PresentationPath.presentationMode([":presentation" : "popover"])
         XCTAssertEqual(presentationMode, PresentationPathMode.Popover)
     }
 

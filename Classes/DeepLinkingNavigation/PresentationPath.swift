@@ -36,11 +36,23 @@ public class PresentationPath: NSObject {
     // MARK: - Constants
 
     public let presentationParameterPath = "/:presentation"
-
+    public static let presentationParameterPathKey = ":presentation"
 
     // MARK: - Properties
 
     public private (set) var pattern: String
+
+
+    // MARK: - Class Methods
+
+    public class func presentationMode(parameters: [String : String]) -> PresentationPathMode {
+        var mode: PresentationPathMode = .Push
+        if let presentationModeValue = parameters[presentationParameterPathKey],
+            let value = PresentationPathMode(rawValue: presentationModeValue) {
+            mode = value
+        }
+        return mode
+    }
 
 
     // MARK: - Initialization
@@ -79,19 +91,6 @@ public class PresentationPath: NSObject {
             }
         }
         return cleanPath
-    }
-
-    public func presentationMode() -> PresentationPathMode {
-        var mode: PresentationPathMode = .Push
-        let stringPath = self.pattern
-        if let lastParameterPathIndexRange = stringPath.rangeOfString("/", options: .BackwardsSearch) {
-            let lastParameterPathIndex = lastParameterPathIndexRange.startIndex.successor()
-            let stringValue = stringPath.substringFromIndex(lastParameterPathIndex)
-            if let value = PresentationPathMode(rawValue: stringValue) {
-                mode = value
-            }
-        }
-        return mode
     }
 
 }
