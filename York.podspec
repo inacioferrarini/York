@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "York"
-  s.version          = "0.3.0"
+  s.version          = "0.3.1"
   s.summary          = "Foundation classes used to eliminate boiler-plate code and provide an accelerated startup time."
   s.homepage         = "https://github.com/inacioferrarini/York"
 
@@ -24,13 +24,59 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.author           = { "Inácio Ferrarini" => "inacio.ferrarini@gmail.com" }
   s.source           = { :git => "https://github.com/inacioferrarini/York.git", :tag => s.version.to_s }
 
-  s.source_files = 'York/Classes/**/*.swift'
-  s.preserve_paths = 'York/Classes/*', 'York/Classes/**/*'
   s.frameworks = 'UIKit', 'CoreData'
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
-  s.resource = 'York/Classes/**/*.xcdatamodeld'
   s.dependency 'York-Swift-Try-Catch', '0.1.1'
   s.dependency 'JLRoutes', '1.6'
+
+  s.public_header_files = ''
+  s.source_files = ''
+
+  s.resource = 'DataSyncRules/**/*.xcdatamodeld'
+
+  s.subspec 'Context' do |ss|
+    ss.source_files = 'Context/*.swift'
+  end
+
+  s.subspec 'DataSource' do |ss|
+    ss.source_files = 'DataSource/*.swift'
+  end
+
+  s.subspec 'DataSyncRules' do |ss|
+    ss.source_files = 'DataSyncRules/*.swift'
+  end
+
+  s.subspec 'DeepLinkingNavigation' do |ss|
+    ss.source_files = 'DeepLinkingNavigation/*.swift'
+  end
+
+  s.subspec 'Extensions' do |ss|
+    ss.source_files = 'Extensions/*.swift'
+  end
+
+  s.subspec 'Logging' do |ss|
+    ss.source_files = 'Logging/*.swift'
+  end
+
+  s.subspec 'Persistence' do |ss|
+    ss.source_files = 'Persistence/*.swift'
+  end
+
+  s.subspec 'Presenter' do |ss|
+    ss.source_files = 'Presenter/*.swift'
+  end
+
+  s.subspec 'TableViewDelegate' do |ss|
+    ss.source_files = 'TableViewDelegate/*.swift'
+  end
+
+  s.subspec 'ViewController' do |ss|
+    ss.source_files = 'ViewController/*.swift'
+  end
+
+  s.subspec 'Views' do |ss|
+    ss.source_files = 'Views/*.swift'
+  end
 
 end
