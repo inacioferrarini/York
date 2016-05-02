@@ -43,7 +43,7 @@ public class NavigationRouter: NSObject {
 
     public func registerRoutes(appRoutes: [RoutingElement]) {
         for r: RoutingElement in appRoutes {
-            self.router.addRoute(r.pattern, handler: r.handler)
+            self.router.addRoute(r.path.absoluteString(), handler: r.handler)
         }
     }
 
