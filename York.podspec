@@ -30,53 +30,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.dependency 'York-Swift-Try-Catch', '0.1.1'
   s.dependency 'JLRoutes', '1.6'
 
-  s.public_header_files = ''
-  s.source_files = ''
+  s.resources = 'Classes/**/*.xcdatamodeld'
 
-  s.resource = 'DataSyncRules/**/*.xcdatamodeld'
-
-  s.subspec 'Context' do |ss|
-    ss.source_files = 'Context/**/*.swift'
-  end
-
-  s.subspec 'DataSource' do |ss|
-    ss.source_files = 'DataSource/**/*.swift'
-  end
-
-  s.subspec 'DataSyncRules' do |ss|
-    ss.source_files = 'DataSyncRules/**/*.swift'
-  end
-
-  s.subspec 'DeepLinkingNavigation' do |ss|
-    ss.source_files = 'DeepLinkingNavigation/**/*.swift'
-  end
-
-  s.subspec 'Extensions' do |ss|
-    ss.source_files = 'Extensions/**/*.swift'
-  end
-
-  s.subspec 'Logging' do |ss|
-    ss.source_files = 'Logging/**/*.swift'
-  end
-
-  s.subspec 'Persistence' do |ss|
-    ss.source_files = 'Persistence/**/*.swift'
-  end
-
-  s.subspec 'Presenter' do |ss|
-    ss.source_files = 'Presenter/**/*.swift'
-  end
-
-  s.subspec 'TableViewDelegate' do |ss|
-    ss.source_files = 'TableViewDelegate/**/*.swift'
-  end
-
-  s.subspec 'ViewController' do |ss|
-    ss.source_files = 'ViewController/**/*.swift'
-  end
-
-  s.subspec 'Views' do |ss|
-    ss.source_files = 'Views/**/*.swift'
+  s.subspec 'Classes' do |ss|
+    ss.source_files = 'Classes/**/*.swift'
   end
 
 end
