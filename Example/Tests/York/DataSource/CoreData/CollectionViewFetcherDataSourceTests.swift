@@ -39,7 +39,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     // MARK: - Supporting Methods
 
     func createCollectionViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?) -> CollectionViewFetcherDataSource<UICollectionViewCell, EntityTest> {
-        let frame = CGRectMake(0, 0, 200, 200)
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let layout = UICollectionViewFlowLayout()
         let collectionView = TestsCollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.cellForItemAtIndexPathBlock = { (indexPath: NSIndexPath) -> UICollectionViewCell? in
@@ -53,9 +53,11 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     func registerCellForCollectionView(collectionView: UICollectionView) {
         let collectionViewCellNib = UINib(nibName: "CollectionViewCell", bundle: TestUtil().unitTestsBundle())
         collectionView.registerNib(collectionViewCellNib, forCellWithReuseIdentifier: "CollectionViewCell")
-    }    
+    }
 
-    func createCollectionViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?, collectionView: UICollectionView!) -> CollectionViewFetcherDataSource<UICollectionViewCell, EntityTest> {
+    func createCollectionViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?, collectionView: UICollectionView!) ->
+            CollectionViewFetcherDataSource<UICollectionViewCell, EntityTest> {
+
         self.collectionView = collectionView
 
         let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
@@ -104,7 +106,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
             return UICollectionViewCell()
         }
         self.registerCellForCollectionView(collectionView)
-        
+
         let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
             return "CollectionViewCell"
         }
@@ -346,7 +348,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
 
         helper.removeAllTestEntities()
-       
+
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1)
@@ -362,7 +364,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         dataSource.refreshData()
     }
 
-   
+
     // MARK: - Tests - didChangeObject
 
     func test_didChangeObject_forInsert_mustNotCrash() {
@@ -377,7 +379,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         dataSource.refreshData()
 
         let entityRule = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).first
-       
+
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeObject: entityRule!,
                               atIndexPath: nil,
@@ -386,7 +388,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
         dataSource.refreshData()
     }
-    
+
     func test_didChangeObject_forInsert_insertedItemFromSameSection_mustNotCrash() {
         let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
@@ -395,7 +397,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
-       
+
         dataSource.refreshData()
 
         let entityRule = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).first
@@ -606,7 +608,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
         let totalObjects = 54
         let objects = helper.createTestMass(withSize: totalObjects, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
-        self.coreDataStack.saveContext()        
+        self.coreDataStack.saveContext()
 
         for x in 0...totalObjects - 1 {
             let object = objects[x]

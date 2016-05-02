@@ -25,29 +25,29 @@ import XCTest
 import York
 
 class ViewComponentTests: XCTestCase {
-    
-    
+
+
     // MARK: - Tests
-    
+
     func test_initWithFrameWithBundle_mustSucceed() {
         let testsBundle = TestUtil().unitTestsBundle()
-        let view = SimpleViewComponent(frame: CGRectMake(0, 0, 100, 100), bundle: testsBundle)
+        let view = SimpleViewComponent(frame: CGRect(x: 0, y: 0, width: 100, height: 100), bundle: testsBundle)
         XCTAssertNotNil(view)
     }
-    
+
     func test_initWithFrameWithoutBundle_mustSucceed() {
         let testsBundle:NSBundle? = nil
-        let view = SimpleViewComponent(frame: CGRectMake(0, 0, 100, 100), bundle: testsBundle)
+        let view = SimpleViewComponent(frame: CGRect(x: 0, y: 0, width: 100, height: 100), bundle: testsBundle)
         XCTAssertNotNil(view)
     }
-    
+
     func test_initWithCoder_mustSucceed() {
         let testsBundle = TestUtil().unitTestsBundle()
-        let view = SimpleViewComponent(frame: CGRectMake(0, 0, 100, 100), bundle: testsBundle)
+        let view = SimpleViewComponent(frame: CGRect(x: 0, y: 0, width: 100, height: 100), bundle: testsBundle)
         let encodedData = NSKeyedArchiver.archivedDataWithRootObject(view)
         let decoder = NSKeyedUnarchiver(forReadingWithData: encodedData)
         let viewDecoded = SimpleViewComponent(coder: decoder)
         XCTAssertNotNil(viewDecoded)
     }
-    
+
 }
