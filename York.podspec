@@ -44,7 +44,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   end
 
   s.subspec 'DataSyncRules' do |ss|
-    ss.source_files = 'DataSyncRules/*.swift'
+    ss.source_files = 'DataSyncRules/**/*.swift'
   end
 
   s.subspec 'DeepLinkingNavigation' do |ss|
