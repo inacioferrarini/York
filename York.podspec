@@ -38,18 +38,28 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.subspec 'Context' do |ss|
     ss.source_files = 'Classes/Context/**/*.swift'
+    ss.dependency 'York/Logging'
+    ss.dependency 'York/Persistence'
+    ss.dependency 'York/DataSyncRules'
+    ss.dependency 'York/DeepLinkingNavigation'
   end
 
   s.subspec 'DataSource' do |ss|
     ss.source_files = 'Classes/DataSource/**/*.swift'
+    ss.dependency 'York/Extensions'
+    ss.dependency 'York/Presenter'
+    ss.dependency 'York/Logging'
   end
 
   s.subspec 'DataSyncRules' do |ss|
     ss.source_files = 'Classes/DataSyncRules/**/*.swift'
+    ss.dependency 'York/Extensions'
+    ss.dependency 'York/Persistence'
   end
 
   s.subspec 'DeepLinkingNavigation' do |ss|
     ss.source_files = 'Classes/DeepLinkingNavigation/**/*.swift'
+    ss.dependency 'York/Logging'
   end
 
   s.subspec 'Extensions' do |ss|
@@ -62,6 +72,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.subspec 'Persistence' do |ss|
     ss.source_files = 'Classes/Persistence/**/*.swift'
+    ss.dependency 'York/Logging'
   end
 
   s.subspec 'Presenter' do |ss|
@@ -74,10 +85,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.subspec 'ViewController' do |ss|
     ss.source_files = 'Classes/ViewController/**/*.swift'
+    ss.dependency 'York/Context'
   end
 
   s.subspec 'Views' do |ss|
     ss.source_files = 'Classes/Views/**/*.swift'
+    ss.dependency 'York/Presenter'
+    ss.dependency 'York/Extensions'
   end
 
 end
