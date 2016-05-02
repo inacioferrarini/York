@@ -10,6 +10,7 @@
 		346C8DDF1CD57FF000F1F831 /* TestLogProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346C8DDE1CD57FF000F1F831 /* TestLogProvider.swift */; };
 		346C8DE11CD62F0B00F1F831 /* ErrorProneFetcherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346C8DE01CD62F0B00F1F831 /* ErrorProneFetcherDataSource.swift */; };
 		346C8DE41CD6362400F1F831 /* ErrorProneFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346C8DE31CD6362400F1F831 /* ErrorProneFetchedResultsController.swift */; };
+		346C8DEA1CD6B77400F1F831 /* PresentationPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346C8DE91CD6B77400F1F831 /* PresentationPathTests.swift */; };
 		34AAB9971CCFD4C600E0CE0F /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AAB9961CCFD4C600E0CE0F /* CoreDataUtil.swift */; };
 		34AAB9991CCFFAA200E0CE0F /* TestsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */; };
 		34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */; };
@@ -86,6 +87,7 @@
 		346C8DDE1CD57FF000F1F831 /* TestLogProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestLogProvider.swift; sourceTree = "<group>"; };
 		346C8DE01CD62F0B00F1F831 /* ErrorProneFetcherDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProneFetcherDataSource.swift; sourceTree = "<group>"; };
 		346C8DE31CD6362400F1F831 /* ErrorProneFetchedResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProneFetchedResultsController.swift; sourceTree = "<group>"; };
+		346C8DE91CD6B77400F1F831 /* PresentationPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationPathTests.swift; sourceTree = "<group>"; };
 		34AAB9961CCFD4C600E0CE0F /* CoreDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsCollectionView.swift; sourceTree = "<group>"; };
 		34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensionTests.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			children = (
 				34C91A461CC342750033AC8B /* NavigationRouterTests.swift */,
 				34C91A471CC342750033AC8B /* RoutingElementTests.swift */,
+				346C8DE91CD6B77400F1F831 /* PresentationPathTests.swift */,
 			);
 			path = DeepLinkingNavigation;
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 				34C91A781CC342750033AC8B /* UIImageExtensionTests.swift in Sources */,
 				34C91A7D1CC342750033AC8B /* TableViewBlockDelegateTests.swift in Sources */,
 				34C91A7A1CC342750033AC8B /* CoreDataStackTests.swift in Sources */,
+				346C8DEA1CD6B77400F1F831 /* PresentationPathTests.swift in Sources */,
 				34EFE1E81CCD6C5900264D0E /* CollectionViewCellPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
