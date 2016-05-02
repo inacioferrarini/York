@@ -40,22 +40,22 @@ class PresentationPathTests: XCTestCase {
         let stringPath = presentationPath.absoluteString()
         XCTAssertEqual(stringPath, "/path/to/viewcontroller/:presentation")
     }
-    
-    
+
+
     // MARK: - Tests - PresentationMode
-    
+
     func test_presentationModeForPath_withoutPresentationMode_mustReturnPush() {
         let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/")
         let presentationMode = presentationPath.presentationMode()
         XCTAssertEqual(presentationMode, PresentationPathMode.Push)
     }
-    
+
     func test_presentationModeForPath_withPushPresentationMode_mustReturnPush() {
         let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/push")
         let presentationMode = presentationPath.presentationMode()
         XCTAssertEqual(presentationMode, PresentationPathMode.Push)
     }
-    
+
     func test_presentationModeForPath_withShowPresentationMode_mustReturnShow() {
         let presentationPath = PresentationPath(pattern: "/path/to/viewcontroller/show")
         let presentationMode = presentationPath.presentationMode()

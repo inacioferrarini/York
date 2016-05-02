@@ -36,7 +36,7 @@ class ViewComponentTests: XCTestCase {
     }
 
     func test_initWithFrameWithoutBundle_mustSucceed() {
-        let testsBundle:NSBundle? = nil
+        let testsBundle: NSBundle? = nil
         let view = SimpleViewComponent(frame: CGRect(x: 0, y: 0, width: 100, height: 100), bundle: testsBundle)
         XCTAssertNotNil(view)
     }

@@ -25,45 +25,45 @@ import XCTest
 import York
 
 class TestBaseTableViewControllerTests: XCTestCase {
-    
-    
+
+
     // MARK: - Properties
-        
+
     var viewController: TestBaseTableViewController!
-    
-    
+
+
     // MARK: - Tests Setup
-    
+
     override func setUp() {
         super.setUp()
         let appContext = TestUtil().testAppContext()
         let navigationController = TestUtil().rootViewController()
         viewController = TestUtil().testBaseTableViewController(appContext)
         navigationController.pushViewController(viewController, animated: true)
-                
+
         let _ = navigationController.view
         let _ = viewController.view
     }
-    
-    
+
+
     // MARK: - Tests
-    
+
     func test_viewDidLoad_mustNotCrash() {
         self.viewController.viewDidLoad()
     }
 
-    
+
     func test_viewWillDisappear_mustNotCrash() {
         self.viewController.viewDidLoad()
         let context = self.viewController.appContext.coreDataStack.managedObjectContext
-        
+
         let helper = CoreDataUtil(inManagedObjectContext: context)
         helper.removeAllTestEntities()
         helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
-        
+
         let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
         dataSource.refreshData()
-        
+
         self.viewController.tableView!.reloadData()
 
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -71,12 +71,12 @@ class TestBaseTableViewControllerTests: XCTestCase {
 
         self.viewController.viewWillDisappear(true)
     }
-    
-    
+
+
     func test_createDataSource_mustReturnNotNil() {
         XCTAssertNotNil(self.viewController.createDataSource())
     }
-    
+
     func test_dataSource_checkPresenterConfigureCellBlock() {
         self.viewController.viewDidLoad()
         let dataSource = self.viewController.dataSource as! TableViewFetcherDataSource<UITableViewCell, EntityTest>
@@ -87,21 +87,21 @@ class TestBaseTableViewControllerTests: XCTestCase {
         let cell = UITableViewCell()
         dataSource.presenter.configureCellBlock(cell, entity)
     }
-    
-    
+
+
     func test_createDelegate_mustReturnNotNil() {
         XCTAssertNotNil(self.viewController.createDelegate())
     }
-    
+
     func test_delegate_checkItemSelectionBlock() {
         self.viewController.viewDidLoad()
         let delegate = self.viewController.delegate as! TableViewBlockDelegate
         delegate.itemSelectionBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
     }
-    
-    
+
+
     func test_dataSyncCompleted_mustNotCrash() {
         self.viewController.dataSyncCompleted()
     }
-    
+
 }

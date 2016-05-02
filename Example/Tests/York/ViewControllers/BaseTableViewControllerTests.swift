@@ -25,29 +25,29 @@ import XCTest
 import York
 
 class BaseTableViewControllerTests: XCTestCase {
-    
-    
+
+
     // MARK: - Properties
-    
+
     var viewController: BaseTableViewController!
-    
-    
+
+
     // MARK: - Tests Setup
-    
+
     override func setUp() {
         super.setUp()
         let appContext = TestUtil().appContext()
         let navigationController = TestUtil().rootViewController()
         viewController = TestUtil().baseTableViewController(appContext)
         navigationController.pushViewController(viewController, animated: true)
-        
+
         let _ = navigationController.view
         let _ = viewController.view
     }
-    
-    
+
+
     // MARK: - Tests
-    
+
     func test_viewDidLoad_mustNotCrash() {
         self.viewController.viewDidLoad()
     }
@@ -55,22 +55,22 @@ class BaseTableViewControllerTests: XCTestCase {
     func test_viewDidAppear_mustNotCrash() {
         self.viewController.viewDidAppear(true)
     }
-    
-    
+
+
     func test_viewWillDisappear_mustNotCrash() {
         self.viewController.viewWillDisappear(true)
     }
 
-    
+
     func test_defaultEmptyResultsBackgroundView_mustReturnNil() {
         XCTAssertNil(self.viewController.defaultEmptyResultsBackgroundView())
     }
-    
+
     func test_defaultNonEmptyResultsBackgroundView_mustReturnNil() {
         XCTAssertNil(self.viewController.defaultNonEmptyResultsBackgroundView())
     }
-    
-    
+
+
     func test_setupTableView_mustNotCrash() {
         self.viewController.setupTableView()
     }
@@ -90,9 +90,9 @@ class BaseTableViewControllerTests: XCTestCase {
         self.viewController.performDataSync()
     }
     
-    
+
     func test_dataSyncCompleted_mustNotCrash() {
         self.viewController.dataSyncCompleted()
     }
-    
+
 }

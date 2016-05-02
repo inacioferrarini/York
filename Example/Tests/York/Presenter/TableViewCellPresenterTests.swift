@@ -26,30 +26,30 @@ import CoreData
 import York
 
 class TableViewCellPresenterTests: XCTestCase {
-    
-    
+
+
     // MARK: - Properties
-    
+
     static let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
         return "ReuseCellID"
     }
 
     static var blockExecutionTest = ""
-    
-    
+
+
     // MARK: - Supporting Methods
-    
+
     func createTableViewCellPresenter() -> TableViewCellPresenter<UITableViewCell, EntityTest> {
         let presenter = TableViewCellPresenter<UITableViewCell, EntityTest>(
-            configureCellBlock: { (cell: UITableViewCell, entity:EntityTest) -> Void in
+            configureCellBlock: { (cell: UITableViewCell, entity: EntityTest) -> Void in
                 TableViewCellPresenterTests.blockExecutionTest = "testExecuted"
             }, cellReuseIdentifierBlock: TableViewCellPresenterTests.cellReuseIdBlock)
         return presenter
     }
-    
-    
+
+
     // MARK: - Tests
-    
+
     func test_tableViewCellPresenterFields_configureCellBlock() {
         let testAppContext = TestUtil().testAppContext()
         let context = testAppContext.coreDataStack.managedObjectContext

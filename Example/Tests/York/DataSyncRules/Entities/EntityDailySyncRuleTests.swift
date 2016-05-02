@@ -25,10 +25,10 @@ import XCTest
 import York
 
 class EntityDailySyncRuleTests: XCTestCase {
-    
-    
+
+
     // MARK: - Tests
-    
+
     func test_fetchEntityDailySyncRule_withEmptyName_mustReturnNil() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
@@ -45,7 +45,7 @@ class EntityDailySyncRuleTests: XCTestCase {
             XCTAssertNotNil(fetchedRule)
         }
     }
-    
+
     func test_entityDailySyncRule_withEmptyName_mustReturnNil() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
@@ -72,5 +72,5 @@ class EntityDailySyncRuleTests: XCTestCase {
             XCTAssertTrue(shouldExecuteRule)
         }
     }
-    
+
 }

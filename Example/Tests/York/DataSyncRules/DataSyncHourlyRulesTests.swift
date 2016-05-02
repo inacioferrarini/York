@@ -99,7 +99,7 @@ class DataSyncHourlyRulesTests: XCTestCase {
         let rules = self.createRules()
         rules.addSyncRule(ruleName, rule: SyncRule.Hourly(12))
         rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: lastExecutionDate)
-        let result = rules.shouldPerformSyncRule(ruleName , atDate: executionDate)
+        let result = rules.shouldPerformSyncRule(ruleName, atDate: executionDate)
 
         XCTAssertEqual(result, true)
     }
