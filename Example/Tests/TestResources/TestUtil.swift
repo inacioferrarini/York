@@ -38,7 +38,7 @@ class TestUtil: NSObject {
 
     // MARK: - Test Bundles
 
-    func yorkPODBundle() -> NSBundle {        
+    func yorkPODBundle() -> NSBundle {
         return NSBundle(forClass: AppContext.self)
     }
 

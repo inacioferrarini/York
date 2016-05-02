@@ -26,10 +26,10 @@ import CoreData
 import York
 
 class BaseFetcherDataSourceTests: XCTestCase {
-    
-    
+
+
     // MARK: - Properties
-    
+
     var entityName: String!
     var predicate: NSPredicate?
     var fetchLimit: NSInteger?
@@ -37,7 +37,7 @@ class BaseFetcherDataSourceTests: XCTestCase {
     var sectionNameKeyPath: String?
     var cacheName: String?
     var coreDataStack: CoreDataStack!
-    var managedObjectContext:NSManagedObjectContext!
-    var logger:Logger!
-    
+    var managedObjectContext: NSManagedObjectContext!
+    var logger: Logger!
+
 }
