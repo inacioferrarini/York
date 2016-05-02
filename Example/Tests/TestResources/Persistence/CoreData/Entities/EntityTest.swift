@@ -32,34 +32,34 @@ public class EntityTest: NSManagedObject {
         request.sortDescriptors = sortDescriptors
         return self.allObjectsFromRequest(request, inManagedObjectContext: context) as? [EntityTest]
     }
-    
+
     public class func fetchEntityTest(sectionName: String?, name: String?, inManagedObjectContext context: NSManagedObjectContext) -> EntityTest? {
         var predicates = [NSPredicate]()
-        
+
         if let sectionName = sectionName where sectionName.characters.count > 0 {
             predicates.append(NSPredicate(format: "sectionName = %@", sectionName))
         }
-        
+
         if let name = name where name.characters.count > 0 {
             predicates.append(NSPredicate(format: "name = %@", name))
         }
-        
+
         guard predicates.count > 0 else {
             return nil
         }
-        
+
         let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
         if predicates.count > 1 {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         } else {
             request.predicate = predicates.last
         }
-        
+
         return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityTest
     }
 
     public class func entityTest(sectionName: String?, name: String?, order: Int?, inManagedObjectContext context: NSManagedObjectContext) -> EntityTest? {
-        
+
         var entityTest: EntityTest? = self.fetchEntityTest(sectionName, name: name, inManagedObjectContext: context)
         if entityTest == nil {
             let newEntityTest = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as? EntityTest
@@ -72,7 +72,7 @@ public class EntityTest: NSManagedObject {
         }
         return entityTest
     }
-    
+
     public class func removeAll(inManagedObjectContext context: NSManagedObjectContext) {
         if let allEntities = self.fetchAll(inManagedObjectContext: context, usingSortDescriptor: nil) {
             for entity in allEntities {

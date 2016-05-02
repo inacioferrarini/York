@@ -28,25 +28,25 @@ import CoreData
 public class CoreDataUtil: NSObject {
 
     private let context: NSManagedObjectContext
-    
+
     // MARK: - Initialization
-    
+
     public init(inManagedObjectContext context: NSManagedObjectContext) {
         self.context = context
         super.init()
     }
-    
-    
+
+
     // MARK: - Core Data Supporting Methods
-    
+
     public func removeAllTestEntities() {
         EntityTest.removeAll(inManagedObjectContext: self.context)
     }
-    
+
     public func removeTestEntity(entity: EntityTest) {
         self.context.deleteObject(entity)
     }
-    
+
     public func removeTestEntitiesFromArray(entities: [EntityTest]?) {
         if let allEntities = entities {
             for entity in allEntities {
@@ -54,11 +54,11 @@ public class CoreDataUtil: NSObject {
             }
         }
     }
-    
+
     public func createTestEntity(sectionName: String?, name: String?, order: Int?) -> EntityTest? {
         return EntityTest.entityTest(sectionName, name: name, order: order, inManagedObjectContext: self.context)
     }
-    
+
     public func createTestMass(withSize size: Int, usingInitialIndex initialIndex: Int, inSection section: Int, initialOrderValue initialOrder: Int) -> [EntityTest] {
         var entities = [EntityTest]()
         for k in 1...size {
@@ -67,12 +67,12 @@ public class CoreDataUtil: NSObject {
             let order = initialOrder + delta
             let sectionName = "section\(section)"
             let name = "s\(section)-e\(currentIndex)"
-            
+
             if let entity = self.createTestEntity(sectionName, name: name, order: order) {
                 entities.append(entity)
             }
         }
         return entities
     }
-    
+
 }

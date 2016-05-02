@@ -82,7 +82,7 @@ public class PresentationPath: NSObject {
     }
 
     public func presentationMode() -> PresentationPathMode {
-        var mode:PresentationPathMode = .Push
+        var mode: PresentationPathMode = .Push
         let stringPath = self.pattern
         if let lastParameterPathIndexRange = stringPath.rangeOfString("/", options: .BackwardsSearch) {
             let lastParameterPathIndex = lastParameterPathIndexRange.startIndex.successor()
