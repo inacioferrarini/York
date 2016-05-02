@@ -75,15 +75,15 @@ class NSManagedObjectExtensionTests: XCTestCase {
     func test_allObjectsFromRequest_mustReturnObjects() {
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let context = coreDataStack.managedObjectContext
-        
+
         let name = "test-name"
         EntityTest.removeAll(inManagedObjectContext: context)
         EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: context)
         coreDataStack.saveContext()
-        
+
         let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
-        
+
         let entities = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
         XCTAssertEqual(entities.count, 1)
     }

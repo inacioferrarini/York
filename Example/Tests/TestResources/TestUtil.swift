@@ -105,49 +105,61 @@ class TestUtil: NSObject {
     func testBaseViewController(appContext: AppContext!) -> TestBaseViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseViewController") as! TestBaseViewController
-        viewController.appContext = appContext
-        return viewController
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseViewController") as? TestBaseViewController {
+            viewController.appContext = appContext
+            return viewController
+        }
+        return TestBaseViewController()
     }
 
     func baseDataBasedViewController(appContext: AppContext!) -> BaseDataBasedViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseDataBasedViewController") as! BaseDataBasedViewController
-        viewController.appContext = appContext
-        return viewController
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseDataBasedViewController") as? BaseDataBasedViewController {
+            viewController.appContext = appContext
+            return viewController
+        }
+        return BaseDataBasedViewController()
     }
 
     func testBaseDataBasedViewController(appContext: AppContext!) -> TestBaseDataBasedViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseDataBasedViewController") as! TestBaseDataBasedViewController
-        viewController.appContext = appContext
-        return viewController
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseDataBasedViewController") as? TestBaseDataBasedViewController {
+            viewController.appContext = appContext
+            return viewController
+        }
+        return TestBaseDataBasedViewController()
     }
 
     func baseTableViewController(appContext: AppContext!) -> BaseTableViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseTableViewController") as! BaseTableViewController
-        viewController.appContext = appContext
-        return viewController
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseTableViewController") as? BaseTableViewController {
+            viewController.appContext = appContext
+            return viewController
+        }
+        return BaseTableViewController()
     }
 
     func testBaseTableViewController(appContext: AppContext!) -> TestBaseTableViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseTableViewController") as! TestBaseTableViewController
-        viewController.appContext = appContext
-        return viewController
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseTableViewController") as? TestBaseTableViewController {
+            viewController.appContext = appContext
+            return viewController
+        }
+        return TestBaseTableViewController()
     }
 
     func testClassicTableViewController(appContext: AppContext!) -> TestClassicTableViewController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestClassicTableViewController") as! TestClassicTableViewController
-        viewController.appContext = appContext
-        return viewController
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestClassicTableViewController") as? TestClassicTableViewController {
+            viewController.appContext = appContext
+            return viewController
+        }
+        return TestClassicTableViewController()
     }
 
 }
