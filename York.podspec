@@ -36,11 +36,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.resource = 'DataSyncRules/**/*.xcdatamodeld'
 
   s.subspec 'Context' do |ss|
-    ss.source_files = 'Context/*.swift'
+    ss.source_files = 'Context/**/*.swift'
   end
 
   s.subspec 'DataSource' do |ss|
-    ss.source_files = 'DataSource/*.swift'
+    ss.source_files = 'DataSource/**/*.swift'
   end
 
   s.subspec 'DataSyncRules' do |ss|
@@ -48,35 +48,35 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   end
 
   s.subspec 'DeepLinkingNavigation' do |ss|
-    ss.source_files = 'DeepLinkingNavigation/*.swift'
+    ss.source_files = 'DeepLinkingNavigation/**/*.swift'
   end
 
   s.subspec 'Extensions' do |ss|
-    ss.source_files = 'Extensions/*.swift'
+    ss.source_files = 'Extensions/**/*.swift'
   end
 
   s.subspec 'Logging' do |ss|
-    ss.source_files = 'Logging/*.swift'
+    ss.source_files = 'Logging/**/*.swift'
   end
 
   s.subspec 'Persistence' do |ss|
-    ss.source_files = 'Persistence/*.swift'
+    ss.source_files = 'Persistence/**/*.swift'
   end
 
   s.subspec 'Presenter' do |ss|
-    ss.source_files = 'Presenter/*.swift'
+    ss.source_files = 'Presenter/**/*.swift'
   end
 
   s.subspec 'TableViewDelegate' do |ss|
-    ss.source_files = 'TableViewDelegate/*.swift'
+    ss.source_files = 'TableViewDelegate/**/*.swift'
   end
 
   s.subspec 'ViewController' do |ss|
-    ss.source_files = 'ViewController/*.swift'
+    ss.source_files = 'ViewController/**/*.swift'
   end
 
   s.subspec 'Views' do |ss|
-    ss.source_files = 'Views/*.swift'
+    ss.source_files = 'Views/**/*.swift'
   end
 
 end
