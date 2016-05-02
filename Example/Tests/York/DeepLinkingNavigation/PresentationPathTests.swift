@@ -73,14 +73,14 @@ class PresentationPathTests: XCTestCase {
         let presentationMode = presentationPath.presentationMode()
         XCTAssertEqual(presentationMode, PresentationPathMode.Popover)
     }
-    
-    
+
+
     // MARK: - Tests - PresentationMode
-    
+
     func test_pathWithValuesAndPresentationMode_mustSucceed() {
         let presentationPath = PresentationPath(pattern: "/:param1/:param2/:param3/")
         let values = [ ":param1": "valueForParam1", ":param2": "valueForParam2", ":param3": "valueForParam3" ]
-        let finalUrl = presentationPath.replacingValues(values, mode: .Push)        
+        let finalUrl = presentationPath.replacingValues(values, mode: .Push)
         XCTAssertEqual(finalUrl, "/valueForParam1/valueForParam2/valueForParam3/push")
     }
 

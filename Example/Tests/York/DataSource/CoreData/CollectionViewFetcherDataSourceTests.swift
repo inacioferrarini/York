@@ -99,7 +99,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     // MARK: - Tests - Initialization
 
     func test_convenienceInitializer_mustSucceed() {
-        let frame = CGRectMake(0, 0, 200, 200)
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let layout = UICollectionViewFlowLayout()
         let collectionView = TestsCollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.cellForItemAtIndexPathBlock = { (indexPath: NSIndexPath) -> UICollectionViewCell? in
@@ -140,7 +140,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     }
 
     func test_designatedInitializer_mustSucceed() {
-        let frame = CGRectMake(0, 0, 200, 200)
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let layout = UICollectionViewFlowLayout()
         let collectionView = TestsCollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.cellForItemAtIndexPathBlock = { (indexPath: NSIndexPath) -> UICollectionViewCell? in
@@ -560,7 +560,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     // MARK: - Tests - commitChanges
 
     func test_commitChanges_withoutWindow_mustNotCrash() {
-        let frame = CGRectMake(0, 0, 200, 200)
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
 

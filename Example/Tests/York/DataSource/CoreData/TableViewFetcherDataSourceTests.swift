@@ -38,7 +38,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     // MARK: - Supporting Methods
 
     func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?) -> TableViewFetcherDataSource<UITableViewCell, EntityTest> {
-        let frame = CGRectMake(0, 0, 200, 200)
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let tableView = TestsTableView(frame: frame, style: .Plain)
         tableView.cellForRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> UITableViewCell? in
             return TableViewCell()
@@ -61,7 +61,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         }
 
         self.presenter = TableViewCellPresenter<UITableViewCell, EntityTest>(
-            configureCellBlock: { (cell: UITableViewCell, entity:EntityTest) -> Void in
+            configureCellBlock: { (cell: UITableViewCell, entity: EntityTest) -> Void in
                 self.configureCellBlockWasCalled = true
             }, cellReuseIdentifierBlock: cellReuseIdBlock)
         self.entityName = EntityTest.simpleClassName()
@@ -197,7 +197,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "sectionName")
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
 
-        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath:NSIndexPath) -> Bool in
+        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
             return true
         }
 
@@ -269,7 +269,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
     func test_didChangeObject_forInsert_mustNotCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath:NSIndexPath) -> Bool in
+        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
             return true
         }
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
@@ -316,7 +316,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
     func test_didChangeObject_forDelete_mustNotCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath:NSIndexPath) -> Bool in
+        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
             return true
         }
 
@@ -342,7 +342,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
     func test_didChangeObject_forMove_mustNotCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath:NSIndexPath) -> Bool in
+        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
             return true
         }
 

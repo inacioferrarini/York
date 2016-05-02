@@ -25,10 +25,10 @@ import XCTest
 import York
 
 class UIImageExtensionTests: XCTestCase {
-    
-    
+
+
     // MARK: - Tests
-    
+
     func test_circularScaleAndCropImage_image() {
         var finalImage:UIImage?
         let bundle = TestUtil().unitTestsBundle()

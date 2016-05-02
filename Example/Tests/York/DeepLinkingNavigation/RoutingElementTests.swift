@@ -25,36 +25,36 @@ import XCTest
 import York
 
 class RoutingElementTests: XCTestCase {
-    
-    
+
+
     // MARK: - Properties
-    
+
     static let pattern = "TestRoute"
     static let finalPattern = pattern + "/:presentation"
     static var blockExecutionTest = ""
-    
-    
+
+
     // MARK: - Supporting Methods
-    
+
     func createRoute() -> RoutingElement {
         return RoutingElement(path: PresentationPath(pattern: RoutingElementTests.pattern), handler: { (parameters: [NSObject : AnyObject]) -> Bool in
             RoutingElementTests.blockExecutionTest = "testExecuted"
             return true
         })
     }
-    
-    
+
+
     // MARK: - Tests
-    
+
     func test_routingElementFields_configureHandlerBlock() {
         let route = self.createRoute()
         route.handler(["" : ""])
         XCTAssertEqual(RoutingElementTests.blockExecutionTest, "testExecuted")
     }
-    
+
     func test_routingElementFields_pattern() {
         let route = self.createRoute()
         XCTAssertEqual(route.path.absoluteString(), RoutingElementTests.finalPattern)
     }
-    
+
 }

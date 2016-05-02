@@ -25,17 +25,17 @@ import XCTest
 import York
 
 class EntityHourlySyncRuleTests: XCTestCase {
-    
-    
+
+
     // MARK: - Tests
-    
+
     func test_fetchEntityHourlySyncRule_withEmptyName_mustReturnNil() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
         let hourlySincRule = EntityHourlySyncRule.fetchEntityHourlySyncRuleByName("", inManagedObjectContext: context)
         XCTAssertNil(hourlySincRule)
     }
-    
+
     func test_fetchEntityHourlySyncRule_withName_mustReturnEntity() {
         let ruleName = TestUtil().randomString()
         let coreDataStack = TestUtil().appContext().coreDataStack
@@ -45,7 +45,7 @@ class EntityHourlySyncRuleTests: XCTestCase {
             XCTAssertNotNil(fetchedRule)
         }
     }
-    
+
     func test_entityHourlySyncRule_withEmptyName_mustReturnNil() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         coreDataStack.saveContext()
@@ -53,7 +53,7 @@ class EntityHourlySyncRuleTests: XCTestCase {
         let hourlySincRule = EntityHourlySyncRule.entityHourlySyncRuleByName("", hours: nil, inManagedObjectContext: context)
         XCTAssertNil(hourlySincRule)
     }
-    
+
     func test_shouldRunSyncRule_withEmptyName_mustReturnNil() {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
@@ -63,5 +63,5 @@ class EntityHourlySyncRuleTests: XCTestCase {
             XCTAssertTrue(shouldExecuteRule)
         }
     }
-    
+
 }

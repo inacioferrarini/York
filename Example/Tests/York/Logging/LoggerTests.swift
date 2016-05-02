@@ -25,16 +25,16 @@ import XCTest
 import York
 
 class LoggerTests: XCTestCase {
-    
-    
+
+
     // MARK: - Tests
 
     func test_logger_info_mustNotCrash() {
         Logger(logProvider: TestLogProvider()).logInfo("Info Message")
     }
-    
+
     func test_logger_error_mustNotCrash() {
         Logger(logProvider: TestLogProvider()).logErrorMessage("Error Message")
     }
-    
+
 }
