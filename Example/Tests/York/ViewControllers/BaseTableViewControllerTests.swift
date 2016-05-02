@@ -75,21 +75,21 @@ class BaseTableViewControllerTests: XCTestCase {
         self.viewController.setupTableView()
     }
 
-    
+
     func test_createDataSource_mustReturnNil() {
         XCTAssertNil(self.viewController.createDataSource())
     }
-    
-    
+
+
     func test_createDelegate_mustReturnNil() {
         XCTAssertNil(self.viewController.createDelegate())
     }
-    
-    
+
+
     func test_performDataSync_mustNotCrash() {
         self.viewController.performDataSync()
     }
-    
+
 
     func test_dataSyncCompleted_mustNotCrash() {
         self.viewController.dataSyncCompleted()

@@ -40,7 +40,7 @@ class TableViewBlockDelegateTests: XCTestCase {
 
     func createTableViewBlockDelegate() -> TableViewBlockDelegate {
         self.tableView = UITableView()
-        self.itemSelectionBlock = { (indexPath:NSIndexPath) -> Void in
+        self.itemSelectionBlock = { (indexPath: NSIndexPath) -> Void in
             self.itemSelectionBlockWasCalled = true
         }
         self.loadMoreDataBlock = { () -> Void in
