@@ -29,7 +29,7 @@ public class PresentationPath: NSObject {
     // MARK: - Constants
 
     public let presentationParameterPath = "/:presentation"
-    public static let presentationParameterPathKey = ":presentation"
+    public static let presentationParameterPathKey = "presentation"
 
     // MARK: - Properties
 
@@ -63,14 +63,12 @@ public class PresentationPath: NSObject {
     }
 
     public func replacingValues(values: [String : String], mode: PresentationMode) -> String {
-        var path = self.removeLastPathSeparator(self.pattern)
-
+        var replacedValuesPath = self.removeLastPathSeparator(self.pattern)
         for (key, value) in values {
-            let range = path.rangeOfString(key)
-            path = path.stringByReplacingOccurrencesOfString(key, withString: value, options: .CaseInsensitiveSearch, range: range)
+            let range = replacedValuesPath.rangeOfString(key)
+            replacedValuesPath = replacedValuesPath.stringByReplacingOccurrencesOfString(key, withString: value, options: .CaseInsensitiveSearch, range: range)
         }
-
-        return self.removeLastPathSeparator(path) + "/" + mode.rawValue
+        return self.removeLastPathSeparator(replacedValuesPath) + "/" + mode.rawValue
     }
 
     private func removeLastPathSeparator(path: String) -> String {
