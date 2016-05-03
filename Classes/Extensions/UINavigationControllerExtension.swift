@@ -33,7 +33,7 @@ public enum PresentationMode: String {
 extension UINavigationController {
 
     public func presentViewController(viewController: UIViewController, animated: Bool, presentationMode: PresentationMode) {
-        
+
         if presentationMode == .Push {
             self.pushViewController(viewController, animated: animated)
         } else if presentationMode == .Show {
@@ -41,7 +41,7 @@ extension UINavigationController {
         } else if presentationMode == .Modal {
             self.presentViewController(viewController, animated: animated, completion: nil)
         }
-        
+
     }
-    
+
 }
