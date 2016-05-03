@@ -23,13 +23,6 @@
 
 import UIKit
 
-public enum PresentationPathMode: String {
-    case Push = "push"
-    case Show = "show"
-    case Modal = "modal"
-    case Popover = "popover"
-}
-
 public class PresentationPath: NSObject {
 
 
@@ -45,10 +38,10 @@ public class PresentationPath: NSObject {
 
     // MARK: - Class Methods
 
-    public class func presentationMode(parameters: [NSObject : AnyObject]) -> PresentationPathMode {
-        var mode: PresentationPathMode = .Push
+    public class func presentationMode(parameters: [NSObject : AnyObject]) -> PresentationMode {
+        var mode: PresentationMode = .Push
         if let presentationModeValue = parameters[presentationParameterPathKey] as? String,
-            let value = PresentationPathMode(rawValue: presentationModeValue) {
+            let value = PresentationMode(rawValue: presentationModeValue) {
             mode = value
         }
         return mode
@@ -69,7 +62,7 @@ public class PresentationPath: NSObject {
         return self.removeLastPathSeparator(self.pattern) + self.presentationParameterPath
     }
 
-    public func replacingValues(values: [String : String], mode: PresentationPathMode) -> String {
+    public func replacingValues(values: [String : String], mode: PresentationMode) -> String {
         var path = self.removeLastPathSeparator(self.pattern)
 
         for (key, value) in values {

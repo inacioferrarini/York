@@ -46,27 +46,27 @@ class PresentationPathTests: XCTestCase {
 
     func test_presentationModeForPath_withoutPresentationMode_mustReturnPush() {
         let presentationMode = PresentationPath.presentationMode(["" : ""])
-        XCTAssertEqual(presentationMode, PresentationPathMode.Push)
+        XCTAssertEqual(presentationMode, PresentationMode.Push)
     }
 
     func test_presentationModeForPath_withPushPresentationMode_mustReturnPush() {
         let presentationMode = PresentationPath.presentationMode([":presentation" : "push"])
-        XCTAssertEqual(presentationMode, PresentationPathMode.Push)
+        XCTAssertEqual(presentationMode, PresentationMode.Push)
     }
 
     func test_presentationModeForPath_withShowPresentationMode_mustReturnShow() {
         let presentationMode = PresentationPath.presentationMode([":presentation" : "show"])
-        XCTAssertEqual(presentationMode, PresentationPathMode.Show)
+        XCTAssertEqual(presentationMode, PresentationMode.Show)
     }
 
     func test_presentationModeForPath_withModalPresentationMode_mustReturnModal() {
         let presentationMode = PresentationPath.presentationMode([":presentation" : "modal"])
-        XCTAssertEqual(presentationMode, PresentationPathMode.Modal)
+        XCTAssertEqual(presentationMode, PresentationMode.Modal)
     }
 
     func test_presentationModeForPath_withPopoverPresentationMode_mustReturnPopover() {
         let presentationMode = PresentationPath.presentationMode([":presentation" : "popover"])
-        XCTAssertEqual(presentationMode, PresentationPathMode.Popover)
+        XCTAssertEqual(presentationMode, PresentationMode.Popover)
     }
 
 

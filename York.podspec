@@ -60,6 +60,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.subspec 'DeepLinkingNavigation' do |ss|
     ss.source_files = 'Classes/DeepLinkingNavigation/**/*.swift'
     ss.dependency 'York/Logging'
+    ss.dependency 'York/Extensions'
   end
 
   s.subspec 'Extensions' do |ss|

@@ -36,6 +36,7 @@ PODS:
   - York/DeepLinkingNavigation (0.3.1):
     - JLRoutes (= 1.6)
     - York-Swift-Try-Catch (= 0.1.1)
+    - York/Extensions
     - York/Logging
   - York/Extensions (0.3.1):
     - JLRoutes (= 1.6)
@@ -72,7 +73,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   JLRoutes: 435d791422e96c9b9b5e1c4db1aedb3ae1b1a08f
-  York: edc557fb9586128ab4daf5b398d98840aed33598
+  York: 12857c0e832120ff9b7d0b99181ff69c68cdab92
   York-Swift-Try-Catch: ac0d410504c56c181ee40404e95ea835a817e7b6
 
 COCOAPODS: 0.39.0
