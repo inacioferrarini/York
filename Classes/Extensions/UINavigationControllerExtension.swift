@@ -27,7 +27,7 @@ public enum PresentationMode: String {
     case Push = "push"
     case Show = "show"
     case Modal = "modal"
-    case Popover = "popover"
+  //  case Popover = "popover"
 }
 
 extension UINavigationController {
