@@ -25,14 +25,14 @@ import UIKit
 
 public class AppContext: NSObject {
 
-    public let navigationController: UINavigationController
+    public let viewControllers: [String : UIViewController]
     public let coreDataStack: CoreDataStack
     public let syncRules: DataSyncRules
     public let router: NavigationRouter
     public let logger: Logger
 
-    public init(navigationController: UINavigationController, coreDataStack: CoreDataStack, syncRules: DataSyncRules, router: NavigationRouter, logger: Logger) {
-        self.navigationController = navigationController
+    public init(viewControllers: [String : UIViewController], coreDataStack: CoreDataStack, syncRules: DataSyncRules, router: NavigationRouter, logger: Logger) {
+        self.viewControllers = viewControllers
         self.coreDataStack = coreDataStack
         self.syncRules = syncRules
         self.router = router

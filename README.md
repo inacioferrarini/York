@@ -49,15 +49,14 @@ In order to make easier to understand every class role, they were grouped togeth
 ## Backwards Compatibility
 
 Use:
-* York version 0.3.0 for Swift 2.2
+
+* York version 0.3.2 for Swift 2.2
 
 
+## Last Version (0.3.2) Release Notes:
 
-## Last Version (0.3.1) Release Notes:
-
-* Minor improvements
-* Updated unit tests
-* Fixed path to all release notes
+* Updated AppContext to keep reference to multiple View Controllers instead of only one UINavigationController.
+This is an intended change in order to make York usable for Apps using a UITabBarController or any other configuration that does not have a "main" UINavigationController.
 
 All release notes are grouped here: (https://github.com/inacioferrarini/York/blob/master/ReleaseNotes.md)
 
