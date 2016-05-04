@@ -32,10 +32,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.resources = 'Classes/**/*.xcdatamodeld'
 
-#  s.subspec 'Classes' do |ss|
-#    ss.source_files = 'Classes/**/*.swift'
-#  end
-
   s.subspec 'Context' do |ss|
     ss.source_files = 'Classes/Context/**/*.swift'
     ss.dependency 'York/Logging'
