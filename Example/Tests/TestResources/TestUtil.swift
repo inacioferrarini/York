@@ -56,17 +56,18 @@ class TestUtil: NSObject {
 
         let appBundle = self.yorkPODBundle()
         let logger = Logger(logProvider: TestLogProvider())
-        let rootNavigationController = self.rootViewController()
+        var viewControllers = Dictionary<String, UIViewController>()
+        viewControllers["navigationController"] = self.rootViewController()
         let stack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
         let router = NavigationRouter(schema: "GitHubSpy", logger: logger)
         let syncRulesStack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
         let syncRules = DataSyncRules(coreDataStack: syncRulesStack)
 
-        return AppContext(navigationController: rootNavigationController,
-            coreDataStack: stack,
-            syncRules: syncRules,
-            router: router,
-            logger: logger)
+        return AppContext(viewControllers: viewControllers,
+                          coreDataStack: stack,
+                          syncRules: syncRules,
+                          router: router,
+                          logger: logger)
     }
 
     func testAppContext() -> AppContext {
@@ -74,13 +75,14 @@ class TestUtil: NSObject {
         let appBundle = self.yorkPODBundle()
         let testsBundle = self.unitTestsBundle()
         let logger = Logger(logProvider: TestLogProvider())
-        let rootNavigationController = self.rootViewController()
+        var viewControllers = Dictionary<String, UIViewController>()
+        viewControllers["navigationController"] = self.rootViewController()
         let stack = CoreDataStack(modelFileName: TestUtil.testModelFileName, databaseFileName: TestUtil.testDatabaseFileName, logger: logger, bundle: testsBundle)
         let router = NavigationRouter(schema: "GitHubSpy", logger: logger)
         let syncRulesStack = CoreDataStack(modelFileName: TestUtil.modelFileName, databaseFileName: TestUtil.databaseFileName, logger: logger, bundle: appBundle)
         let syncRules = DataSyncRules(coreDataStack: syncRulesStack)
 
-        return AppContext(navigationController: rootNavigationController,
+        return AppContext(viewControllers: viewControllers,
                           coreDataStack: stack,
                           syncRules: syncRules,
                           router: router,

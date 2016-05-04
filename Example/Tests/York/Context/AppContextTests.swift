@@ -30,7 +30,7 @@ class AppContextTests: XCTestCase {
     // MARK: - Properties
 
     var logger: Logger!
-    var navigationController: UINavigationController!
+    var viewControllers: [String : UIViewController]!
     var coreDataStack: CoreDataStack!
     var syncRules: DataSyncRules!
     var router: NavigationRouter!
@@ -40,12 +40,13 @@ class AppContextTests: XCTestCase {
 
     func createAppContext() -> AppContext {
         self.logger = Logger(logProvider: TestLogProvider())
-        self.navigationController = UINavigationController()
+        self.viewControllers = Dictionary<String, UIViewController>()
+        self.viewControllers["navigationController"] = UINavigationController()
         self.coreDataStack = TestUtil().appContext().coreDataStack
         self.syncRules = DataSyncRules(coreDataStack: coreDataStack)
         self.router = NavigationRouter(schema: "", logger: self.logger)
 
-        return AppContext(navigationController: self.navigationController,
+        return AppContext(viewControllers: self.viewControllers,
             coreDataStack: self.coreDataStack,
             syncRules: self.syncRules,
             router: self.router,
@@ -62,7 +63,7 @@ class AppContextTests: XCTestCase {
 
     func test_AppContextFields_navigationController() {
         let appContext = self.createAppContext()
-        XCTAssertEqual(appContext.navigationController, self.navigationController)
+        XCTAssertEqual(appContext.viewControllers, self.viewControllers)
     }
 
     func test_AppContextFields_coreDataStack() {
