@@ -24,7 +24,7 @@
 import UIKit
 import CoreData
 
-public class TableViewCellPresenter<CellType: UITableViewCell, EntityType: NSManagedObject>: NSObject {
+public class TableViewCellPresenter<CellType: UITableViewCell, EntityType: AnyObject>: NSObject {
 
     public var configureCellBlock: ((CellType, EntityType) -> Void)
     public var cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)
