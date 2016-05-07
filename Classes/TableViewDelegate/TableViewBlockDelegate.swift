@@ -28,6 +28,7 @@ public class TableViewBlockDelegate: NSObject, UITableViewDelegate {
 
     public let tableView: UITableView
     public let itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)
+    public var heightForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> CGFloat)?
     public let loadMoreDataBlock: (() -> Void)?
 
     public init(tableView: UITableView, itemSelectionBlock: ((indexPath: NSIndexPath) -> Void), loadMoreDataBlock:(() -> Void)?) {
@@ -37,6 +38,16 @@ public class TableViewBlockDelegate: NSObject, UITableViewDelegate {
         super.init()
     }
 
+    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var height: CGFloat = 0
+        if let heightForRowAtIndexPathBlock = self.heightForRowAtIndexPathBlock {
+            height = heightForRowAtIndexPathBlock(indexPath: indexPath)
+        } else {
+            height = UITableViewAutomaticDimension
+        }
+        return height
+    }
+    
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.itemSelectionBlock(indexPath: indexPath)
     }
