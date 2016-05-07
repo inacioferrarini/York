@@ -71,19 +71,12 @@ public class BaseTableViewController: BaseDataBasedViewController {
             }
         }
     }
-
-    override public func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.performDataSyncIfNeeded()
-    }
-
+    
     override public func viewWillDisappear(animated: Bool) {
-
         if let tableView = self.tableView,
             let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRowAtIndexPath(selectedIndexPath, animated: true)
         }
-
         super.viewWillDisappear(animated)
     }
 
