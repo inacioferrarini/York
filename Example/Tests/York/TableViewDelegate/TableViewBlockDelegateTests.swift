@@ -31,6 +31,7 @@ class TableViewBlockDelegateTests: XCTestCase {
 
     var tableView: UITableView!
     var itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)!
+    var heightForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> CGFloat)!
     var loadMoreDataBlock: (() -> Void)!
     var itemSelectionBlockWasCalled: Bool = false
     var loadMoreDataBlockWasCalled: Bool = false
@@ -45,6 +46,9 @@ class TableViewBlockDelegateTests: XCTestCase {
         }
         self.loadMoreDataBlock = { () -> Void in
             self.loadMoreDataBlockWasCalled = true
+        }
+        self.heightForRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> CGFloat in
+            return 10
         }
         return TableViewBlockDelegate(tableView: self.tableView,
             itemSelectionBlock: self.itemSelectionBlock,
@@ -72,6 +76,20 @@ class TableViewBlockDelegateTests: XCTestCase {
         self.tableView.contentOffset.y = 0
         delegate.scrollViewDidScroll(UIScrollView())
         XCTAssertTrue(self.loadMoreDataBlockWasCalled)
+    }
+
+    func test_heightForRowAtIndexPath_withBlock_mustReturnValue() {
+        let delegate = self.createTableViewBlockDelegate()
+        delegate.heightForRowAtIndexPathBlock = self.heightForRowAtIndexPathBlock
+        let height = delegate.tableView(self.tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        XCTAssertEqual(height, 10)
+    }
+
+    func test_heightForRowAtIndexPath_withoutBlock_mustReturnDefaultValue() {
+        let delegate = self.createTableViewBlockDelegate()
+        delegate.heightForRowAtIndexPathBlock = nil
+        let height = delegate.tableView(self.tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        XCTAssertEqual(height, UITableViewAutomaticDimension)
     }
 
 }
