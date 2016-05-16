@@ -53,10 +53,38 @@ Use:
 * York version 0.3.2 for Swift 2.2
 
 
-## Last Version (0.3.2) Release Notes:
+## Last Version (0.3.3) Release Notes:
 
-* Updated AppContext to keep reference to multiple View Controllers instead of only one UINavigationController.
-This is an intended change in order to make York usable for Apps using a UITabBarController or any other configuration that does not have a "main" UINavigationController.
+* New Features:
+  * DataSources:
+    * Added ArrayDataSource for providing arrays as DataSources to Views.
+    * Added TableViewArrayDataSource for providing arrays as DataSources to UITableViews.
+    * Added CollectionViewArrayDataSource for providing arrays as DataSources to UICollectionViews.
+    * Added CollectionViewTableViewCell for providing a TableViewCell that contains an UICollectionView, having as well the UICollectionViewDetaSource.
+  * Extensions:
+    * Added StringExtensions, providing string related methods.
+  * Networking:
+    * Added HttpCookieManager to handle http session cookies.
+  * ViewController:
+    * Added BaseTabBarController to handle UITabBar customizations.
+  * ViewDelegates:
+    * Added TableViewBlockDelegate for handling UITableView item selection.
+    * Added CollectionViewBlockDelegate for handling UICollectionView item selection.
+
+* Updates
+  * Presenter:
+    * CollectionViewCellPresenter changed EntityType parameter from NSManagedObject to AnyObject, allowing it to be used by CollectionViewArrayDataSources as well.
+    * TableViewCellPresenter changed EntityType parameter from NSManagedObject to AnyObject, allowing it to be used by TableViewArrayDataSources as well.
+  * TableViewCells
+    * CollectionViewTableViewCell: Added delegate property.    
+  * ViewDelegates
+    * TableViewDelegate module renamed to 'ViewDelegates' in order to better support other view delegates.  
+    * TableViewBlockDelegate added var heightForRowAtIndexPathBlock to allow TableViewCells with different heights. If not defined, will return UITableViewAutomaticDimension value.
+  * Extensions:
+    * UIImageExtension: Added utility methods imageFromColor and maskedImageNamed
+
+* Bug Fixes
+  * Removed viewDidAppear method. It was doing the same thing as DataBasedViewController, thus, duplicating performDataSyncIfNeeded.
 
 All release notes are grouped here: (https://github.com/inacioferrarini/York/blob/master/ReleaseNotes.md)
 
