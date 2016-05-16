@@ -61,4 +61,43 @@ extension UIImage {
         return croppedImage
     }
 
+    public class func imageFromColor(color: UIColor, withSize size:CGSize, withCornerRadius cornerRadius: CGFloat) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContext(rect.size)
+
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextFillRect(context, rect)
+
+        var image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        UIGraphicsBeginImageContext(size)
+
+        UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius).addClip()
+        image.drawInRect(rect)
+
+        image = UIGraphicsGetImageFromCurrentImageContext()
+
+        UIGraphicsEndImageContext()
+
+        return image;
+    }
+
+    public class func maskedImageNamed(image: UIImage, color:UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, image.scale)
+
+        let context = UIGraphicsGetCurrentContext()
+        image.drawInRect(rect)
+
+        CGContextSetFillColorWithColor(context, color.CGColor)
+        CGContextSetBlendMode(context, .SourceAtop)
+        CGContextFillRect(context, rect)
+
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
+    }
+
 }
