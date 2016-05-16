@@ -29,12 +29,23 @@ class UIImageExtensionTests: XCTestCase {
 
     // MARK: - Tests
 
-    func test_circularScaleAndCropImage_image() {
+    func test_circularScaleAndCropImage_mustReturnImage() {
         var finalImage: UIImage?
         let bundle = TestUtil().unitTestsBundle()
         if let image = UIImage(named: "default-avatar", inBundle: bundle, compatibleWithTraitCollection: nil) {
             finalImage = UIImage.circularScaleAndCropImage(image, frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         }
+        XCTAssertNotNil(finalImage)
+    }
+
+    func test_imageFromColor_mustReturnImage() {
+        let finalImage = UIImage.imageFromColor(UIColor.blueColor(), withSize: CGSize(width: 10, height: 10), withCornerRadius: 1)
+        XCTAssertNotNil(finalImage)
+    }
+
+    func test_maskedImageNamed_mustReturnImage() {
+        var finalImage = UIImage.imageFromColor(UIColor.blueColor(), withSize: CGSize(width: 10, height: 10), withCornerRadius: 1)
+        finalImage = UIImage.maskedImageNamed(finalImage, color: UIColor.whiteColor())
         XCTAssertNotNil(finalImage)
     }
 
