@@ -34,6 +34,14 @@ public class CollectionViewTableViewCell: UITableViewCell {
         }
     }
 
+    // MARK: - Delegates
+
+    public var delegate: UICollectionViewDelegate? {
+        didSet {
+            self.collectionView.delegate = delegate
+        }
+    }
+
 
     // MARK: - Properties
 
