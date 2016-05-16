@@ -30,7 +30,7 @@ public enum PresentationMode: String {
   //  case Popover = "popover"
 }
 
-extension UINavigationController {
+public extension UINavigationController {
 
     public func presentViewController(viewController: UIViewController, animated: Bool, presentationMode: PresentationMode) {
 

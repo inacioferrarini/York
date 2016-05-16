@@ -23,7 +23,7 @@
 
 import Foundation
 
-extension Array where Element: Equatable {
+public extension Array where Element: Equatable {
 
     public mutating func removeObject(object: Element) {
         if let index = self.indexOf(object) {

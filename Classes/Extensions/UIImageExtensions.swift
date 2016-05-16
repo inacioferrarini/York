@@ -24,7 +24,7 @@
 import UIKit
 import Foundation
 
-extension UIImage {
+public extension UIImage {
 
     public class func circularScaleAndCropImage(image: UIImage, frame: CGRect) -> UIImage {
 

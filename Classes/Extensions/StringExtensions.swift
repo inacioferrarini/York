@@ -23,7 +23,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
 
     public func isNumber() -> Bool {
         let badCharacters = NSCharacterSet.decimalDigitCharacterSet().invertedSet
