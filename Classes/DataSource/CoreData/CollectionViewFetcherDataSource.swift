@@ -114,157 +114,157 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
     }
 
 
-    // MARK: - private properties
-
-    private var deletedSectionIndexes = NSMutableIndexSet()
-    private var insertedSectionIndexes = NSMutableIndexSet()
-    private var deletedItemIndexPaths = [NSIndexPath]()
-    private var insertedItemIndexPaths = [NSIndexPath]()
-    private var updatedItemIndexPaths = [NSIndexPath]()
-
-
-    // MARK: - Fetched results controller
-
-    public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
-                           atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-
-        switch type {
-        case .Insert:
-            self.insertedSectionIndexes.addIndex(sectionIndex)
-            break
-        case .Delete:
-            self.deletedSectionIndexes.addIndex(sectionIndex)
-            var indexPathsInSection = [NSIndexPath]()
-
-            for indexPath in self.deletedItemIndexPaths {
-                if indexPath.section == sectionIndex {
-                    indexPathsInSection.append(indexPath)
-                }
-            }
-            self.deletedItemIndexPaths.removeObjectsInArray(indexPathsInSection)
-            indexPathsInSection.removeAll()
-
-            for indexPath in self.updatedItemIndexPaths {
-                if indexPath.section == sectionIndex {
-                    indexPathsInSection.append(indexPath)
-                }
-            }
-            self.updatedItemIndexPaths.removeObjectsInArray(indexPathsInSection)
-
-            break
-        default:
-            break
-        }
-    }
-
-    public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject,
-                           atIndexPath indexPath: NSIndexPath?,
-                           forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-
-        switch type {
-        case .Insert:
-            self.performInsertAtIndexPath(newIndexPath)
-            break
-        case .Delete:
-            self.performRemoveFromIndexPath(atIndexPath: indexPath)
-            break
-        case .Move:
-            self.performMoveObject(atIndexPath: indexPath, newIndexPath: newIndexPath)
-            break
-        case .Update:
-            self.performUpdateObject(atIndexPath: indexPath)
-            break
-        }
-    }
-
-
-    // MARK: - Helper Methods
-
-    func performInsertAtIndexPath(newIndexPath: NSIndexPath?) {
-        if let newIndexPath = newIndexPath {
-            if self.insertedSectionIndexes.containsIndex(newIndexPath.section) {
-                return
-            }
-            self.insertedItemIndexPaths.append(newIndexPath)
-        }
-    }
-
-    func performRemoveFromIndexPath(atIndexPath indexPath: NSIndexPath?) {
-        if let indexPath = indexPath {
-            if self.deletedSectionIndexes.containsIndex(indexPath.section) {
-                return
-            }
-            self.deletedItemIndexPaths.append(indexPath)
-        }
-    }
-
-    func performMoveObject(atIndexPath indexPath: NSIndexPath?, newIndexPath: NSIndexPath?) {
-        if let indexPath = indexPath,
-            let newIndexPath = newIndexPath {
-            if !self.insertedSectionIndexes.containsIndex(newIndexPath.section) {
-                self.insertedItemIndexPaths.append(newIndexPath)
-            }
-            if !self.deletedSectionIndexes.containsIndex(indexPath.section) {
-                self.deletedItemIndexPaths.append(indexPath)
-            }
-        }
-    }
-
-    func performUpdateObject(atIndexPath indexPath: NSIndexPath?) {
-        if let indexPath = indexPath {
-            if self.deletedSectionIndexes.containsIndex(indexPath.section) || self.deletedItemIndexPaths.contains(indexPath) {
-                return
-            }
-            if !self.updatedItemIndexPaths.contains(indexPath) {
-                self.updatedItemIndexPaths.append(indexPath)
-            }
-        }
-    }
-
-
-    public func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        self.commitChanges()
-    }
-
-
-    // MARK: - Collection View Helper
-
-    public func commitChanges() {
-
-        if self.collectionView.window == nil {
-            self.clearChanges()
-            self.collectionView.reloadData()
-        }
-
-        let totalChanges = self.deletedSectionIndexes.count +
-            self.insertedSectionIndexes.count +
-            self.deletedItemIndexPaths.count +
-            self.insertedItemIndexPaths.count +
-            self.updatedItemIndexPaths.count
-
-        if totalChanges > 50 {
-            self.clearChanges()
-            self.collectionView.reloadData()
-            return
-        }
-
-        self.collectionView.performBatchUpdates({
-            self.collectionView.deleteSections(self.deletedSectionIndexes)
-            self.collectionView.insertSections(self.insertedSectionIndexes)
-            self.collectionView.deleteItemsAtIndexPaths(self.deletedItemIndexPaths)
-            self.collectionView.insertItemsAtIndexPaths(self.insertedItemIndexPaths)
-            self.collectionView.reloadItemsAtIndexPaths(self.updatedItemIndexPaths)
-        }) { (finished: Bool) in
-            self.clearChanges()
-        }
-    }
-
-    public func clearChanges() {
-        self.insertedSectionIndexes.removeAllIndexes()
-        self.deletedSectionIndexes.removeAllIndexes()
-        self.deletedItemIndexPaths.removeAll()
-        self.insertedItemIndexPaths.removeAll()
-        self.updatedItemIndexPaths.removeAll()
-    }
+//    // MARK: - private properties
+//
+//    private var deletedSectionIndexes = NSMutableIndexSet()
+//    private var insertedSectionIndexes = NSMutableIndexSet()
+//    private var deletedItemIndexPaths = [NSIndexPath]()
+//    private var insertedItemIndexPaths = [NSIndexPath]()
+//    private var updatedItemIndexPaths = [NSIndexPath]()
+//
+//
+//    // MARK: - Fetched results controller
+//
+//    public func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
+//                           atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+//
+//        switch type {
+//        case .Insert:
+//            self.insertedSectionIndexes.addIndex(sectionIndex)
+//            break
+//        case .Delete:
+//            self.deletedSectionIndexes.addIndex(sectionIndex)
+//            var indexPathsInSection = [NSIndexPath]()
+//
+//            for indexPath in self.deletedItemIndexPaths {
+//                if indexPath.section == sectionIndex {
+//                    indexPathsInSection.append(indexPath)
+//                }
+//            }
+//            self.deletedItemIndexPaths.removeObjectsInArray(indexPathsInSection)
+//            indexPathsInSection.removeAll()
+//
+//            for indexPath in self.updatedItemIndexPaths {
+//                if indexPath.section == sectionIndex {
+//                    indexPathsInSection.append(indexPath)
+//                }
+//            }
+//            self.updatedItemIndexPaths.removeObjectsInArray(indexPathsInSection)
+//
+//            break
+//        default:
+//            break
+//        }
+//    }
+//
+//    public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject,
+//                           atIndexPath indexPath: NSIndexPath?,
+//                           forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+//
+//        switch type {
+//        case .Insert:
+//            self.performInsertAtIndexPath(newIndexPath)
+//            break
+//        case .Delete:
+//            self.performRemoveFromIndexPath(atIndexPath: indexPath)
+//            break
+//        case .Move:
+//            self.performMoveObject(atIndexPath: indexPath, newIndexPath: newIndexPath)
+//            break
+//        case .Update:
+//            self.performUpdateObject(atIndexPath: indexPath)
+//            break
+//        }
+//    }
+//
+//
+//    // MARK: - Helper Methods
+//
+//    func performInsertAtIndexPath(newIndexPath: NSIndexPath?) {
+//        if let newIndexPath = newIndexPath {
+//            if self.insertedSectionIndexes.containsIndex(newIndexPath.section) {
+//                return
+//            }
+//            self.insertedItemIndexPaths.append(newIndexPath)
+//        }
+//    }
+//
+//    func performRemoveFromIndexPath(atIndexPath indexPath: NSIndexPath?) {
+//        if let indexPath = indexPath {
+//            if self.deletedSectionIndexes.containsIndex(indexPath.section) {
+//                return
+//            }
+//            self.deletedItemIndexPaths.append(indexPath)
+//        }
+//    }
+//
+//    func performMoveObject(atIndexPath indexPath: NSIndexPath?, newIndexPath: NSIndexPath?) {
+//        if let indexPath = indexPath,
+//            let newIndexPath = newIndexPath {
+//            if !self.insertedSectionIndexes.containsIndex(newIndexPath.section) {
+//                self.insertedItemIndexPaths.append(newIndexPath)
+//            }
+//            if !self.deletedSectionIndexes.containsIndex(indexPath.section) {
+//                self.deletedItemIndexPaths.append(indexPath)
+//            }
+//        }
+//    }
+//
+//    func performUpdateObject(atIndexPath indexPath: NSIndexPath?) {
+//        if let indexPath = indexPath {
+//            if self.deletedSectionIndexes.containsIndex(indexPath.section) || self.deletedItemIndexPaths.contains(indexPath) {
+//                return
+//            }
+//            if !self.updatedItemIndexPaths.contains(indexPath) {
+//                self.updatedItemIndexPaths.append(indexPath)
+//            }
+//        }
+//    }
+//
+//
+//    public func controllerDidChangeContent(controller: NSFetchedResultsController) {
+//        self.commitChanges()
+//    }
+//
+//
+//    // MARK: - Collection View Helper
+//
+//    public func commitChanges() {
+//
+//        if self.collectionView.window == nil {
+//            self.clearChanges()
+//            self.collectionView.reloadData()
+//        }
+//
+//        let totalChanges = self.deletedSectionIndexes.count +
+//            self.insertedSectionIndexes.count +
+//            self.deletedItemIndexPaths.count +
+//            self.insertedItemIndexPaths.count +
+//            self.updatedItemIndexPaths.count
+//
+//        if totalChanges > 50 {
+//            self.clearChanges()
+//            self.collectionView.reloadData()
+//            return
+//        }
+//
+//        self.collectionView.performBatchUpdates({
+//            self.collectionView.deleteSections(self.deletedSectionIndexes)
+//            self.collectionView.insertSections(self.insertedSectionIndexes)
+//            self.collectionView.deleteItemsAtIndexPaths(self.deletedItemIndexPaths)
+//            self.collectionView.insertItemsAtIndexPaths(self.insertedItemIndexPaths)
+//            self.collectionView.reloadItemsAtIndexPaths(self.updatedItemIndexPaths)
+//        }) { (finished: Bool) in
+//            self.clearChanges()
+//        }
+//    }
+//
+//    public func clearChanges() {
+//        self.insertedSectionIndexes.removeAllIndexes()
+//        self.deletedSectionIndexes.removeAllIndexes()
+//        self.deletedItemIndexPaths.removeAll()
+//        self.insertedItemIndexPaths.removeAll()
+//        self.updatedItemIndexPaths.removeAll()
+//    }
 
 }
