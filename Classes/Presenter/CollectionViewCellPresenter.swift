@@ -24,7 +24,7 @@
 import UIKit
 import CoreData
 
-public class CollectionViewCellPresenter<CellType: UICollectionViewCell, EntityType: NSManagedObject>: NSObject {
+public class CollectionViewCellPresenter<CellType: UICollectionViewCell, EntityType: AnyObject>: NSObject {
 
     public var configureCellBlock: ((CellType, EntityType) -> Void)
     public var cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)
