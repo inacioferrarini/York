@@ -18,6 +18,7 @@
 		34AAB9971CCFD4C600E0CE0F /* CoreDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AAB9961CCFD4C600E0CE0F /* CoreDataUtil.swift */; };
 		34AAB9991CCFFAA200E0CE0F /* TestsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */; };
 		34B76E3D1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E3C1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift */; };
+		34B76E3F1CEA17ED00A72C31 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E3E1CEA17ED00A72C31 /* StringExtensionsTests.swift */; };
 		34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */; };
 		34C91A601CC342750033AC8B /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A261CC342750033AC8B /* default-avatar.png */; };
 		34C91A611CC342750033AC8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A271CC342750033AC8B /* Localizable.strings */; };
@@ -100,6 +101,7 @@
 		34AAB9961CCFD4C600E0CE0F /* CoreDataUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataUtil.swift; sourceTree = "<group>"; };
 		34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsCollectionView.swift; sourceTree = "<group>"; };
 		34B76E3C1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayDataSourceTests.swift; sourceTree = "<group>"; };
+		34B76E3E1CEA17ED00A72C31 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensionTests.swift; sourceTree = "<group>"; };
 		34C91A241CC342750033AC8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C91A261CC342750033AC8B /* default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar.png"; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				34C91A491CC342750033AC8B /* NSObjectExtensionsTests.swift */,
 				34C91A4A1CC342750033AC8B /* UIImageExtensionTests.swift */,
 				3401A7541CD93D0900F6FEE6 /* UINavigationControllerExtensionTests.swift */,
+				34B76E3E1CEA17ED00A72C31 /* StringExtensionsTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 				34C91A6B1CC342750033AC8B /* SimpleViewComponent.swift in Sources */,
 				34C91A751CC342750033AC8B /* NavigationRouterTests.swift in Sources */,
 				34EFE1F81CCE828A00264D0E /* EntityTest.swift in Sources */,
+				34B76E3F1CEA17ED00A72C31 /* StringExtensionsTests.swift in Sources */,
 				34EFE1FF1CCEBEDB00264D0E /* EntityTestMandatoryField.swift in Sources */,
 				34C91A691CC342750033AC8B /* TestBaseViewController.swift in Sources */,
 				34C91A7F1CC342750033AC8B /* BaseTableViewControllerTests.swift in Sources */,
