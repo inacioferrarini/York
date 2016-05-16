@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "York"
-  s.version          = "0.3.2"
+  s.version          = "0.3.3"
   s.summary          = "Foundation classes used to eliminate boiler-plate code and provide an accelerated startup time."
   s.homepage         = "https://github.com/inacioferrarini/York"
 
@@ -29,6 +29,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.ios.deployment_target = '8.0'
   s.dependency 'York-Swift-Try-Catch', '0.1.1'
   s.dependency 'JLRoutes', '1.6'
+  s.dependency 'SwiftHEXColors', '1.0.4'
 
   s.resources = 'Classes/**/*.xcdatamodeld'
 
@@ -67,6 +68,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     ss.source_files = 'Classes/Logging/**/*.swift'
   end
 
+  s.subspec 'Networking' do |ss|
+    ss.source_files = 'Classes/Networking/**/*.swift'
+  end
+
   s.subspec 'Persistence' do |ss|
     ss.source_files = 'Classes/Persistence/**/*.swift'
     ss.dependency 'York/Logging'
@@ -76,8 +81,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     ss.source_files = 'Classes/Presenter/**/*.swift'
   end
 
-  s.subspec 'TableViewDelegate' do |ss|
-    ss.source_files = 'Classes/TableViewDelegate/**/*.swift'
+  s.subspec 'ViewDelegates' do |ss|
+    ss.source_files = 'Classes/ViewDelegates/**/*.swift'
   end
 
   s.subspec 'ViewController' do |ss|
@@ -89,6 +94,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     ss.source_files = 'Classes/Views/**/*.swift'
     ss.dependency 'York/Presenter'
     ss.dependency 'York/Extensions'
+  end
+
+  s.subspec 'ViewComponents' do |ss|
+    ss.source_files = 'Classes/ViewComponents/**/*.swift'
   end
 
 end
