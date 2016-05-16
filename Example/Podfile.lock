@@ -11,6 +11,7 @@ PODS:
     - York/DeepLinkingNavigation (= 0.3.3)
     - York/Extensions (= 0.3.3)
     - York/Logging (= 0.3.3)
+    - York/Networking (= 0.3.3)
     - York/Persistence (= 0.3.3)
     - York/Presenter (= 0.3.3)
     - York/ViewComponents (= 0.3.3)
@@ -53,6 +54,10 @@ PODS:
     - JLRoutes (= 1.6)
     - SwiftHEXColors (= 1.0.4)
     - York-Swift-Try-Catch (= 0.1.1)
+  - York/Networking (0.3.3):
+    - JLRoutes (= 1.6)
+    - SwiftHEXColors (= 1.0.4)
+    - York-Swift-Try-Catch (= 0.1.1)
   - York/Persistence (0.3.3):
     - JLRoutes (= 1.6)
     - SwiftHEXColors (= 1.0.4)
@@ -92,7 +97,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   JLRoutes: 435d791422e96c9b9b5e1c4db1aedb3ae1b1a08f
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
-  York: 2f8798b10ab4b139050dff55fcaa3575b4a0e1c2
+  York: 245ef87a465e1c15f1d0415de3de89a5e296beff
   York-Swift-Try-Catch: ac0d410504c56c181ee40404e95ea835a817e7b6
 
 COCOAPODS: 0.39.0
