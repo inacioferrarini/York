@@ -75,120 +75,120 @@ class CollectionViewFetcherDataSourceTestsCnt: CollectionViewFetcherDataSourceTe
     }
 
 
-    // MARK: - Tests - didChangeSection
+//    // MARK: - Tests - didChangeSection
+//
+//    func test_didChangeSection_forInsert_mustNotCrash() {
+//        let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: "sectionName")
+//        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+//
+//        helper.removeAllTestEntities()
+//
+//        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+//        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 2)
+//
+//        dataSource.refreshData()
+//
+//        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 3)
+//
+//        let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
+//        dataSource.controller(dataSource.fetchedResultsController,
+//                              didChangeSection: section,
+//                              atIndex: 0,
+//                              forChangeType: .Insert)
+//        dataSource.refreshData()
+//    }
 
-    func test_didChangeSection_forInsert_mustNotCrash() {
-        let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: "sectionName")
-        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+//    func test_didChangeSection_forDelete_mustNotCrash() {
+//        let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: "sectionName")
+//        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+//
+//        helper.removeAllTestEntities()
+//
+//        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+//        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
+//        let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).last
+//
+//        dataSource.refreshData()
+//        dataSource.managedObjectContext.deleteObject(entity!)
+//
+//        let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
+//        dataSource.controller(dataSource.fetchedResultsController,
+//                              didChangeSection: section,
+//                              atIndex: 0,
+//                              forChangeType: .Delete)
+//
+//        dataSource.refreshData()
+//    }
 
-        helper.removeAllTestEntities()
+//    func test_didChangeSection_forDelete_deletedItemFromOtherSection_mustNotCrash() {
+//        let dataSource = createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
+//        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+//
+//        helper.removeAllTestEntities()
+//
+//        let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
+//
+//        dataSource.refreshData()
+//
+//        dataSource.controller(dataSource.fetchedResultsController,
+//                              didChangeObject: entity!,
+//                              atIndexPath: NSIndexPath(forRow: 1, inSection: 0),
+//                              forChangeType: .Delete,
+//                              newIndexPath: nil)
+//
+//        let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
+//        dataSource.controller(dataSource.fetchedResultsController,
+//                              didChangeSection: section,
+//                              atIndex: 0,
+//                              forChangeType: .Delete)
+//
+//        dataSource.refreshData()
+//    }
 
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 2)
+//    func test_didChangeSection_forDelete_deletedItemFromSameSection_mustNotCrash() {
+//        let dataSource = createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
+//        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+//
+//        helper.removeAllTestEntities()
+//
+//        let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
+//
+//        dataSource.refreshData()
+//
+//        dataSource.controller(dataSource.fetchedResultsController,
+//                              didChangeObject: entity!,
+//                              atIndexPath: NSIndexPath(forRow: 1, inSection: 0),
+//                              forChangeType: .Update,
+//                              newIndexPath: nil)
+//
+//        let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
+//        dataSource.controller(dataSource.fetchedResultsController,
+//                              didChangeSection: section,
+//                              atIndex: 0,
+//                              forChangeType: .Delete)
+//
+//        dataSource.refreshData()
+//    }
 
-        dataSource.refreshData()
-
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 3)
-
-        let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
-        dataSource.controller(dataSource.fetchedResultsController,
-                              didChangeSection: section,
-                              atIndex: 0,
-                              forChangeType: .Insert)
-        dataSource.refreshData()
-    }
-
-    func test_didChangeSection_forDelete_mustNotCrash() {
-        let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: "sectionName")
-        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
-
-        helper.removeAllTestEntities()
-
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
-        let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).last
-
-        dataSource.refreshData()
-        dataSource.managedObjectContext.deleteObject(entity!)
-
-        let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
-        dataSource.controller(dataSource.fetchedResultsController,
-                              didChangeSection: section,
-                              atIndex: 0,
-                              forChangeType: .Delete)
-
-        dataSource.refreshData()
-    }
-
-    func test_didChangeSection_forDelete_deletedItemFromOtherSection_mustNotCrash() {
-        let dataSource = createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
-        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
-
-        helper.removeAllTestEntities()
-
-        let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
-
-        dataSource.refreshData()
-
-        dataSource.controller(dataSource.fetchedResultsController,
-                              didChangeObject: entity!,
-                              atIndexPath: NSIndexPath(forRow: 1, inSection: 0),
-                              forChangeType: .Delete,
-                              newIndexPath: nil)
-
-        let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
-        dataSource.controller(dataSource.fetchedResultsController,
-                              didChangeSection: section,
-                              atIndex: 0,
-                              forChangeType: .Delete)
-
-        dataSource.refreshData()
-    }
-
-    func test_didChangeSection_forDelete_deletedItemFromSameSection_mustNotCrash() {
-        let dataSource = createCollectionViewFetcherDataSource(sectionNameKeyPath: nil)
-        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
-
-        helper.removeAllTestEntities()
-
-        let entity = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1).last
-
-        dataSource.refreshData()
-
-        dataSource.controller(dataSource.fetchedResultsController,
-                              didChangeObject: entity!,
-                              atIndexPath: NSIndexPath(forRow: 1, inSection: 0),
-                              forChangeType: .Update,
-                              newIndexPath: nil)
-
-        let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
-        dataSource.controller(dataSource.fetchedResultsController,
-                              didChangeSection: section,
-                              atIndex: 0,
-                              forChangeType: .Delete)
-
-        dataSource.refreshData()
-    }
-
-    func test_didChangeSection_forDefault_mustNotCrash() {
-        let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: "sectionName")
-        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
-
-        helper.removeAllTestEntities()
-
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1)
-
-        dataSource.refreshData()
-
-        let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
-        dataSource.controller(dataSource.fetchedResultsController,
-                              didChangeSection: section,
-                              atIndex: 0,
-                              forChangeType: .Update)
-
-        dataSource.refreshData()
-    }
+//    func test_didChangeSection_forDefault_mustNotCrash() {
+//        let dataSource = self.createCollectionViewFetcherDataSource(sectionNameKeyPath: "sectionName")
+//        let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
+//
+//        helper.removeAllTestEntities()
+//
+//        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+//        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
+//        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1)
+//
+//        dataSource.refreshData()
+//
+//        let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
+//        dataSource.controller(dataSource.fetchedResultsController,
+//                              didChangeSection: section,
+//                              atIndex: 0,
+//                              forChangeType: .Update)
+//
+//        dataSource.refreshData()
+//    }
 
 }
