@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
   - JLRoutes (1.6)
   - SwiftHEXColors (1.0.4)
   - York (0.3.3):
@@ -88,6 +103,7 @@ PODS:
     - York/Presenter
 
 DEPENDENCIES:
+  - AFNetworking (= 3.1.0)
   - York (from `../`)
 
 EXTERNAL SOURCES:
@@ -95,6 +111,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   JLRoutes: 435d791422e96c9b9b5e1c4db1aedb3ae1b1a08f
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
   York: 245ef87a465e1c15f1d0415de3de89a5e296beff
