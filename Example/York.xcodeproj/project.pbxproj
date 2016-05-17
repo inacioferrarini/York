@@ -25,6 +25,9 @@
 		34B76E4C1CEAC5FA00A72C31 /* CollectionViewArrayDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E4B1CEAC5FA00A72C31 /* CollectionViewArrayDataSourceTests.swift */; };
 		34B76E501CEAD4D500A72C31 /* TableViewArrayDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E4F1CEAD4D500A72C31 /* TableViewArrayDataSourceTests.swift */; };
 		34B76E531CEAE0CE00A72C31 /* CollectionViewTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E521CEAE0CE00A72C31 /* CollectionViewTableViewCellTests.swift */; };
+		34B76E561CEB5BF100A72C31 /* HttpCookieManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E551CEB5BF100A72C31 /* HttpCookieManagerTests.swift */; };
+		34B76E591CEB813C00A72C31 /* TestsNSHTTPCookieStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E581CEB813C00A72C31 /* TestsNSHTTPCookieStorage.swift */; };
+		34B76E5B1CEB821100A72C31 /* TestsHttpCookieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E5A1CEB821100A72C31 /* TestsHttpCookieManager.swift */; };
 		34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */; };
 		34C91A601CC342750033AC8B /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A261CC342750033AC8B /* default-avatar.png */; };
 		34C91A611CC342750033AC8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A271CC342750033AC8B /* Localizable.strings */; };
@@ -74,6 +77,8 @@
 		34EFE1FA1CCE9A8C00264D0E /* BaseFetcherDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1F91CCE9A8C00264D0E /* BaseFetcherDataSourceTests.swift */; };
 		34EFE1FF1CCEBEDB00264D0E /* EntityTestMandatoryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1FC1CCEBBCF00264D0E /* EntityTestMandatoryField.swift */; };
 		34EFE2001CCEBEDF00264D0E /* EntityTestMandatoryField+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EFE1FB1CCEBBCF00264D0E /* EntityTestMandatoryField+CoreDataProperties.swift */; };
+		34F1EF7D1CEBA2AF00C4896C /* TestsNSURLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1EF7C1CEBA2AF00C4896C /* TestsNSURLSessionDataTask.swift */; };
+		34F1EF7F1CEBA69600C4896C /* TestsNSHTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F1EF7E1CEBA69600C4896C /* TestsNSHTTPURLResponse.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -113,6 +118,9 @@
 		34B76E4B1CEAC5FA00A72C31 /* CollectionViewArrayDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewArrayDataSourceTests.swift; sourceTree = "<group>"; };
 		34B76E4F1CEAD4D500A72C31 /* TableViewArrayDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewArrayDataSourceTests.swift; sourceTree = "<group>"; };
 		34B76E521CEAE0CE00A72C31 /* CollectionViewTableViewCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCellTests.swift; sourceTree = "<group>"; };
+		34B76E551CEB5BF100A72C31 /* HttpCookieManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpCookieManagerTests.swift; sourceTree = "<group>"; };
+		34B76E581CEB813C00A72C31 /* TestsNSHTTPCookieStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsNSHTTPCookieStorage.swift; sourceTree = "<group>"; };
+		34B76E5A1CEB821100A72C31 /* TestsHttpCookieManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsHttpCookieManager.swift; sourceTree = "<group>"; };
 		34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensionTests.swift; sourceTree = "<group>"; };
 		34C91A241CC342750033AC8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C91A261CC342750033AC8B /* default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar.png"; sourceTree = "<group>"; };
@@ -163,6 +171,8 @@
 		34EFE1F91CCE9A8C00264D0E /* BaseFetcherDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFetcherDataSourceTests.swift; sourceTree = "<group>"; };
 		34EFE1FB1CCEBBCF00264D0E /* EntityTestMandatoryField+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EntityTestMandatoryField+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		34EFE1FC1CCEBBCF00264D0E /* EntityTestMandatoryField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityTestMandatoryField.swift; sourceTree = "<group>"; };
+		34F1EF7C1CEBA2AF00C4896C /* TestsNSURLSessionDataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsNSURLSessionDataTask.swift; sourceTree = "<group>"; };
+		34F1EF7E1CEBA69600C4896C /* TestsNSHTTPURLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsNSHTTPURLResponse.swift; sourceTree = "<group>"; };
 		486499EF4230042C03762DE7 /* Pods-York_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-York_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-York_Example/Pods-York_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4871DBC163926B4853E22235 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4B69132A93CA90C05C96E8CB /* York.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = York.podspec; path = ../York.podspec; sourceTree = "<group>"; };
@@ -261,6 +271,25 @@
 			path = ViewComponents;
 			sourceTree = "<group>";
 		};
+		34B76E541CEB5BD100A72C31 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				34B76E551CEB5BF100A72C31 /* HttpCookieManagerTests.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		34B76E571CEB812600A72C31 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				34B76E581CEB813C00A72C31 /* TestsNSHTTPCookieStorage.swift */,
+				34B76E5A1CEB821100A72C31 /* TestsHttpCookieManager.swift */,
+				34F1EF7C1CEBA2AF00C4896C /* TestsNSURLSessionDataTask.swift */,
+				34F1EF7E1CEBA69600C4896C /* TestsNSHTTPURLResponse.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		34C91A251CC342750033AC8B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +308,7 @@
 				34C91A2A1CC342750033AC8B /* Persistence */,
 				34EFE1EB1CCD955F00264D0E /* CollectionViewCells */,
 				346C8DDD1CD57F8200F1F831 /* Logger */,
+				34B76E571CEB812600A72C31 /* Networking */,
 				34C91A2D1CC342750033AC8B /* TableViewCells */,
 				34C91A311CC342750033AC8B /* ViewControllers */,
 				34C91A361CC342750033AC8B /* Views */,
@@ -345,6 +375,7 @@
 				34C91A451CC342750033AC8B /* DeepLinkingNavigation */,
 				34C91A481CC342750033AC8B /* Extensions */,
 				34C91A4B1CC342750033AC8B /* Logging */,
+				34B76E541CEB5BD100A72C31 /* Networking */,
 				34C91A4D1CC342750033AC8B /* Persistence */,
 				34C91A521CC342750033AC8B /* Presenter */,
 				34B76E511CEAE09300A72C31 /* ViewComponents */,
@@ -806,8 +837,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				34C91A631CC342750033AC8B /* FetchedResultsSectionInfo.swift in Sources */,
+				34B76E561CEB5BF100A72C31 /* HttpCookieManagerTests.swift in Sources */,
 				34B76E4C1CEAC5FA00A72C31 /* CollectionViewArrayDataSourceTests.swift in Sources */,
 				3401A7551CD93D0900F6FEE6 /* UINavigationControllerExtensionTests.swift in Sources */,
+				34B76E591CEB813C00A72C31 /* TestsNSHTTPCookieStorage.swift in Sources */,
 				34C91A821CC342750033AC8B /* TestBaseViewControllerTests.swift in Sources */,
 				346C8DE11CD62F0B00F1F831 /* ErrorProneFetcherDataSource.swift in Sources */,
 				34C91A6F1CC342750033AC8B /* DataSyncDailyRulesTests.swift in Sources */,
@@ -825,6 +858,7 @@
 				34C91A801CC342750033AC8B /* TestBaseDataBasedViewControllerTests.swift in Sources */,
 				34C91A6A1CC342750033AC8B /* TestClassicTableViewController.swift in Sources */,
 				34C91A741CC342750033AC8B /* EntitySyncHistoryTests.swift in Sources */,
+				34F1EF7D1CEBA2AF00C4896C /* TestsNSURLSessionDataTask.swift in Sources */,
 				34EFE1F71CCE828A00264D0E /* EntityTest+CoreDataProperties.swift in Sources */,
 				34C91A831CC342750033AC8B /* TestClassicTableViewControllerTests.swift in Sources */,
 				34B76E501CEAD4D500A72C31 /* TableViewArrayDataSourceTests.swift in Sources */,
@@ -865,7 +899,9 @@
 				34C91A781CC342750033AC8B /* UIImageExtensionTests.swift in Sources */,
 				34C91A7A1CC342750033AC8B /* CoreDataStackTests.swift in Sources */,
 				346C8DEA1CD6B77400F1F831 /* PresentationPathTests.swift in Sources */,
+				34F1EF7F1CEBA69600C4896C /* TestsNSHTTPURLResponse.swift in Sources */,
 				34EFE1E81CCD6C5900264D0E /* CollectionViewCellPresenterTests.swift in Sources */,
+				34B76E5B1CEB821100A72C31 /* TestsHttpCookieManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
