@@ -47,7 +47,7 @@ public class TableViewBlockDelegate: NSObject, UITableViewDelegate {
         }
         return height
     }
-    
+
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.itemSelectionBlock(indexPath: indexPath)
     }

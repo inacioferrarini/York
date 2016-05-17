@@ -51,7 +51,7 @@ public class ArrayDataSource<Type: AnyObject>: NSObject {
     }
 
     public func indexPathForObject(object: Type) -> NSIndexPath? {
-        var indexPath:NSIndexPath?
+        var indexPath: NSIndexPath?
         if let index = self.objects.indexOf({$0 === object}) {
             indexPath = NSIndexPath(forRow: index, inSection: 0)
         }

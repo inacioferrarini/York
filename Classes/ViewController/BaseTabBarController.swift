@@ -35,8 +35,8 @@ public class BaseTabBarController: UITabBarController {
 
 
     // MARK: - App Theme
-    
+
     public func applyAppTheme() {
     }
-    
+
 }

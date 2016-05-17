@@ -61,7 +61,7 @@ public extension UIImage {
         return croppedImage
     }
 
-    public class func imageFromColor(color: UIColor, withSize size:CGSize, withCornerRadius cornerRadius: CGFloat) -> UIImage {
+    public class func imageFromColor(color: UIColor, withSize size: CGSize, withCornerRadius cornerRadius: CGFloat) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(rect.size)
 
@@ -81,10 +81,10 @@ public extension UIImage {
 
         UIGraphicsEndImageContext()
 
-        return image;
+        return image
     }
 
-    public class func maskedImageNamed(image: UIImage, color:UIColor) -> UIImage {
+    public class func maskedImageNamed(image: UIImage, color: UIColor) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, image.scale)
 
