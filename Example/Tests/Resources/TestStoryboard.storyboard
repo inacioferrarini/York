@@ -151,7 +151,7 @@
                         <segue destination="Nbx-vc-IW6" kind="show" identifier="BaseTableViewController" id="vc0-Yw-Arn"/>
                         <segue destination="7PC-u8-gpt" kind="show" identifier="TestBaseTableViewController" id="iEH-Hu-g6p"/>
                         <segue destination="1z6-LC-mYq" kind="show" identifier="TestClassicTableViewController" id="Ow4-DK-AIE"/>
-                        <segue destination="M6S-Ag-cU9" kind="show" id="LPX-2b-yyg"/>
+                        <segue destination="M6S-Ag-cU9" kind="show" identifier="BaseTabBarController" id="LPX-2b-yyg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flb-ng-EZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
