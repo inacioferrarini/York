@@ -20,6 +20,8 @@
 		34B76E3D1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E3C1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift */; };
 		34B76E3F1CEA17ED00A72C31 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E3E1CEA17ED00A72C31 /* StringExtensionsTests.swift */; };
 		34B76E431CEAB06000A72C31 /* BaseTabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E421CEAB06000A72C31 /* BaseTabBarControllerTests.swift */; };
+		34B76E471CEAB63200A72C31 /* TableViewBlockDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E461CEAB63200A72C31 /* TableViewBlockDelegateTests.swift */; };
+		34B76E4A1CEAB65B00A72C31 /* CollectionViewBlockDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E491CEAB65B00A72C31 /* CollectionViewBlockDelegateTests.swift */; };
 		34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */; };
 		34C91A601CC342750033AC8B /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A261CC342750033AC8B /* default-avatar.png */; };
 		34C91A611CC342750033AC8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A271CC342750033AC8B /* Localizable.strings */; };
@@ -49,7 +51,6 @@
 		34C91A791CC342750033AC8B /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A4C1CC342750033AC8B /* LoggerTests.swift */; };
 		34C91A7A1CC342750033AC8B /* CoreDataStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A4E1CC342750033AC8B /* CoreDataStackTests.swift */; };
 		34C91A7C1CC342750033AC8B /* TableViewCellPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A531CC342750033AC8B /* TableViewCellPresenterTests.swift */; };
-		34C91A7D1CC342750033AC8B /* TableViewBlockDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A551CC342750033AC8B /* TableViewBlockDelegateTests.swift */; };
 		34C91A7E1CC342750033AC8B /* BaseDataBasedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A571CC342750033AC8B /* BaseDataBasedViewControllerTests.swift */; };
 		34C91A7F1CC342750033AC8B /* BaseTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A581CC342750033AC8B /* BaseTableViewControllerTests.swift */; };
 		34C91A801CC342750033AC8B /* TestBaseDataBasedViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C91A591CC342750033AC8B /* TestBaseDataBasedViewControllerTests.swift */; };
@@ -104,6 +105,8 @@
 		34B76E3C1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayDataSourceTests.swift; sourceTree = "<group>"; };
 		34B76E3E1CEA17ED00A72C31 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		34B76E421CEAB06000A72C31 /* BaseTabBarControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarControllerTests.swift; sourceTree = "<group>"; };
+		34B76E461CEAB63200A72C31 /* TableViewBlockDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewBlockDelegateTests.swift; sourceTree = "<group>"; };
+		34B76E491CEAB65B00A72C31 /* CollectionViewBlockDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewBlockDelegateTests.swift; sourceTree = "<group>"; };
 		34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensionTests.swift; sourceTree = "<group>"; };
 		34C91A241CC342750033AC8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C91A261CC342750033AC8B /* default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar.png"; sourceTree = "<group>"; };
@@ -134,7 +137,6 @@
 		34C91A4C1CC342750033AC8B /* LoggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
 		34C91A4E1CC342750033AC8B /* CoreDataStackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackTests.swift; sourceTree = "<group>"; };
 		34C91A531CC342750033AC8B /* TableViewCellPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellPresenterTests.swift; sourceTree = "<group>"; };
-		34C91A551CC342750033AC8B /* TableViewBlockDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewBlockDelegateTests.swift; sourceTree = "<group>"; };
 		34C91A571CC342750033AC8B /* BaseDataBasedViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDataBasedViewControllerTests.swift; sourceTree = "<group>"; };
 		34C91A581CC342750033AC8B /* BaseTableViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewControllerTests.swift; sourceTree = "<group>"; };
 		34C91A591CC342750033AC8B /* TestBaseDataBasedViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestBaseDataBasedViewControllerTests.swift; sourceTree = "<group>"; };
@@ -216,6 +218,31 @@
 				34B76E3C1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift */,
 			);
 			path = Arrays;
+			sourceTree = "<group>";
+		};
+		34B76E441CEAB63200A72C31 /* ViewDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				34B76E481CEAB64500A72C31 /* CollectionView */,
+				34B76E451CEAB63200A72C31 /* TableView */,
+			);
+			path = ViewDelegates;
+			sourceTree = "<group>";
+		};
+		34B76E451CEAB63200A72C31 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				34B76E461CEAB63200A72C31 /* TableViewBlockDelegateTests.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		34B76E481CEAB64500A72C31 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				34B76E491CEAB65B00A72C31 /* CollectionViewBlockDelegateTests.swift */,
+			);
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		34C91A251CC342750033AC8B /* Resources */ = {
@@ -304,8 +331,8 @@
 				34C91A4B1CC342750033AC8B /* Logging */,
 				34C91A4D1CC342750033AC8B /* Persistence */,
 				34C91A521CC342750033AC8B /* Presenter */,
-				34C91A541CC342750033AC8B /* TableViewDelegate */,
 				34C91A561CC342750033AC8B /* ViewControllers */,
+				34B76E441CEAB63200A72C31 /* ViewDelegates */,
 				34C91A5D1CC342750033AC8B /* Views */,
 			);
 			path = York;
@@ -386,14 +413,6 @@
 				34EFE1E71CCD6C5900264D0E /* CollectionViewCellPresenterTests.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		34C91A541CC342750033AC8B /* TableViewDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				34C91A551CC342750033AC8B /* TableViewBlockDelegateTests.swift */,
-			);
-			path = TableViewDelegate;
 			sourceTree = "<group>";
 		};
 		34C91A561CC342750033AC8B /* ViewControllers */ = {
@@ -776,7 +795,9 @@
 				34C91A6F1CC342750033AC8B /* DataSyncDailyRulesTests.swift in Sources */,
 				34C91A6E1CC342750033AC8B /* AppContextTests.swift in Sources */,
 				346C8DDF1CD57FF000F1F831 /* TestLogProvider.swift in Sources */,
+				34B76E4A1CEAB65B00A72C31 /* CollectionViewBlockDelegateTests.swift in Sources */,
 				34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */,
+				34B76E471CEAB63200A72C31 /* TableViewBlockDelegateTests.swift in Sources */,
 				34C91A661CC342750033AC8B /* TestUtil.swift in Sources */,
 				34C91A811CC342750033AC8B /* TestBaseTableViewControllerTests.swift in Sources */,
 				34C91A6D1CC342750033AC8B /* TestsTableView.swift in Sources */,
@@ -822,7 +843,6 @@
 				34EFE1E31CCD31DC00264D0E /* FetcherDataSourceTests.swift in Sources */,
 				34EFE1EA1CCD729C00264D0E /* CollectionViewFetcherDataSourceTests.swift in Sources */,
 				34C91A781CC342750033AC8B /* UIImageExtensionTests.swift in Sources */,
-				34C91A7D1CC342750033AC8B /* TableViewBlockDelegateTests.swift in Sources */,
 				34C91A7A1CC342750033AC8B /* CoreDataStackTests.swift in Sources */,
 				346C8DEA1CD6B77400F1F831 /* PresentationPathTests.swift in Sources */,
 				34EFE1E81CCD6C5900264D0E /* CollectionViewCellPresenterTests.swift in Sources */,
