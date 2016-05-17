@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="did-vT-wuf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="did-vT-wuf">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Test Base View Controller-->
@@ -151,6 +151,7 @@
                         <segue destination="Nbx-vc-IW6" kind="show" identifier="BaseTableViewController" id="vc0-Yw-Arn"/>
                         <segue destination="7PC-u8-gpt" kind="show" identifier="TestBaseTableViewController" id="iEH-Hu-g6p"/>
                         <segue destination="1z6-LC-mYq" kind="show" identifier="TestClassicTableViewController" id="Ow4-DK-AIE"/>
+                        <segue destination="M6S-Ag-cU9" kind="show" id="LPX-2b-yyg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flb-ng-EZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -174,6 +175,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bPT-UA-Xld" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-490" y="1367"/>
+        </scene>
+        <!--Base Tab Bar Controller-->
+        <scene sceneID="CCg-Tg-Led">
+            <objects>
+                <tabBarController storyboardIdentifier="BaseTabBarController" id="M6S-Ag-cU9" customClass="BaseTabBarController" customModule="York" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="nej-8z-mVu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FJY-uh-Wbm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1069" y="-1203"/>
         </scene>
         <!--Base View Controller-->
         <scene sceneID="Uni-ig-w68">

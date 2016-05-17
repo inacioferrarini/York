@@ -96,6 +96,15 @@ class TestUtil: NSObject {
 
     // MARK: - Test View Controllers
 
+    func baseTabBarController() -> BaseTabBarController {
+        let bundle = self.unitTestsBundle()
+        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseTabBarController") as? BaseTabBarController {
+            return viewController
+        }
+        return BaseTabBarController()
+    }
+
     func rootViewController() -> UINavigationController {
         let bundle = self.unitTestsBundle()
         XCTAssertNotNil(bundle, "BUNDLE EXPECTED")

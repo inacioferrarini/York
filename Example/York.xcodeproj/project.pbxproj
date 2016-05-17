@@ -19,6 +19,7 @@
 		34AAB9991CCFFAA200E0CE0F /* TestsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */; };
 		34B76E3D1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E3C1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift */; };
 		34B76E3F1CEA17ED00A72C31 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E3E1CEA17ED00A72C31 /* StringExtensionsTests.swift */; };
+		34B76E431CEAB06000A72C31 /* BaseTabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E421CEAB06000A72C31 /* BaseTabBarControllerTests.swift */; };
 		34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */; };
 		34C91A601CC342750033AC8B /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A261CC342750033AC8B /* default-avatar.png */; };
 		34C91A611CC342750033AC8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A271CC342750033AC8B /* Localizable.strings */; };
@@ -102,6 +103,7 @@
 		34AAB9981CCFFAA200E0CE0F /* TestsCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsCollectionView.swift; sourceTree = "<group>"; };
 		34B76E3C1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayDataSourceTests.swift; sourceTree = "<group>"; };
 		34B76E3E1CEA17ED00A72C31 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
+		34B76E421CEAB06000A72C31 /* BaseTabBarControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarControllerTests.swift; sourceTree = "<group>"; };
 		34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensionTests.swift; sourceTree = "<group>"; };
 		34C91A241CC342750033AC8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C91A261CC342750033AC8B /* default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar.png"; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				34C91A5A1CC342750033AC8B /* TestBaseTableViewControllerTests.swift */,
 				34C91A5C1CC342750033AC8B /* TestClassicTableViewControllerTests.swift */,
 				34C91A5B1CC342750033AC8B /* TestBaseViewControllerTests.swift */,
+				34B76E421CEAB06000A72C31 /* BaseTabBarControllerTests.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				34EFE1FF1CCEBEDB00264D0E /* EntityTestMandatoryField.swift in Sources */,
 				34C91A691CC342750033AC8B /* TestBaseViewController.swift in Sources */,
 				34C91A7F1CC342750033AC8B /* BaseTableViewControllerTests.swift in Sources */,
+				34B76E431CEAB06000A72C31 /* BaseTabBarControllerTests.swift in Sources */,
 				34C91A701CC342750033AC8B /* DataSyncHourlyRulesTests.swift in Sources */,
 				34C91A711CC342750033AC8B /* EntityBaseSyncRulesTests.swift in Sources */,
 				34EFE1F41CCE819700264D0E /* YorkTests.xcdatamodeld in Sources */,
