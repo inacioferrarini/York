@@ -22,6 +22,7 @@
 		34B76E431CEAB06000A72C31 /* BaseTabBarControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E421CEAB06000A72C31 /* BaseTabBarControllerTests.swift */; };
 		34B76E471CEAB63200A72C31 /* TableViewBlockDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E461CEAB63200A72C31 /* TableViewBlockDelegateTests.swift */; };
 		34B76E4A1CEAB65B00A72C31 /* CollectionViewBlockDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E491CEAB65B00A72C31 /* CollectionViewBlockDelegateTests.swift */; };
+		34B76E4C1CEAC5FA00A72C31 /* CollectionViewArrayDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B76E4B1CEAC5FA00A72C31 /* CollectionViewArrayDataSourceTests.swift */; };
 		34C5BD281CC94BF400898F0B /* NSManagedObjectExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */; };
 		34C91A601CC342750033AC8B /* default-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A261CC342750033AC8B /* default-avatar.png */; };
 		34C91A611CC342750033AC8B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C91A271CC342750033AC8B /* Localizable.strings */; };
@@ -107,6 +108,7 @@
 		34B76E421CEAB06000A72C31 /* BaseTabBarControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarControllerTests.swift; sourceTree = "<group>"; };
 		34B76E461CEAB63200A72C31 /* TableViewBlockDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewBlockDelegateTests.swift; sourceTree = "<group>"; };
 		34B76E491CEAB65B00A72C31 /* CollectionViewBlockDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewBlockDelegateTests.swift; sourceTree = "<group>"; };
+		34B76E4B1CEAC5FA00A72C31 /* CollectionViewArrayDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewArrayDataSourceTests.swift; sourceTree = "<group>"; };
 		34C5BD271CC94BF400898F0B /* NSManagedObjectExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtensionTests.swift; sourceTree = "<group>"; };
 		34C91A241CC342750033AC8B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34C91A261CC342750033AC8B /* default-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-avatar.png"; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				34B76E3C1CEA0F0C00A72C31 /* ArrayDataSourceTests.swift */,
+				34B76E4B1CEAC5FA00A72C31 /* CollectionViewArrayDataSourceTests.swift */,
 			);
 			path = Arrays;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34C91A631CC342750033AC8B /* FetchedResultsSectionInfo.swift in Sources */,
+				34B76E4C1CEAC5FA00A72C31 /* CollectionViewArrayDataSourceTests.swift in Sources */,
 				3401A7551CD93D0900F6FEE6 /* UINavigationControllerExtensionTests.swift in Sources */,
 				34C91A821CC342750033AC8B /* TestBaseViewControllerTests.swift in Sources */,
 				346C8DE11CD62F0B00F1F831 /* ErrorProneFetcherDataSource.swift in Sources */,
