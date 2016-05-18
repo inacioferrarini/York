@@ -23,12 +23,11 @@
 
 import UIKit
 
-public class BaseViewController<AppContextType>: UIViewController, AppContextAwareProtocol {
+public class BaseViewController: UIViewController {
 
     // MARK: - Properties
 
-    public var appContext: AppContextType!
-    public var bundle: NSBundle?
+    public var stringsBundle: NSBundle?
 
 
     // MARK: - Lifecycle
@@ -66,7 +65,7 @@ public class BaseViewController<AppContextType>: UIViewController, AppContextAwa
 
     public func bundleForMessages() -> NSBundle {
         var bundle: NSBundle!
-        if let stringBundle = self.bundle {
+        if let stringBundle = self.stringsBundle {
             bundle = stringBundle
         } else {
             bundle = NSBundle.mainBundle()

@@ -26,29 +26,29 @@ import York
 
 class BaseTabBarControllerTests: XCTestCase {
 
-//
-//    // MARK: - Properties
-//
-//    var viewController: BaseTabBarController!
-//
-//
-//    // MARK: - Tests Setup
-//
-//    override func setUp() {
-//        super.setUp()
-//        let navigationController = TestUtil().rootViewController()
-//        self.viewController = TestUtil().baseTabBarController()
-//        navigationController.pushViewController(viewController, animated: true)
-//
-//        let _ = navigationController.view
-//        let _ = viewController.view
-//    }
-//
-//
-//    // MARK: - Tests
-//
-//    func test_viewDidAppear() {
-//        self.viewController.viewDidAppear(true)
-//    }
+
+    // MARK: - Properties
+
+    var viewController: BaseTabBarController!
+
+
+    // MARK: - Tests Setup
+
+    override func setUp() {
+        super.setUp()
+        let navigationController = TestUtil().rootViewController()
+        self.viewController = TestUtil().baseTabBarController()
+        navigationController.pushViewController(viewController, animated: true)
+
+        let _ = navigationController.view
+        let _ = viewController.view
+    }
+
+
+    // MARK: - Tests
+
+    func test_viewDidAppear() {
+        self.viewController.viewDidAppear(true)
+    }
 
 }

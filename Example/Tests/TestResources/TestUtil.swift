@@ -116,64 +116,60 @@ class TestUtil: NSObject {
         return UINavigationController()
     }
 
-//    func testBaseViewController(appContext: FullStackAppContext!) -> TestBaseViewController? {
-//        let bundle = self.unitTestsBundle()
-//        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-//        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseViewController") as? TestBaseViewController {
-//            viewController.appContext = appContext
-//            return viewController
-//        }
-//        return nil
-//    }
-//
-//    func baseDataBasedViewController(appContext: FullStackAppContext!) -> BaseDataBasedViewController<FullStackAppContext>? {
-//        let bundle = self.unitTestsBundle()
-//        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-//        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseDataBasedViewController") as? BaseDataBasedViewController<FullStackAppContext> {
-//            viewController.appContext = appContext
-//            return viewController
-//        }
-//        return nil
-//    }
-//
-//    func testBaseDataBasedViewController(appContext: FullStackAppContext!) -> TestBaseDataBasedViewController? {
-//        let bundle = self.unitTestsBundle()
-//        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-//        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseDataBasedViewController") as? TestBaseDataBasedViewController {
-//            viewController.appContext = appContext
-//            return viewController
-//        }
-//        return nil
-//    }
-//
-//    func baseTableViewController(appContext: FullStackAppContext!) -> BaseTableViewController<FullStackAppContext>? {
-//        let bundle = self.unitTestsBundle()
-//        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-//        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseTableViewController") as? BaseTableViewController<FullStackAppContext> {
-//            viewController.appContext = appContext
-//            return viewController
-//        }
-//        return nil
-//    }
-//
-//    func testBaseTableViewController(appContext: FullStackAppContext!) -> TestBaseTableViewController? {
-//        let bundle = self.unitTestsBundle()
-//        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-//        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseTableViewController") as? TestBaseTableViewController {
-//            viewController.appContext = appContext
-//            return viewController
-//        }
-//        return nil
-//    }
-//
-//    func testClassicTableViewController(appContext: FullStackAppContext!) -> TestClassicTableViewController? {
-//        let bundle = self.unitTestsBundle()
-//        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-//        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestClassicTableViewController") as? TestClassicTableViewController {
-//            viewController.appContext = appContext
-//            return viewController
-//        }
-//        return nil
-//    }
+    func testBaseViewController(appContext: FullStackAppContext!) -> TestBaseViewController? {
+        let bundle = self.unitTestsBundle()
+        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseViewController") as? TestBaseViewController {
+            viewController.appContext = appContext
+            return viewController
+        }
+        return nil
+    }
+
+    func baseDataBasedViewController(appContext: FullStackAppContext!) -> BaseDataBasedViewController? {
+        let bundle = self.unitTestsBundle()
+        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseDataBasedViewController") as? BaseDataBasedViewController {
+            return viewController
+        }
+        return nil
+    }
+
+    func testBaseDataBasedViewController(appContext: FullStackAppContext!) -> TestBaseDataBasedViewController? {
+        let bundle = self.unitTestsBundle()
+        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseDataBasedViewController") as? TestBaseDataBasedViewController {
+            return viewController
+        }
+        return nil
+    }
+
+    func baseTableViewController(appContext: FullStackAppContext!) -> BaseTableViewController? {
+        let bundle = self.unitTestsBundle()
+        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseTableViewController") as? BaseTableViewController {
+            return viewController
+        }
+        return nil
+    }
+
+    func testBaseTableViewController(appContext: FullStackAppContext!) -> TestBaseTableViewController? {
+        let bundle = self.unitTestsBundle()
+        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseTableViewController") as? TestBaseTableViewController {
+            viewController.appContext = appContext
+            return viewController
+        }
+        return nil
+    }
+
+    func testClassicTableViewController(appContext: FullStackAppContext!) -> TestClassicTableViewController? {
+        let bundle = self.unitTestsBundle()
+        let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
+        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestClassicTableViewController") as? TestClassicTableViewController {
+            return viewController
+        }
+        return nil
+    }
 
 }

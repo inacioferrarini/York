@@ -24,8 +24,9 @@
 import UIKit
 import York
 
-public class TestBaseViewController: BaseViewController<FullStackAppContext> {
+public class TestBaseViewController: BaseViewController, AppContextAwareProtocol {
 
+    public var appContext: FullStackAppContext!
     @IBOutlet weak var textLabel: UILabel!
 
     override public func viewControllerTitle() -> String? {

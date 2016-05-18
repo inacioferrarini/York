@@ -24,7 +24,7 @@
 import UIKit
 import York
 
-public class TestClassicTableViewController: BaseTableViewController<FullStackAppContext>, UITableViewDelegate, UITableViewDataSource {
+public class TestClassicTableViewController: BaseTableViewController, UITableViewDelegate, UITableViewDataSource {
 
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

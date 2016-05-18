@@ -24,7 +24,11 @@
 import UIKit
 import York
 
-public class TestBaseTableViewController: BaseTableViewController<FullStackAppContext> {
+public class TestBaseTableViewController: BaseTableViewController, AppContextAwareProtocol {
+
+
+    public var appContext: FullStackAppContext!
+
 
     override public func createDataSource() -> UITableViewDataSource? {
 
