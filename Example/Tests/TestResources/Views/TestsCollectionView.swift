@@ -26,11 +26,11 @@ public class TestsCollectionView: UICollectionView {
 
     public var cellForItemAtIndexPathBlock: ((indexPath: NSIndexPath) -> UICollectionViewCell?)?
 
-    public override var window: UIWindow? {
+    override public var window: UIWindow? {
         return UIWindow()
     }
 
-    public override func cellForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewCell? {
+    override public func cellForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewCell? {
         if let block = self.cellForItemAtIndexPathBlock {
             return block(indexPath: indexPath)
         } else {
@@ -38,7 +38,7 @@ public class TestsCollectionView: UICollectionView {
         }
     }
 
-    public override func performBatchUpdates(updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
+    override public func performBatchUpdates(updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
         if let updates = updates {
             updates()
         }

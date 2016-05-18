@@ -45,7 +45,7 @@ public class ErrorProneFetcherDataSource<EntityType: NSManagedObject>: FetcherDa
                   cacheName: nil)
     }
 
-    public override init(entityName: String,
+    override public init(entityName: String,
                          sortDescriptors: [NSSortDescriptor],
                          managedObjectContext context: NSManagedObjectContext,
                          logger: Logger,
