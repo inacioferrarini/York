@@ -23,7 +23,7 @@
 
 import UIKit
 
-public class AppContext: NSObject {
+public class FullStackAppContext: NSObject {
 
     public let viewControllers: [String : UIViewController]
     public let coreDataStack: CoreDataStack
