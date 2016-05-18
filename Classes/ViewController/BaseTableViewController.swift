@@ -59,16 +59,13 @@ public class BaseTableViewController<AppContextType>: BaseDataBasedViewControlle
                 tableView.delegate = self.delegate
             }
 
-
-            self.refreshControl = UIRefreshControl()
-            if let refreshControl = self.refreshControl {
-                refreshControl.backgroundColor = UIColor.blackColor()
-                refreshControl.tintColor = UIColor.whiteColor()
+            if let refreshControl = self.createRefreshControl() {
+                self.refreshControl = refreshControl
                 refreshControl.addTarget(self, action: #selector(self.performDataSync), forControlEvents: .ValueChanged)
-
                 tableView.addSubview(refreshControl)
                 tableView.reloadData()
             }
+
         }
     }
 
@@ -113,5 +110,7 @@ public class BaseTableViewController<AppContextType>: BaseDataBasedViewControlle
     public func createDataSource() -> UITableViewDataSource? { return nil }
 
     public func createDelegate() -> UITableViewDelegate? { return nil }
+
+    public func createRefreshControl() -> UIRefreshControl? { return nil }
 
 }
