@@ -38,7 +38,7 @@ class AppContextTests: XCTestCase {
 
     // MARK: - Supporting Methods
 
-    func createAppContext() -> AppContext {
+    func createAppContext() -> FullStackAppContext {
         self.logger = Logger(logProvider: TestLogProvider())
         self.viewControllers = Dictionary<String, UIViewController>()
         self.viewControllers["navigationController"] = UINavigationController()
@@ -46,11 +46,11 @@ class AppContextTests: XCTestCase {
         self.syncRules = DataSyncRules(coreDataStack: coreDataStack)
         self.router = NavigationRouter(schema: "", logger: self.logger)
 
-        return AppContext(viewControllers: self.viewControllers,
-            coreDataStack: self.coreDataStack,
-            syncRules: self.syncRules,
-            router: self.router,
-            logger: self.logger)
+        return FullStackAppContext(viewControllers: self.viewControllers,
+                                   coreDataStack: self.coreDataStack,
+                                   syncRules: self.syncRules,
+                                   router: self.router,
+                                   logger: self.logger)
     }
 
 

@@ -26,36 +26,36 @@ import York
 
 class TestClassicTableViewControllerTests: XCTestCase {
 
-
-    // MARK: - Properties
-
-    var viewController: TestClassicTableViewController!
-
-
-    // MARK: - Tests Setup
-
-    override func setUp() {
-        super.setUp()
-        let appContext = TestUtil().appContext()
-        let navigationController = TestUtil().rootViewController()
-        viewController = TestUtil().testClassicTableViewController(appContext)
-        navigationController.pushViewController(viewController, animated: true)
-
-        let _ = navigationController.view
-        let _ = viewController.view
-    }
-
-
-    // MARK: - Tests
-
-    func test_viewDidLoad_mustNotCrash() {
-        self.viewController.viewDidLoad()
-    }
-
-    func test_cellForRowAtIndexPath_mustReturnNotNil() {
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = self.viewController.tableView(self.viewController.tableView!, cellForRowAtIndexPath: indexPath)
-        XCTAssertNotNil(cell)
-    }
-
+//
+//    // MARK: - Properties
+//
+//    var viewController: TestClassicTableViewController!
+//
+//
+//    // MARK: - Tests Setup
+//
+//    override func setUp() {
+//        super.setUp()
+//        let appContext = TestUtil().appContext()
+//        let navigationController = TestUtil().rootViewController()
+//        viewController = TestUtil().testClassicTableViewController(appContext)
+//        navigationController.pushViewController(viewController, animated: true)
+//
+//        let _ = navigationController.view
+//        let _ = viewController.view
+//    }
+//
+//
+//    // MARK: - Tests
+//
+//    func test_viewDidLoad_mustNotCrash() {
+//        self.viewController.viewDidLoad()
+//    }
+//
+//    func test_cellForRowAtIndexPath_mustReturnNotNil() {
+//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+//        let cell = self.viewController.tableView(self.viewController.tableView!, cellForRowAtIndexPath: indexPath)
+//        XCTAssertNotNil(cell)
+//    }
+//
 }

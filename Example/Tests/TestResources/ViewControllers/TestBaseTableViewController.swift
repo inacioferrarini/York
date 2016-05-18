@@ -24,9 +24,9 @@
 import UIKit
 import York
 
-class TestBaseTableViewController: BaseTableViewController {
+public class TestBaseTableViewController: BaseTableViewController<FullStackAppContext> {
 
-    override func createDataSource() -> UITableViewDataSource? {
+    override public func createDataSource() -> UITableViewDataSource? {
 
         let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
             return "TableViewCell"
@@ -52,7 +52,7 @@ class TestBaseTableViewController: BaseTableViewController {
         return dataSource
     }
 
-    override func createDelegate() -> UITableViewDelegate? {
+    override public func createDelegate() -> UITableViewDelegate? {
         let itemSelectionBlock = { (indexPath: NSIndexPath) -> Void in
 
         }

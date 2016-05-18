@@ -24,11 +24,11 @@
 import UIKit
 import York
 
-class TestBaseViewController: BaseViewController {
+public class TestBaseViewController: BaseViewController<FullStackAppContext> {
 
     @IBOutlet weak var textLabel: UILabel!
 
-    override func viewControllerTitle() -> String? {
+    override public func viewControllerTitle() -> String? {
         let bundle = TestUtil().unitTestsBundle()
         return NSLocalizedString("VC_TEST_BASE_VIEW_CONTROLLER", tableName: nil, bundle: bundle, value: "", comment: "")
     }

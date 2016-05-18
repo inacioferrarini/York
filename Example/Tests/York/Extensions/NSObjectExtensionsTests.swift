@@ -30,8 +30,8 @@ class NSObjectExtensionsTests: XCTestCase {
     // MARK: - Tests
 
     func test_simpleClassName_mustReturnName() {
-        let simpleClassName = AppContext.simpleClassName()
-        let name = "AppContext"
+        let simpleClassName = FullStackAppContext.simpleClassName()
+        let name = "FullStackAppContext"
         XCTAssertEqual(simpleClassName, name)
     }
 

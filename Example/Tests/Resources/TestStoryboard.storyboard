@@ -8,7 +8,7 @@
         <!--Test Base View Controller-->
         <scene sceneID="ilX-NZ-s8c">
             <objects>
-                <viewController storyboardIdentifier="TestBaseViewController" id="NWS-M2-Ade" customClass="TestBaseViewController" customModule="York_Tests" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TestBaseViewController" id="NWS-M2-Ade" customClass="TestBaseViewController" customModule="York_Tests" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X8p-Eu-pQM"/>
                         <viewControllerLayoutGuide type="bottom" id="H9f-J9-2da"/>
@@ -158,10 +158,10 @@
             </objects>
             <point key="canvasLocation" x="173" y="182"/>
         </scene>
-        <!--Base Data Based View Controller-->
+        <!--Test Base Data Based View Controller-->
         <scene sceneID="oEd-vM-hcw">
             <objects>
-                <viewController storyboardIdentifier="BaseDataBasedViewController" id="eQB-Fa-YvC" customClass="BaseDataBasedViewController" customModule="York" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BaseDataBasedViewController" id="eQB-Fa-YvC" customClass="TestBaseDataBasedViewController" customModule="York" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uXD-mf-sad"/>
                         <viewControllerLayoutGuide type="bottom" id="MZ9-vk-zF3"/>

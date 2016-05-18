@@ -24,13 +24,13 @@
 import UIKit
 import York
 
-class TestClassicTableViewController: BaseTableViewController, UITableViewDelegate, UITableViewDataSource {
+public class TestClassicTableViewController: BaseTableViewController<FullStackAppContext>, UITableViewDelegate, UITableViewDataSource {
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath)
         return cell
     }

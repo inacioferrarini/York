@@ -26,31 +26,40 @@ import York
 
 class UINavigationControllerExtensionTests: XCTestCase {
     
-    
-    // MARK: - Tests
-    
-    func test_presentViewController_push_mustNotCrash() {
-        let rootViewController = TestUtil().rootViewController()
-        let appContext = TestUtil().testAppContext()
-        let viewController = TestUtil().testBaseViewController(appContext)
-        rootViewController.presentViewController(viewController, animated: true, presentationMode: PresentationMode.Push)
-        XCTAssertTrue(true)
-    }
+//    
+//    // MARK: - Tests
+//    
+//    func test_presentViewController_push_mustNotCrash() {
+//        let rootViewController = TestUtil().rootViewController()
+//        let appContext = TestUtil().testAppContext()
+//        if let viewController = TestUtil().testBaseViewController(appContext) {
+//            rootViewController.presentViewController(viewController, animated: true, presentationMode: PresentationMode.Push)
+//            XCTAssertTrue(true)
+//        } else {
+//            XCTAssertTrue(false)
+//        }
+//    }
+//
+//    func test_presentViewController_show_mustNotCrash() {
+//        let rootViewController = TestUtil().rootViewController()
+//        let appContext = TestUtil().testAppContext()
+//        if let viewController = TestUtil().testBaseViewController(appContext) {
+//            rootViewController.presentViewController(viewController, animated: true, presentationMode: PresentationMode.Show)
+//            XCTAssertTrue(true)
+//        } else {
+//            XCTAssertTrue(false)
+//        }
+//    }
+//
+//    func test_presentViewController_modal_mustNotCrash() {
+//        let rootViewController = TestUtil().rootViewController()
+//        let appContext = TestUtil().testAppContext()
+//        if let viewController = TestUtil().testBaseViewController(appContext) {
+//            rootViewController.presentViewController(viewController, animated: true, presentationMode: PresentationMode.Modal)
+//            XCTAssertTrue(true)
+//        } else {
+//            XCTAssertTrue(false)
+//        }
+//    }
 
-    func test_presentViewController_show_mustNotCrash() {
-        let rootViewController = TestUtil().rootViewController()
-        let appContext = TestUtil().testAppContext()
-        let viewController = TestUtil().testBaseViewController(appContext)
-        rootViewController.presentViewController(viewController, animated: true, presentationMode: PresentationMode.Show)
-        XCTAssertTrue(true)
-    }
-    
-    func test_presentViewController_modal_mustNotCrash() {
-        let rootViewController = TestUtil().rootViewController()
-        let appContext = TestUtil().testAppContext()
-        let viewController = TestUtil().testBaseViewController(appContext)
-        rootViewController.presentViewController(viewController, animated: true, presentationMode: PresentationMode.Modal)
-        XCTAssertTrue(true)
-    }
-    
 }
