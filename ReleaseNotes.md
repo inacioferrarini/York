@@ -18,16 +18,22 @@
     * Added CollectionViewBlockDelegate for handling UICollectionView item selection.
 
 * Updates
+  * Context:
+    * AppContextAwareProtocol: Made generic. Now any Structure or Class can be used as AppContext, allowing any project to have an AppContext created to better suit the project requirements.
+    * AppContext: Due to changes in AppContextAwareProtocol, AppContext is no longer essential. Besides that, it was kept inside York, being renamed to FullStackAppContext.
+  * Extensions:
+      * UIImageExtension: Added utility methods imageFromColor and maskedImageNamed
   * Presenter:
     * CollectionViewCellPresenter changed EntityType parameter from NSManagedObject to AnyObject, allowing it to be used by CollectionViewArrayDataSources as well.
     * TableViewCellPresenter changed EntityType parameter from NSManagedObject to AnyObject, allowing it to be used by TableViewArrayDataSources as well.
-  * TableViewCells
-    * CollectionViewTableViewCell: Added delegate property.    
+  * TableViewCells:
+    * CollectionViewTableViewCell: Added delegate property.
+  * ViewControllers:
+    * BaseViewController, BaseDataBasedViewController, BaseTableViewController updated due to AppContextAwareProtocol changes.
+    * BaseTableViewController: UIRefreshControl is no longer created by default. If createRefreshControl is overriden and returns a non-nill object, it will be added to the table view.
   * ViewDelegates
     * TableViewDelegate module renamed to 'ViewDelegates' in order to better support other view delegates.  
     * TableViewBlockDelegate added var heightForRowAtIndexPathBlock to allow TableViewCells with different heights. If not defined, will return UITableViewAutomaticDimension value.
-  * Extensions:
-    * UIImageExtension: Added utility methods imageFromColor and maskedImageNamed
 
 * Bug Fixes
   * Removed viewDidAppear method. It was doing the same thing as DataBasedViewController, thus, duplicating performDataSyncIfNeeded.
