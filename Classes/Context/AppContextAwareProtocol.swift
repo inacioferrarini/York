@@ -25,6 +25,7 @@ import Foundation
 
 public protocol AppContextAwareProtocol {
 
-    var appContext: AppContext! { get set }
+    associatedtype GenericType
+    var appContext: GenericType! { get set }
 
 }
