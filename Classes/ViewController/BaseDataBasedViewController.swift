@@ -23,7 +23,7 @@
 
 import UIKit
 
-public class BaseDataBasedViewController: BaseViewController {
+public class BaseDataBasedViewController<AppContextType>: BaseViewController<AppContextType> {
 
     // MARK: - Properties
 
@@ -69,7 +69,8 @@ public class BaseDataBasedViewController: BaseViewController {
     // MARK: - Child classes are expected to override these methods
 
     public func shouldSyncData() -> Bool {
-        return self.appContext.syncRules.shouldPerformSyncRule(self.dynamicType.simpleClassName(), atDate: NSDate())
+        // return self.appContext.syncRules.shouldPerformSyncRule(self.dynamicType.simpleClassName(), atDate: NSDate())
+        return true
     }
 
     public func performDataSync() {

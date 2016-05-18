@@ -23,7 +23,7 @@
 
 import UIKit
 
-public class BaseTableViewController: BaseDataBasedViewController {
+public class BaseTableViewController<AppContextType>: BaseDataBasedViewController<AppContextType> {
 
     // MARK: - Properties
 

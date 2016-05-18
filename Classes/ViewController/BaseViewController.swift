@@ -23,11 +23,11 @@
 
 import UIKit
 
-public class BaseViewController: UIViewController, AppContextAwareProtocol {
+public class BaseViewController<AppContextType>: UIViewController, AppContextAwareProtocol {
 
     // MARK: - Properties
 
-    public var appContext: AppContext!
+    public var appContext: AppContextType!
     public var bundle: NSBundle?
 
 
@@ -54,7 +54,7 @@ public class BaseViewController: UIViewController, AppContextAwareProtocol {
                 if let identifier = label.accessibilityIdentifier {
                     let text = localizedBundleString(identifier)
                     if text == identifier {
-                        self.appContext.logger.logErrorMessage("Missing string for \(identifier)")
+                        // self.appContext.logger.logErrorMessage("Missing string for \(identifier)")
                     } else {
                         label.text = text
                     }
