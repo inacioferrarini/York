@@ -34,21 +34,18 @@ public class BaseDataBasedViewController: BaseViewController {
 
     override public func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.performDataSyncIfNeeded()
+        self.performDataSync()
     }
 
 
     // MARK: - Data Syncrhonization
 
-    public func performDataSyncIfNeeded() {
+    public func performDataSync() {
         if self.shouldSyncData() {
-            self.showCourtainView()
-            self.performDataSync()
+            self.willSyncData()
+            self.syncData()
+            self.didSyncData()
         }
-    }
-
-    public func dataSyncCompleted() {
-        self.hideCourtainView()
     }
 
     public func showCourtainView() {
@@ -72,8 +69,15 @@ public class BaseDataBasedViewController: BaseViewController {
         return true
     }
 
-    public func performDataSync() {
-        self.dataSyncCompleted()
+    public func willSyncData() {
+        self.showCourtainView()
+    }
+
+    public func syncData() {
+    }
+
+    public func didSyncData() {
+        self.hideCourtainView()
     }
 
 }

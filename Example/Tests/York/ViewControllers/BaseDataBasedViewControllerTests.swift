@@ -81,8 +81,8 @@ class BaseDataBasedViewControllerTests: XCTestCase {
     }
 
 
-    func test_performDataSyncIfNeeded() {
-        self.viewController.performDataSyncIfNeeded()
-    }
+//    func test_performDataSyncIfNeeded() {
+//        self.viewController.performDataSyncIfNeeded()
+//    }
 
 }

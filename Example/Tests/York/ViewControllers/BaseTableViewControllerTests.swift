@@ -91,8 +91,8 @@ class BaseTableViewControllerTests: XCTestCase {
     }
 
 
-    func test_dataSyncCompleted_mustNotCrash() {
-        self.viewController.dataSyncCompleted()
+    func test_didSyncData_mustNotCrash() {
+        self.viewController.didSyncData()
     }
-
+    
 }

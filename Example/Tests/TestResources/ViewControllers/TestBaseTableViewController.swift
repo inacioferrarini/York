@@ -63,4 +63,8 @@ public class TestBaseTableViewController: BaseTableViewController, AppContextAwa
         return TableViewBlockDelegate(tableView: self.tableView!, itemSelectionBlock: itemSelectionBlock, loadMoreDataBlock: nil)
     }
 
+    override public func createRefreshControl() -> UIRefreshControl? {
+        return UIRefreshControl()
+    }
+
 }

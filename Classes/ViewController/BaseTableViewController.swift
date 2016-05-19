@@ -80,15 +80,11 @@ public class BaseTableViewController: BaseDataBasedViewController {
 
     // MARK: - Data Syncrhonization
 
-    override public func performDataSync() {
-        dataSyncCompleted()
-    }
-
-    override public func dataSyncCompleted() {
+    override public func didSyncData() {
         if let refreshControl = self.refreshControl {
             refreshControl.endRefreshing()
         }
-        super.dataSyncCompleted()
+        super.didSyncData()
     }
 
 

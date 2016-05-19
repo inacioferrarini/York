@@ -62,8 +62,8 @@ class TestBaseDataBasedViewControllerTests: XCTestCase {
         XCTAssertTrue(self.viewController.courtain?.hidden ?? false)
     }
 
-    func test_performDataSyncIfNeeded() {
-        self.viewController.performDataSyncIfNeeded()
-    }
+//    func test_performDataSyncIfNeeded() {
+//        self.viewController.performDataSyncIfNeeded()
+//    }
 
 }
