@@ -24,14 +24,14 @@
 import UIKit
 import CoreData
 
-public class TableViewCellPresenter<CellType: UITableViewCell, EntityType: AnyObject>: NSObject {
+public class TableViewCellPresenter<CellType: UITableViewCell, ValueType: Any>: NSObject {
 
-    public var configureCellBlock: ((CellType, EntityType) -> Void)
+    public var configureCellBlock: ((CellType, ValueType) -> Void)
     public var cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)
     public var canEditRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> Bool)?
     public var commitEditingStyleBlock: ((editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath: NSIndexPath) -> Void)?
 
-    public init(configureCellBlock: ((CellType, EntityType) -> Void), cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)) {
+    public init(configureCellBlock: ((CellType, ValueType) -> Void), cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)) {
         self.configureCellBlock = configureCellBlock
         self.cellReuseIdentifierBlock = cellReuseIdentifierBlock
         super.init()

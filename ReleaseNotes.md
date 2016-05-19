@@ -24,8 +24,12 @@
   * Extensions:
     * UIImageExtension: Added utility methods imageFromColor and maskedImageNamed
   * Presenter:
-    * CollectionViewCellPresenter changed EntityType parameter from NSManagedObject to AnyObject, allowing it to be used by CollectionViewArrayDataSources as well.
-    * TableViewCellPresenter changed EntityType parameter from NSManagedObject to AnyObject, allowing it to be used by TableViewArrayDataSources as well.
+    * CollectionViewCellPresenter:
+      * changed EntityType parameter from NSManagedObject to AnyObject, allowing it to be used by CollectionViewArrayDataSources as well.
+      * "EntityType" parameter renamed to "ValueType". Changed from AnyObject to Any to better support swift types.
+    * TableViewCellPresenter:
+      * changed EntityType parameter from NSManagedObject to AnyObject, allowing it to be used by TableViewArrayDataSources as well.
+      * "EntityType" parameter renamed to "ValueType". Changed from AnyObject to Any to better support swift types.
   * TableViewCells:
     * CollectionViewTableViewCell: Added delegate property.
   * ViewControllers:
