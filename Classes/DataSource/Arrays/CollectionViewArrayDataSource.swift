@@ -23,7 +23,7 @@
 
 import UIKit
 
-public class CollectionViewArrayDataSource<CellType: UICollectionViewCell, Type: AnyObject>: ArrayDataSource<Type>, UICollectionViewDataSource {
+public class CollectionViewArrayDataSource<CellType: UICollectionViewCell, Type: Equatable>: ArrayDataSource<Type>, UICollectionViewDataSource {
 
 
     // MARK: - Properties

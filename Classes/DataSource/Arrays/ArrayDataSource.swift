@@ -23,7 +23,7 @@
 
 import UIKit
 
-public class ArrayDataSource<Type: AnyObject>: NSObject {
+public class ArrayDataSource<Type: Equatable>: NSObject {
 
 
     // MARK: - Properties
@@ -35,7 +35,6 @@ public class ArrayDataSource<Type: AnyObject>: NSObject {
 
     public init(objects: [Type]) {
         self.objects = objects
-        super.init()
     }
 
 
@@ -52,7 +51,7 @@ public class ArrayDataSource<Type: AnyObject>: NSObject {
 
     public func indexPathForObject(object: Type) -> NSIndexPath? {
         var indexPath: NSIndexPath?
-        if let index = self.objects.indexOf({$0 === object}) {
+        if let index = self.objects.indexOf({$0 == object}) {
             indexPath = NSIndexPath(forRow: index, inSection: 0)
         }
         return indexPath

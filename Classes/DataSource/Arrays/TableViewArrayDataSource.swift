@@ -23,7 +23,7 @@
 
 import UIKit
 
-public class TableViewArrayDataSource<CellType: UITableViewCell, Type: AnyObject>: ArrayDataSource<Type>, UITableViewDataSource {
+public class TableViewArrayDataSource<CellType: UITableViewCell, Type: Equatable>: ArrayDataSource<Type>, UITableViewDataSource {
 
 
     // MARK: - Properties
