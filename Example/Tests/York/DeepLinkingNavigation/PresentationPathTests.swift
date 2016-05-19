@@ -79,4 +79,10 @@ class PresentationPathTests: XCTestCase {
         XCTAssertEqual(finalUrl, "/valueForParam1/valueForParam2/valueForParam3/push")
     }
 
+    func test_pathWithoutValuesAndPresentationMode_mustSucceed() {
+        let presentationPath = PresentationPath(pattern: "/main")
+        let finalUrl = presentationPath.replacingValues(.Push)
+        XCTAssertEqual(finalUrl, "/main/push")
+    }
+    
 }

@@ -25,6 +25,8 @@
   * Context:
     * AppContextAwareProtocol: Made generic. Now any Structure or Class can be used as AppContext, allowing any project to have an AppContext created to better suit the project requirements.
     * AppContext: Due to changes in AppContextAwareProtocol, AppContext is no longer essential. Besides that, it was kept inside York, being renamed to FullStackAppContext.
+  * DeepLinkingNavigation:
+    * PresentationPath: added a replacingValues method variant that only takes mode as parameter, for url without parameters. replacingValues:values:mode nows allows nil to be supplied as values.
   * Extensions:
     * UIImageExtension: Added utility methods imageFromColor and maskedImageNamed
   * Presenter:

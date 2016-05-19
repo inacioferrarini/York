@@ -62,11 +62,17 @@ public class PresentationPath: NSObject {
         return self.removeLastPathSeparator(self.pattern) + self.presentationParameterPath
     }
 
-    public func replacingValues(values: [String : String], mode: PresentationMode) -> String {
+    public func replacingValues(mode: PresentationMode) -> String {
+        return self.replacingValues(nil, mode: mode)
+    }
+
+    public func replacingValues(values: [String : String]?, mode: PresentationMode) -> String {
         var replacedValuesPath = self.removeLastPathSeparator(self.pattern)
-        for (key, value) in values {
-            let range = replacedValuesPath.rangeOfString(key)
-            replacedValuesPath = replacedValuesPath.stringByReplacingOccurrencesOfString(key, withString: value, options: .CaseInsensitiveSearch, range: range)
+        if let values = values {
+            for (key, value) in values {
+                let range = replacedValuesPath.rangeOfString(key)
+                replacedValuesPath = replacedValuesPath.stringByReplacingOccurrencesOfString(key, withString: value, options: .CaseInsensitiveSearch, range: range)
+            }
         }
         return self.removeLastPathSeparator(replacedValuesPath) + "/" + mode.rawValue
     }
