@@ -58,9 +58,9 @@ public class HttpCookieManager {
 
     // MARK: - Public Properties
 
-    public func cookiesFromResponse(fromDataTask dataTask: NSURLSessionDataTask) -> [NSHTTPCookie] {
+    public func cookiesFromResponse(fromResponse response: NSURLResponse? /* fromDataTask dataTask: NSURLSessionDataTask*/) -> [NSHTTPCookie] {
         let emptyArray = [NSHTTPCookie]()
-        guard let response = dataTask.response as? NSHTTPURLResponse else { return emptyArray }
+        guard let response = response as? NSHTTPURLResponse else { return emptyArray }
         guard let headerFields = response.allHeaderFields as? [String: String] else { return emptyArray }
         return NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: self.domainUrl)
     }

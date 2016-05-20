@@ -162,7 +162,7 @@ class HttpCookieManagerTests: XCTestCase {
         let expectation = self.expectationWithDescription("asynchronous request")
 
         let successBlock = { (dataTask: NSURLSessionDataTask, responseObject:AnyObject?) -> Void in
-            let cookies = self.cookieManager.cookiesFromResponse(fromDataTask: dataTask)
+            let cookies = self.cookieManager.cookiesFromResponse(fromResponse: dataTask.response)
             self.cookieManager.setCookies(cookies, expiresDate: nil)
             self.cookieManager.saveCookies()
             expectation.fulfill()
@@ -185,7 +185,7 @@ class HttpCookieManagerTests: XCTestCase {
     func test_cookiesFromResponse_withWeirdResponse() {
         let dataTask = TestsNSURLSessionDataTask()
         dataTask.responseToUse = nil
-        let cookies = self.cookieManager.cookiesFromResponse(fromDataTask: dataTask)
+        let cookies = self.cookieManager.cookiesFromResponse(fromResponse: dataTask.response)
         XCTAssertNotNil(cookies)
     }
 
@@ -194,26 +194,8 @@ class HttpCookieManagerTests: XCTestCase {
         let response = TestsNSHTTPURLResponse()
         response.headerFieldsToUse = [2 : "Y"]
         dataTask.responseToUse = response
-        let cookies = self.cookieManager.cookiesFromResponse(fromDataTask: dataTask)
+        let cookies = self.cookieManager.cookiesFromResponse(fromResponse: dataTask.response)
         XCTAssertNotNil(cookies)
     }
-    
-    
-    
-//    response.allHeaderFields as? [String: String]
-    
-    
-    
-//    guard let headerFields = response.allHeaderFields as? [String: String] else { return emptyArray }
-    
-    
-    
-//    guard let response = dataTask.response as? NSHTTPURLResponse else { return emptyArray }
-//    guard let headerFields = response.allHeaderFields as? [String: String] else { return emptyArray }
 
-    
-    
-    
-    
-    
 }

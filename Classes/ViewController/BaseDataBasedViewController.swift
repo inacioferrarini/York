@@ -52,14 +52,12 @@ public class BaseDataBasedViewController: BaseViewController {
         if let courtain = self.courtain {
             courtain.hidden = false
         }
-        self.view.userInteractionEnabled = false
     }
 
     public func hideCourtainView() {
         if let courtain = self.courtain {
             courtain.hidden = true
         }
-        self.view.userInteractionEnabled = true
     }
 
 
