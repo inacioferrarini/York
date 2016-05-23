@@ -24,12 +24,14 @@
 import UIKit
 import CoreData
 
-public class TableViewBlockDelegate: NSObject, UITableViewDelegate {
+public class TableViewBlockDelegate<CellType: UITableViewCell>: NSObject, UITableViewDelegate {
 
     public let tableView: UITableView
     public let itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)
     public var heightForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> CGFloat)?
     public let loadMoreDataBlock: (() -> Void)?
+    public var willDisplayCellBlock: ((CellType, NSIndexPath) -> Void)?
+    public var didEndDisplayingCellBlock: ((CellType, NSIndexPath) -> Void)?
 
     public init(tableView: UITableView, itemSelectionBlock: ((indexPath: NSIndexPath) -> Void), loadMoreDataBlock:(() -> Void)?) {
         self.itemSelectionBlock = itemSelectionBlock
@@ -60,6 +62,21 @@ public class TableViewBlockDelegate: NSObject, UITableViewDelegate {
                 loadMoreDataBlock()
             }
         }
+    }
+
+
+    // MARK: - Cell Visibility
+
+    public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        guard let cell = cell as? CellType else { return }
+        guard let block = self.willDisplayCellBlock else { return }
+        block(cell, indexPath)
+    }
+
+    public func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        guard let cell = cell as? CellType else { return }
+        guard let block = self.didEndDisplayingCellBlock else { return }
+        block(cell, indexPath)
     }
 
 }

@@ -15,10 +15,10 @@
   * ViewController:
     * Added BaseTabBarController to handle UITabBar customizations.
   * ViewDelegates:
-    * Added TableViewBlockDelegate for handling UITableView item selection.
-    * Added CollectionViewBlockDelegate for handling UICollectionView item selection.
+    * Added TableViewBlockDelegate for handling UITableView item selection and related events.
+    * Added CollectionViewBlockDelegate for handling UICollectionView item selection and related events.
   * Views:
-    * Added DesignableView for basic views that must be @IBDesignable
+    * Added DesignableView for basic views that must be '@IBDesignable'
 
 * Updates
   * Context:
