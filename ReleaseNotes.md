@@ -9,6 +9,7 @@
     * Added CollectionViewTableViewCell for providing a TableViewCell that contains an UICollectionView, having as well the UICollectionViewDetaSource.
   * Extensions:
     * Added StringExtensions, providing string related methods.
+    * Added UIViewExtensions, providing useful methods for handling border width, maskToBounds and border color as IBDesignable.
   * Networking:
     * Added HttpCookieManager to handle http session cookies.
   * ViewController:
