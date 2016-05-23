@@ -17,6 +17,8 @@
   * ViewDelegates:
     * Added TableViewBlockDelegate for handling UITableView item selection.
     * Added CollectionViewBlockDelegate for handling UICollectionView item selection.
+  * Views:
+    * Added DesignableView for basic views that must be @IBDesignable
 
 * Updates
   * Context:
