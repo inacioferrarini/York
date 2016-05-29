@@ -23,7 +23,7 @@
 
 import Foundation
 
-protocol Transformer {
+public protocol Transformer {
 
     associatedtype T
     associatedtype U
