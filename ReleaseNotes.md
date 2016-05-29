@@ -22,9 +22,16 @@
 
 * Updates
   * Context:
-    * ArrayDataSource: Updated ArrayDataSource and variants to use Equatable instead of AnyObject, since any equatable object can be used.
-    * CollectionViewArrayDataSource: Updated ArrayDataSource and variants to use Equatable instead of AnyObject, since any equatable object can be used.
-    * TableViewArrayDataSource: Updated ArrayDataSource and variants to use Equatable instead of AnyObject, since any equatable object can be used.
+    * DataSources
+      * Arrays
+        * ArrayDataSource: Updated ArrayDataSource and variants to use Equatable instead of AnyObject, allowing any equatable object can be used.
+        * CollectionViewArrayDataSource: Updated ArrayDataSource and variants to use Equatable instead of AnyObject, allowing any equatable object can be used.
+        * TableViewArrayDataSource:
+          * Updated ArrayDataSource and variants to use Equatable instead of AnyObject, allowing any equatable object can be used.
+          * Added titleForHeaderInSection support.
+      * CoreData
+        * TableViewFetcherDataSource:
+          * Added titleForHeaderInSection support.
   * Context:
     * AppContextAwareProtocol: Made generic. Now any Structure or Class can be used as AppContext, allowing any project to have an AppContext created to better suit the project requirements.
     * AppContext: Due to changes in AppContextAwareProtocol, AppContext is no longer essential. Besides that, it was kept inside York, being renamed to FullStackAppContext.

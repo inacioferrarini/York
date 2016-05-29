@@ -31,6 +31,7 @@ public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: N
 
     public let tableView: UITableView
     public private(set) var presenter: TableViewCellPresenter<CellType, EntityType>
+    public var titleForHeaderInSectionBlock: ((section: Int) -> String?)?
 
 
     // MARK: - Initialization
@@ -103,7 +104,6 @@ public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: N
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let value = self.objectAtIndexPath(indexPath)
-
         let reuseIdentifier = self.presenter.cellReuseIdentifierBlock(indexPath: indexPath)
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as? CellType
         if let cell = cell,
@@ -113,21 +113,24 @@ public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: N
         return cell!
     }
 
-    public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let titleBlock = self.titleForHeaderInSectionBlock {
+            return titleBlock(section: section)
+        }
+        return nil
+    }
 
+    public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         if let editRowBlock = self.presenter.canEditRowAtIndexPathBlock {
             return editRowBlock(indexPath: indexPath)
         }
-
         return false
     }
 
     public func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-
         if let commitEditingBlock = self.presenter.commitEditingStyleBlock {
             commitEditingBlock(editingStyle: editingStyle, forRowAtIndexPath: indexPath)
         }
-
     }
 
 

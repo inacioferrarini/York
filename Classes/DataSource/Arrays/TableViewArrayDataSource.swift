@@ -30,6 +30,7 @@ public class TableViewArrayDataSource<CellType: UITableViewCell, Type: Equatable
 
     public let tableView: UITableView
     public private(set) var presenter: TableViewCellPresenter<CellType, Type>
+    public var titleForHeaderInSectionBlock: ((section: Int) -> String?)?
 
 
     // MARK: - Initialization
@@ -73,6 +74,13 @@ public class TableViewArrayDataSource<CellType: UITableViewCell, Type: Equatable
             self.presenter.configureCellBlock(cell, value)
         }
         return cell!
+    }
+
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let titleBlock = self.titleForHeaderInSectionBlock {
+            return titleBlock(section: section)
+        }
+        return nil
     }
 
     public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
