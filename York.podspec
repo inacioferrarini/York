@@ -81,6 +81,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     ss.source_files = 'Classes/Presenter/**/*.swift'
   end
 
+  s.subspec 'Transformer' do |ss|
+    ss.source_files = 'Classes/Transformer/**/*.swift'
+  end
+
   s.subspec 'ViewDelegates' do |ss|
     ss.source_files = 'Classes/ViewDelegates/**/*.swift'
   end
