@@ -12,6 +12,8 @@
     * Added UIViewExtensions, providing useful methods for handling border width, maskToBounds and border color as IBDesignable.
   * Networking:
     * Added HttpCookieManager to handle http session cookies.
+  * StaticContent:
+    * Added StaticTableViewStructure to handle static table view structures.
   * Transform:
     * Added Transformer protocol.
   * ViewController:

@@ -29,6 +29,7 @@ PODS:
     - York/Networking (= 0.3.3)
     - York/Persistence (= 0.3.3)
     - York/Presenter (= 0.3.3)
+    - York/StaticContent (= 0.3.3)
     - York/Transformer (= 0.3.3)
     - York/ViewComponents (= 0.3.3)
     - York/ViewController (= 0.3.3)
@@ -83,6 +84,10 @@ PODS:
     - JLRoutes (= 1.6)
     - SwiftHEXColors (= 1.0.4)
     - York-Swift-Try-Catch (= 0.1.1)
+  - York/StaticContent (0.3.3):
+    - JLRoutes (= 1.6)
+    - SwiftHEXColors (= 1.0.4)
+    - York-Swift-Try-Catch (= 0.1.1)
   - York/Transformer (0.3.3):
     - JLRoutes (= 1.6)
     - SwiftHEXColors (= 1.0.4)
@@ -119,7 +124,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   JLRoutes: 435d791422e96c9b9b5e1c4db1aedb3ae1b1a08f
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
-  York: eac4c44d35b9004431ee0fca4f942edf24ba009e
+  York: 1873b1df54fcecd2912d5ffb4be6a2d4736b5777
   York-Swift-Try-Catch: ac0d410504c56c181ee40404e95ea835a817e7b6
 
 COCOAPODS: 0.39.0
