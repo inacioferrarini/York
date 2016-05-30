@@ -23,8 +23,23 @@
 
 import UIKit
 
-public protocol FlowElement {
+public class FlowElement {
 
-    func execute()
+
+    // MARK: - Properties
+
+    public var status: FlowStatus
+
+
+    // MARK: - Initialization
+
+    public init() {
+        self.status = .NotStarted
+    }
+
+
+    // MARK: - Public Methods
+
+    public func execute() { }
 
 }

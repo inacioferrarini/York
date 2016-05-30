@@ -21,20 +21,11 @@
 //    SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-public class FlowCoordinator {
-
-    public var flowElements: [FlowElement]
-
-    public init(flowElements: [FlowElement]) {
-        self.flowElements = flowElements
-    }
-
-    public func start() {
-        for flow in self.flowElements {
-            flow.execute()
-        }
-    }
-
+public enum FlowStatus: Int {
+    case NotStarted
+    case Executing
+    case Success
+    case Failed
 }

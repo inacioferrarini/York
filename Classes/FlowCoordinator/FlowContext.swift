@@ -23,18 +23,6 @@
 
 import UIKit
 
-public class FlowCoordinator {
-
-    public var flowElements: [FlowElement]
-
-    public init(flowElements: [FlowElement]) {
-        self.flowElements = flowElements
-    }
-
-    public func start() {
-        for flow in self.flowElements {
-            flow.execute()
-        }
-    }
+public class FlowContext: NSObject {
 
 }

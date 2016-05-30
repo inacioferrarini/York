@@ -10,6 +10,8 @@
   * Extensions:
     * Added StringExtensions, providing string related methods.
     * Added UIViewExtensions, providing useful methods for handling border width, maskToBounds and border color as IBDesignable.
+  * FlowCoordinator:
+    * Added FlowContext, FlowCoordinator, FlowElement and FlowStatus, to abstract flow coordination.
   * Networking:
     * Added HttpCookieManager to handle http session cookies.
   * StaticContent:
