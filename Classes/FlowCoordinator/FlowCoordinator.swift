@@ -25,11 +25,20 @@ import UIKit
 
 public class FlowCoordinator {
 
+
+    // MARK: - Properties
+
     public var flowElements: [FlowElement]
+
+
+    // MARK: - Initialization
 
     public init(flowElements: [FlowElement]) {
         self.flowElements = flowElements
     }
+
+
+    // MARK: - Public Methods
 
     public func start() {
         for flow in self.flowElements {
