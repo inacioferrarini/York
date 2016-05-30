@@ -30,6 +30,16 @@ public struct StaticTableViewStructure {
     public var cellReuseIdentifier: String
     public var configureCellBlock: ((cell: UITableViewCell, structure: StaticTableViewStructure) -> Void)?
 
+    public init(structureUid: String,
+                height: CGFloat,
+                cellReuseIdentifier: String,
+                configureCellBlock: ((cell: UITableViewCell, structure: StaticTableViewStructure) -> Void)?) {
+        self.structureUid = structureUid
+        self.height = height
+        self.cellReuseIdentifier = cellReuseIdentifier
+        self.configureCellBlock = configureCellBlock
+    }
+
 }
 
 
