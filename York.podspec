@@ -64,6 +64,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     ss.source_files = 'Classes/Extensions/**/*.swift'
   end
 
+  s.subspec 'FlowCoordinator' do |ss|
+    ss.source_files = 'Classes/FlowCoordinator/**/*.swift'
+  end
+
   s.subspec 'Logging' do |ss|
     ss.source_files = 'Classes/Logging/**/*.swift'
   end
