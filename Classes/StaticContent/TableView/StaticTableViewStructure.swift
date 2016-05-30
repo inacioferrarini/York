@@ -37,6 +37,6 @@ public struct StaticTableViewStructure {
 
 extension StaticTableViewStructure: Equatable {}
 
-public func ==(lhs: StaticTableViewStructure, rhs: StaticTableViewStructure) -> Bool {
+public func == (lhs: StaticTableViewStructure, rhs: StaticTableViewStructure) -> Bool {
     return lhs.structureUid == rhs.structureUid
 }
