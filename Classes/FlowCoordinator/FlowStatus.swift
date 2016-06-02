@@ -27,5 +27,5 @@ public enum FlowStatus: Int {
     case NotStarted
     case Executing
     case Success
-    case Failed
+    case Failure
 }
