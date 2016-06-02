@@ -20,6 +20,7 @@
     * Added Transformer protocol.
   * ViewController:
     * Added BaseTabBarController to handle UITabBar customizations.
+    * Added BaseCollectionViewController as a base class for collection view base class.
   * ViewDelegates:
     * Added TableViewBlockDelegate for handling UITableView item selection and related events.
     * Added CollectionViewBlockDelegate for handling UICollectionView item selection and related events.
