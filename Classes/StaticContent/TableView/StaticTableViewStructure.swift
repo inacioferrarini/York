@@ -34,6 +34,10 @@ public struct StaticTableViewStructure {
         self.init(structureUid: structureUid, height: nil, cellReuseIdentifier: cellReuseIdentifier, configureCellBlock: nil)
     }
 
+    public init(structureUid: String, cellReuseIdentifier: String, configureCellBlock: ((cell: UITableViewCell, structure: StaticTableViewStructure) -> Void)) {
+        self.init(structureUid: structureUid, height: nil, cellReuseIdentifier: cellReuseIdentifier, configureCellBlock: configureCellBlock)
+    }
+
     public init(structureUid: String,
                 height: CGFloat?,
                 cellReuseIdentifier: String,
