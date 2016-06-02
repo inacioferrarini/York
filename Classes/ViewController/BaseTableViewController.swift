@@ -65,7 +65,6 @@ public class BaseTableViewController: BaseDataBasedViewController {
                 tableView.addSubview(refreshControl)
                 tableView.reloadData()
             }
-
         }
     }
 
