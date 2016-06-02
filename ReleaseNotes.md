@@ -24,6 +24,8 @@
   * ViewDelegates:
     * Added TableViewBlockDelegate for handling UITableView item selection and related events.
     * Added CollectionViewBlockDelegate for handling UICollectionView item selection and related events.
+  * ViewComponents:
+    * Added EmbededViewControllerTableViewCell, allowing to embed a UIViewController inside a TableViewCell with ease.
   * Views:
     * Added DesignableView for basic views that must be '@IBDesignable'
 
