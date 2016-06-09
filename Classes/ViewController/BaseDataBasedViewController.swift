@@ -25,9 +25,10 @@ import UIKit
 
 public class BaseDataBasedViewController: BaseViewController {
 
+
     // MARK: - Properties
 
-    @IBOutlet public weak var courtain: UIView?
+    @IBOutlet public weak var courtainView: UIView?
 
 
     // MARK: - Initialization
@@ -42,21 +43,28 @@ public class BaseDataBasedViewController: BaseViewController {
 
     public func performDataSync() {
         if self.shouldSyncData() {
-            self.willSyncData()
-            self.syncData()
-            self.didSyncData()
+            let queue = dispatch_queue_create(self.instanceSimpleClassName(), nil)
+            dispatch_async(queue, {
+                self.willSyncData()
+                self.syncData()
+                self.didSyncData()
+            })
         }
     }
 
     public func showCourtainView() {
-        if let courtain = self.courtain {
-            courtain.hidden = false
+        dispatch_async(dispatch_get_main_queue()) {
+            if let courtainView = self.courtainView {
+                courtainView.hidden = false
+            }
         }
     }
 
     public func hideCourtainView() {
-        if let courtain = self.courtain {
-            courtain.hidden = true
+        dispatch_async(dispatch_get_main_queue()) {
+            if let courtainView = self.courtainView {
+                courtainView.hidden = true
+            }
         }
     }
 
