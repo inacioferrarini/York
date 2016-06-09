@@ -8,10 +8,11 @@
     * Added CollectionViewArrayDataSource for providing arrays as DataSources to UICollectionViews.
     * Added CollectionViewTableViewCell for providing a TableViewCell that contains an UICollectionView, having as well the UICollectionViewDetaSource.
   * Collections:
-    * 
+    * Added Stack collection type.
   * Extensions:
     * Added StringExtensions, providing string related methods.
     * Added UIViewExtensions, providing useful methods for handling border width, maskToBounds and border color as IBDesignable.
+    * Added method to return the class name from the current instance to NSObjectExtension.
   * FlowCoordinator:
     * Added FlowContext, FlowCoordinator, FlowElement and FlowStatus, to abstract flow coordination.
   * Networking:

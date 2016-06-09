@@ -31,4 +31,10 @@ public extension NSObject {
         return classNameComponents.last!
     }
 
+    public func instanceSimpleClassName() -> String {
+        let fullClassName: String = NSStringFromClass(object_getClass(self))
+        let classNameComponents = fullClassName.characters.split {$0 == "."}.map(String.init)
+        return classNameComponents.last!
+    }
+
 }
