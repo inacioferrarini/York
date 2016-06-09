@@ -20,6 +20,7 @@ PODS:
     - JLRoutes (= 1.6)
     - SwiftHEXColors (= 1.0.4)
     - York-Swift-Try-Catch (= 0.1.1)
+    - York/Collections (= 0.3.3)
     - York/Context (= 0.3.3)
     - York/DataSource (= 0.3.3)
     - York/DataSyncRules (= 0.3.3)
@@ -37,6 +38,10 @@ PODS:
     - York/ViewDelegates (= 0.3.3)
     - York/Views (= 0.3.3)
   - York-Swift-Try-Catch (0.1.1)
+  - York/Collections (0.3.3):
+    - JLRoutes (= 1.6)
+    - SwiftHEXColors (= 1.0.4)
+    - York-Swift-Try-Catch (= 0.1.1)
   - York/Context (0.3.3):
     - JLRoutes (= 1.6)
     - SwiftHEXColors (= 1.0.4)
@@ -129,7 +134,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   JLRoutes: 435d791422e96c9b9b5e1c4db1aedb3ae1b1a08f
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
-  York: ee71f64d6ed90c4b1abe551a0bf9a52700d8b972
+  York: 83877f921ecf4d0f7ed5bab1a108fd02c2866963
   York-Swift-Try-Catch: ac0d410504c56c181ee40404e95ea835a817e7b6
 
 COCOAPODS: 0.39.0
