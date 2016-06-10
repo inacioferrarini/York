@@ -30,4 +30,11 @@ public extension String {
         return self.rangeOfCharacterFromSet(badCharacters) == nil
     }
 
+    public func replaceString(inRange range: NSRange, withString string: String) -> String {
+        let startIndex = self.startIndex.advancedBy(range.location)
+        let endIndex = startIndex.advancedBy(range.length)
+        let stringReplaceRange = startIndex..<endIndex
+        return self.stringByReplacingCharactersInRange(stringReplaceRange, withString: string)
+    }
+
 }
