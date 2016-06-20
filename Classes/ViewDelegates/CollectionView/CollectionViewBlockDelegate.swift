@@ -27,16 +27,17 @@ import CoreData
 public class CollectionViewBlockDelegate: NSObject, UICollectionViewDelegate {
 
     public let collectionView: UICollectionView
-    public let itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)
+    public var itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)?
 
-    public init(collectionView: UICollectionView, itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)) {
-        self.itemSelectionBlock = itemSelectionBlock
+    public init(collectionView: UICollectionView) {
         self.collectionView = collectionView
         super.init()
     }
 
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.itemSelectionBlock(indexPath: indexPath)
+        if let itemSelectionBlock = self.itemSelectionBlock {
+            itemSelectionBlock(indexPath: indexPath)
+        }
     }
 
 }
