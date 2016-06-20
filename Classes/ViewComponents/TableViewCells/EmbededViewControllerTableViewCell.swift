@@ -28,7 +28,12 @@ public class EmbededViewControllerTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    public var embededViewController: UIViewController?
+    public var embededViewController: UIViewController?   // -> EmbededViewController
+
+
+    // Outlets
+
+    @IBOutlet public weak var embededContentHeightConstraint: NSLayoutConstraint!
 
 
     // MARK: - Public Methods
