@@ -27,16 +27,14 @@ import CoreData
 public class TableViewBlockDelegate<CellType: UITableViewCell>: NSObject, UITableViewDelegate {
 
     public let tableView: UITableView
-    public let itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)
+    public var itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)?
     public var heightForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> CGFloat)?
-    public let loadMoreDataBlock: (() -> Void)?
+    public var loadMoreDataBlock: (() -> Void)?
     public var willDisplayCellBlock: ((CellType, NSIndexPath) -> Void)?
     public var didEndDisplayingCellBlock: ((CellType, NSIndexPath) -> Void)?
 
-    public init(tableView: UITableView, itemSelectionBlock: ((indexPath: NSIndexPath) -> Void), loadMoreDataBlock:(() -> Void)?) {
-        self.itemSelectionBlock = itemSelectionBlock
+    public init(tableView: UITableView) {
         self.tableView = tableView
-        self.loadMoreDataBlock = loadMoreDataBlock
         super.init()
     }
 
@@ -51,7 +49,9 @@ public class TableViewBlockDelegate<CellType: UITableViewCell>: NSObject, UITabl
     }
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.itemSelectionBlock(indexPath: indexPath)
+        if let selectRowBlock = self.itemSelectionBlock {
+            selectRowBlock(indexPath: indexPath)
+        }
     }
 
     public func scrollViewDidScroll(scrollView: UIScrollView) {
