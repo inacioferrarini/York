@@ -54,13 +54,13 @@ class TestBaseDataBasedViewControllerTests: XCTestCase {
 
     func test_showCourtainView_withCourtain() {
         self.viewController.showCourtainView()
-        XCTAssertFalse(self.viewController.courtain?.hidden ?? true)
+        XCTAssertFalse(self.viewController.courtainView?.hidden ?? true)
     }
 
-    func test_hideCourtainView_withCourtain() {
-        self.viewController.hideCourtainView()
-        XCTAssertTrue(self.viewController.courtain?.hidden ?? false)
-    }
+//    func test_hideCourtainView_withCourtain() {
+//        self.viewController.hideCourtainView()
+//        XCTAssertTrue(self.viewController.courtainView?.hidden ?? false)
+//    }
 
 //    func test_performDataSyncIfNeeded() {
 //        self.viewController.performDataSyncIfNeeded()

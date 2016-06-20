@@ -64,8 +64,7 @@ class CollectionViewTableViewCellTests: XCTestCase {
     }
 
     func createCollectionViewDelegate() -> CollectionViewBlockDelegate {
-        return CollectionViewBlockDelegate(collectionView: self.collectionView, itemSelectionBlock: { (indexPath: NSIndexPath) in
-        })
+        return CollectionViewBlockDelegate(collectionView: self.collectionView)
     }
 
 

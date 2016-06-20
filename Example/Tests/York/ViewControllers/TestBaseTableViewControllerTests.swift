@@ -97,8 +97,9 @@ class TestBaseTableViewControllerTests: XCTestCase {
 
     func test_delegate_checkItemSelectionBlock() {
         self.viewController.viewDidLoad()
-        if let delegate = self.viewController.delegate as? TableViewBlockDelegate {
-            delegate.itemSelectionBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
+        if let delegate = self.viewController.delegate as? TableViewBlockDelegate,
+            let itemSelectionBlock = delegate.itemSelectionBlock {
+            itemSelectionBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
         }
     }
 

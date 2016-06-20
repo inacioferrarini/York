@@ -39,7 +39,7 @@ class TableViewBlockDelegateTests: XCTestCase {
 
     // MARK: - Supporting Methods
 
-    func createTableViewBlockDelegate() -> TableViewBlockDelegate {
+    func createTableViewBlockDelegate() -> TableViewBlockDelegate<UITableViewCell> {
         self.tableView = UITableView()
         self.itemSelectionBlock = { (indexPath: NSIndexPath) -> Void in
             self.itemSelectionBlockWasCalled = true
@@ -50,9 +50,11 @@ class TableViewBlockDelegateTests: XCTestCase {
         self.heightForRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> CGFloat in
             return 10
         }
-        return TableViewBlockDelegate(tableView: self.tableView,
-            itemSelectionBlock: self.itemSelectionBlock,
-            loadMoreDataBlock: self.loadMoreDataBlock)
+
+        let delegate = TableViewBlockDelegate(tableView: self.tableView)
+        delegate.itemSelectionBlock = self.itemSelectionBlock
+        delegate.loadMoreDataBlock = self.loadMoreDataBlock
+        return delegate
     }
 
 

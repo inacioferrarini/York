@@ -57,10 +57,7 @@ public class TestBaseTableViewController: BaseTableViewController, AppContextAwa
     }
 
     override public func createDelegate() -> UITableViewDelegate? {
-        let itemSelectionBlock = { (indexPath: NSIndexPath) -> Void in
-
-        }
-        return TableViewBlockDelegate(tableView: self.tableView!, itemSelectionBlock: itemSelectionBlock, loadMoreDataBlock: nil)
+        return TableViewBlockDelegate(tableView: self.tableView!)
     }
 
     override public func createRefreshControl() -> UIRefreshControl? {

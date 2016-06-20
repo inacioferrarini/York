@@ -43,8 +43,9 @@ class CollectionViewBlockDelegateTests: XCTestCase {
         self.itemSelectionBlock = { (indexPath: NSIndexPath) -> Void in
             self.itemSelectionBlockWasCalled = true
         }
-        return CollectionViewBlockDelegate(collectionView: self.collectionView,
-                                           itemSelectionBlock: self.itemSelectionBlock)
+        let delegate = CollectionViewBlockDelegate(collectionView: self.collectionView)
+        delegate.itemSelectionBlock = self.itemSelectionBlock
+        return delegate
     }
 
 

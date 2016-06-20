@@ -44,4 +44,18 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertFalse(string.isNumber())
     }
 
+    func test_replaceStrings_mustNotCrash() {
+        let baseString = "111.111.111-11"
+        let replacedString = baseString.replaceStrings(pairing: ["." : "x", "-" : "y"])
+        let compareString = "111x111x111y11"
+        XCTAssertEqual(replacedString, compareString)
+    }
+
+    func test_removeStrings_mustNotCrash() {
+        let baseString = "111.111.111-11"
+        let replacedString = baseString.removeStrings([".", "-"])
+        let compareString = "11111111111"
+        XCTAssertEqual(replacedString, compareString)
+    }
+
 }
