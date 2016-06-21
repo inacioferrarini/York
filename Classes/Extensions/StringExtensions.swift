@@ -44,7 +44,7 @@ public extension String {
         }
         return string
     }
-    
+
     public func removeStrings(strings: [String]) -> String {
         let pairDictionary = strings.reduce([String : String]()) { (currentPairDictionary: [String : String], currentString: String) -> [String : String] in
             var updatedCurrentPairDictionary = currentPairDictionary

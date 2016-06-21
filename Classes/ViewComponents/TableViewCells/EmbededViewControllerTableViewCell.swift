@@ -49,8 +49,10 @@ public class EmbededViewControllerTableViewCell: UITableViewCell {
         return desiredLayout
     }
 
-    func createHeightConstraint(forView view:UIView) -> NSLayoutConstraint? {
-        let constraint = NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 88)
+    func createHeightConstraint(forView view: UIView) -> NSLayoutConstraint? {
+        let constraint = NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal,
+                                            toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute,
+                                            multiplier: 1.0, constant: 88)
         constraint.priority = 999
         return constraint
     }
