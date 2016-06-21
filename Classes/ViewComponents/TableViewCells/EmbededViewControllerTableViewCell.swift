@@ -33,10 +33,43 @@ public class EmbededViewControllerTableViewCell: UITableViewCell {
 
     // Outlets
 
-    @IBOutlet public weak var embededContentHeightConstraint: NSLayoutConstraint!
+    @IBOutlet public weak var embededContentHeightConstraint: NSLayoutConstraint?
 
 
     // MARK: - Public Methods
+
+    func getExistingHeightConstraint(fromView view: UIView) -> NSLayoutConstraint? {
+        var desiredLayout: NSLayoutConstraint?
+        for c in view.constraints {
+            if c.instanceSimpleClassName() == "NSLayoutConstraint" && c.firstAttribute == .Height {
+                desiredLayout = c
+                break
+            }
+        }
+        return desiredLayout
+    }
+
+    func createHeightConstraint(forView view:UIView) -> NSLayoutConstraint? {
+        let bindingDic = ["firstView" : view]
+        let constraint = NSLayoutConstraint.constraintsWithVisualFormat("V:[firstView(300)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindingDic)
+        print ("createHeightConstraint")
+        return nil
+    }
+
+    public func setupHeightConstraints() {
+        if let firstView = self.contentView.subviews.first {
+            if let heightConstraint = self.getExistingHeightConstraint(fromView: firstView) {
+                print ("I've found the height constraint ... using this")
+                self.embededContentHeightConstraint = heightConstraint
+            } else {
+print ("I'vent found the height constraint ... creating one")
+self.embededContentHeightConstraint = self.createHeightConstraint(forView: firstView)
+                if let constraint = self.embededContentHeightConstraint {
+                    firstView.addConstraint(constraint)
+                }
+            }
+        }
+    }
 
     public func embedInParentViewController(parentViewController: UIViewController) {
         if let embededViewController = self.embededViewController {
