@@ -50,20 +50,17 @@ public class EmbededViewControllerTableViewCell: UITableViewCell {
     }
 
     func createHeightConstraint(forView view:UIView) -> NSLayoutConstraint? {
-        let bindingDic = ["firstView" : view]
-        let constraint = NSLayoutConstraint.constraintsWithVisualFormat("V:[firstView(300)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindingDic)
-        print ("createHeightConstraint")
-        return nil
+        let constraint = NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 88)
+        constraint.priority = 999
+        return constraint
     }
 
     public func setupHeightConstraints() {
         if let firstView = self.contentView.subviews.first {
             if let heightConstraint = self.getExistingHeightConstraint(fromView: firstView) {
-                print ("I've found the height constraint ... using this")
                 self.embededContentHeightConstraint = heightConstraint
             } else {
-print ("I'vent found the height constraint ... creating one")
-self.embededContentHeightConstraint = self.createHeightConstraint(forView: firstView)
+                self.embededContentHeightConstraint = self.createHeightConstraint(forView: firstView)
                 if let constraint = self.embededContentHeightConstraint {
                     firstView.addConstraint(constraint)
                 }
