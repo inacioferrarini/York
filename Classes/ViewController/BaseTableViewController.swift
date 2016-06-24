@@ -25,6 +25,7 @@ import UIKit
 
 public class BaseTableViewController: BaseDataBasedViewController {
 
+
     // MARK: - Properties
 
     public var refreshControl: UIRefreshControl?
