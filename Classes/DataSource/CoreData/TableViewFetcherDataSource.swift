@@ -174,4 +174,32 @@ public class TableViewFetcherDataSource<CellType: UITableViewCell, EntityType: N
         self.tableView.endUpdates()
     }
 
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if let heightForHeaderInSectionBlock = self.presenter.heightForHeaderInSectionBlock {
+            return heightForHeaderInSectionBlock(section: section)
+        }
+        return 0
+    }
+
+    public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if let heightForFooterInSectionBlock = self.presenter.heightForFooterInSectionBlock {
+            return heightForFooterInSectionBlock(section: section)
+        }
+        return 0
+    }
+
+    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let viewForHeaderInSectionBlock = self.presenter.viewForHeaderInSectionBlock {
+            return viewForHeaderInSectionBlock(section: section)
+        }
+        return nil
+    }
+
+    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if let viewForFooterInSectionBlock = self.presenter.viewForFooterInSectionBlock {
+            return viewForFooterInSectionBlock(section: section)
+        }
+        return nil
+    }
+
 }
