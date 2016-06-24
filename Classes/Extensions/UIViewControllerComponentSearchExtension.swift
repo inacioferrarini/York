@@ -22,24 +22,23 @@
 //
 
 import UIKit
-import CoreData
 
-public class TableViewCellPresenter<CellType: UITableViewCell, ValueType: Any>: NSObject {
+public extension UIViewController {
 
-    public var configureCellBlock: ((CellType, ValueType) -> Void)
-    public var cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)
-    public var canEditRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> Bool)?
-    public var commitEditingStyleBlock: ((editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath: NSIndexPath) -> Void)?
 
-    public var heightForHeaderInSectionBlock: ((section: NSInteger) -> CGFloat)?
-    public var heightForFooterInSectionBlock: ((section: NSInteger) -> CGFloat)?
-    public var viewForHeaderInSectionBlock: ((section: NSInteger) -> UIView?)?
-    public var viewForFooterInSectionBlock: ((section: NSInteger) -> UIView?)?
+    // MARK: - Component Search
 
-    public init(configureCellBlock: ((CellType, ValueType) -> Void), cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)) {
-        self.configureCellBlock = configureCellBlock
-        self.cellReuseIdentifierBlock = cellReuseIdentifierBlock
-        super.init()
+    public func allViewFromClass<T where T : UIView>(targetClass: T.Type, onView rootView: UIView) ->  [T] {
+        var elements = [T]()
+        for subview in rootView.subviews {
+            if let subview = subview as? T {
+                elements.append(subview)
+            }
+            if subview.subviews.count > 0 {
+                elements.appendContentsOf(self.allViewFromClass(targetClass, onView: subview))
+            }
+        }
+        return elements
     }
 
 }
