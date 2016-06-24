@@ -49,6 +49,8 @@ public class BaseDataBasedViewController: BaseViewController {
                 self.syncData()
                 self.didSyncData()
             })
+        } else {
+            self.hideCourtainView()
         }
     }
 
