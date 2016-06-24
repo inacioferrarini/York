@@ -33,8 +33,8 @@ public class BaseDataBasedViewController: BaseViewController {
 
     // MARK: - Initialization
 
-    override public func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override public func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.performDataSync()
     }
 
