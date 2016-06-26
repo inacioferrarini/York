@@ -142,29 +142,31 @@ public class BaseViewController: UIViewController {
     
     public func keyboardWillShow(notification: NSNotification) {
         let textFields = self.fetchAllTextFields()
+
         guard let firstResponder = self.firstResponder(textFields) else { return }
         self.textFieldNavigationToolbar?.selectedTextField = firstResponder
 
         let keyboardHeight = self.getKeyboardHeight(fromNotification: notification)
-        let firstResponderOrigin = firstResponder.convertPoint(self.view.frame.origin, toView: nil)
+
+        let firstResponderAbsoluteOrigin = firstResponder.convertPoint(firstResponder.frame.origin, toView: nil)
         let firstResponderHeight = firstResponder.frame.size.height
-//print("firstResponderOrigin: (\(firstResponderOrigin.x), \(firstResponderOrigin.y))")
-//print("firstResponderHeight: \(firstResponderHeight)")
+        let firstResponderThresholdPoint = CGPoint(x: 0, y: firstResponderAbsoluteOrigin.y + firstResponderHeight + 8)
+
         var visibleRect = self.view.frame
-//print("visibleRect: (\(visibleRect.origin.x), \(visibleRect.origin.y), \(visibleRect.size.width), \(visibleRect.size.height))")
+        if let topMostViewController = self.topMostViewController() {
+            visibleRect = topMostViewController.view.frame
+        }
+
         visibleRect.size.height -= keyboardHeight
-//print("visibleRect: (\(visibleRect.origin.x), \(visibleRect.origin.y), \(visibleRect.size.width), \(visibleRect.size.height))")
-        
-        if !CGRectContainsPoint(visibleRect, firstResponderOrigin) {
-            let yPos = firstResponderOrigin.y - visibleRect.size.height + firstResponderHeight + 8
-            let scrollPoint = CGPoint(x: 0.0, y: -1 * yPos)
-            self.view.frame.origin.y = scrollPoint.y
+
+        if !CGRectContainsPoint(visibleRect, firstResponderThresholdPoint) {
+            let yPos = (firstResponderThresholdPoint.y - visibleRect.size.height)
+            self.view.frame.origin.y = yPos * -1
         }
     }
 
     public func keyboardWillHide(notification: NSNotification) {
-//print ("original y offset: \(self.originalYOffset)")
         self.view.frame.origin.y = self.originalYOffset
     }
-
+    
 }
