@@ -29,12 +29,15 @@ public class BaseViewController: UIViewController {
 
     public var originalYOffset = CGFloat(0)
     public var stringsBundle: NSBundle?
-
+    public var textFieldNavigationToolbar: TextFieldNavigationToolBar?
 
     // MARK: - Lifecycle
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        let textFields = self.fetchAllTextFields()
+        self.textFieldNavigationToolbar = TextFieldNavigationToolBar(withTextFields: textFields, usingRelatedFields: nil)
+        self.textFieldNavigationToolbar?.selectedTextField = nil
         self.translateUI()
     }
 
@@ -114,7 +117,7 @@ public class BaseViewController: UIViewController {
             return textField.isFirstResponder()
         }).first
     }
-    
+
     public func registerForKeyboardNotifications() {
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
@@ -140,6 +143,7 @@ public class BaseViewController: UIViewController {
     public func keyboardWillShow(notification: NSNotification) {
         let textFields = self.fetchAllTextFields()
         guard let firstResponder = self.firstResponder(textFields) else { return }
+        self.textFieldNavigationToolbar?.selectedTextField = firstResponder
 
         let keyboardHeight = self.getKeyboardHeight(fromNotification: notification)
         let firstResponderOrigin = firstResponder.convertPoint(self.view.frame.origin, toView: nil)
