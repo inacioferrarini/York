@@ -88,14 +88,17 @@ public class TextFieldNavigationToolBar: NSObject {
         let previousButton = UIBarButtonItem(image: previousButtonImage, style: .Plain, target: self, action: #selector(previousButtonClicked))
         self.previousButton = previousButton
 
+        let buttonSpacing = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        buttonSpacing.width = 12
+        
         let nextButtonImage = UIImage(named: "RightArrow", inBundle: self.getBundle(), compatibleWithTraitCollection: nil)
         let nextButton = UIBarButtonItem(image: nextButtonImage, style: .Plain, target: self, action: #selector(nextButtonClicked))
         self.nextButton = nextButton
 
-        let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(doneButtonClicked))
+        let doneButton = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(doneButtonClicked))
         self.doneButton = doneButton
 
-        toolbar.items = [previousButton, nextButton, flexibleSpaceLeft, doneButton]
+        toolbar.items = [previousButton, buttonSpacing, nextButton, flexibleSpaceLeft, doneButton]
 
         if let textFields = self.textFields {
             for textField in textFields {
