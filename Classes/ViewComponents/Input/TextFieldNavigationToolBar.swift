@@ -79,17 +79,23 @@ public class TextFieldNavigationToolBar: NSObject {
             toolbar.sizeToFit()
             self.toolbar = toolbar
         }
-        
+
         guard let toolbar = self.toolbar else { return }
-        
+
         let flexibleSpaceLeft = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
 
-        self.previousButton = UIBarButtonItem(title: "<", style: .Plain, target: self, action: #selector(previousButtonClicked))
-        self.nextButton = UIBarButtonItem(title: ">", style: .Plain, target: self, action: #selector(nextButtonClicked))
-        self.doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(doneButtonClicked))
+        let previousButtonImage = UIImage(named: "LeftArrow", inBundle: self.getBundle(), compatibleWithTraitCollection: nil)
+        let previousButton = UIBarButtonItem(image: previousButtonImage, style: .Plain, target: self, action: #selector(previousButtonClicked))
+        self.previousButton = previousButton
 
-//        toolbar.items = [self.previousButton, self.nextButton, flexibleSpaceLeft, self.doneButton]
-        toolbar.items = [self.previousButton!, self.nextButton!, flexibleSpaceLeft, self.doneButton!]
+        let nextButtonImage = UIImage(named: "RightArrow", inBundle: self.getBundle(), compatibleWithTraitCollection: nil)
+        let nextButton = UIBarButtonItem(image: nextButtonImage, style: .Plain, target: self, action: #selector(nextButtonClicked))
+        self.nextButton = nextButton
+
+        let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(doneButtonClicked))
+        self.doneButton = doneButton
+
+        toolbar.items = [previousButton, nextButton, flexibleSpaceLeft, doneButton]
 
         if let textFields = self.textFields {
             for textField in textFields {
@@ -100,13 +106,17 @@ public class TextFieldNavigationToolBar: NSObject {
         self.updateToolbar()
     }
 
+    func getBundle() -> NSBundle {
+        return NSBundle(forClass: TextFieldNavigationToolBar.self)
+    }
+
     func indexOfSelectedTextField() -> NSInteger {
         guard let selectedTextField = self.selectedTextField else { return 0 }
         guard let textFields = self.textFields else { return 0 }
         guard let selectedIndex = textFields.indexOf({$0 == selectedTextField}) else { return 0 }
         return selectedIndex
     }
-    
+
     func updateToolbar() {
         guard let previousButton = self.previousButton else { return }
         guard let nextButton = self.nextButton else { return }

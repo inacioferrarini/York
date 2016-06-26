@@ -23,7 +23,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
   s.author           = { "Inácio Ferrarini" => "inacio.ferrarini@gmail.com" }
   s.source           = { :git => "https://github.com/inacioferrarini/York.git", :tag => s.version.to_s }
-
   s.frameworks = 'UIKit', 'CoreData'
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
@@ -115,6 +114,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   s.subspec 'ViewComponents' do |ss|
     ss.source_files = 'Classes/ViewComponents/**/*.swift'
+    ss.resources = 'Classes/ViewComponents/Assets/*.png'
   end
 
 end
