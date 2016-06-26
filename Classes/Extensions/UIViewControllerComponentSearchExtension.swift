@@ -28,6 +28,17 @@ public extension UIViewController {
 
     // MARK: - Component Search
 
+    public func topMostViewController() -> UIViewController? {
+        guard let window = UIApplication.sharedApplication().keyWindow else { return nil }
+        guard var topMostViewController = window.rootViewController else { return nil }
+
+        while nil != topMostViewController.presentedViewController {
+            guard let currentVC = topMostViewController.presentedViewController else { return topMostViewController }
+            topMostViewController = currentVC
+        }
+        return topMostViewController
+    }
+    
     public func allViewFromClass<T where T : UIView>(targetClass: T.Type, onView rootView: UIView) ->  [T] {
         var elements = [T]()
         for subview in rootView.subviews {
