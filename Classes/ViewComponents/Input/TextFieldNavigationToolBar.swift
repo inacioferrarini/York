@@ -59,8 +59,7 @@ public class TextFieldNavigationToolBar: NSObject {
             self.updateToolbar()
         }
     }
-    public var selectedTextFieldChangedBlock: ((selectedTextField: UITextField) -> Void)?
-    
+
     private var previousButton: UIBarButtonItem?
     private var nextButton: UIBarButtonItem?
     private var doneButton: UIBarButtonItem?
@@ -115,7 +114,7 @@ public class TextFieldNavigationToolBar: NSObject {
             for textField in textFields {
                 textField.inputAccessoryView = self.toolbar
             }
-            self.selectedTextField = textFields.first
+            // self.selectedTextField = textFields.first
         }
     }
 
@@ -147,11 +146,7 @@ public class TextFieldNavigationToolBar: NSObject {
             let selectedTextField = textFields[selectedIndex - 1]
             self.selectedTextField = selectedTextField
             selectedTextField.becomeFirstResponder()
-            if let updateBlock = self.selectedTextFieldChangedBlock {
-                updateBlock(selectedTextField: selectedTextField)
-            }
         }
-        self.updateToolbar()
     }
 
     func nextButtonClicked() {
@@ -161,17 +156,12 @@ public class TextFieldNavigationToolBar: NSObject {
             let selectedTextField = textFields[selectedIndex + 1]
             self.selectedTextField = selectedTextField
             selectedTextField.becomeFirstResponder()
-            if let updateBlock = self.selectedTextFieldChangedBlock {
-                updateBlock(selectedTextField: selectedTextField)
-            }
         }
-        self.updateToolbar()
     }
 
     func doneButtonClicked() {
         guard let selectedTextField = self.selectedTextField else { return }
         selectedTextField.resignFirstResponder()
-        self.updateToolbar()
     }
 
 }

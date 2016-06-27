@@ -32,20 +32,29 @@ public class BaseViewController: UIViewController {
     public var textFieldNavigationToolbar: TextFieldNavigationToolBar?
     var keyboardHeight: CGFloat = 0
 
+
     // MARK: - Lifecycle
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        let textFields = self.fetchAllTextFields()
-        let toolBar = TextFieldNavigationToolBar(withTextFields: textFields, usingRelatedFields: nil)
-        toolBar.selectedTextFieldChangedBlock = { (selectedTextField: UITextField) -> Void in
-            self.scrollViewToFirstResponder()
-        }
-        toolBar.selectedTextField = nil
-        self.textFieldNavigationToolbar = toolBar
         self.translateUI()
+        self.setupTextFieldNavigationToolBar()
     }
 
+    public func setupTextFieldNavigationToolBar() {
+        let textFields = self.fetchAllTextFields()
+        let toolBar = TextFieldNavigationToolBar(withTextFields: textFields, usingRelatedFields: nil)
+        toolBar.selectedTextField = nil
+        self.textFieldNavigationToolbar = toolBar
+    }
+    
+    public func updateFieldsInToolBar() {
+        let textFields = self.fetchAllTextFields()
+        if let toolbar = self.textFieldNavigationToolbar {
+            toolbar.textFields = textFields
+        }
+    }
+    
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.registerForKeyboardNotifications()
@@ -121,10 +130,6 @@ public class BaseViewController: UIViewController {
         })
     }
 
-
-    
-    
-
     public func firstResponder(textFields: [UITextField]) -> UITextField? {
         return textFields.filter({ (textField: UITextField) -> Bool in
             return textField.isFirstResponder()
@@ -155,6 +160,7 @@ public class BaseViewController: UIViewController {
     
     public func keyboardWillShow(notification: NSNotification) {
         self.keyboardHeight = self.getKeyboardHeight(fromNotification: notification)
+        self.updateFieldsInToolBar()
         self.scrollViewToFirstResponder()
     }
 
@@ -163,16 +169,10 @@ public class BaseViewController: UIViewController {
     }
 
     public func scrollViewToFirstResponder() {
-        let textFields = self.fetchAllTextFields()
-        guard let firstResponder = self.firstResponder(textFields) else { return }
-
-        if let toolBar = self.textFieldNavigationToolbar {
-            toolBar.textFields = textFields
-            toolBar.selectedTextField = firstResponder
-        }
+        guard let toolBar = self.textFieldNavigationToolbar else { return }
+        guard let firstResponder = toolBar.selectedTextField else { return }
 
         let keyboardHeight = self.keyboardHeight
-
         let firstResponderAbsoluteOrigin = firstResponder.convertPoint(firstResponder.frame.origin, toView: nil)
         let firstResponderHeight = firstResponder.frame.size.height
         let firstResponderThresholdPoint = CGPoint(x: 0, y: firstResponderAbsoluteOrigin.y + firstResponderHeight + 8)
