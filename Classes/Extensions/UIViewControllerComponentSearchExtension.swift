@@ -38,7 +38,24 @@ public extension UIViewController {
         }
         return topMostViewController
     }
-    
+
+    public func topMostViewController<T where T : UIViewController>(targetClass: T.Type, startFromViewController viewController: UIViewController) -> T? {
+        var targetViewController: T?
+        if let viewController = viewController as? T {
+            targetViewController = viewController
+        }
+        var currentViewController = viewController
+        while nil != currentViewController.parentViewController {
+            if let viewController = viewController as? T {
+                targetViewController = viewController
+            }
+            if let parentViewController = currentViewController.parentViewController {
+                currentViewController = parentViewController
+            }
+        }
+        return targetViewController
+    }
+
     public func allViewFromClass<T where T : UIView>(targetClass: T.Type, onView rootView: UIView) ->  [T] {
         var elements = [T]()
         for subview in rootView.subviews {

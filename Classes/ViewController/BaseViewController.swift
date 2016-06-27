@@ -30,14 +30,19 @@ public class BaseViewController: UIViewController {
     public var originalYOffset = CGFloat(0)
     public var stringsBundle: NSBundle?
     public var textFieldNavigationToolbar: TextFieldNavigationToolBar?
+    var keyboardHeight: CGFloat = 0
 
     // MARK: - Lifecycle
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         let textFields = self.fetchAllTextFields()
-        self.textFieldNavigationToolbar = TextFieldNavigationToolBar(withTextFields: textFields, usingRelatedFields: nil)
-        self.textFieldNavigationToolbar?.selectedTextField = nil
+        let toolBar = TextFieldNavigationToolBar(withTextFields: textFields, usingRelatedFields: nil)
+        toolBar.selectedTextFieldChangedBlock = { (selectedTextField: UITextField) -> Void in
+            self.scrollViewToFirstResponder()
+        }
+        toolBar.selectedTextField = nil
+        self.textFieldNavigationToolbar = toolBar
         self.translateUI()
     }
 
@@ -101,7 +106,11 @@ public class BaseViewController: UIViewController {
     // MARK: - Keyboard Handling
 
     public func fetchAllTextFields() -> [UITextField] {
-        return self.allViewFromClass(UITextField.self, onView: self.view).sort({ (leftTextField: UITextField, rightTextField: UITextField) -> Bool in
+        var viewController = self
+        if let topMostViewController = self.topMostViewController(BaseViewController.self, startFromViewController: self) {
+            viewController = topMostViewController
+        }
+        return viewController.allViewFromClass(UITextField.self, onView: self.view).sort({ (leftTextField: UITextField, rightTextField: UITextField) -> Bool in
             let leftScreenCoordinates = leftTextField.convertPoint(leftTextField.bounds.origin, toView: nil)
             let rightScreenCoordinates = rightTextField.convertPoint(rightTextField.bounds.origin, toView: nil)
             var returnValue = leftScreenCoordinates.y < rightScreenCoordinates.y
@@ -111,6 +120,10 @@ public class BaseViewController: UIViewController {
             return returnValue
         })
     }
+
+
+    
+    
 
     public func firstResponder(textFields: [UITextField]) -> UITextField? {
         return textFields.filter({ (textField: UITextField) -> Bool in
@@ -141,12 +154,24 @@ public class BaseViewController: UIViewController {
     }
     
     public func keyboardWillShow(notification: NSNotification) {
+        self.keyboardHeight = self.getKeyboardHeight(fromNotification: notification)
+        self.scrollViewToFirstResponder()
+    }
+
+    public func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = self.originalYOffset
+    }
+
+    public func scrollViewToFirstResponder() {
         let textFields = self.fetchAllTextFields()
-
         guard let firstResponder = self.firstResponder(textFields) else { return }
-        self.textFieldNavigationToolbar?.selectedTextField = firstResponder
 
-        let keyboardHeight = self.getKeyboardHeight(fromNotification: notification)
+        if let toolBar = self.textFieldNavigationToolbar {
+            toolBar.textFields = textFields
+            toolBar.selectedTextField = firstResponder
+        }
+
+        let keyboardHeight = self.keyboardHeight
 
         let firstResponderAbsoluteOrigin = firstResponder.convertPoint(firstResponder.frame.origin, toView: nil)
         let firstResponderHeight = firstResponder.frame.size.height
@@ -165,8 +190,4 @@ public class BaseViewController: UIViewController {
         }
     }
 
-    public func keyboardWillHide(notification: NSNotification) {
-        self.view.frame.origin.y = self.originalYOffset
-    }
-    
 }

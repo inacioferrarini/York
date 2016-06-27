@@ -47,14 +47,20 @@ public class TextFieldNavigationToolBar: NSObject {
         }
     }
     public var toolbar: UIToolbar?
-    public var textFields: [UITextField]?
+    public var textFields: [UITextField]? {
+        didSet {
+            self.updateAccessoryViews()
+            self.updateToolbar()
+        }
+    }
     public var relatedFields: [UITextField : AnyObject]?
     public var selectedTextField: UITextField? {
         didSet {
             self.updateToolbar()
         }
     }
-
+    public var selectedTextFieldChangedBlock: ((selectedTextField: UITextField) -> Void)?
+    
     private var previousButton: UIBarButtonItem?
     private var nextButton: UIBarButtonItem?
     private var doneButton: UIBarButtonItem?
@@ -100,13 +106,17 @@ public class TextFieldNavigationToolBar: NSObject {
 
         toolbar.items = [previousButton, buttonSpacing, nextButton, flexibleSpaceLeft, doneButton]
 
+        self.updateAccessoryViews()
+        self.updateToolbar()
+    }
+
+    func updateAccessoryViews() {
         if let textFields = self.textFields {
             for textField in textFields {
                 textField.inputAccessoryView = self.toolbar
             }
             self.selectedTextField = textFields.first
         }
-        self.updateToolbar()
     }
 
     func getBundle() -> NSBundle {
@@ -137,6 +147,9 @@ public class TextFieldNavigationToolBar: NSObject {
             let selectedTextField = textFields[selectedIndex - 1]
             self.selectedTextField = selectedTextField
             selectedTextField.becomeFirstResponder()
+            if let updateBlock = self.selectedTextFieldChangedBlock {
+                updateBlock(selectedTextField: selectedTextField)
+            }
         }
         self.updateToolbar()
     }
@@ -148,6 +161,9 @@ public class TextFieldNavigationToolBar: NSObject {
             let selectedTextField = textFields[selectedIndex + 1]
             self.selectedTextField = selectedTextField
             selectedTextField.becomeFirstResponder()
+            if let updateBlock = self.selectedTextFieldChangedBlock {
+                updateBlock(selectedTextField: selectedTextField)
+            }
         }
         self.updateToolbar()
     }
