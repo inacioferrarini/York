@@ -69,4 +69,61 @@ public extension UIViewController {
         return elements
     }
 
+    public func subviewFromClass<T where T : UIView>(targetClass: T.Type, onView rootView: UIView, withAccessibilityIdentifier accessibilityIdentifier: String) ->  T? {
+        var view: T?
+        for subview in rootView.subviews {
+            if let subview = subview as? T where subview.accessibilityIdentifier == accessibilityIdentifier {
+                view = subview
+                break
+            }
+            if subview.subviews.count > 0 {
+                if let subview = self.subviewFromClass(targetClass, onView: subview, withAccessibilityIdentifier: accessibilityIdentifier) {
+                    view = subview
+                    break
+                }
+            }
+        }
+        return view
+    }
+
+    public func findButton(withAccessibilityIdentifier accessibilityIdentifier: String) -> UIButton? {
+        var viewController = self
+        if let topMostViewController = self.topMostViewController(BaseViewController.self, startFromViewController: self) {
+            viewController = topMostViewController
+        }
+        return viewController.subviewFromClass(UIButton.self, onView: self.view, withAccessibilityIdentifier: accessibilityIdentifier)
+    }
+
+    public func findTextField(withAccessibilityIdentifier accessibilityIdentifier: String) -> UITextField? {
+        var viewController = self
+        if let topMostViewController = self.topMostViewController(BaseViewController.self, startFromViewController: self) {
+            viewController = topMostViewController
+        }
+        return viewController.subviewFromClass(UITextField.self, onView: self.view, withAccessibilityIdentifier: accessibilityIdentifier)
+    }
+
+    public func findLabel(withAccessibilityIdentifier accessibilityIdentifier: String) -> UILabel? {
+        var viewController = self
+        if let topMostViewController = self.topMostViewController(BaseViewController.self, startFromViewController: self) {
+            viewController = topMostViewController
+        }
+        return viewController.subviewFromClass(UILabel.self, onView: self.view, withAccessibilityIdentifier: accessibilityIdentifier)
+    }
+
+    public func findImageView(withAccessibilityIdentifier accessibilityIdentifier: String) -> UIImageView? {
+        var viewController = self
+        if let topMostViewController = self.topMostViewController(BaseViewController.self, startFromViewController: self) {
+            viewController = topMostViewController
+        }
+        return viewController.subviewFromClass(UIImageView.self, onView: self.view, withAccessibilityIdentifier: accessibilityIdentifier)
+    }
+
+    public func findView(withAccessibilityIdentifier accessibilityIdentifier: String) -> UIView? {
+        var viewController = self
+        if let topMostViewController = self.topMostViewController(BaseViewController.self, startFromViewController: self) {
+            viewController = topMostViewController
+        }
+        return viewController.subviewFromClass(UIView.self, onView: self.view, withAccessibilityIdentifier: accessibilityIdentifier)
+    }
+
 }

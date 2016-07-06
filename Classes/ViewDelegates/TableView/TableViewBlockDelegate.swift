@@ -39,11 +39,9 @@ public class TableViewBlockDelegate<CellType: UITableViewCell>: NSObject, UITabl
     }
 
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var height: CGFloat = 0
+        var height: CGFloat = tableView.rowHeight
         if let heightForRowAtIndexPathBlock = self.heightForRowAtIndexPathBlock {
             height = heightForRowAtIndexPathBlock(indexPath: indexPath)
-        } else {
-            height = UITableViewAutomaticDimension
         }
         return height
     }

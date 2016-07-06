@@ -23,6 +23,7 @@
 
 import Foundation
 
+
 public protocol AppContextAwareProtocol {
 
     associatedtype GenericType
