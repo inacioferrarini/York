@@ -115,6 +115,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.subspec 'ViewComponents' do |ss|
     ss.source_files = 'Classes/ViewComponents/**/*.swift'
     ss.resources = 'Classes/ViewComponents/Assets/*.png'
+    ss.dependency 'York/Extensions'
   end
 
 end
