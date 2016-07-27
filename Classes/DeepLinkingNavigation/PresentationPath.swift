@@ -31,6 +31,7 @@ public class PresentationPath: NSObject {
     public let presentationParameterPath = "/:presentation"
     public static let presentationParameterPathKey = "presentation"
 
+
     // MARK: - Properties
 
     public private (set) var pattern: String
@@ -77,7 +78,7 @@ public class PresentationPath: NSObject {
         return self.removeLastPathSeparator(replacedValuesPath) + "/" + mode.rawValue
     }
 
-    private func removeLastPathSeparator(path: String) -> String {
+    public func removeLastPathSeparator(path: String) -> String {
         var cleanPath = path
         let lastIndex = path.endIndex.predecessor()
 

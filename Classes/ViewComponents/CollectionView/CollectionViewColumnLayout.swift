@@ -32,7 +32,7 @@ public class CollectionViewColumnLayout: UICollectionViewFlowLayout {
     // MARK: - Properties
 
     @IBInspectable
-    public var numberOfItemsPerRow: Int = 2 {
+    public var numberOfItemsPerRow: Float = 2 {
         didSet {
             invalidateLayout()
         }

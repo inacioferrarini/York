@@ -1,0 +1,245 @@
+Correções:
+Carrinho
+4.a Apesar do CEP já estar vindo preenchido, no caso de tê-lo feito na tela de detalhes do produto, fica aparecendo uma mensagem "Informe o CEP!", sendo necessário clicar no campo e digitar novamente o último digito do CEP para ele aceitar a entrada, e aí, deve-se selecionar novamente a forma de cep.
+-> Corrigido.
+Categorias
+7.b Ao clicar em uma categoria, não fica claro que a barra de cima é uma slide bar e que se pode arrastar ela para ver todas as categorias disponíveis. Pensar em uma forma de deixar isso mais evidente.
+-> Tamanho dos itens da categoria motificado.
+7.c Não é possível clicar no produto
+-> Ajustado transição na tela.
+Extra
+Categorias
+Não exibir categorias vazias
+-> Corrigido.
+App / Networking
+-> Toda a camada que troca informações com o Back-End foi revista. Métodos GET continuam usando AFNetworking (API que já era utilizada). Métodos POST passaram a utilizar Alamofire, sucesso espiritual do AFNetworking, escrita 100% em Swift e sem o problema de incompatibilidade com "Keep Alive" que o AFNetworking possui para métodos POST.
+Carrinho de Compras
+Não está exibindo os detalhes do produto selecionado na lista de compras
+-> Corrigido.
+
+
+Correções (1.0.14 (25) - 14/07/2016):
+Tela Inicial
+8.a	Padronizar o modo de exibição do preço. Ora a opção de parcelamento aparece tudo em 1 linha só, ora, quebra em 2. Isso causa uma impressão estranha no app, já que o espaçamento entre texto e botão "comprar", fica muito desuniforme
+-> Layout ajustado.
+8.b	Quando tem preço "de" -> "por", só está aparecendo a palavra "De". Incluir a palavra "por"
+-> Incluído o "Por" para os casos em que há desconto
+8.c	O texto está muito pequeno
+-> Fonte aumentada
+8.d	O botão comprar está pequeno, de forma que várias vezes que tento clicar nele, acabo clicando no produto e vice-versa.
+-> Tamanho aumentado
+8.e	O parcelamento não está sendo corretamente exibido (sempre aparece como "ou em 1x de ...", mesmo para produtos onde existe parcelamento disponível.
+-> O parcelamento não é mais exibido para quando é apenas uma parcela.
+8.f	Não está claro que cada linha é uma vitrine que permite "slide".
+-> Foi aumentado o tamanho do item.
+8.g	De forma geral, achei a usabilidade/visual dessa tela ruim. A tela de exibição de produtos após a seleção de categorias está bem melhor. Vamos padronizar para que exista apenas um tipo de lista de produtos, e isso seja usado tanto para o resultado da busca, categorias, e página inicial. Para resolver a questão de disposição das vitrines, vide a solução implementada no Android, que acho que ficou com uma usabilidade mais intuitiva.
+-> Fiz uma tentativa, de aumentando o item, deixar claro que existe mais conteúdo à esquerda, seguindo algumas recomendações da Apple para iOS e o App do Submarino. Caso não seja suficiente, podemos avançar em unificar as vitrines.
+
+Correções (1.0.13 (24) - 13/07/2016):
+Cadastro
+1.c.6 Ao preencher o cep, o endereço não é automaticamente preenchido
+-> Ao preencher o cep, é feita consulta ao back-end para obter os dados do endereço.
+Carrinho
+4.b Não consigo ver qual a variação escolhida para cada item do carrinho
+-> Para produtos com variação, a mesma é exibida na lista. Caso seja "Sem Variação", nada é exibido.
+Categorias
+7.a Trocar o texto do botão da barra para "Categorias"
+-> Corrigido.
+7.f Ao clicar em categories, ele volta para a última tela do fluxo, sendo necessário "Back" até voltar para a tela inicial de categorias. Este botão deve sempre levar para a tela inicial de categorias.
+-> Corrigido.
+
+Correções (1.0.12 (23) - 12/07/2016):
+Cadastro
+1.c.3	Não tem validação de CPF
+-> Aplicada validação por comprimento da máscara. Ainda pendente cálculo do valor. Isso vale para CNPJ também.
+1.c.4	Todos os campos estão como obrigatórios
+-> Obrigatoriedade ajustada conforme Web.
+1.c.5	O botão avançar não funciona
+-> Corrigido.
+1.c.7	Ao terminar o cadastro, o botão não deveria ser "VALIDAR", e sim, algo como "CRIAR CADASTRO"
+-> Corrigido.
+1.c.8	Caso haja um erro de validação na primeira tela (nome, email, senha, etc), não fica claro para o usuário, e ele tem que por conta própria voltar para a pagina anterior para ver os campos problemáticos.
+-> Havendo erro de validação na primeira tela, a mesma será exibida.
+2.a	Uma vez logado, se você clica em "acessar minha conta", não tem botão pra voltar. Precisa sair do aplicativo e entrar novamente.
+-> Botão adicionado.
+2.c	o "VALIDAR" deveria ser trocado para "ATUALIZAR CADASTRO""
+-> Corrigido.
+3.a Ao clicar no botão início, ele deveria levar para a tela inicial do app, com a vitrine. No entanto, ele está levando para a última tela visitada no fluxo de compras, sendo necessário ficar clicando em "Back" várias vezes para voltar para a tela inicial.
+-> Corrigido.
+
+Correções (1.0.11 (22) - 11/07/2016):
+Correções: 1.a e carrinho de compras (quando não está autenticado): Dificuldade para logar. Aparentemente, alguma questão entre a API em uso (AFNetworking) e Servidor com Keep Alive.
+-> Serão feitas mais requisições (tentativas) antes de apresentar mensagem de erro.
+Correções: 1.c1, 1.c2, 2.b - Problemas relacionados ao teclado e navegação entre os campos:
+-> Troquei a API para lidar com o teclado e eventos relacionados (navegação entre campos, evitar que o teclado cubra o campo, etc).
+
+
+
+Override Keyboard Appearance
+
+
+// MARK: - Properties
+
+var isCreatingUser = true
+
+
+// MARK: - Initialization
+
+override public func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    if nil == self.appContext.user {
+        self.isCreatingUser = false
+    } else {
+        self.isCreatingUser = true
+    }
+}
+
+document path: Optional(file:///var/mobile/Containers/Data/Application/E967457D-E600-4ABB-8F12-E8224E5C0B60/Documents/)
+- -----------------
+Optional("UINavigationController")
+- -----------------
+2016-07-11 18:01:39.697 WebStoreiOS[11633:5526910] Warning once only: Detected a case where constraints ambiguously suggest a height of zero for a tableview cell's content view. We're considering the collapse unintentional and using standard height instead.
+valueBlock: name companyUser value 0
+valueBlock: name newsletter value 1
+- -----------------
+Optional("UINavigationController")
+- -----------------
+
+AppTabBarController
+
+
+
+
+func updateBarButtonItems() {
+
+let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(switchEditMode))
+let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(switchEditMode))
+
+if tableView.editing {
+    self.navigationItem.leftBarButtonItem = doneButton
+} else {
+    self.navigationItem.leftBarButtonItem = editButton
+}
+}
+
+
+@IBAction func dismiss(sender: UIBarButtonItem) {
+    self.dismissViewControllerAnimated(true, completion: nil)
+}
+
+
+UserRegistrationAddressEmbededViewController.isNewUser
+
+
+Correções: 1.a e carrinho de compras (quando não está autenticado): Dificuldade para logar. Aparentemente, alguma questão entre a API em uso (AFNetworking) e Servidor com Keep Alive.
+-> Serão feitas mais requisições (tentativas) antes de apresentar mensagem de erro.
+Correções: 1.c1, 1.c2, 2.b - Problemas relacionados ao teclado e navegação entre os campos:
+-> Troquei a API para lidar com o teclado e eventos relacionados (navegação entre campos, evitar que o teclado cubra o campo, etc).
+
+
+
+
+
+1) Tela de login/cadastre-se
+a) Tenho que tentar umas 10 vezes até conseguir logar
+O Servidor está fazendo drop do request. Vou checar com o pessoal de Infra. Pelo que pude ver com o Jairo, não está aparecendo no log do Nginx.
+b) Esqueci minha senha não está implementado ainda
+Vou implementar.
+c) Cadastre-se:
+c1) Ao clicar em "Done" no teclado, o teclado não some
+Ainda estamos com algumas pendências referente ao teclado e navegação de campos.
+c2) A tela não rola, então fica com um textfield selecionado e o teclado por cima do mesmo
+Ainda estamos com algumas pendências referente ao teclado e navegação de campos.
+c3) Não tem validação de CPF
+c4) Todos os campos estão como obrigatórios
+Vou aplicar obrigatoriedade seletiva.
+c5) O botão avançar não funciona
+OK
+c6) Ao preencher o cep, o endereço não é automaticamente preenchido
+OK
+c7) Ao terminar o cadastro, o botão não deveria ser "VALIDAR", e sim, algo como "CRIAR CADASTRO"
+OK
+c8) Caso haja um erro de validação na primeira tela (nome, email, senha, etc), não fica claro para o usuário, e ele tem que por conta própria voltar para a pagina anterior para ver os campos problemáticos.
+OK. Há um problema de usabilidade generalizado quando é envolvido mais de uma tela. Vou assumir que havendo um erro de validação eu vou voltar para a primeira tela onde houve erro.
+
+2) "Acessar minha conta"
+a) Uma vez logado, se você clica em "acessar minha conta", não tem botão pra voltar. Precisa sair do aplicativo e entrar novamente.
+OK
+b) Mesmos pontos citados no item 1c.
+c) o "VALIDAR" deveria ser trocado para "ATUALIZAR CADASTRO""
+OK
+
+3) "Botão Início"
+a) Ao clicar no botão início, ele deveria levar para a tela inicial do app, com a vitrine. No entanto, ele está levando para a última tela visitada no fluxo de compras, sendo necessário ficar clicando em "Back" várias vezes para voltar para a tela inicial.
+OK
+
+4) "Carrinho"
+a) Apesar do CEP já estar vindo preenchido, no caso de tê-lo feito na tela de detalhes do produto, fica aparecendo uma mensagem "Informe o CEP!", sendo necessário clicar no campo e digitar novamente o último digito do CEP para ele aceitar a entrada, e aí, deve-se selecionar novamente a forma de cep
+b) Não consigo ver qual a variação escolhida para cada item do carrinho
+Eu vou incluir um label com o nome da variação selecionada. abaixo do nome do produto.
+c) Ao clicar em comprar, caso eu não esteja logado, preciso clicar várias vezes para conseguir fazer o login
+É o mesmo problema do item 1.a
+
+5) "Check-out"
+a) Não consigo visualizar os produtos que estou comprando, quando clico no link
+OK
+b) Não é possível modificar o endereço de entrega
+OK
+c) A "opção de entrega" é exibida pela terceira vez, sendo necessário selecionar novamente. Sugiro que neste caso, as opções não sejam exibidas. Somente a opção escolhida de fato pelo usuário, e caso o mesmo deseje trocar, deve ter um botão ("Trocar forma de envio"), próximo ao campo que exibirá a opção de frete escolhida.
+OK. Eu vou propagar a última opção escolhida. Ex: 1) Detalhe do Produto, 2) Carrinho de Compras, 3) Checkout.
+d) Parte de cupons inoperante
+OK.
+e) Cartão de crédito: Não sei qual cartão usar para continuar o teste no fluxo
+OK. Vou voltar a deixar os dados do cartão preenchidos nos campos.
+f) Boleto: Inoperante
+OK
+
+6) Atendimento
+a) Não entendi como vai funcionar essa parte. Tem isso na web?
+Esta parte eu não consegui localizar na Web, porém, os aplicativos de referência possuem algo similar.
+
+7) "Categories"
+a) Trocar o texto do botão da barra para "Categorias"
+OK.
+b) Ao clicar em uma categoria, não fica claro que a barra de cima é uma slide bar e que se pode arrastar ela para ver todas as categorias disponíveis. Pensar em uma forma de deixar isso mais evidente.
+Segundo os guias de usabilidade, quando existem mais itens você deve exibir uma parte deles para indicar que existem mais itens a seguir. Algo como exibir dois itens e 1/5 ou 1/3 do próximo.
+c) Não é possível clicar no produto
+Este é o mesmo caso do carrinho de compras ao se selecionar um item. Ele exibe o item, porém, ele exibe o item na primeira aba, porém, a aba ativa é a aba de categorias ou a aba do carrinho de compras.
+Alternativa 1 - Exibir o detalhe do produto como modal (similar ao autenticar, a view surge de baixo, ao invés do lado)
+Alternativa 2 - Mudar a aba que o usuário está vendo para a primeira aba.
+Nota: A alternativa 1 parece um pouco menos "intrusiva".
+d) Não tem botão comprar
+OK
+e) O parcelamento não está sendo corretamente exibido (sempre aparece como "ou em 1x de ...", mesmo para produtos onde existe parcelamento disponível.
+OK
+f) Ao clicar em categories, ele volta para a última tela do fluxo, sendo necessário "Back" até voltar para a tela inicial de categorias. Este botão deve sempre levar para a tela inicial de categorias.
+OK. Neste caso talvez fosse interessante de alguma forma disponibilizar um voltar para a anterior. Deixar o "Voltar" principal para voltar para o início das categorias e deixar o nome da categoria sendo exibida como um voltar para a anterior, se tiver.
+
+8) "Tela inicial"
+a) Padronizar o modo de exibição do preço. Ora a opção de parcelamento aparece tudo em 1 linha só, ora, quebra em 2. Isso causa uma impressão estranha no app, já que o espaçamento entre texto e botão "comprar", fica muito desuniforme
+OK
+b) Quando tem preço "de" -> "por", só está aparecendo a palavra "De". Incluir a palavra "por"
+OK
+c) O texto está muito pequeno
+OK
+d) O botão comprar está pequeno, de forma que várias vezes que tento clicar nele, acabo clicando no produto e vice-versa.
+OK
+e) O parcelamento não está sendo corretamente exibido (sempre aparece como "ou em 1x de ...", mesmo para produtos onde existe parcelamento disponível.
+OK
+f) Não está claro que cada linha é uma vitrine que permite "slide".
+OK. Vou ajustar o layout para exibir dois produtos e uma parte do próximo.
+g) De forma geral, achei a usabilidade/visual dessa tela ruim. A tela de exibição de produtos após a seleção de categorias está bem melhor. Vamos padronizar para que exista apenas um tipo de lista de produtos, e isso seja usado tanto para o resultado da busca, categorias, e página inicial. Para resolver a questão de disposição das vitrines, vide a solução implementada no Android, que acho que ficou com uma usabilidade mais intuitiva.
+OK.
+
+9) "Detalhes do produto"
+a) De forma geral, essa tela está muito feia e confusa, e deveria ser a mais bonita e atrativa do app. Atentar para fontes / espaçamentos / alinhamentos / cores / layout proposto pelo Giovani.
+b) Mesmo sem clicar em nada relacionado a frete, toda hora fica aparecendo o aviso preto "Envio atualizado com sucesso"
+OK
+c) No campo de digitar CEP, ao clicar em DONE, o teclado nao sai, sendo necessário deletar o ultimo digito e digitar novamente para que ele saia.
+OK
+d) A forma de seleção de frete nesta tela está diferente da forma de seleção de frete no carrinho, que está diferente da forma de seleção de frete no check-out. Padronizar. E caso o usuário já tenha selecionado em qualquer etapa anterior, suprimir a seleção nas etapas posteriores.
+OK
+e) Ao Clicar em "Descrição do Produto", ou "Informações Técnicas", a tela tá dando um scroll para o topo, sendo necessário descer novamente para ver o texto. Quando clicar em descrição do Produto, deve-se expandir esse texto, e colocá-lo no topo da tela via scroll. Ao clicar em "Informações Técnicas", deve-se retrair o "Descrição do produto" (caso esteja expandido), e colocar o "Informações Técnicas" no topo da tela, via scroll.
+OK
+f) Se possível, deixar o botão "Adicionar ao carrinho", sempre visível, na parte de baixo da tela, logo acima da barra de opções. Da forma como está, jogado no meio da tela, certamente abaixa a conversão.
+OK. Vou deixar o botão sempre visível.
