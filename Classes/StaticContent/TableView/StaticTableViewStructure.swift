@@ -28,6 +28,7 @@ public struct StaticTableViewStructure {
     public var structureUid: String
     public var height: CGFloat?
     public var cellReuseIdentifier: String
+    public var data: [String : Any]?
     public var configureCellBlock: ((cell: UITableViewCell, structure: StaticTableViewStructure) -> Void)?
 
     public init(structureUid: String, cellReuseIdentifier: String) {
