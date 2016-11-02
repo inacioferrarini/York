@@ -53,63 +53,10 @@ Use:
 * York version 0.3.2 for Swift 2.2
 
 
-## Last Version (0.3.3) Release Notes:
+## Last Version (0.3.6) Release Notes:
 
-* New Features:
-  * DataSources:
-    * Added ArrayDataSource for providing arrays as DataSources to Views.
-    * Added TableViewArrayDataSource for providing arrays as DataSources to UITableViews.
-    * Added CollectionViewArrayDataSource for providing arrays as DataSources to UICollectionViews.
-    * Added CollectionViewTableViewCell for providing a TableViewCell that contains an UICollectionView, having as well the UICollectionViewDetaSource.
-  * Extensions:
-    * Added StringExtensions, providing string related methods.
-    * Added UIViewExtensions, providing useful methods for handling border width, maskToBounds and border color as IBDesignable.
-  * Networking:
-    * Added HttpCookieManager to handle http session cookies.
-  * ViewController:
-    * Added BaseTabBarController to handle UITabBar customizations.
-  * ViewDelegates:
-    * Added TableViewBlockDelegate for handling UITableView item selection and related events.
-    * Added CollectionViewBlockDelegate for handling UICollectionView item selection and related events.
-  * Views:
-    * Added DesignableView for basic views that must be '@IBDesignable'
-
-* Updates
-  * Context:
-    * ArrayDataSource: Updated ArrayDataSource and variants to use Equatable instead of AnyObject, since any equatable object can be used.
-    * CollectionViewArrayDataSource: Updated ArrayDataSource and variants to use Equatable instead of AnyObject, since any equatable object can be used.
-    * TableViewArrayDataSource: Updated ArrayDataSource and variants to use Equatable instead of AnyObject, since any equatable object can be used.
-  * Context:
-    * AppContextAwareProtocol: Made generic. Now any Structure or Class can be used as AppContext, allowing any project to have an AppContext created to better suit the project requirements.
-    * AppContext: Due to changes in AppContextAwareProtocol, AppContext is no longer essential. Besides that, it was kept inside York, being renamed to FullStackAppContext.
-  * DeepLinkingNavigation:
-    * PresentationPath: added a replacingValues method variant that only takes mode as parameter, for url without parameters. replacingValues:values:mode nows allows nil to be supplied as values.
-  * Extensions:
-    * UIImageExtension: Added utility methods imageFromColor and maskedImageNamed
-  * Presenter:
-    * CollectionViewCellPresenter:
-      * changed EntityType parameter from NSManagedObject to AnyObject, allowing it to be used by CollectionViewArrayDataSources as well.
-      * "EntityType" parameter renamed to "ValueType". Changed from AnyObject to Any to better support swift types.
-    * TableViewCellPresenter:
-      * changed EntityType parameter from NSManagedObject to AnyObject, allowing it to be used by TableViewArrayDataSources as well.
-      * "EntityType" parameter renamed to "ValueType". Changed from AnyObject to Any to better support swift types.
-  * TableViewCells:
-    * CollectionViewTableViewCell: Added delegate property.
-  * ViewControllers:
-    * BaseViewController: Updated due to AppContextAwareProtocol changes.
-    * BaseDataBasedViewController:
-      * Updated due to AppContextAwareProtocol changes.
-      * Updated Data sync structure. Now, performDataSyncIfNeeded() was renamed to performDataSync(), which will check shouldSyncData(). If shouldSyncData() returns true, in order, willSyncData(), syncData() and and then didSyncData() will be executed. willSyncData() is used to pre-processing (example: display a curtain, etc), while didSyncData() is used to post-processing (example: hide a curtain, etc).
-    * BaseTableViewController:
-      * Updated due to AppContextAwareProtocol changes.
-      * Updated Data sync structure. Now, performDataSyncIfNeeded() was renamed to performDataSync(), which will check shouldSyncData(). If shouldSyncData() returns true, in order, willSyncData(), syncData() and and then didSyncData() will be executed. willSyncData() is used to pre-processing (example: display a curtain, etc), while didSyncData() is used to post-processing (example: hide a curtain, etc).
-      * UIRefreshControl is no longer created by default. If createRefreshControl is overriden and returns a non-nill object, it will be added to the table view.
-  * ViewDelegates
-    * TableViewDelegate module renamed to 'ViewDelegates' in order to better support other view delegates.  
-    * TableViewBlockDelegate added var heightForRowAtIndexPathBlock to allow TableViewCells with different heights. If not defined, will return UITableViewAutomaticDimension value.
-
-* Bug Fixes
-  * Removed viewDidAppear method. It was doing the same thing as DataBasedViewController, thus, duplicating performDataSyncIfNeeded.
+* Renaming:
+ * ViewComponents/TableViewCells/EmbededViewControllerTableViewCell renamed to EmbeddedViewControllerTableViewCell.
 
 All release notes are grouped here: (https://github.com/inacioferrarini/York/blob/master/ReleaseNotes.md)
 

@@ -1,5 +1,9 @@
 # Release Notes
 
+## 0.3.6
+* Renaming:
+ * ViewComponents/TableViewCells/EmbededViewControllerTableViewCell renamed to EmbeddedViewControllerTableViewCell.
+
 ## 0.3.3
 * New Features:
   * DataSources:
