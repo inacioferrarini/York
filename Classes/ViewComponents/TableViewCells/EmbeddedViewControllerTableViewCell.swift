@@ -23,17 +23,17 @@
 
 import UIKit
 
-public class EmbededViewControllerTableViewCell: UITableViewCell {
+public class EmbeddedViewControllerTableViewCell: UITableViewCell {
 
 
     // MARK: - Properties
 
-    public var embededViewController: UIViewController?   // -> EmbededViewController
+    public var embeddedViewController: UIViewController?
 
 
     // Outlets
 
-    @IBOutlet public weak var embededContentHeightConstraint: NSLayoutConstraint?
+    @IBOutlet public weak var embeddedContentHeightConstraint: NSLayoutConstraint?
 
 
     // MARK: - Public Methods
@@ -60,10 +60,10 @@ public class EmbededViewControllerTableViewCell: UITableViewCell {
     public func setupHeightConstraints() {
         if let firstView = self.contentView.subviews.first {
             if let heightConstraint = self.getExistingHeightConstraint(fromView: firstView) {
-                self.embededContentHeightConstraint = heightConstraint
+                self.embeddedContentHeightConstraint = heightConstraint
             } else {
-                self.embededContentHeightConstraint = self.createHeightConstraint(forView: firstView)
-                if let constraint = self.embededContentHeightConstraint {
+                self.embeddedContentHeightConstraint = self.createHeightConstraint(forView: firstView)
+                if let constraint = self.embeddedContentHeightConstraint {
                     firstView.addConstraint(constraint)
                 }
             }
@@ -71,18 +71,18 @@ public class EmbededViewControllerTableViewCell: UITableViewCell {
     }
 
     public func embedInParentViewController(parentViewController: UIViewController) {
-        if let embededViewController = self.embededViewController {
-            parentViewController.addChildViewController(embededViewController)
-            embededViewController.didMoveToParentViewController(parentViewController)
-            self.contentView.addSubview(embededViewController.view)
+        if let embeddedViewController = self.embeddedViewController {
+            parentViewController.addChildViewController(embeddedViewController)
+            embeddedViewController.didMoveToParentViewController(parentViewController)
+            self.contentView.addSubview(embeddedViewController.view)
         }
     }
 
     public func unEmbedFromParentViewController() {
-        if let embededViewController = self.embededViewController {
-            embededViewController.view.removeFromSuperview()
-            embededViewController.willMoveToParentViewController(nil)
-            embededViewController.removeFromParentViewController()
+        if let embeddedViewController = self.embeddedViewController {
+            embeddedViewController.view.removeFromSuperview()
+            embeddedViewController.willMoveToParentViewController(nil)
+            embeddedViewController.removeFromParentViewController()
         }
     }
 
