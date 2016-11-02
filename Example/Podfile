@@ -1,10 +1,10 @@
 use_frameworks!
 
-target 'York_Example', :exclusive => true do
+target 'York_Example' do
   pod 'York', :path => '../'
 end
 
-target 'York_Tests', :exclusive => true do
+target 'York_Tests' do
   pod 'York', :path => '../'
   pod 'AFNetworking', '3.1.0'
 end
