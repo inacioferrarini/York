@@ -39,8 +39,8 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
     func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?) -> TableViewFetcherDataSource<UITableViewCell, EntityTest> {
         let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-        let tableView = TestsTableView(frame: frame, style: .Plain)
-        tableView.cellForRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> UITableViewCell? in
+        let tableView = TestsTableView(frame: frame, style: .plain)
+        tableView.cellForRowAtIndexPathBlock = { (indexPath: IndexPath) -> UITableViewCell? in
             return TableViewCell()
         }
         self.registerCellForTableView(tableView)
@@ -48,15 +48,15 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         return self.createTableViewFetcherDataSource(sectionNameKeyPath: nameKeyPath, tableView: tableView)
     }
 
-    func registerCellForTableView(tableView: UITableView) {
+    func registerCellForTableView(_ tableView: UITableView) {
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: TestUtil().unitTestsBundle())
-        tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
+        tableView.register(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
     }
 
     func createTableViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?, tableView: UITableView!) -> TableViewFetcherDataSource<UITableViewCell, EntityTest> {
         self.tableView = tableView
 
-        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+        let cellReuseIdBlock: ((_ indexPath: IndexPath) -> String) = { (indexPath: IndexPath) -> String in
             return "TableViewCell"
         }
 
@@ -113,7 +113,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         helper.removeAllTestEntities()
         self.coreDataStack.saveContext()
-        let numberOfSections = dataSource.numberOfSectionsInTableView(self.tableView)
+        let numberOfSections = dataSource.numberOfSections(in: self.tableView)
         XCTAssertEqual(numberOfSections, 0)
     }
 
@@ -135,7 +135,7 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         helper.removeAllTestEntities()
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
 
         dataSource.refreshData()
 
@@ -148,17 +148,17 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
     func test_canEditRowAtIndexPath_withBlock_mustSucceed() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
+        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: IndexPath) -> Bool in
             return true
         }
-        let canEdit = dataSource.tableView(self.tableView, canEditRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        let canEdit = dataSource.tableView(self.tableView, canEditRowAt: IndexPath(row: 0, section: 0))
         XCTAssertTrue(canEdit)
     }
 
     func test_canEditRowAtIndexPath_withoutBlock_mustFail() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.presenter.canEditRowAtIndexPathBlock = nil
-        let canEdit = dataSource.tableView(self.tableView, canEditRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        let canEdit = dataSource.tableView(self.tableView, canEditRowAt: IndexPath(row: 0, section: 0))
         XCTAssertFalse(canEdit)
     }
 
@@ -168,17 +168,17 @@ class TableViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
     func test_commitEditingStyle_withBlock_mustExecuteBlock() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         var executedCommitEditingStyleBlock = false
-        dataSource.presenter.commitEditingStyleBlock = { (editingStyle: UITableViewCellEditingStyle, indexPath: NSIndexPath) -> Void in
+        dataSource.presenter.commitEditingStyleBlock = { (editingStyle: UITableViewCellEditingStyle, indexPath: IndexPath) -> Void in
             executedCommitEditingStyleBlock = true
         }
-        dataSource.tableView(self.tableView!, commitEditingStyle: .None, forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        dataSource.tableView(self.tableView!, commit: .none, forRowAt: IndexPath(row: 0, section: 0))
         XCTAssertTrue(executedCommitEditingStyleBlock)
     }
 
     func test_commitEditingStyle_withoutBlock_mustDoNothing() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
         dataSource.presenter.commitEditingStyleBlock = nil
-        dataSource.tableView(self.tableView!, commitEditingStyle: .None, forRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        dataSource.tableView(self.tableView!, commit: .none, forRowAt: IndexPath(row: 0, section: 0))
     }
 
 

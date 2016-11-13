@@ -24,12 +24,12 @@
 import UIKit
 import York
 
-public class TestBaseViewController: BaseViewController, AppContextAwareProtocol {
+open class TestBaseViewController: BaseViewController, AppContextAwareProtocol {
 
-    public var appContext: FullStackAppContext!
+    open var appContext: FullStackAppContext!
     @IBOutlet weak var textLabel: UILabel!
 
-    override public func viewControllerTitle() -> String? {
+    override open func viewControllerTitle() -> String? {
         let bundle = TestUtil().unitTestsBundle()
         return NSLocalizedString("VC_TEST_BASE_VIEW_CONTROLLER", tableName: nil, bundle: bundle, value: "", comment: "")
     }

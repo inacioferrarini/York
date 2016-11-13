@@ -22,23 +22,23 @@
 
 import UIKit
 
-public class TestsCollectionView: UICollectionView {
+open class TestsCollectionView: UICollectionView {
 
-    public var cellForItemAtIndexPathBlock: ((indexPath: NSIndexPath) -> UICollectionViewCell?)?
+    open var cellForItemAtIndexPathBlock: ((_ indexPath: IndexPath) -> UICollectionViewCell?)?
 
-    override public var window: UIWindow? {
+    override open var window: UIWindow? {
         return UIWindow()
     }
 
-    override public func cellForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewCell? {
+    override open func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell? {
         if let block = self.cellForItemAtIndexPathBlock {
-            return block(indexPath: indexPath)
+            return block(indexPath)
         } else {
-            return super.cellForItemAtIndexPath(indexPath)
+            return super.cellForItem(at: indexPath)
         }
     }
 
-    override public func performBatchUpdates(updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
+    override open func performBatchUpdates(_ updates: (() -> Void)?, completion: ((Bool) -> Void)?) {
         if let updates = updates {
             updates()
         }

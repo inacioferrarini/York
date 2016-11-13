@@ -38,16 +38,16 @@ class TestUtil: NSObject {
 
     // MARK: - Test Bundles
 
-    func yorkPODBundle() -> NSBundle {
-        return NSBundle(forClass: FullStackAppContext.self)
+    func yorkPODBundle() -> Bundle {
+        return Bundle(for: FullStackAppContext.self)
     }
 
-    func mainBundle() -> NSBundle {
-        return NSBundle.mainBundle()
+    func mainBundle() -> Bundle {
+        return Bundle.main
     }
 
-    func unitTestsBundle() -> NSBundle {
-        return NSBundle(forClass: self.dynamicType)
+    func unitTestsBundle() -> Bundle {
+        return Bundle(for: type(of: self))
     }
 
     // MARK: - Utility Methods
@@ -90,7 +90,7 @@ class TestUtil: NSObject {
     }
 
     func randomString() -> String {
-        return NSUUID().UUIDString.stringByReplacingOccurrencesOfString("-", withString: "")
+        return UUID().uuidString.replacingOccurrences(of: "-", with: "")
     }
 
 
@@ -99,7 +99,7 @@ class TestUtil: NSObject {
     func baseTabBarController() -> BaseTabBarController {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseTabBarController") as? BaseTabBarController {
+        if let viewController = storyBoard.instantiateViewController(withIdentifier: "BaseTabBarController") as? BaseTabBarController {
             return viewController
         }
         return BaseTabBarController()
@@ -116,57 +116,57 @@ class TestUtil: NSObject {
         return UINavigationController()
     }
 
-    func testBaseViewController(appContext: FullStackAppContext!) -> TestBaseViewController? {
+    func testBaseViewController(_ appContext: FullStackAppContext!) -> TestBaseViewController? {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseViewController") as? TestBaseViewController {
+        if let viewController = storyBoard.instantiateViewController(withIdentifier: "TestBaseViewController") as? TestBaseViewController {
             viewController.appContext = appContext
             return viewController
         }
         return nil
     }
 
-    func baseDataBasedViewController(appContext: FullStackAppContext!) -> BaseDataBasedViewController? {
+    func baseDataBasedViewController(_ appContext: FullStackAppContext!) -> BaseDataBasedViewController? {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseDataBasedViewController") as? BaseDataBasedViewController {
+        if let viewController = storyBoard.instantiateViewController(withIdentifier: "BaseDataBasedViewController") as? BaseDataBasedViewController {
             return viewController
         }
         return nil
     }
 
-    func testBaseDataBasedViewController(appContext: FullStackAppContext!) -> TestBaseDataBasedViewController? {
+    func testBaseDataBasedViewController(_ appContext: FullStackAppContext!) -> TestBaseDataBasedViewController? {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseDataBasedViewController") as? TestBaseDataBasedViewController {
+        if let viewController = storyBoard.instantiateViewController(withIdentifier: "TestBaseDataBasedViewController") as? TestBaseDataBasedViewController {
             return viewController
         }
         return nil
     }
 
-    func baseTableViewController(appContext: FullStackAppContext!) -> BaseTableViewController? {
+    func baseTableViewController(_ appContext: FullStackAppContext!) -> BaseTableViewController? {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("BaseTableViewController") as? BaseTableViewController {
+        if let viewController = storyBoard.instantiateViewController(withIdentifier: "BaseTableViewController") as? BaseTableViewController {
             return viewController
         }
         return nil
     }
 
-    func testBaseTableViewController(appContext: FullStackAppContext!) -> TestBaseTableViewController? {
+    func testBaseTableViewController(_ appContext: FullStackAppContext!) -> TestBaseTableViewController? {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestBaseTableViewController") as? TestBaseTableViewController {
+        if let viewController = storyBoard.instantiateViewController(withIdentifier: "TestBaseTableViewController") as? TestBaseTableViewController {
             viewController.appContext = appContext
             return viewController
         }
         return nil
     }
 
-    func testClassicTableViewController(appContext: FullStackAppContext!) -> TestClassicTableViewController? {
+    func testClassicTableViewController(_ appContext: FullStackAppContext!) -> TestClassicTableViewController? {
         let bundle = self.unitTestsBundle()
         let storyBoard = UIStoryboard(name: "TestStoryboard", bundle: bundle)
-        if let viewController = storyBoard.instantiateViewControllerWithIdentifier("TestClassicTableViewController") as? TestClassicTableViewController {
+        if let viewController = storyBoard.instantiateViewController(withIdentifier: "TestClassicTableViewController") as? TestClassicTableViewController {
             return viewController
         }
         return nil

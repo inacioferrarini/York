@@ -28,6 +28,6 @@ public protocol Transformer {
     associatedtype T
     associatedtype U
 
-    func transform(input: T) -> U
+    func transform(_ input: T) -> U
 
 }

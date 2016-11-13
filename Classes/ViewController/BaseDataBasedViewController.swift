@@ -23,17 +23,17 @@
 
 import UIKit
 
-public class BaseDataBasedViewController: BaseViewController {
+open class BaseDataBasedViewController: BaseViewController {
 
 
     // MARK: - Properties
 
-    @IBOutlet public weak var courtainView: UIView?
+    @IBOutlet open weak var courtainView: UIView?
 
 
     // MARK: - Initialization
 
-    override public func viewWillAppear(animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.performDataSync()
     }
@@ -41,10 +41,10 @@ public class BaseDataBasedViewController: BaseViewController {
 
     // MARK: - Data Syncrhonization
 
-    public func performDataSync() {
+    open func performDataSync() {
         if self.shouldSyncData() {
-            let queue = dispatch_queue_create(self.instanceSimpleClassName(), nil)
-            dispatch_async(queue, {
+            let queue = DispatchQueue(label: self.instanceSimpleClassName(), attributes: [])
+            queue.async(execute: {
                 self.willSyncData()
                 self.syncData()
                 self.didSyncData()
@@ -54,18 +54,18 @@ public class BaseDataBasedViewController: BaseViewController {
         }
     }
 
-    public func showCourtainView() {
-        dispatch_async(dispatch_get_main_queue()) {
+    open func showCourtainView() {
+        DispatchQueue.main.async {
             if let courtainView = self.courtainView {
-                courtainView.hidden = false
+                courtainView.isHidden = false
             }
         }
     }
 
-    public func hideCourtainView() {
-        dispatch_async(dispatch_get_main_queue()) {
+    open func hideCourtainView() {
+        DispatchQueue.main.async {
             if let courtainView = self.courtainView {
-                courtainView.hidden = true
+                courtainView.isHidden = true
             }
         }
     }
@@ -73,18 +73,18 @@ public class BaseDataBasedViewController: BaseViewController {
 
     // MARK: - Child classes are expected to override these methods
 
-    public func shouldSyncData() -> Bool {
+    open func shouldSyncData() -> Bool {
         return true
     }
 
-    public func willSyncData() {
+    open func willSyncData() {
         self.showCourtainView()
     }
 
-    public func syncData() {
+    open func syncData() {
     }
 
-    public func didSyncData() {
+    open func didSyncData() {
         self.hideCourtainView()
     }
 

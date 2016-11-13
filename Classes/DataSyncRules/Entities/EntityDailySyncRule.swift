@@ -24,21 +24,21 @@
 import Foundation
 import CoreData
 
-public class EntityDailySyncRule: EntityBaseSyncRules {
+open class EntityDailySyncRule: EntityBaseSyncRules {
 
-    public class func fetchEntityDailySyncRuleByName(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityDailySyncRule? {
+    open class func fetchEntityDailySyncRuleByName(_ name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityDailySyncRule? {
 
         guard name.characters.count > 0 else {
             return nil
         }
 
-        let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
+        let request: NSFetchRequest = NSFetchRequest<EntityDailySyncRule>(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityDailySyncRule
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context)
     }
 
-    public class func entityDailySyncRuleByName(name: String, days: NSNumber?, inManagedObjectContext context: NSManagedObjectContext) -> EntityDailySyncRule? {
+    open class func entityDailySyncRuleByName(_ name: String, days: NSNumber?, inManagedObjectContext context: NSManagedObjectContext) -> EntityDailySyncRule? {
 
         guard name.characters.count > 0 else {
             return nil
@@ -46,7 +46,7 @@ public class EntityDailySyncRule: EntityBaseSyncRules {
 
         var entityDailySyncRule: EntityDailySyncRule? = fetchEntityDailySyncRuleByName(name, inManagedObjectContext: context)
         if entityDailySyncRule == nil {
-            let newEntityDailySyncRule = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as? EntityDailySyncRule
+            let newEntityDailySyncRule = NSEntityDescription.insertNewObject(forEntityName: self.simpleClassName(), into: context) as? EntityDailySyncRule
             if let entity = newEntityDailySyncRule {
                 entity.name = name
             }
@@ -60,13 +60,13 @@ public class EntityDailySyncRule: EntityBaseSyncRules {
         return entityDailySyncRule
     }
 
-    override public func shouldRunSyncRuleWithName(name: String, date: NSDate, inManagedObjectContext context: NSManagedObjectContext) -> Bool {
+    override open func shouldRunSyncRuleWithName(_ name: String, date: Date, inManagedObjectContext context: NSManagedObjectContext) -> Bool {
         let lastExecution = EntitySyncHistory.fetchEntityAutoSyncHistoryByName(name, inManagedObjectContext: context)
         if let lastExecution = lastExecution,
             let lastExecutionDate = lastExecution.lastExecutionDate,
             let days = self.days {
-                let elapsedTime = NSDate().timeIntervalSinceDate(lastExecutionDate)
-                let targetTime = NSTimeInterval(days.intValue * 24 * 60 * 60)
+                let elapsedTime = Date().timeIntervalSince(lastExecutionDate)
+                let targetTime = TimeInterval(days.int32Value * 24 * 60 * 60)
                 return elapsedTime >= targetTime
         }
         return true

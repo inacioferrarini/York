@@ -25,9 +25,9 @@ import UIKit
 import York
 import CoreData
 
-public class CoreDataUtil: NSObject {
+open class CoreDataUtil: NSObject {
 
-    private let context: NSManagedObjectContext
+    fileprivate let context: NSManagedObjectContext
 
     // MARK: - Initialization
 
@@ -39,15 +39,15 @@ public class CoreDataUtil: NSObject {
 
     // MARK: - Core Data Supporting Methods
 
-    public func removeAllTestEntities() {
+    open func removeAllTestEntities() {
         EntityTest.removeAll(inManagedObjectContext: self.context)
     }
 
-    public func removeTestEntity(entity: EntityTest) {
-        self.context.deleteObject(entity)
+    open func removeTestEntity(_ entity: EntityTest) {
+        self.context.delete(entity)
     }
 
-    public func removeTestEntitiesFromArray(entities: [EntityTest]?) {
+    open func removeTestEntitiesFromArray(_ entities: [EntityTest]?) {
         if let allEntities = entities {
             for entity in allEntities {
                 self.removeTestEntity(entity)
@@ -55,11 +55,11 @@ public class CoreDataUtil: NSObject {
         }
     }
 
-    public func createTestEntity(sectionName: String?, name: String?, order: Int?) -> EntityTest? {
+    open func createTestEntity(_ sectionName: String?, name: String?, order: Int?) -> EntityTest? {
         return EntityTest.entityTest(sectionName, name: name, order: order, inManagedObjectContext: self.context)
     }
 
-    public func createTestMass(withSize size: Int, usingInitialIndex initialIndex: Int, inSection section: Int, initialOrderValue initialOrder: Int) -> [EntityTest] {
+    open func createTestMass(withSize size: Int, usingInitialIndex initialIndex: Int, inSection section: Int, initialOrderValue initialOrder: Int) -> [EntityTest] {
         var entities = [EntityTest]()
         for k in 1...size {
             let delta = k - 1

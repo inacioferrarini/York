@@ -29,7 +29,7 @@ public extension UIViewController {
     // MARK: - Component Search
 
     public func topMostViewController() -> UIViewController? {
-        guard let window = UIApplication.sharedApplication().keyWindow else { return nil }
+        guard let window = UIApplication.shared.keyWindow else { return nil }
         guard var topMostViewController = window.rootViewController else { return nil }
 
         while nil != topMostViewController.presentedViewController {
@@ -39,40 +39,40 @@ public extension UIViewController {
         return topMostViewController
     }
 
-    public func topMostViewController<T where T : UIViewController>(targetClass: T.Type, startFromViewController viewController: UIViewController) -> T? {
+    public func topMostViewController<T>(_ targetClass: T.Type, startFromViewController viewController: UIViewController) -> T? where T : UIViewController {
         var targetViewController: T?
         if let viewController = viewController as? T {
             targetViewController = viewController
         }
         var currentViewController = viewController
-        while nil != currentViewController.parentViewController {
+        while nil != currentViewController.parent {
             if let viewController = viewController as? T {
                 targetViewController = viewController
             }
-            if let parentViewController = currentViewController.parentViewController {
+            if let parentViewController = currentViewController.parent {
                 currentViewController = parentViewController
             }
         }
         return targetViewController
     }
 
-    public func allViewFromClass<T where T : UIView>(targetClass: T.Type, onView rootView: UIView) ->  [T] {
+    public func allViewFromClass<T>(_ targetClass: T.Type, onView rootView: UIView) ->  [T] where T : UIView {
         var elements = [T]()
         for subview in rootView.subviews {
             if let subview = subview as? T {
                 elements.append(subview)
             }
             if subview.subviews.count > 0 {
-                elements.appendContentsOf(self.allViewFromClass(targetClass, onView: subview))
+                elements.append(contentsOf: self.allViewFromClass(targetClass, onView: subview))
             }
         }
         return elements
     }
 
-    public func subviewFromClass<T where T : UIView>(targetClass: T.Type, onView rootView: UIView, withAccessibilityIdentifier accessibilityIdentifier: String) ->  T? {
+    public func subviewFromClass<T>(_ targetClass: T.Type, onView rootView: UIView, withAccessibilityIdentifier accessibilityIdentifier: String) ->  T? where T : UIView {
         var view: T?
         for subview in rootView.subviews {
-            if let subview = subview as? T where subview.accessibilityIdentifier == accessibilityIdentifier {
+            if let subview = subview as? T, subview.accessibilityIdentifier == accessibilityIdentifier {
                 view = subview
                 break
             }

@@ -24,15 +24,15 @@
 import UIKit
 
 public enum SyncRule {
-    case Hourly(Int)
-    case Daily(Int)
+    case hourly(NSNumber)
+    case daily(NSNumber)
 }
 
-public class DataSyncRules: NSObject {
+open class DataSyncRules: NSObject {
 
     // MARK: - Properties
 
-    public let coreDataStack: CoreDataStack
+    open let coreDataStack: CoreDataStack
 
 
     // MARK: - Initialization
@@ -45,18 +45,18 @@ public class DataSyncRules: NSObject {
 
     // MARK: - Public Methods
 
-    public func addSyncRule(ruleName: String, rule: SyncRule) {
+    open func addSyncRule(_ ruleName: String, rule: SyncRule) {
         let context = self.coreDataStack.managedObjectContext
         switch rule {
-        case let .Hourly(hours):
-            EntityHourlySyncRule.entityHourlySyncRuleByName(ruleName, hours: hours, inManagedObjectContext: context)
-        case let .Daily(days):
-            EntityDailySyncRule.entityDailySyncRuleByName(ruleName, days: days, inManagedObjectContext: context)
+        case let .hourly(hours):
+            _ = EntityHourlySyncRule.entityHourlySyncRuleByName(ruleName, hours: hours, inManagedObjectContext: context)
+        case let .daily(days):
+            _ = EntityDailySyncRule.entityDailySyncRuleByName(ruleName, days: days, inManagedObjectContext: context)
         }
         self.coreDataStack.saveContext()
     }
 
-    public func shouldPerformSyncRule(ruleName: String, atDate date: NSDate) -> Bool {
+    open func shouldPerformSyncRule(_ ruleName: String, atDate date: Date) -> Bool {
         let context = self.coreDataStack.managedObjectContext
         if let rule = EntityBaseSyncRules.fetchEntityBaseSyncRulesByName(ruleName, inManagedObjectContext: context) {
             return rule.shouldRunSyncRuleWithName(ruleName, date: date, inManagedObjectContext: context)
@@ -65,12 +65,12 @@ public class DataSyncRules: NSObject {
         return false
     }
 
-    public func updateSyncRuleHistoryExecutionTime(ruleName: String, lastExecutionDate: NSDate) {
+    open func updateSyncRuleHistoryExecutionTime(_ ruleName: String, lastExecutionDate: Date) {
         let context = self.coreDataStack.managedObjectContext
         if let rule = EntitySyncHistory.fetchEntityAutoSyncHistoryByName(ruleName, inManagedObjectContext: context) {
             rule.lastExecutionDate = lastExecutionDate
         } else {
-            EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
+            _ = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName,
                 lastExecutionDate: lastExecutionDate, inManagedObjectContext: context)
         }
     }

@@ -1,8 +1,12 @@
 # Release Notes
 
+## 0.4.0
+* Migrated to Swift 3. First version compatible with Swift 3.
+
 ## 0.3.6
 * Renaming:
  * ViewComponents/TableViewCells/EmbededViewControllerTableViewCell renamed to EmbeddedViewControllerTableViewCell.
+* Minor Bugfixes. Last version compatible with Swift 2.2.
 
 ## 0.3.3
 * New Features:

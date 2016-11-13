@@ -26,13 +26,13 @@ import UIKit
 // This component is heavilly based on http://dativestudios.com/blog/2015/01/08/collection_view_layouts_on_wide_phones/
 
 @IBDesignable
-public class CollectionViewColumnLayout: UICollectionViewFlowLayout {
+open class CollectionViewColumnLayout: UICollectionViewFlowLayout {
 
 
     // MARK: - Properties
 
     @IBInspectable
-    public var numberOfItemsPerRow: Float = 2 {
+    open var numberOfItemsPerRow: Float = 2 {
         didSet {
             invalidateLayout()
         }
@@ -41,8 +41,8 @@ public class CollectionViewColumnLayout: UICollectionViewFlowLayout {
 
     // MARK: - UICollectionViewFlowLayout override
 
-    public override func prepareLayout() {
-        super.prepareLayout()
+    open override func prepare() {
+        super.prepare()
         guard let collectionView = self.collectionView else { return }
         var newItemSize = itemSize
         let itemsPerRow = CGFloat(max(numberOfItemsPerRow, 1))

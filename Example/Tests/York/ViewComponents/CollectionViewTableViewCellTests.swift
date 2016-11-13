@@ -45,11 +45,11 @@ class CollectionViewTableViewCellTests: XCTestCase {
 
     func registerCellForCollectionView() {
         let collectionViewCellNib = UINib(nibName: "CollectionViewCell", bundle: TestUtil().unitTestsBundle())
-        collectionView.registerNib(collectionViewCellNib, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.register(collectionViewCellNib, forCellWithReuseIdentifier: "CollectionViewCell")
     }
 
-    func createCollectionViewArrayDataSource(collectionView: UICollectionView) -> CollectionViewArrayDataSource<UICollectionViewCell, NSNumber> {
-        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+    func createCollectionViewArrayDataSource(_ collectionView: UICollectionView) -> CollectionViewArrayDataSource<UICollectionViewCell, NSNumber> {
+        let cellReuseIdBlock: ((_ indexPath: IndexPath) -> String) = { (indexPath: IndexPath) -> String in
             return "CollectionViewCell"
         }
         let presenter = CollectionViewCellPresenter<UICollectionViewCell, NSNumber>(

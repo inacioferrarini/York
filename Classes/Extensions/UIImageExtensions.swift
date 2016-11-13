@@ -26,10 +26,10 @@ import Foundation
 
 public extension UIImage {
 
-    public class func circularScaleAndCropImage(image: UIImage, frame: CGRect) -> UIImage {
+    public class func circularScaleAndCropImage(_ image: UIImage, frame: CGRect) -> UIImage {
 
         let size = CGSize(width: frame.size.width, height: frame.size.height)
-        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.mainScreen().scale)
+        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
         let context = UIGraphicsGetCurrentContext()
 
         let imageWidth = image.size.width
@@ -45,29 +45,32 @@ public extension UIImage {
 
         let radius = rectWidth / 2
 
-        CGContextBeginPath(context)
-        CGContextAddArc(context, imageCenterX, imageCenterY, radius, 0, CGFloat(2 * M_PI), 0)
-        CGContextClosePath(context)
-        CGContextClip(context)
+        if let context = context {
+            context.beginPath()
+            let center = CGPoint(x: imageCenterX, y: imageCenterY)
+            context.addArc(center: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: false)
+            context.closePath()
+            context.clip()
 
-        CGContextScaleCTM (context, scaleFactorX, scaleFactorY)
-
-        let myRect = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
-        image.drawInRect(myRect)
-
+            context.scaleBy (x: scaleFactorX, y: scaleFactorY)
+        
+            let myRect = CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight)
+            image.draw(in: myRect)
+        }
+        
         let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-
-        return croppedImage
+        
+        return croppedImage!
     }
 
-    public class func imageFromColor(color: UIColor, withSize size: CGSize, withCornerRadius cornerRadius: CGFloat) -> UIImage {
+    public class func imageFromColor(_ color: UIColor, withSize size: CGSize, withCornerRadius cornerRadius: CGFloat) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(rect.size)
 
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, rect)
+        context?.setFillColor(color.cgColor)
+        context?.fill(rect)
 
         var image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -75,29 +78,29 @@ public extension UIImage {
         UIGraphicsBeginImageContext(size)
 
         UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius).addClip()
-        image.drawInRect(rect)
+        image?.draw(in: rect)
 
         image = UIGraphicsGetImageFromCurrentImageContext()
 
         UIGraphicsEndImageContext()
 
-        return image
+        return image!
     }
 
-    public class func maskedImageNamed(image: UIImage, color: UIColor) -> UIImage {
+    public class func maskedImageNamed(_ image: UIImage, color: UIColor) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, image.scale)
 
         let context = UIGraphicsGetCurrentContext()
-        image.drawInRect(rect)
+        image.draw(in: rect)
 
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextSetBlendMode(context, .SourceAtop)
-        CGContextFillRect(context, rect)
+        context?.setFillColor(color.cgColor)
+        context?.setBlendMode(.sourceAtop)
+        context?.fill(rect)
 
         let result = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return result
+        return result!
     }
 
 }

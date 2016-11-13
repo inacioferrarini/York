@@ -24,27 +24,27 @@
 import UIKit
 import CoreData
 
-public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
+open class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
 
 
     // MARK: - Properties
 
-    public private(set) var entityName: String
-    public var predicate: NSPredicate? {
+    open fileprivate(set) var entityName: String
+    open var predicate: NSPredicate? {
         didSet {
             self.fetchedResultsController.fetchRequest.predicate = predicate
         }
     }
-    public var fetchLimit: NSInteger?
-    public var sortDescriptors: [NSSortDescriptor] {
+    open var fetchLimit: NSInteger?
+    open var sortDescriptors: [NSSortDescriptor] {
         didSet {
             self.fetchedResultsController.fetchRequest.sortDescriptors = sortDescriptors
         }
     }
-    public var sectionNameKeyPath: String?
-    public var cacheName: String?
-    public let managedObjectContext: NSManagedObjectContext
-    public let logger: Logger
+    open var sectionNameKeyPath: String?
+    open var cacheName: String?
+    open let managedObjectContext: NSManagedObjectContext
+    open let logger: Logger
 
 
     // MARK: - Initialization
@@ -87,7 +87,7 @@ public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetched
 
     // MARK: - Public Methods
 
-    public func refreshData() {
+    open func refreshData() {
         do {
             try self.fetchedResultsController.performFetch()
         } catch let error as NSError {
@@ -95,30 +95,30 @@ public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetched
         }
     }
 
-    public func objectAtIndexPath(indexPath: NSIndexPath) -> EntityType? {
-        return self.fetchedResultsController.objectAtIndexPath(indexPath) as? EntityType
+    open func objectAtIndexPath(_ indexPath: IndexPath) -> EntityType? {
+        return self.fetchedResultsController.object(at: indexPath)
     }
 
-    public func indexPathForObject(object: EntityType) -> NSIndexPath? {
-        return self.fetchedResultsController.indexPathForObject(object)
+    open func indexPathForObject(_ object: EntityType) -> IndexPath? {
+        return self.fetchedResultsController.indexPath(forObject: object)
     }
 
 
     // MARK: - Fetched results controller
 
-    public var fetchedResultsController: NSFetchedResultsController {
+    open var fetchedResultsController: NSFetchedResultsController<EntityType> {
 
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
         }
 
-        let fetchRequest = NSFetchRequest()
-        let entity = NSEntityDescription.entityForName(self.entityName, inManagedObjectContext: self.managedObjectContext)
+        let fetchRequest = NSFetchRequest<EntityType>()
+        let entity = NSEntityDescription.entity(forEntityName: self.entityName, in: self.managedObjectContext)
         fetchRequest.entity = entity
 
         fetchRequest.predicate = self.predicate
 
-        if let fetchLimit = self.fetchLimit where fetchLimit > 0 {
+        if let fetchLimit = self.fetchLimit, fetchLimit > 0 {
             fetchRequest.fetchLimit = fetchLimit
         }
 
@@ -135,12 +135,12 @@ public class FetcherDataSource<EntityType: NSManagedObject>: NSObject, NSFetched
 
         return _fetchedResultsController!
     }
-    private var _fetchedResultsController: NSFetchedResultsController? = nil
+    fileprivate var _fetchedResultsController: NSFetchedResultsController<EntityType>? = nil
 
-    public func instantiateFetchedResultsController(fetchRequest: NSFetchRequest,
+    open func instantiateFetchedResultsController(_ fetchRequest: NSFetchRequest<EntityType>,
                                                     managedObjectContext: NSManagedObjectContext,
                                                     sectionNameKeyPath: String?,
-                                                    cacheName: String?) -> NSFetchedResultsController {
+                                                    cacheName: String?) -> NSFetchedResultsController<EntityType> {
 
         return NSFetchedResultsController(fetchRequest: fetchRequest,
                                           managedObjectContext: self.managedObjectContext,

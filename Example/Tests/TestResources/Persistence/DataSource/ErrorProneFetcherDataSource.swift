@@ -25,7 +25,7 @@ import UIKit
 import CoreData
 import York
 
-public class ErrorProneFetcherDataSource<EntityType: NSManagedObject>: FetcherDataSource<EntityType> {
+open class ErrorProneFetcherDataSource: FetcherDataSource<EntityTest> {
 
 
     // MARK: - Initialization
@@ -67,10 +67,10 @@ public class ErrorProneFetcherDataSource<EntityType: NSManagedObject>: FetcherDa
 
     // MARK: - Fetched results controller
 
-    override public func instantiateFetchedResultsController(fetchRequest: NSFetchRequest,
+    override open func instantiateFetchedResultsController(_ fetchRequest: NSFetchRequest<EntityTest>,
                                                              managedObjectContext: NSManagedObjectContext,
                                                              sectionNameKeyPath: String?,
-                                                             cacheName: String?) -> NSFetchedResultsController {
+                                                             cacheName: String?) -> NSFetchedResultsController<EntityTest> {
 
         return ErrorProneFetchedResultsController(fetchRequest: fetchRequest,
                                                   managedObjectContext: self.managedObjectContext,

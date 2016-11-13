@@ -24,5 +24,5 @@
 import UIKit
 
 @IBDesignable
-public class DesignableView: UIView {
+open class DesignableView: UIView {
 }

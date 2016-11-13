@@ -23,46 +23,46 @@
 
 import UIKit
 
-public class TextFieldNavigationToolBar: NSObject {
+open class TextFieldNavigationToolBar: NSObject {
 
 
     // MARK: - Properties
 
-    public var previousButtonLabel: String? {
+    open var previousButtonLabel: String? {
         didSet {
             guard let previousButton = self.previousButton else { return }
             previousButton.title = previousButtonLabel
         }
     }
-    public var nextButtonLabel: String? {
+    open var nextButtonLabel: String? {
         didSet {
             guard let nextButton = self.previousButton else { return }
             nextButton.title = nextButtonLabel
         }
     }
-    public var doneButtonLabel: String? {
+    open var doneButtonLabel: String? {
         didSet {
             guard let doneButton = self.previousButton else { return }
             doneButton.title = doneButtonLabel
         }
     }
-    public var toolbar: UIToolbar?
-    public var textFields: [UITextField]? {
+    open var toolbar: UIToolbar?
+    open var textFields: [UITextField]? {
         didSet {
             self.updateAccessoryViews()
             self.updateToolbar()
         }
     }
-    public var relatedFields: [UITextField : AnyObject]?
-    public var selectedTextField: UITextField? {
+    open var relatedFields: [UITextField : AnyObject]?
+    open var selectedTextField: UITextField? {
         didSet {
             self.updateToolbar()
         }
     }
 
-    private var previousButton: UIBarButtonItem?
-    private var nextButton: UIBarButtonItem?
-    private var doneButton: UIBarButtonItem?
+    fileprivate var previousButton: UIBarButtonItem?
+    fileprivate var nextButton: UIBarButtonItem?
+    fileprivate var doneButton: UIBarButtonItem?
 
 
     // MARK: - Initialization
@@ -80,27 +80,27 @@ public class TextFieldNavigationToolBar: NSObject {
     func createToolbar() {
         if nil == self.toolbar {
             let toolbar = UIToolbar()
-            toolbar.barStyle = .Default
+            toolbar.barStyle = .default
             toolbar.sizeToFit()
             self.toolbar = toolbar
         }
 
         guard let toolbar = self.toolbar else { return }
 
-        let flexibleSpaceLeft = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let flexibleSpaceLeft = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-        let previousButtonImage = UIImage(named: "LeftArrow", inBundle: self.getBundle(), compatibleWithTraitCollection: nil)
-        let previousButton = UIBarButtonItem(image: previousButtonImage, style: .Plain, target: self, action: #selector(previousButtonClicked))
+        let previousButtonImage = UIImage(named: "LeftArrow", in: self.getBundle(), compatibleWith: nil)
+        let previousButton = UIBarButtonItem(image: previousButtonImage, style: .plain, target: self, action: #selector(previousButtonClicked))
         self.previousButton = previousButton
 
-        let buttonSpacing = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+        let buttonSpacing = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         buttonSpacing.width = 12
         
-        let nextButtonImage = UIImage(named: "RightArrow", inBundle: self.getBundle(), compatibleWithTraitCollection: nil)
-        let nextButton = UIBarButtonItem(image: nextButtonImage, style: .Plain, target: self, action: #selector(nextButtonClicked))
+        let nextButtonImage = UIImage(named: "RightArrow", in: self.getBundle(), compatibleWith: nil)
+        let nextButton = UIBarButtonItem(image: nextButtonImage, style: .plain, target: self, action: #selector(nextButtonClicked))
         self.nextButton = nextButton
 
-        let doneButton = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(doneButtonClicked))
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonClicked))
         self.doneButton = doneButton
 
         toolbar.items = [previousButton, buttonSpacing, nextButton, flexibleSpaceLeft, doneButton]
@@ -118,14 +118,14 @@ public class TextFieldNavigationToolBar: NSObject {
         }
     }
 
-    func getBundle() -> NSBundle {
-        return NSBundle(forClass: TextFieldNavigationToolBar.self)
+    func getBundle() -> Bundle {
+        return Bundle(for: TextFieldNavigationToolBar.self)
     }
 
     func indexOfSelectedTextField() -> NSInteger {
         guard let selectedTextField = self.selectedTextField else { return 0 }
         guard let textFields = self.textFields else { return 0 }
-        guard let selectedIndex = textFields.indexOf({$0 == selectedTextField}) else { return 0 }
+        guard let selectedIndex = textFields.index(where: {$0 == selectedTextField}) else { return 0 }
         return selectedIndex
     }
 
@@ -135,8 +135,8 @@ public class TextFieldNavigationToolBar: NSObject {
         guard let textFields = self.textFields else { return }
 
         let selectedIndex = self.indexOfSelectedTextField()
-        previousButton.enabled = textFields.count > 0 && selectedIndex > 0
-        nextButton.enabled = textFields.count > 0 && selectedIndex < textFields.count - 1
+        previousButton.isEnabled = textFields.count > 0 && selectedIndex > 0
+        nextButton.isEnabled = textFields.count > 0 && selectedIndex < textFields.count - 1
     }
 
     func previousButtonClicked() {

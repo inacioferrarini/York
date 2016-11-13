@@ -42,7 +42,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let layout = UICollectionViewFlowLayout()
         let collectionView = TestsCollectionView(frame: frame, collectionViewLayout: layout)
-        collectionView.cellForItemAtIndexPathBlock = { (indexPath: NSIndexPath) -> UICollectionViewCell? in
+        collectionView.cellForItemAtIndexPathBlock = { (indexPath: IndexPath) -> UICollectionViewCell? in
             return UICollectionViewCell()
         }
         self.registerCellForCollectionView(collectionView)
@@ -50,9 +50,9 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         return self.createCollectionViewFetcherDataSource(sectionNameKeyPath: nameKeyPath, collectionView: collectionView)
     }
 
-    func registerCellForCollectionView(collectionView: UICollectionView) {
+    func registerCellForCollectionView(_ collectionView: UICollectionView) {
         let collectionViewCellNib = UINib(nibName: "CollectionViewCell", bundle: TestUtil().unitTestsBundle())
-        collectionView.registerNib(collectionViewCellNib, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.register(collectionViewCellNib, forCellWithReuseIdentifier: "CollectionViewCell")
     }
 
     func createCollectionViewFetcherDataSource(sectionNameKeyPath nameKeyPath: String?, collectionView: UICollectionView!) ->
@@ -60,7 +60,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
 
         self.collectionView = collectionView
 
-        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+        let cellReuseIdBlock: ((_ indexPath: IndexPath) -> String) = { (indexPath: IndexPath) -> String in
             return "CollectionViewCell"
         }
 
@@ -102,12 +102,12 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let layout = UICollectionViewFlowLayout()
         let collectionView = TestsCollectionView(frame: frame, collectionViewLayout: layout)
-        collectionView.cellForItemAtIndexPathBlock = { (indexPath: NSIndexPath) -> UICollectionViewCell? in
+        collectionView.cellForItemAtIndexPathBlock = { (indexPath: IndexPath) -> UICollectionViewCell? in
             return UICollectionViewCell()
         }
         self.registerCellForCollectionView(collectionView)
 
-        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+        let cellReuseIdBlock: ((_ indexPath: IndexPath) -> String) = { (indexPath: IndexPath) -> String in
             return "CollectionViewCell"
         }
 
@@ -143,12 +143,12 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let layout = UICollectionViewFlowLayout()
         let collectionView = TestsCollectionView(frame: frame, collectionViewLayout: layout)
-        collectionView.cellForItemAtIndexPathBlock = { (indexPath: NSIndexPath) -> UICollectionViewCell? in
+        collectionView.cellForItemAtIndexPathBlock = { (indexPath: IndexPath) -> UICollectionViewCell? in
             return UICollectionViewCell()
         }
         self.registerCellForCollectionView(collectionView)
 
-        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+        let cellReuseIdBlock: ((_ indexPath: IndexPath) -> String) = { (indexPath: IndexPath) -> String in
             return "CollectionViewCell"
         }
 
@@ -198,7 +198,7 @@ class CollectionViewFetcherDataSourceTests: BaseFetcherDataSourceTests {
         helper.removeAllTestEntities()
 
         self.coreDataStack.saveContext()
-        let numberOfSections = dataSource.numberOfSectionsInCollectionView(self.collectionView)
+        let numberOfSections = dataSource.numberOfSections(in: self.collectionView)
         XCTAssertEqual(numberOfSections, 0)
     }
 

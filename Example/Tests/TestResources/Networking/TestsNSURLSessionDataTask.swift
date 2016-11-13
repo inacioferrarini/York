@@ -25,11 +25,11 @@ import UIKit
 import York
 import UIKit
 
-public class TestsNSURLSessionDataTask: NSURLSessionDataTask {
+open class TestsNSURLSessionDataTask: URLSessionDataTask {
 
-    public var responseToUse: NSURLResponse?
+    open var responseToUse: URLResponse?
 
-    override public var response: NSURLResponse? {
+    override open var response: URLResponse? {
         get {
             return responseToUse
         }

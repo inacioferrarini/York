@@ -24,17 +24,17 @@
 import UIKit
 import York
 
-public class TestLogProvider: NSObject, LogProvider {
+open class TestLogProvider: NSObject, LogProvider {
 
-    public func logError(error: NSError) {
+    open func logError(_ error: NSError) {
         print("\(error), \(error.userInfo)")
     }
 
-    public func logErrorMessage(errorMessage: String) {
+    open func logErrorMessage(_ errorMessage: String) {
         print(errorMessage)
     }
 
-    public func logInfo(message: String) {
+    open func logInfo(_ message: String) {
         print(message)
     }
 

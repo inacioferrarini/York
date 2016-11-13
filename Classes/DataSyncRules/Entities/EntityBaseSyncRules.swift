@@ -24,21 +24,21 @@
 import Foundation
 import CoreData
 
-public class EntityBaseSyncRules: NSManagedObject {
+open class EntityBaseSyncRules: NSManagedObject {
 
-    public class func fetchEntityBaseSyncRulesByName(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityBaseSyncRules? {
+    public class func fetchEntityBaseSyncRulesByName(_ name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityBaseSyncRules? {
 
         guard name.characters.count > 0 else {
             return nil
         }
 
-        let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
+        let request: NSFetchRequest = NSFetchRequest<EntityBaseSyncRules>(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityBaseSyncRules
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context)
     }
 
-    public func shouldRunSyncRuleWithName(name: String, date: NSDate, inManagedObjectContext context: NSManagedObjectContext) -> Bool {
+    public func shouldRunSyncRuleWithName(_ name: String, date: Date, inManagedObjectContext context: NSManagedObjectContext) -> Bool {
         return false
     }
 

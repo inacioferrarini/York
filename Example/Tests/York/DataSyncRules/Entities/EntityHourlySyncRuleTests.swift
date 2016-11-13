@@ -59,7 +59,7 @@ class EntityHourlySyncRuleTests: XCTestCase {
         let context = coreDataStack.managedObjectContext
         let ruleName = TestUtil().randomString()
         if let rule = EntityHourlySyncRule.entityHourlySyncRuleByName(ruleName, hours: nil, inManagedObjectContext:context) {
-            let shouldExecuteRule = rule.shouldRunSyncRuleWithName("", date: NSDate(), inManagedObjectContext: context)
+            let shouldExecuteRule = rule.shouldRunSyncRuleWithName("", date: Date(), inManagedObjectContext: context)
             XCTAssertTrue(shouldExecuteRule)
         }
     }

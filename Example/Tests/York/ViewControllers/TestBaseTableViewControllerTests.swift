@@ -41,8 +41,8 @@ class TestBaseTableViewControllerTests: XCTestCase {
         viewController = TestUtil().testBaseTableViewController(appContext)
         navigationController.pushViewController(viewController, animated: true)
 
-        let _ = navigationController.view
-        let _ = viewController.view
+        _ = navigationController.view
+        _ = viewController.view
     }
 
 
@@ -59,7 +59,7 @@ class TestBaseTableViewControllerTests: XCTestCase {
 
         let helper = CoreDataUtil(inManagedObjectContext: context)
         helper.removeAllTestEntities()
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
 
         if let dataSource = self.viewController.dataSource as? TableViewFetcherDataSource<UITableViewCell, EntityTest> {
             dataSource.refreshData()
@@ -67,8 +67,8 @@ class TestBaseTableViewControllerTests: XCTestCase {
 
         self.viewController.tableView!.reloadData()
 
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.viewController.tableView!.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .Top)
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.viewController.tableView!.selectRow(at: indexPath, animated: true, scrollPosition: .top)
 
         self.viewController.viewWillDisappear(true)
     }
@@ -99,7 +99,7 @@ class TestBaseTableViewControllerTests: XCTestCase {
         self.viewController.viewDidLoad()
         if let delegate = self.viewController.delegate as? TableViewBlockDelegate,
             let itemSelectionBlock = delegate.itemSelectionBlock {
-            itemSelectionBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
+            itemSelectionBlock(IndexPath(row: 0, section: 0))
         }
     }
 

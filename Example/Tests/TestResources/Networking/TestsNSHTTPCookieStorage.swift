@@ -23,8 +23,8 @@
 
 import UIKit
 
-public class TestsNSHTTPCookieStorage: NSHTTPCookieStorage {
+open class TestsNSHTTPCookieStorage: HTTPCookieStorage {
 
-    override public var cookies: [NSHTTPCookie]? { return nil }
+    override open var cookies: [HTTPCookie]? { return nil }
 
 }

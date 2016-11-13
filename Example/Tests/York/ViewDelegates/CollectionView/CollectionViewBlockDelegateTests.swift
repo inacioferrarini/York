@@ -30,7 +30,7 @@ class CollectionViewBlockDelegateTests: XCTestCase {
     // MARK: - Properties
 
     var collectionView: UICollectionView!
-    var itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)!
+    var itemSelectionBlock: ((_ indexPath: IndexPath) -> Void)!
     var itemSelectionBlockWasCalled: Bool = false
 
 
@@ -40,7 +40,7 @@ class CollectionViewBlockDelegateTests: XCTestCase {
         let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let layout = UICollectionViewFlowLayout()
         self.collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
-        self.itemSelectionBlock = { (indexPath: NSIndexPath) -> Void in
+        self.itemSelectionBlock = { (indexPath: IndexPath) -> Void in
             self.itemSelectionBlockWasCalled = true
         }
         let delegate = CollectionViewBlockDelegate(collectionView: self.collectionView)
@@ -53,7 +53,7 @@ class CollectionViewBlockDelegateTests: XCTestCase {
 
     func test_itemSelection_mustSelectValue() {
         let delegate = self.createCollectionViewBlockDelegate()
-        delegate.collectionView(self.collectionView, didSelectItemAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+        delegate.collectionView(self.collectionView, didSelectItemAt: IndexPath(row: 1, section: 1))
         XCTAssertTrue(self.itemSelectionBlockWasCalled)
     }
 

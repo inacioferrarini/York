@@ -23,23 +23,23 @@
 
 import UIKit
 
-public class FlowElement {
+open class FlowElement {
 
 
     // MARK: - Properties
 
-    public var status: FlowStatus
+    open var status: FlowStatus
 
 
     // MARK: - Initialization
 
     public init() {
-        self.status = .NotStarted
+        self.status = .notStarted
     }
 
 
     // MARK: - Public Methods
 
-    public func execute() { }
+    open func execute() { }
 
 }

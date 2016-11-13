@@ -23,19 +23,19 @@
 
 import UIKit
 
-public class BaseViewController: UIViewController {
+open class BaseViewController: UIViewController {
 
     // MARK: - Properties
 
 //    public var originalYOffset = CGFloat(0)
-    public var stringsBundle: NSBundle?
+    open var stringsBundle: Bundle?
 //    public var textFieldNavigationToolbar: TextFieldNavigationToolBar?
 //    var keyboardHeight: CGFloat = 0
 
 
     // MARK: - Lifecycle
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         self.translateUI()
 //        self.setupTextFieldNavigationToolBar()
@@ -73,9 +73,9 @@ public class BaseViewController: UIViewController {
 
     // MARK: - Internationalization Support
 
-    public func viewControllerTitle() -> String? { return nil }
+    open func viewControllerTitle() -> String? { return nil }
 
-    public func translateUI() {
+    open func translateUI() {
 
         if let title = self.viewControllerTitle() {
             self.navigationItem.title = title
@@ -96,17 +96,17 @@ public class BaseViewController: UIViewController {
 
     }
 
-    public func bundleForMessages() -> NSBundle {
-        var bundle: NSBundle!
+    open func bundleForMessages() -> Bundle {
+        var bundle: Bundle!
         if let stringBundle = self.stringsBundle {
             bundle = stringBundle
         } else {
-            bundle = NSBundle.mainBundle()
+            bundle = Bundle.main
         }
         return bundle
     }
 
-    public func localizedBundleString(key: String) -> String {
+    open func localizedBundleString(_ key: String) -> String {
         let bundle = self.bundleForMessages()
         return NSLocalizedString(key, tableName: nil, bundle: bundle, value: "", comment: "")
     }

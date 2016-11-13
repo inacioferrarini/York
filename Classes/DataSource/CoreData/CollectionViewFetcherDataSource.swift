@@ -24,13 +24,13 @@
 import UIKit
 import CoreData
 
-public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, EntityType: NSManagedObject>: FetcherDataSource<EntityType>, UICollectionViewDataSource {
+open class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, EntityType: NSManagedObject>: FetcherDataSource<EntityType>, UICollectionViewDataSource {
 
 
     // MARK: - Properties
 
-    public let collectionView: UICollectionView
-    public let presenter: CollectionViewCellPresenter<CellType, EntityType>
+    open let collectionView: UICollectionView
+    open let presenter: CollectionViewCellPresenter<CellType, EntityType>
 
 
     // MARK: - Initialization
@@ -81,7 +81,7 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
 
     // MARK: - Public Methods
 
-    public override func refreshData() {
+    open override func refreshData() {
         super.refreshData()
         self.collectionView.reloadData()
     }
@@ -89,11 +89,11 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
 
     // MARK: - Collection View Data Source
 
-    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
 
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let sections = self.fetchedResultsController.sections {
             let sectionInfo = sections[section]
             return sectionInfo.numberOfObjects
@@ -101,11 +101,11 @@ public class CollectionViewFetcherDataSource<CellType: UICollectionViewCell, Ent
         return 0
     }
 
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let value = self.objectAtIndexPath(indexPath)
 
-        let reuseIdentifier = self.presenter.cellReuseIdentifierBlock(indexPath: indexPath)
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as? CellType
+        let reuseIdentifier = self.presenter.cellReuseIdentifierBlock(indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CellType
         if let cell = cell,
             let value = value {
             self.presenter.configureCellBlock(cell, value)

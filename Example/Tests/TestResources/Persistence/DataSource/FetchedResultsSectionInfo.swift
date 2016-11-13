@@ -26,11 +26,10 @@ import CoreData
 
 class FetchedResultsSectionInfo: NSObject, NSFetchedResultsSectionInfo {
 
-
     // MARK: - Properties
 
     let numberOfObjects: Int
-    let objects: [AnyObject]?
+    let objects: [Any]?
     let name: String
     let indexTitle: String?
 

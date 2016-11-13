@@ -23,13 +23,13 @@
 
 import UIKit
 
-public class CollectionViewArrayDataSource<CellType: UICollectionViewCell, Type: Equatable>: ArrayDataSource<Type>, UICollectionViewDataSource {
+open class CollectionViewArrayDataSource<CellType: UICollectionViewCell, Type: Equatable>: ArrayDataSource<Type>, UICollectionViewDataSource {
 
 
     // MARK: - Properties
 
-    public let collectionView: UICollectionView
-    public private(set) var presenter: CollectionViewCellPresenter<CellType, Type>
+    open let collectionView: UICollectionView
+    open fileprivate(set) var presenter: CollectionViewCellPresenter<CellType, Type>
 
 
     // MARK: - Initialization
@@ -47,7 +47,7 @@ public class CollectionViewArrayDataSource<CellType: UICollectionViewCell, Type:
 
     // MARK: - Public Methods
 
-    public override func refreshData() {
+    open override func refreshData() {
         super.refreshData()
         self.collectionView.reloadData()
     }
@@ -55,19 +55,19 @@ public class CollectionViewArrayDataSource<CellType: UICollectionViewCell, Type:
 
     // MARK: - Collection View Data Source
 
-    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard section == 0 else { return 0 }
         return self.objects.count
     }
 
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let value = self.objectAtIndexPath(indexPath)
-        let reuseIdentifier = self.presenter.cellReuseIdentifierBlock(indexPath: indexPath)
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as? CellType
+        let reuseIdentifier = self.presenter.cellReuseIdentifierBlock(indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? CellType
         if let cell = cell,
             let value = value {
             self.presenter.configureCellBlock(cell, value)

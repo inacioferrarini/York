@@ -48,7 +48,7 @@ class NavigationRouterTests: XCTestCase {
     func createNavigationRouter() -> NavigationRouter {
         JLRoutes.setVerboseLoggingEnabled(true)
         let navigationRouter = NavigationRouter(schema: "TesteScheme", logger: Logger(logProvider: TestLogProvider()))
-        let route = RoutingElement(path: PresentationPath(pattern: "/testUrlScheme")) { (params: [NSObject : AnyObject]) -> Bool in
+        let route = RoutingElement(path: PresentationPath(pattern: "/testUrlScheme")) { (params: [AnyHashable: Any]) -> Bool in
             self.routeWasCalled = true
             return true
         }
@@ -60,12 +60,12 @@ class NavigationRouterTests: XCTestCase {
     // MARK: - Tests
 
     func test_dispatch_mustReturnTrue() {
-        let result = self.router.dispatch(NSURL(string: "TesteScheme://testUrlScheme/:presentation")!)
+        let result = self.router.dispatch(URL(string: "TesteScheme://testUrlScheme/:presentation")!)
         XCTAssertTrue(result)
     }
 
     func test_dispatch_mustReturnFalse() {
-        let result = self.router.dispatch(NSURL(string: "TesteScheme://invalidTestUrlScheme")!)
+        let result = self.router.dispatch(URL(string: "TesteScheme://invalidTestUrlScheme")!)
         XCTAssertFalse(result)
     }
 

@@ -25,18 +25,18 @@ import Foundation
 import CoreData
 import York
 
-public class EntityTestMandatoryField: NSManagedObject {
+open class EntityTestMandatoryField: NSManagedObject {
 
-    public class func fetchEntityTestMandatoryField(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityTestMandatoryField? {
-        let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
+    open class func fetchEntityTestMandatoryField(_ name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityTestMandatoryField? {
+        let request: NSFetchRequest = NSFetchRequest<EntityTestMandatoryField>(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
-        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityTestMandatoryField
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context)
     }
 
-    public class func entityTestMandatoryField(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityTestMandatoryField? {
+    open class func entityTestMandatoryField(_ name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityTestMandatoryField? {
         var entityTest: EntityTestMandatoryField? = self.fetchEntityTestMandatoryField(name, inManagedObjectContext: context)
         if entityTest == nil {
-            let newEntityTest = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as? EntityTestMandatoryField
+            let newEntityTest = NSEntityDescription.insertNewObject(forEntityName: self.simpleClassName(), into: context) as? EntityTestMandatoryField
             if let entity = newEntityTest {
                 entity.name = name
             }

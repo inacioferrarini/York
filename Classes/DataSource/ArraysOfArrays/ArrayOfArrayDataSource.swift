@@ -23,12 +23,12 @@
 
 import UIKit
 
-public class ArrayOfArrayDataSource<Type: Equatable>: NSObject {
+open class ArrayOfArrayDataSource<Type: Equatable>: NSObject {
 
 
     // MARK: - Properties
 
-    public var objects: [[Type]]
+    open var objects: [[Type]]
 
 
     // MARK: - Initialization
@@ -40,10 +40,10 @@ public class ArrayOfArrayDataSource<Type: Equatable>: NSObject {
 
     // MARK: - Public Methods
 
-    public func refreshData() {
+    open func refreshData() {
     }
 
-    public func objectAtIndexPath(indexPath: NSIndexPath) -> Type? {
+    open func objectAtIndexPath(_ indexPath: IndexPath) -> Type? {
         let section = indexPath.section
         let row = indexPath.row
         guard section < self.objects.count else { return nil }
@@ -51,11 +51,11 @@ public class ArrayOfArrayDataSource<Type: Equatable>: NSObject {
         return objects[section][row]
     }
 
-    public func indexPathForObject(object: Type) -> NSIndexPath? {
-        var indexPath: NSIndexPath?
+    open func indexPathForObject(_ object: Type) -> IndexPath? {
+        var indexPath: IndexPath?
         for section in 0..<self.objects.count {
-            if let index = self.objects[section].indexOf({$0 == object}) {
-                indexPath = NSIndexPath(forRow: index, inSection: section)
+            if let index = self.objects[section].index(where: {$0 == object}) {
+                indexPath = IndexPath(row: index, section: section)
                 break
             }
         }

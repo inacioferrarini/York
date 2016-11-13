@@ -26,7 +26,7 @@ import CoreData
 
 extension EntitySyncHistory {
 
-    @NSManaged public var lastExecutionDate: NSDate?
+    @NSManaged public var lastExecutionDate: Date?
     @NSManaged public var ruleName: String?
 
 }

@@ -25,22 +25,22 @@ import Foundation
 import CoreData
 import York
 
-public class EntityTest: NSManagedObject {
+open class EntityTest: NSManagedObject {
 
-    public class func fetchAll(inManagedObjectContext context: NSManagedObjectContext, usingSortDescriptor sortDescriptors: [NSSortDescriptor]?) -> [EntityTest]? {
-        let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
+    open class func fetchAll(inManagedObjectContext context: NSManagedObjectContext, usingSortDescriptor sortDescriptors: [NSSortDescriptor]?) -> [EntityTest]? {
+        let request: NSFetchRequest = NSFetchRequest<EntityTest>(entityName: self.simpleClassName())
         request.sortDescriptors = sortDescriptors
-        return self.allObjectsFromRequest(request, inManagedObjectContext: context) as? [EntityTest]
+        return self.allObjectsFromRequest(request, inManagedObjectContext: context)
     }
 
-    public class func fetchEntityTest(sectionName: String?, name: String?, inManagedObjectContext context: NSManagedObjectContext) -> EntityTest? {
+    open class func fetchEntityTest(_ sectionName: String?, name: String?, inManagedObjectContext context: NSManagedObjectContext) -> EntityTest? {
         var predicates = [NSPredicate]()
 
-        if let sectionName = sectionName where sectionName.characters.count > 0 {
+        if let sectionName = sectionName, sectionName.characters.count > 0 {
             predicates.append(NSPredicate(format: "sectionName = %@", sectionName))
         }
 
-        if let name = name where name.characters.count > 0 {
+        if let name = name, name.characters.count > 0 {
             predicates.append(NSPredicate(format: "name = %@", name))
         }
 
@@ -48,35 +48,35 @@ public class EntityTest: NSManagedObject {
             return nil
         }
 
-        let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
+        let request: NSFetchRequest = NSFetchRequest<EntityTest>(entityName: self.simpleClassName())
         if predicates.count > 1 {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         } else {
             request.predicate = predicates.last
         }
 
-        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityTest
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context)
     }
 
-    public class func entityTest(sectionName: String?, name: String?, order: Int?, inManagedObjectContext context: NSManagedObjectContext) -> EntityTest? {
+    open class func entityTest(_ sectionName: String?, name: String?, order: Int?, inManagedObjectContext context: NSManagedObjectContext) -> EntityTest? {
 
         var entityTest: EntityTest? = self.fetchEntityTest(sectionName, name: name, inManagedObjectContext: context)
         if entityTest == nil {
-            let newEntityTest = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as? EntityTest
+            let newEntityTest = NSEntityDescription.insertNewObject(forEntityName: self.simpleClassName(), into: context) as? EntityTest
             if let entity = newEntityTest {
                 entity.sectionName = sectionName
                 entity.name = name
-                entity.order = order
+                entity.order = order as NSNumber?
             }
             entityTest = newEntityTest
         }
         return entityTest
     }
 
-    public class func removeAll(inManagedObjectContext context: NSManagedObjectContext) {
+    open class func removeAll(inManagedObjectContext context: NSManagedObjectContext) {
         if let allEntities = self.fetchAll(inManagedObjectContext: context, usingSortDescriptor: nil) {
             for entity in allEntities {
-                context.deleteObject(entity)
+                context.delete(entity)
             }
         }
     }

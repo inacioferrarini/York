@@ -41,8 +41,8 @@ class TestClassicTableViewControllerTests: XCTestCase {
         viewController = TestUtil().testClassicTableViewController(appContext)
         navigationController.pushViewController(viewController, animated: true)
 
-        let _ = navigationController.view
-        let _ = viewController.view
+        _ = navigationController.view
+        _ = viewController.view
     }
 
 
@@ -53,8 +53,8 @@ class TestClassicTableViewControllerTests: XCTestCase {
     }
 
     func test_cellForRowAtIndexPath_mustReturnNotNil() {
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = self.viewController.tableView(self.viewController.tableView!, cellForRowAtIndexPath: indexPath)
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = self.viewController.tableView(self.viewController.tableView!, cellForRowAt: indexPath)
         XCTAssertNotNil(cell)
     }
 

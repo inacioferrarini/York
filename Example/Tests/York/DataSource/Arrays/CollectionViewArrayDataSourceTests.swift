@@ -40,13 +40,13 @@ class CollectionViewArrayDataSourceTests: XCTestCase {
         let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let layout = UICollectionViewFlowLayout()
         let collectionView = TestsCollectionView(frame: frame, collectionViewLayout: layout)
-        collectionView.cellForItemAtIndexPathBlock = { (indexPath: NSIndexPath) -> UICollectionViewCell? in
+        collectionView.cellForItemAtIndexPathBlock = { (indexPath: IndexPath) -> UICollectionViewCell? in
             return UICollectionViewCell()
         }
         self.registerCellForCollectionView(collectionView)
         self.collectionView = collectionView
 
-        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+        let cellReuseIdBlock: ((_ indexPath: IndexPath) -> String) = { (indexPath: IndexPath) -> String in
             return "CollectionViewCell"
         }
         self.presenter = CollectionViewCellPresenter<UICollectionViewCell, NSNumber>(
@@ -62,9 +62,9 @@ class CollectionViewArrayDataSourceTests: XCTestCase {
         return dataSource
     }
 
-    func registerCellForCollectionView(collectionView: UICollectionView) {
+    func registerCellForCollectionView(_ collectionView: UICollectionView) {
         let collectionViewCellNib = UINib(nibName: "CollectionViewCell", bundle: TestUtil().unitTestsBundle())
-        collectionView.registerNib(collectionViewCellNib, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.register(collectionViewCellNib, forCellWithReuseIdentifier: "CollectionViewCell")
     }
     
     
@@ -80,7 +80,7 @@ class CollectionViewArrayDataSourceTests: XCTestCase {
 
     func test_numberOfSections_mustReturnOne() {
         let dataSource = self.createCollectionViewArrayDataSource()
-        let numberOfSections = dataSource.numberOfSectionsInCollectionView(self.collectionView)
+        let numberOfSections = dataSource.numberOfSections(in: self.collectionView)
         XCTAssertEqual(numberOfSections, 1)
     }
 
@@ -104,8 +104,8 @@ class CollectionViewArrayDataSourceTests: XCTestCase {
 
     func test_cellForItemAtIndexPath_mustReturnCell() {
         let dataSource = self.createCollectionViewArrayDataSource()
-        let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-        dataSource.collectionView(self.collectionView, cellForItemAtIndexPath: indexPath)
+        let indexPath = IndexPath(item: 0, section: 0)
+        _ = dataSource.collectionView(self.collectionView, cellForItemAt: indexPath)
         XCTAssertTrue(self.configureCellBlockWasCalled)
     }
 

@@ -23,11 +23,11 @@
 
 import UIKit
 
-public class ViewComponent: DesignableView {
+open class ViewComponent: DesignableView {
 
-    public let bundle: NSBundle?
+    open let bundle: Bundle?
 
-    public required init(frame: CGRect, bundle: NSBundle?) {
+    public required init(frame: CGRect, bundle: Bundle?) {
         self.bundle = bundle
         super.init(frame: frame)
         self.load()
@@ -39,14 +39,14 @@ public class ViewComponent: DesignableView {
         self.load()
     }
 
-    public func load() {
-        let className = self.dynamicType.simpleClassName()
+    open func load() {
+        let className = type(of: self).simpleClassName()
         var view: UIView!
 
         if let bundle = self.bundle {
-            view = bundle.loadNibNamed(className, owner: self, options: nil).first as? UIView
+            view = bundle.loadNibNamed(className, owner: self, options: nil)?.first as? UIView
         } else {
-            view = NSBundle(forClass: self.dynamicType).loadNibNamed(className, owner: self, options: nil).first as? UIView
+            view = Bundle(for: type(of: self)).loadNibNamed(className, owner: self, options: nil)?.first as? UIView
         }
         self.addSubview(view)
         view.frame = self.bounds

@@ -24,12 +24,12 @@
 import UIKit
 import CoreData
 
-public class ErrorProneFetchedResultsController: NSFetchedResultsController {
+open class ErrorProneFetchedResultsController: NSFetchedResultsController<EntityTest> {
 
 
     // MARK: - Fetched results controller
 
-    override public func performFetch() throws {
+    override open func performFetch() throws {
         throw NSError(domain: "testDomain", code: -1, userInfo: nil)
     }
 

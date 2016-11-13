@@ -24,35 +24,35 @@
 import UIKit
 import CoreData
 
-public class TableViewBlockDelegate<CellType: UITableViewCell>: NSObject, UITableViewDelegate {
+open class TableViewBlockDelegate<CellType: UITableViewCell>: NSObject, UITableViewDelegate {
 
-    public let tableView: UITableView
-    public var itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)?
-    public var heightForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> CGFloat)?
-    public var loadMoreDataBlock: (() -> Void)?
-    public var willDisplayCellBlock: ((CellType, NSIndexPath) -> Void)?
-    public var didEndDisplayingCellBlock: ((CellType, NSIndexPath) -> Void)?
+    open let tableView: UITableView
+    open var itemSelectionBlock: ((_ indexPath: IndexPath) -> Void)?
+    open var heightForRowAtIndexPathBlock: ((_ indexPath: IndexPath) -> CGFloat)?
+    open var loadMoreDataBlock: (() -> Void)?
+    open var willDisplayCellBlock: ((CellType, IndexPath) -> Void)?
+    open var didEndDisplayingCellBlock: ((CellType, IndexPath) -> Void)?
 
     public init(tableView: UITableView) {
         self.tableView = tableView
         super.init()
     }
 
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height: CGFloat = tableView.rowHeight
         if let heightForRowAtIndexPathBlock = self.heightForRowAtIndexPathBlock {
-            height = heightForRowAtIndexPathBlock(indexPath: indexPath)
+            height = heightForRowAtIndexPathBlock(indexPath)
         }
         return height
     }
 
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectRowBlock = self.itemSelectionBlock {
-            selectRowBlock(indexPath: indexPath)
+            selectRowBlock(indexPath)
         }
     }
 
-    public func scrollViewDidScroll(scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.tableView.contentOffset.y < 0 {
             return
         } else if self.tableView.contentOffset.y >= self.tableView.contentSize.height - self.tableView.bounds.size.height {
@@ -65,13 +65,13 @@ public class TableViewBlockDelegate<CellType: UITableViewCell>: NSObject, UITabl
 
     // MARK: - Cell Visibility
 
-    public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? CellType else { return }
         guard let block = self.willDisplayCellBlock else { return }
         block(cell, indexPath)
     }
 
-    public func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? CellType else { return }
         guard let block = self.didEndDisplayingCellBlock else { return }
         block(cell, indexPath)

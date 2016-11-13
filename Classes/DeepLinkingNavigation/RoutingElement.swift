@@ -23,12 +23,12 @@
 
 import UIKit
 
-public class RoutingElement: NSObject {
+open class RoutingElement: NSObject {
 
-    public let path: PresentationPath
-    public let handler: (([NSObject : AnyObject]) -> Bool)
+    open let path: PresentationPath
+    open let handler: (([AnyHashable: Any]) -> Bool)
 
-    public init(path: PresentationPath, handler: (([NSObject : AnyObject]) -> Bool)) {
+    public init(path: PresentationPath, handler: @escaping (([AnyHashable: Any]) -> Bool)) {
         self.path = path
         self.handler = handler
         super.init()

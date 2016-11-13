@@ -24,15 +24,15 @@
 import UIKit
 import York
 
-public class TestBaseTableViewController: BaseTableViewController, AppContextAwareProtocol {
+open class TestBaseTableViewController: BaseTableViewController, AppContextAwareProtocol {
 
 
-    public var appContext: FullStackAppContext!
+    open var appContext: FullStackAppContext!
 
 
-    override public func createDataSource() -> UITableViewDataSource? {
+    override open func createDataSource() -> UITableViewDataSource? {
 
-        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+        let cellReuseIdBlock: ((_ indexPath: IndexPath) -> String) = { (indexPath: IndexPath) -> String in
             return "TableViewCell"
         }
 
@@ -56,11 +56,11 @@ public class TestBaseTableViewController: BaseTableViewController, AppContextAwa
         return dataSource
     }
 
-    override public func createDelegate() -> UITableViewDelegate? {
+    override open func createDelegate() -> UITableViewDelegate? {
         return TableViewBlockDelegate(tableView: self.tableView!)
     }
 
-    override public func createRefreshControl() -> UIRefreshControl? {
+    override open func createRefreshControl() -> UIRefreshControl? {
         return UIRefreshControl()
     }
 

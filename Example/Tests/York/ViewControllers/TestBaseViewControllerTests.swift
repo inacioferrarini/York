@@ -34,15 +34,15 @@ class TestBaseViewControllerTests: XCTestCase {
 
     // MARK: - Supporting Methods
 
-    func instantiateViewController(bundle: NSBundle?) {
+    func instantiateViewController(_ bundle: Bundle?) {
         let appContext = TestUtil().appContext()
         let navigationController = TestUtil().rootViewController()
         viewController = TestUtil().testBaseViewController(appContext)
         viewController.stringsBundle = bundle
         navigationController.pushViewController(viewController, animated: true)
 
-        let _ = navigationController.view
-        let _ = viewController.view
+        _ = navigationController.view
+        _ = viewController.view
     }
 
 

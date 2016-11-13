@@ -23,23 +23,23 @@
 
 import UIKit
 
-public class PresentationPath: NSObject {
+open class PresentationPath: NSObject {
 
 
     // MARK: - Constants
 
-    public let presentationParameterPath = "/:presentation"
-    public static let presentationParameterPathKey = "presentation"
+    open let presentationParameterPath = "/:presentation"
+    open static let presentationParameterPathKey = "presentation"
 
 
     // MARK: - Properties
 
-    public private (set) var pattern: String
+    open fileprivate (set) var pattern: String
 
 
     // MARK: - Class Methods
 
-    public class func presentationMode(parameters: [NSObject : AnyObject]) -> PresentationMode {
+    open class func presentationMode(_ parameters: [AnyHashable: Any]) -> PresentationMode {
         var mode: PresentationMode = .Push
         if let presentationModeValue = parameters[presentationParameterPathKey] as? String,
             let value = PresentationMode(rawValue: presentationModeValue) {
@@ -59,33 +59,33 @@ public class PresentationPath: NSObject {
 
     // MARK: - Public Methods
 
-    public func absoluteString() -> String {
+    open func absoluteString() -> String {
         return self.removeLastPathSeparator(self.pattern) + self.presentationParameterPath
     }
 
-    public func replacingValues(mode: PresentationMode) -> String {
+    open func replacingValues(_ mode: PresentationMode) -> String {
         return self.replacingValues(nil, mode: mode)
     }
 
-    public func replacingValues(values: [String : String]?, mode: PresentationMode) -> String {
+    open func replacingValues(_ values: [String : String]?, mode: PresentationMode) -> String {
         var replacedValuesPath = self.removeLastPathSeparator(self.pattern)
         if let values = values {
             for (key, value) in values {
-                let range = replacedValuesPath.rangeOfString(key)
-                replacedValuesPath = replacedValuesPath.stringByReplacingOccurrencesOfString(key, withString: value, options: .CaseInsensitiveSearch, range: range)
+                let range = replacedValuesPath.range(of: key)
+                replacedValuesPath = replacedValuesPath.replacingOccurrences(of: key, with: value, options: .caseInsensitive, range: range)
             }
         }
         return self.removeLastPathSeparator(replacedValuesPath) + "/" + mode.rawValue
     }
 
-    public func removeLastPathSeparator(path: String) -> String {
+    open func removeLastPathSeparator(_ path: String) -> String {
         var cleanPath = path
-        let lastIndex = path.endIndex.predecessor()
+        let lastIndex = path.characters.index(before: path.endIndex)
 
         if lastIndex > path.startIndex {
             let lastChar = path[lastIndex]
             if lastChar == "/" {
-                cleanPath = path.substringToIndex(lastIndex)
+                cleanPath = path.substring(to: lastIndex)
             }
         }
         return cleanPath

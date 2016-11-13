@@ -41,8 +41,8 @@ class TestBaseDataBasedViewControllerTests: XCTestCase {
         viewController = TestUtil().testBaseDataBasedViewController(appContext)
         navigationController.pushViewController(viewController, animated: true)
 
-        let _ = navigationController.view
-        let _ = viewController.view
+        _ = navigationController.view
+        _ = viewController.view
     }
 
 
@@ -54,7 +54,7 @@ class TestBaseDataBasedViewControllerTests: XCTestCase {
 
     func test_showCourtainView_withCourtain() {
         self.viewController.showCourtainView()
-        XCTAssertFalse(self.viewController.courtainView?.hidden ?? true)
+        XCTAssertFalse(self.viewController.courtainView?.isHidden ?? true)
     }
 
 //    func test_hideCourtainView_withCourtain() {

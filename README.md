@@ -1,6 +1,6 @@
 # York
 [![Version](https://img.shields.io/cocoapods/v/York.svg?style=flat)](http://cocoapods.org/pods/York)
-[![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg?style=flat)](https://swift.org/)
+[![Swift 3.0](https://img.shields.io/badge/Swift-3.0-green.svg?style=flat)](https://swift.org/)
 [![License](https://img.shields.io/cocoapods/l/York.svg?style=flat)](http://cocoapods.org/pods/York)
 [![codecov.io](https://codecov.io/github/inacioferrarini/York/coverage.svg?branch=master)](https://codecov.io/github/inacioferrarini/York)
 
@@ -48,15 +48,13 @@ In order to make easier to understand every class role, they were grouped togeth
 
 ## Backwards Compatibility
 
-Use:
+* York version 0.4.0 for Swift 3.0
+* York version 0.3.6 for Swift 2.2
 
-* York version 0.3.2 for Swift 2.2
 
+## Last Version (0.4.0) Release Notes:
 
-## Last Version (0.3.6) Release Notes:
-
-* Renaming:
- * ViewComponents/TableViewCells/EmbededViewControllerTableViewCell renamed to EmbeddedViewControllerTableViewCell.
+* Migrated to Swift 3.
 
 All release notes are grouped here: (https://github.com/inacioferrarini/York/blob/master/ReleaseNotes.md)
 
