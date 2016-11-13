@@ -9,7 +9,7 @@ before_install:
 - ./install_homebrew.sh
 - gem install bundler
 - bundle install
-- bundle exec pod repo update
+- bundle exec pod repo update > /dev/nil
 - bundle exec pod install --project-directory=Example
 script:
 - cd Classes
