@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.version          = "0.4.0"
   s.summary          = "Foundation classes used to eliminate boiler-plate code and provide an accelerated startup time."
   s.homepage         = "https://github.com/inacioferrarini/York"
-  s.swift_version    = '2.2'
+  #s.swift_version    = '2.2'
 
   s.license      = {
   :type => 'MIT',
