@@ -15,6 +15,7 @@ before_install:
 #- rvm all do gem update
 - gem install bundler
 - bundle install
+- bundle exec pod repo update
 - bundle exec pod install --project-directory=Example
 script:
 - cd Classes
