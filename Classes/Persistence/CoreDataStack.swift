@@ -23,14 +23,14 @@
 
 import CoreData
 
-public class CoreDataStack: NSObject {
+open class CoreDataStack: NSObject {
 
-    public let modelFileName: String
-    public let databaseFileName: String
-    public let logger: Logger
-    public let bundle: NSBundle?
+    open let modelFileName: String
+    open let databaseFileName: String
+    open let logger: Logger
+    open let bundle: Bundle?
 
-    public init(modelFileName: String, databaseFileName: String, logger: Logger, bundle: NSBundle?) {
+    public init(modelFileName: String, databaseFileName: String, logger: Logger, bundle: Bundle?) {
         self.modelFileName = modelFileName
         self.databaseFileName = databaseFileName
         self.logger = logger
@@ -42,33 +42,33 @@ public class CoreDataStack: NSObject {
         self.init(modelFileName: modelFileName, databaseFileName: databaseFileName, logger:logger, bundle: nil)
     }
 
-    public lazy var applicationDocumentsDirectory: NSURL = {
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    open lazy var applicationDocumentsDirectory: URL = {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count-1]
     }()
 
-    public lazy var managedObjectModel: NSManagedObjectModel = {
-        var modelURL: NSURL!
+    open lazy var managedObjectModel: NSManagedObjectModel = {
+        var modelURL: URL!
         if let bundle = self.bundle {
-            modelURL = bundle.URLForResource(self.modelFileName, withExtension: "momd")!
+            modelURL = bundle.url(forResource: self.modelFileName, withExtension: "momd")!
         } else {
-            modelURL = NSBundle.mainBundle().URLForResource(self.modelFileName, withExtension: "momd")!
+            modelURL = Bundle.main.url(forResource: self.modelFileName, withExtension: "momd")!
         }
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
-    public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+    open lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("\(self.databaseFileName).sqlite")
+        let url = self.applicationDocumentsDirectory.appendingPathComponent("\(self.databaseFileName).sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             let isRunningUnitTests = NSClassFromString("XCTest") != nil
             let storeType = isRunningUnitTests ? NSInMemoryStoreType : NSSQLiteStoreType
-            try coordinator.addPersistentStoreWithType(storeType, configuration: nil, URL: url, options: nil)
+            try coordinator.addPersistentStore(ofType: storeType, configurationName: nil, at: url, options: nil)
         } catch let error as NSError {
             var dict = [String: AnyObject]()
-            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
-            dict[NSLocalizedFailureReasonErrorKey] = failureReason
+            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
+            dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
             dict[NSUnderlyingErrorKey] = error
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             self.logger.logError(wrappedError)
@@ -76,9 +76,9 @@ public class CoreDataStack: NSObject {
         return coordinator
     }()
 
-    public lazy var managedObjectContext: NSManagedObjectContext = {
+    open lazy var managedObjectContext: NSManagedObjectContext = {
         let coordinator = self.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
@@ -86,7 +86,7 @@ public class CoreDataStack: NSObject {
 
     // MARK: - Core Data Saving support
 
-    public func saveContext () {
+    open func saveContext () {
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()

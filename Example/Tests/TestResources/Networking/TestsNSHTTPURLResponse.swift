@@ -25,11 +25,11 @@ import UIKit
 import York
 import UIKit
 
-public class TestsNSHTTPURLResponse: NSHTTPURLResponse {
+open class TestsNSHTTPURLResponse: HTTPURLResponse {
 
-    public var headerFieldsToUse = [NSObject : AnyObject]()
+    open var headerFieldsToUse = [AnyHashable: Any]()
 
-    override public var allHeaderFields: [NSObject : AnyObject] {
+    override open var allHeaderFields: [AnyHashable: Any] {
         return headerFieldsToUse
     }
 

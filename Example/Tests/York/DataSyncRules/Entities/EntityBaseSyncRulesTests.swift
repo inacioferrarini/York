@@ -41,8 +41,8 @@ class EntityBaseSyncRulesTests: XCTestCase {
         let coreDataStack = TestUtil().appContext().coreDataStack
         let context = coreDataStack.managedObjectContext
 
-        if let rule = NSEntityDescription.insertNewObjectForEntityForName(EntityBaseSyncRules.simpleClassName(), inManagedObjectContext: context) as? EntityBaseSyncRules {
-            let shouldRunSyncRule = rule.shouldRunSyncRuleWithName("", date: NSDate(), inManagedObjectContext: context)
+        if let rule = NSEntityDescription.insertNewObject(forEntityName: EntityBaseSyncRules.simpleClassName(), into: context) as? EntityBaseSyncRules {
+            let shouldRunSyncRule = rule.shouldRunSyncRuleWithName("", date: Date(), inManagedObjectContext: context)
             XCTAssertFalse(shouldRunSyncRule)
         }
     }

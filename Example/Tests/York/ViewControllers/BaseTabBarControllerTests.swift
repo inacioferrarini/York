@@ -40,8 +40,8 @@ class BaseTabBarControllerTests: XCTestCase {
         self.viewController = TestUtil().baseTabBarController()
         navigationController.pushViewController(viewController, animated: true)
 
-        let _ = navigationController.view
-        let _ = viewController.view
+        _ = navigationController.view
+        _ = viewController.view
     }
 
 

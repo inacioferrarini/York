@@ -30,8 +30,8 @@ class TableViewBlockDelegateTests: XCTestCase {
     // MARK: - Properties
 
     var tableView: UITableView!
-    var itemSelectionBlock: ((indexPath: NSIndexPath) -> Void)!
-    var heightForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> CGFloat)!
+    var itemSelectionBlock: ((_ indexPath: IndexPath) -> Void)!
+    var heightForRowAtIndexPathBlock: ((_ indexPath: IndexPath) -> CGFloat)!
     var loadMoreDataBlock: (() -> Void)!
     var itemSelectionBlockWasCalled: Bool = false
     var loadMoreDataBlockWasCalled: Bool = false
@@ -41,13 +41,13 @@ class TableViewBlockDelegateTests: XCTestCase {
 
     func createTableViewBlockDelegate() -> TableViewBlockDelegate<UITableViewCell> {
         self.tableView = UITableView()
-        self.itemSelectionBlock = { (indexPath: NSIndexPath) -> Void in
+        self.itemSelectionBlock = { (indexPath: IndexPath) -> Void in
             self.itemSelectionBlockWasCalled = true
         }
         self.loadMoreDataBlock = { () -> Void in
             self.loadMoreDataBlockWasCalled = true
         }
-        self.heightForRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> CGFloat in
+        self.heightForRowAtIndexPathBlock = { (indexPath: IndexPath) -> CGFloat in
             return 10
         }
 
@@ -62,7 +62,7 @@ class TableViewBlockDelegateTests: XCTestCase {
 
     func test_tableViewBlockDelegate_itemSelection() {
         let delegate = self.createTableViewBlockDelegate()
-        delegate.tableView(self.tableView, didSelectRowAtIndexPath: NSIndexPath(forRow: 1, inSection: 1))
+        delegate.tableView(self.tableView, didSelectRowAt: IndexPath(row: 1, section: 1))
         XCTAssertTrue(self.itemSelectionBlockWasCalled)
     }
 
@@ -83,14 +83,14 @@ class TableViewBlockDelegateTests: XCTestCase {
     func test_heightForRowAtIndexPath_withBlock_mustReturnValue() {
         let delegate = self.createTableViewBlockDelegate()
         delegate.heightForRowAtIndexPathBlock = self.heightForRowAtIndexPathBlock
-        let height = delegate.tableView(self.tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        let height = delegate.tableView(self.tableView, heightForRowAt: IndexPath(row: 0, section: 0))
         XCTAssertEqual(height, 10)
     }
 
     func test_heightForRowAtIndexPath_withoutBlock_mustReturnDefaultValue() {
         let delegate = self.createTableViewBlockDelegate()
         delegate.heightForRowAtIndexPathBlock = nil
-        let height = delegate.tableView(self.tableView, heightForRowAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+        let height = delegate.tableView(self.tableView, heightForRowAt: IndexPath(row: 0, section: 0))
         XCTAssertEqual(height, UITableViewAutomaticDimension)
     }
 

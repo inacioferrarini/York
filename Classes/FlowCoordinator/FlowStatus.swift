@@ -24,8 +24,8 @@
 import Foundation
 
 public enum FlowStatus: Int {
-    case NotStarted
-    case Executing
-    case Success
-    case Failure
+    case notStarted
+    case executing
+    case success
+    case failure
 }

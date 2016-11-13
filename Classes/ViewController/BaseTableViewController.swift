@@ -23,23 +23,23 @@
 
 import UIKit
 
-public class BaseTableViewController: BaseDataBasedViewController {
+open class BaseTableViewController: BaseDataBasedViewController {
 
 
     // MARK: - Properties
 
-    public var refreshControl: UIRefreshControl?
-    @IBOutlet public weak var tableView: UITableView?
+    open var refreshControl: UIRefreshControl?
+    @IBOutlet open weak var tableView: UITableView?
 
-    public var dataSource: UITableViewDataSource?
-    public var delegate: UITableViewDelegate?
+    open var dataSource: UITableViewDataSource?
+    open var delegate: UITableViewDelegate?
 
-    private var tableViewBGView: UIView?
+    fileprivate var tableViewBGView: UIView?
 
 
     // MARK: - Initialization
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         if let tableView = self.tableView {
@@ -62,17 +62,17 @@ public class BaseTableViewController: BaseDataBasedViewController {
 
             if let refreshControl = self.createRefreshControl() {
                 self.refreshControl = refreshControl
-                refreshControl.addTarget(self, action: #selector(self.performDataSync), forControlEvents: .ValueChanged)
+                refreshControl.addTarget(self, action: #selector(self.performDataSync), for: .valueChanged)
                 tableView.addSubview(refreshControl)
                 tableView.reloadData()
             }
         }
     }
 
-    override public func viewWillDisappear(animated: Bool) {
+    override open func viewWillDisappear(_ animated: Bool) {
         if let tableView = self.tableView,
             let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRowAtIndexPath(selectedIndexPath, animated: true)
+            tableView.deselectRow(at: selectedIndexPath, animated: true)
         }
         super.viewWillDisappear(animated)
     }
@@ -80,7 +80,7 @@ public class BaseTableViewController: BaseDataBasedViewController {
 
     // MARK: - Data Syncrhonization
 
-    override public func didSyncData() {
+    override open func didSyncData() {
         if let refreshControl = self.refreshControl {
             refreshControl.endRefreshing()
         }
@@ -90,23 +90,23 @@ public class BaseTableViewController: BaseDataBasedViewController {
 
     // MARK: - TableView Appearance
 
-    public func defaultEmptyResultsBackgroundView() -> UIView? {
+    open func defaultEmptyResultsBackgroundView() -> UIView? {
         return tableViewBGView
     }
 
-    public func defaultNonEmptyResultsBackgroundView() -> UIView? {
+    open func defaultNonEmptyResultsBackgroundView() -> UIView? {
         return tableViewBGView
     }
 
 
     // MARK: - Child classes are expected to override these methods
 
-    public func setupTableView() {}
+    open func setupTableView() {}
 
-    public func createDataSource() -> UITableViewDataSource? { return nil }
+    open func createDataSource() -> UITableViewDataSource? { return nil }
 
-    public func createDelegate() -> UITableViewDelegate? { return nil }
+    open func createDelegate() -> UITableViewDelegate? { return nil }
 
-    public func createRefreshControl() -> UIRefreshControl? { return nil }
+    open func createRefreshControl() -> UIRefreshControl? { return nil }
 
 }

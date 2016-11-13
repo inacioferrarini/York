@@ -40,49 +40,49 @@ class DataSyncDailyRulesTests: XCTestCase {
     func test_nonExistingDailyRule_mustReturnFalse() {
         let ruleName = TestUtil().randomString()
         let rules = self.createRules()
-        rules.addSyncRule(ruleName, rule: SyncRule.Daily(3))
-        let result = rules.shouldPerformSyncRule("NonExistingRule", atDate: NSDate())
+        rules.addSyncRule(ruleName, rule: SyncRule.daily(3))
+        let result = rules.shouldPerformSyncRule("NonExistingRule", atDate: Date())
         XCTAssertEqual(result, false, "Execution of a non-existing daily rule is expected to fail.")
     }
 
     func test_nonExistingDailyRule_update_doesNotcrash() {
         let ruleName = TestUtil().randomString()
         let rules = self.createRules()
-        rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: NSDate())
+        rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: Date())
     }
 
     func test_existingDailyRuleHistory_update_doesNotcrash() {
         let ruleName = TestUtil().randomString()
         let rules = self.createRules()
         let context = rules.coreDataStack.managedObjectContext
-        EntitySyncHistory.entityAutoSyncHistoryByName(ruleName, lastExecutionDate: NSDate(), inManagedObjectContext: context)
-        rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: NSDate())
+        _ = EntitySyncHistory.entityAutoSyncHistoryByName(ruleName, lastExecutionDate: Date(), inManagedObjectContext: context)
+        rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: Date())
     }
 
     func test_updatingExistingDailyRule_doesNotCrash() {
         let ruleName = TestUtil().randomString()
         let rules = self.createRules()
-        rules.addSyncRule(ruleName, rule: SyncRule.Daily(12))
-        rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: NSDate())
+        rules.addSyncRule(ruleName, rule: SyncRule.daily(12))
+        rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: Date())
     }
 
     func test_existingDailyRuleWithoutLastExecutionDate_mustReturnTrue() {
         let ruleName = TestUtil().randomString()
         let rules = self.createRules()
-        rules.addSyncRule(ruleName, rule: SyncRule.Daily(3))
-        let result = rules.shouldPerformSyncRule(ruleName, atDate: NSDate())
+        rules.addSyncRule(ruleName, rule: SyncRule.daily(3))
+        let result = rules.shouldPerformSyncRule(ruleName, atDate: Date())
         XCTAssertEqual(result, true, "Execution of an existing daily rule without last execution date is exected to succeeded.")
     }
 
     func test_existingDailyRule_withDaysEquals3AndlastExecutionDateEquals3_mustReturnTrue() {
         let ruleName = TestUtil().randomString()
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let lastExecutionDate = formatter.dateFromString("2015-03-23T12:20:20")!
-        let executionDate = formatter.dateFromString("2015-03-26T12:20:20")!
+        let lastExecutionDate = formatter.date(from: "2015-03-23T12:20:20")!
+        let executionDate = formatter.date(from: "2015-03-26T12:20:20")!
 
         let rules = self.createRules()
-        rules.addSyncRule(ruleName, rule: SyncRule.Daily(3))
+        rules.addSyncRule(ruleName, rule: SyncRule.daily(3))
         rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: lastExecutionDate)
         let result = rules.shouldPerformSyncRule(ruleName, atDate: executionDate)
 
@@ -91,13 +91,13 @@ class DataSyncDailyRulesTests: XCTestCase {
 
     func test_existingDailyRule_withDaysEqual32AndlastExecutionDateEquals2_mustReturnFalse() {
         let ruleName = TestUtil().randomString()
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let lastExecutionDate = formatter.dateFromString("2015-03-23T12:20:20")!
-        let executionDate = formatter.dateFromString("2015-03-25T12:20:20")!
+        let lastExecutionDate = formatter.date(from: "2015-03-23T12:20:20")!
+        let executionDate = formatter.date(from: "2015-03-25T12:20:20")!
 
         let rules = self.createRules()
-        rules.addSyncRule(ruleName, rule: SyncRule.Daily(3))
+        rules.addSyncRule(ruleName, rule: SyncRule.daily(3))
         rules.updateSyncRuleHistoryExecutionTime(ruleName, lastExecutionDate: lastExecutionDate)
         let result = rules.shouldPerformSyncRule(ruleName, atDate: executionDate)
 

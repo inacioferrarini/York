@@ -24,12 +24,12 @@
 import UIKit
 import VMaskTextField
 
-public class MaskTextField: VMaskTextField, UITextFieldDelegate {
+open class MaskTextField: VMaskTextField, UITextFieldDelegate {
 
 
     // MARK: - Inspectables
 
-    @IBInspectable public var fieldMask: String? {
+    @IBInspectable open var fieldMask: String? {
         get {
             return self.mask
         }

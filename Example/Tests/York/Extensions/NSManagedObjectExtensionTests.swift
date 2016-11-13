@@ -36,10 +36,10 @@ class NSManagedObjectExtensionTests: XCTestCase {
 
         let name = "test-name"
         EntityTest.removeAll(inManagedObjectContext: context)
-        EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: context)
+        _ = EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: context)
         coreDataStack.saveContext()
 
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        let request: NSFetchRequest<EntityTest> = NSFetchRequest<EntityTest>(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
         let entity = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
@@ -51,7 +51,7 @@ class NSManagedObjectExtensionTests: XCTestCase {
         let context = coreDataStack.managedObjectContext
 
         let name = "unkown"
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        let request: NSFetchRequest<EntityTest> = NSFetchRequest<EntityTest>(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
         let entity = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
@@ -63,7 +63,7 @@ class NSManagedObjectExtensionTests: XCTestCase {
         let context = coreDataStack.managedObjectContext
 
         let name = "unkown"
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        let request: NSFetchRequest<EntityTest> = NSFetchRequest<EntityTest>(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "nonExistingName = %@", name)
 
         let entity = EntityTest.lastObjectFromRequest(request, inManagedObjectContext: context)
@@ -78,10 +78,10 @@ class NSManagedObjectExtensionTests: XCTestCase {
 
         let name = "test-name"
         EntityTest.removeAll(inManagedObjectContext: context)
-        EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: context)
+        _ = EntityTest.entityTest(nil, name: name, order: nil, inManagedObjectContext: context)
         coreDataStack.saveContext()
 
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        let request: NSFetchRequest<EntityTest> = NSFetchRequest<EntityTest>(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
         let entities = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
@@ -93,7 +93,7 @@ class NSManagedObjectExtensionTests: XCTestCase {
         let context = coreDataStack.managedObjectContext
 
         let name = "unkown"
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        let request: NSFetchRequest<EntityTest> = NSFetchRequest<EntityTest>(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
         let entities = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)
@@ -104,8 +104,8 @@ class NSManagedObjectExtensionTests: XCTestCase {
         let coreDataStack = TestUtil().testAppContext().coreDataStack
         let context = coreDataStack.managedObjectContext
 
-        let number = NSNumber(int: 20)
-        let request: NSFetchRequest = NSFetchRequest(entityName: EntityTest.simpleClassName())
+        let number = NSNumber(value: 20 as Int32)
+        let request: NSFetchRequest<EntityTest> = NSFetchRequest<EntityTest>(entityName: EntityTest.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", number)
 
         let entities = EntityTest.allObjectsFromRequest(request, inManagedObjectContext: context)

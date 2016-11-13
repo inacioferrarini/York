@@ -25,13 +25,13 @@ import Foundation
 
 public extension Array where Element: Equatable {
 
-    public mutating func removeObject(object: Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
+    public mutating func removeObject(_ object: Element) {
+        if let index = self.index(of: object) {
+            self.remove(at: index)
         }
     }
 
-    public mutating func removeObjectsInArray(array: [Element]) {
+    public mutating func removeObjectsInArray(_ array: [Element]) {
         for object in array {
             self.removeObject(object)
         }

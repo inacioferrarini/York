@@ -23,6 +23,6 @@
 import UIKit
 import York
 
-public class SimpleViewComponent: ViewComponent {
+open class SimpleViewComponent: ViewComponent {
 
 }

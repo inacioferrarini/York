@@ -24,27 +24,27 @@
 import Foundation
 import CoreData
 
-public class EntitySyncHistory: NSManagedObject {
+open class EntitySyncHistory: NSManagedObject {
 
-    public class func fetchAllEntitiesAutoSyncHistory(inManagedObjectContext context: NSManagedObjectContext) -> [EntitySyncHistory]? {
-        let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
+    open class func fetchAllEntitiesAutoSyncHistory(inManagedObjectContext context: NSManagedObjectContext) -> [EntitySyncHistory]? {
+        let request: NSFetchRequest = NSFetchRequest<EntitySyncHistory>(entityName: self.simpleClassName())
 
-        return self.allObjectsFromRequest(request, inManagedObjectContext: context) as? [EntitySyncHistory]
+        return self.allObjectsFromRequest(request, inManagedObjectContext: context)
     }
 
-    public class func fetchEntityAutoSyncHistoryByName(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntitySyncHistory? {
+    open class func fetchEntityAutoSyncHistoryByName(_ name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntitySyncHistory? {
 
         guard name.characters.count > 0 else {
             return nil
         }
 
-        let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
+        let request: NSFetchRequest = NSFetchRequest<EntitySyncHistory>(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "ruleName = %@", name)
 
-        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntitySyncHistory
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context)
     }
 
-    public class func entityAutoSyncHistoryByName(name: String, lastExecutionDate: NSDate?, inManagedObjectContext context: NSManagedObjectContext) -> EntitySyncHistory? {
+    open class func entityAutoSyncHistoryByName(_ name: String, lastExecutionDate: Date?, inManagedObjectContext context: NSManagedObjectContext) -> EntitySyncHistory? {
 
         guard name.characters.count > 0 else {
             return nil
@@ -52,7 +52,7 @@ public class EntitySyncHistory: NSManagedObject {
 
         var entityAutoSyncHistory: EntitySyncHistory? = fetchEntityAutoSyncHistoryByName(name, inManagedObjectContext: context)
         if entityAutoSyncHistory == nil {
-            let newEntityAutoSyncHistory = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as? EntitySyncHistory
+            let newEntityAutoSyncHistory = NSEntityDescription.insertNewObject(forEntityName: self.simpleClassName(), into: context) as? EntitySyncHistory
             if let entity = newEntityAutoSyncHistory {
                 entity.ruleName = name
             }
@@ -66,10 +66,10 @@ public class EntitySyncHistory: NSManagedObject {
         return entityAutoSyncHistory
     }
 
-    public class func removeAll(inManagedObjectContext context: NSManagedObjectContext) {
+    open class func removeAll(inManagedObjectContext context: NSManagedObjectContext) {
         if let allEntities = self.fetchAllEntitiesAutoSyncHistory(inManagedObjectContext: context) {
             for entity in allEntities {
-                context.deleteObject(entity)
+                context.delete(entity)
             }
         }
     }

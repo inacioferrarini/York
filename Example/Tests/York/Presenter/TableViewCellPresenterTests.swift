@@ -30,7 +30,7 @@ class TableViewCellPresenterTests: XCTestCase {
 
     // MARK: - Properties
 
-    static let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+    static let cellReuseIdBlock: ((_ indexPath: IndexPath) -> String) = { (indexPath: IndexPath) -> String in
         return "ReuseCellID"
     }
 
@@ -62,8 +62,8 @@ class TableViewCellPresenterTests: XCTestCase {
 
     func test_tableViewCellPresenterFields_reuseIdentifier() {
         let presenter = self.createTableViewCellPresenter()
-        let presenterReuseId = presenter.cellReuseIdentifierBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
-        let testReuseId = TableViewCellPresenterTests.cellReuseIdBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
+        let presenterReuseId = presenter.cellReuseIdentifierBlock(IndexPath(row: 0, section: 0))
+        let testReuseId = TableViewCellPresenterTests.cellReuseIdBlock(IndexPath(row: 0, section: 0))
         XCTAssertEqual(presenterReuseId, testReuseId)
     }
 

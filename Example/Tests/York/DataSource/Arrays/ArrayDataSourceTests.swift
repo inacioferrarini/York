@@ -54,19 +54,19 @@ class ArrayDataSourceTests: XCTestCase {
 
     func test_objectAtIndexPath_mustReturnObject() {
         let dataSource = self.createArrayDataSource()
-        let value = dataSource.objectAtIndexPath(NSIndexPath(forRow: 2, inSection: 0))
+        let value = dataSource.objectAtIndexPath(IndexPath(row: 2, section: 0))
         XCTAssertEqual(value, 30)
     }
 
     func test_objectAtIndexPath_sectionGreaterThanZero_mustReturnNil() {
         let dataSource = self.createArrayDataSource()
-        let value = dataSource.objectAtIndexPath(NSIndexPath(forRow: 2, inSection: 1))
+        let value = dataSource.objectAtIndexPath(IndexPath(row: 2, section: 1))
         XCTAssertNil(value)
     }
 
     func test_objectAtIndexPath_nonExistingIndex_mustReturnNil() {
         let dataSource = self.createArrayDataSource()
-        let value = dataSource.objectAtIndexPath(NSIndexPath(forRow: 10, inSection: 0))
+        let value = dataSource.objectAtIndexPath(IndexPath(row: 10, section: 0))
         XCTAssertNil(value)
     }
 
@@ -76,7 +76,7 @@ class ArrayDataSourceTests: XCTestCase {
     func test_indexPathForObject_mustSucceed() {
         let dataSource = self.createArrayDataSource()
         let indexPath = dataSource.indexPathForObject(30)
-        let desiredIndexPath = NSIndexPath(forRow: 2, inSection: 0)
+        let desiredIndexPath = IndexPath(row: 2, section: 0)
         XCTAssertEqual(desiredIndexPath, indexPath)
     }
 

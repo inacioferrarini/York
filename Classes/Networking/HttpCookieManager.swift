@@ -23,33 +23,33 @@
 
 import UIKit
 
-public class HttpCookieManager {
+open class HttpCookieManager {
 
-    public let domainUrl: NSURL
+    open let domainUrl: URL
 
 
     // MARK: - Initialization
 
-    public init(domain url: NSURL) {
+    public init(domain url: URL) {
         self.domainUrl = url
     }
 
 
     // MARK: - Properties
 
-    public var cookieStorage: NSHTTPCookieStorage {
+    open var cookieStorage: HTTPCookieStorage {
         get {
-            return NSHTTPCookieStorage.sharedHTTPCookieStorage()
+            return HTTPCookieStorage.shared
         }
     }
 
-    public var userDefaults: NSUserDefaults {
+    open var userDefaults: UserDefaults {
         get {
-            return NSUserDefaults.standardUserDefaults()
+            return UserDefaults.standard
         }
     }
 
-    public var cookieStorageKey: String {
+    open var cookieStorageKey: String {
         get {
             return "httpCookies"
         }
@@ -58,14 +58,14 @@ public class HttpCookieManager {
 
     // MARK: - Public Properties
 
-    public func cookiesFromResponse(fromResponse response: NSURLResponse? /* fromDataTask dataTask: NSURLSessionDataTask*/) -> [NSHTTPCookie] {
-        let emptyArray = [NSHTTPCookie]()
-        guard let response = response as? NSHTTPURLResponse else { return emptyArray }
+    open func cookiesFromResponse(fromResponse response: URLResponse? /* fromDataTask dataTask: NSURLSessionDataTask*/) -> [HTTPCookie] {
+        let emptyArray = [HTTPCookie]()
+        guard let response = response as? HTTPURLResponse else { return emptyArray }
         guard let headerFields = response.allHeaderFields as? [String: String] else { return emptyArray }
-        return NSHTTPCookie.cookiesWithResponseHeaderFields(headerFields, forURL: self.domainUrl)
+        return HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: self.domainUrl)
     }
 
-    public func setCookies(cookies: [NSHTTPCookie], expiresDate: NSDate?) {
+    open func setCookies(_ cookies: [HTTPCookie], expiresDate: Date?) {
         for cookie in cookies {
             if let newCookie = self.updateCookieExpireTime(cookie, expiresDate: expiresDate) {
                 self.cookieStorage.setCookie(newCookie)
@@ -73,38 +73,38 @@ public class HttpCookieManager {
         }
     }
 
-    public func updateCookieExpireTime(cookie: NSHTTPCookie, expiresDate: NSDate?) -> NSHTTPCookie? {
-        var cookieProperties = [String: AnyObject]()
-        cookieProperties[NSHTTPCookieName] = cookie.name
-        cookieProperties[NSHTTPCookieValue] = cookie.value
-        cookieProperties[NSHTTPCookieDomain] = cookie.domain
-        cookieProperties[NSHTTPCookiePath] = cookie.path
-        cookieProperties[NSHTTPCookieVersion] = NSNumber(integer: cookie.version)
+    open func updateCookieExpireTime(_ cookie: HTTPCookie, expiresDate: Date?) -> HTTPCookie? {
+        var cookieProperties = [HTTPCookiePropertyKey: Any]()
+        cookieProperties[HTTPCookiePropertyKey.name] = cookie.name
+        cookieProperties[HTTPCookiePropertyKey.value] = cookie.value
+        cookieProperties[HTTPCookiePropertyKey.domain] = cookie.domain
+        cookieProperties[HTTPCookiePropertyKey.path] = cookie.path
+        cookieProperties[HTTPCookiePropertyKey.version] = NSNumber(value: cookie.version as Int)
         if let expiresDate = expiresDate {
-            cookieProperties[NSHTTPCookieExpires] = expiresDate
+            cookieProperties[HTTPCookiePropertyKey.expires] = expiresDate
         } else {
-            cookieProperties[NSHTTPCookieExpires] = nil
+            cookieProperties[HTTPCookiePropertyKey.expires] = nil
         }
-        return NSHTTPCookie(properties: cookieProperties)
+        return HTTPCookie(properties: cookieProperties)
     }
 
-    public func saveCookies() {
+    open func saveCookies() {
         guard let cookies = self.cookieStorage.cookies else { return }
-        let cookiesData = NSKeyedArchiver.archivedDataWithRootObject(cookies)
+        let cookiesData = NSKeyedArchiver.archivedData(withRootObject: cookies)
         let defaults = self.userDefaults
-        defaults.setObject(cookiesData, forKey: self.cookieStorageKey)
+        defaults.set(cookiesData, forKey: self.cookieStorageKey)
         defaults.synchronize()
     }
 
-    public func loadCookies() {
-        guard let cookiesData = self.userDefaults.objectForKey(self.cookieStorageKey) as? NSData else { return }
-        guard let cookies = NSKeyedUnarchiver.unarchiveObjectWithData(cookiesData) as? [NSHTTPCookie] else { return }
+    open func loadCookies() {
+        guard let cookiesData = self.userDefaults.object(forKey: self.cookieStorageKey) as? Data else { return }
+        guard let cookies = NSKeyedUnarchiver.unarchiveObject(with: cookiesData) as? [HTTPCookie] else { return }
         for cookie in cookies {
             self.cookieStorage.setCookie(cookie)
         }
     }
 
-    public func removeAllCookies() {
+    open func removeAllCookies() {
         if let cookies = self.cookieStorage.cookies {
             for cookie in cookies {
                 self.cookieStorage.deleteCookie(cookie)

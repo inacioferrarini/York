@@ -30,7 +30,7 @@ class CollectionViewCellPresenterTests: XCTestCase {
 
     // MARK: - Properties
 
-    static let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+    static let cellReuseIdBlock: ((_ indexPath: IndexPath) -> String) = { (indexPath: IndexPath) -> String in
         return "ReuseCellID"
     }
 
@@ -65,8 +65,8 @@ class CollectionViewCellPresenterTests: XCTestCase {
 
     func test_collectionViewCellPresenterFields_reuseIdentifier() {
         let presenter = self.createCollectionViewCellPresenter()
-        let presenterReuseId = presenter.cellReuseIdentifierBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
-        let testReuseId = CollectionViewCellPresenterTests.cellReuseIdBlock(indexPath: NSIndexPath(forRow: 0, inSection: 0))
+        let presenterReuseId = presenter.cellReuseIdentifierBlock(IndexPath(row: 0, section: 0))
+        let testReuseId = CollectionViewCellPresenterTests.cellReuseIdBlock(IndexPath(row: 0, section: 0))
         XCTAssertEqual(presenterReuseId, testReuseId)
     }
 

@@ -24,9 +24,9 @@
 import UIKit
 import York
 
-public class TestsHttpCookieManager: HttpCookieManager {
+open class TestsHttpCookieManager: HttpCookieManager {
 
-    override public var cookieStorage: NSHTTPCookieStorage {
+    override open var cookieStorage: HTTPCookieStorage {
         get {
             return TestsNSHTTPCookieStorage()
         }

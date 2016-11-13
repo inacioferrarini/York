@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0810"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F5361BDD9E5F938ADB4E22EF7F2DA1B0"
+               BlueprintIdentifier = "CED7B8760EB50E2670BD7A03B42A4C3A"
                BuildableName = "York.framework"
                BlueprintName = "York"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -43,7 +43,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F5361BDD9E5F938ADB4E22EF7F2DA1B0"
+            BlueprintIdentifier = "CED7B8760EB50E2670BD7A03B42A4C3A"
             BuildableName = "York.framework"
             BlueprintName = "York"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -65,7 +65,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F5361BDD9E5F938ADB4E22EF7F2DA1B0"
+            BlueprintIdentifier = "CED7B8760EB50E2670BD7A03B42A4C3A"
             BuildableName = "York.framework"
             BlueprintName = "York"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">
@@ -83,7 +83,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F5361BDD9E5F938ADB4E22EF7F2DA1B0"
+            BlueprintIdentifier = "CED7B8760EB50E2670BD7A03B42A4C3A"
             BuildableName = "York.framework"
             BlueprintName = "York"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">

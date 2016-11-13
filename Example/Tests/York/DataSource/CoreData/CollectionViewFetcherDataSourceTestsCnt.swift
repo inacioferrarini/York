@@ -47,7 +47,7 @@ class CollectionViewFetcherDataSourceTestsCnt: CollectionViewFetcherDataSourceTe
 
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         helper.removeAllTestEntities()
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
 
         dataSource.refreshData()
 
@@ -64,13 +64,13 @@ class CollectionViewFetcherDataSourceTestsCnt: CollectionViewFetcherDataSourceTe
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
         helper.removeAllTestEntities()
 
-        helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 2, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
 
         self.coreDataStack.saveContext()
         dataSource.refreshData()
 
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        let cell = dataSource.collectionView(self.collectionView, cellForItemAtIndexPath: indexPath)
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = dataSource.collectionView(self.collectionView, cellForItemAt: indexPath)
         XCTAssertNotNil(cell)
     }
 

@@ -24,11 +24,11 @@
 import JLRoutes
 import UIKit
 
-public class NavigationRouter: NSObject {
+open class NavigationRouter: NSObject {
 
-    public let router: JLRoutes
-    public let schema: String
-    public let logger: Logger
+    open let router: JLRoutes
+    open let schema: String
+    open let logger: Logger
 
     public init(router: JLRoutes, schema: String, logger: Logger) {
         self.router = router
@@ -41,13 +41,13 @@ public class NavigationRouter: NSObject {
         self.init(router: JLRoutes(forScheme: schema), schema: schema, logger: logger)
     }
 
-    public func registerRoutes(appRoutes: [RoutingElement]) {
+    open func registerRoutes(_ appRoutes: [RoutingElement]) {
         for r: RoutingElement in appRoutes {
             self.router.addRoute(r.path.absoluteString(), handler: r.handler)
         }
     }
 
-    public func dispatch(url: NSURL) -> Bool {
+    open func dispatch(_ url: URL) -> Bool {
         let result = self.router.canRouteURL(url)
         if result {
             self.router.routeURL(url)
@@ -55,17 +55,17 @@ public class NavigationRouter: NSObject {
         return result
     }
 
-    public func navigateInternal(targetUrl: String) {
-        let completeUrl = NSURL(string: "\(self.schema):/\(targetUrl)")
+    open func navigateInternal(_ targetUrl: String) {
+        let completeUrl = URL(string: "\(self.schema):/\(targetUrl)")
         if let url = completeUrl {
-            UIApplication.sharedApplication().openURL(url)
+            UIApplication.shared.openURL(url)
         }
     }
 
-    public func navigateExternal(targetUrl: String) {
-        let completeUrl = NSURL(string: targetUrl)
+    open func navigateExternal(_ targetUrl: String) {
+        let completeUrl = URL(string: targetUrl)
         if let url = completeUrl {
-            UIApplication.sharedApplication().openURL(url)
+            UIApplication.shared.openURL(url)
         }
     }
 

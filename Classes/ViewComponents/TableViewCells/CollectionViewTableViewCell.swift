@@ -23,12 +23,12 @@
 
 import UIKit
 
-public class CollectionViewTableViewCell: UITableViewCell {
+open class CollectionViewTableViewCell: UITableViewCell {
 
 
     // MARK: - Data Sources
 
-    public var dataSource: UICollectionViewDataSource? {
+    open var dataSource: UICollectionViewDataSource? {
         didSet {
             self.collectionView.dataSource = dataSource
         }
@@ -36,7 +36,7 @@ public class CollectionViewTableViewCell: UITableViewCell {
 
     // MARK: - Delegates
 
-    public var delegate: UICollectionViewDelegate? {
+    open var delegate: UICollectionViewDelegate? {
         didSet {
             self.collectionView.delegate = delegate
         }
@@ -45,6 +45,6 @@ public class CollectionViewTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    @IBOutlet public weak var collectionView: UICollectionView!
+    @IBOutlet open weak var collectionView: UICollectionView!
 
 }

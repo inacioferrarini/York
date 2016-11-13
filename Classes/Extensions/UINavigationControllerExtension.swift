@@ -32,14 +32,14 @@ public enum PresentationMode: String {
 
 public extension UINavigationController {
 
-    public func presentViewController(viewController: UIViewController, animated: Bool, presentationMode: PresentationMode) {
+    public func presentViewController(_ viewController: UIViewController, animated: Bool, presentationMode: PresentationMode) {
 
         if presentationMode == .Push {
             self.pushViewController(viewController, animated: animated)
         } else if presentationMode == .Show {
-            self.showViewController(viewController, sender: self)
+            self.show(viewController, sender: self)
         } else if presentationMode == .Modal {
-            self.presentViewController(viewController, animated: animated, completion: nil)
+            self.present(viewController, animated: animated, completion: nil)
         }
 
     }

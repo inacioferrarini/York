@@ -23,15 +23,15 @@
 
 import Foundation
 
-public class Stack<Element> {
+open class Stack<Element> {
 
-    private var items = [Element]()
+    fileprivate var items = [Element]()
 
-    public func push(item: Element) {
+    open func push(_ item: Element) {
         items.append(item)
     }
 
-    public func pop() -> Element {
+    open func pop() -> Element {
         return items.removeLast()
     }
 

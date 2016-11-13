@@ -36,7 +36,7 @@ class ViewComponentTests: XCTestCase {
     }
 
     func test_initWithFrameWithoutBundle_mustSucceed() {
-        let testsBundle: NSBundle? = nil
+        let testsBundle: Bundle? = nil
         let view = SimpleViewComponent(frame: CGRect(x: 0, y: 0, width: 100, height: 100), bundle: testsBundle)
         XCTAssertNotNil(view)
     }
@@ -44,8 +44,8 @@ class ViewComponentTests: XCTestCase {
     func test_initWithCoder_mustSucceed() {
         let testsBundle = TestUtil().unitTestsBundle()
         let view = SimpleViewComponent(frame: CGRect(x: 0, y: 0, width: 100, height: 100), bundle: testsBundle)
-        let encodedData = NSKeyedArchiver.archivedDataWithRootObject(view)
-        let decoder = NSKeyedUnarchiver(forReadingWithData: encodedData)
+        let encodedData = NSKeyedArchiver.archivedData(withRootObject: view)
+        let decoder = NSKeyedUnarchiver(forReadingWith: encodedData)
         let viewDecoded = SimpleViewComponent(coder: decoder)
         XCTAssertNotNil(viewDecoded)
     }

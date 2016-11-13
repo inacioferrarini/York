@@ -23,12 +23,12 @@
 
 import UIKit
 
-public class FlowCoordinator {
+open class FlowCoordinator {
 
 
     // MARK: - Properties
 
-    public var flowElements: [FlowElement]
+    open var flowElements: [FlowElement]
 
 
     // MARK: - Initialization
@@ -40,7 +40,7 @@ public class FlowCoordinator {
 
     // MARK: - Public Methods
 
-    public func start() {
+    open func start() {
         for flow in self.flowElements {
             flow.execute()
         }

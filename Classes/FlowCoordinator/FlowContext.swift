@@ -23,6 +23,6 @@
 
 import UIKit
 
-public class FlowContext: NSObject {
+open class FlowContext: NSObject {
 
 }

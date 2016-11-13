@@ -26,17 +26,17 @@ import CoreData
 
 public extension NSManagedObject {
 
-    public class func lastObjectFromRequest(request: NSFetchRequest, inManagedObjectContext context: NSManagedObjectContext) -> NSManagedObject? {
-        if let searchResults = try? context.executeFetchRequest(request) as? [NSManagedObject] where searchResults!.count > 0 {
-            return searchResults!.last
+    public class func lastObjectFromRequest<T>(_ request: NSFetchRequest<T>, inManagedObjectContext context: NSManagedObjectContext) -> T? where T: NSManagedObject {
+        if let searchResults = try? context.fetch(request), searchResults.count > 0 {
+            return searchResults.last
         }
         return nil
     }
 
-    public class func allObjectsFromRequest(request: NSFetchRequest, inManagedObjectContext context: NSManagedObjectContext) -> [NSManagedObject] {
-        var results = [NSManagedObject]()
-        if let searchResults = try? context.executeFetchRequest(request) as? [NSManagedObject] {
-            results = searchResults!
+    public class func allObjectsFromRequest<T>(_ request: NSFetchRequest<T>, inManagedObjectContext context: NSManagedObjectContext) -> [T] where T: NSManagedObject {
+        var results = [T]()
+        if let searchResults = try? context.fetch(request) {
+            results = searchResults
         }
         return results
     }

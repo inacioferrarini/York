@@ -23,17 +23,17 @@
 
 import UIKit
 
-public class EmbeddedViewControllerTableViewCell: UITableViewCell {
+open class EmbeddedViewControllerTableViewCell: UITableViewCell {
 
 
     // MARK: - Properties
 
-    public var embeddedViewController: UIViewController?
+    open var embeddedViewController: UIViewController?
 
 
     // Outlets
 
-    @IBOutlet public weak var embeddedContentHeightConstraint: NSLayoutConstraint?
+    @IBOutlet open weak var embeddedContentHeightConstraint: NSLayoutConstraint?
 
 
     // MARK: - Public Methods
@@ -41,7 +41,7 @@ public class EmbeddedViewControllerTableViewCell: UITableViewCell {
     func getExistingHeightConstraint(fromView view: UIView) -> NSLayoutConstraint? {
         var desiredLayout: NSLayoutConstraint?
         for c in view.constraints {
-            if c.instanceSimpleClassName() == "NSLayoutConstraint" && c.firstAttribute == .Height {
+            if c.instanceSimpleClassName() == "NSLayoutConstraint" && c.firstAttribute == .height {
                 desiredLayout = c
                 break
             }
@@ -50,14 +50,14 @@ public class EmbeddedViewControllerTableViewCell: UITableViewCell {
     }
 
     func createHeightConstraint(forView view: UIView) -> NSLayoutConstraint? {
-        let constraint = NSLayoutConstraint(item: view, attribute: .Height, relatedBy: .Equal,
-                                            toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute,
+        let constraint = NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal,
+                                            toItem: nil, attribute: NSLayoutAttribute.notAnAttribute,
                                             multiplier: 1.0, constant: 88)
         constraint.priority = 999
         return constraint
     }
 
-    public func setupHeightConstraints() {
+    open func setupHeightConstraints() {
         if let firstView = self.contentView.subviews.first {
             if let heightConstraint = self.getExistingHeightConstraint(fromView: firstView) {
                 self.embeddedContentHeightConstraint = heightConstraint
@@ -70,18 +70,18 @@ public class EmbeddedViewControllerTableViewCell: UITableViewCell {
         }
     }
 
-    public func embedInParentViewController(parentViewController: UIViewController) {
+    open func embedInParentViewController(_ parentViewController: UIViewController) {
         if let embeddedViewController = self.embeddedViewController {
             parentViewController.addChildViewController(embeddedViewController)
-            embeddedViewController.didMoveToParentViewController(parentViewController)
+            embeddedViewController.didMove(toParentViewController: parentViewController)
             self.contentView.addSubview(embeddedViewController.view)
         }
     }
 
-    public func unEmbedFromParentViewController() {
+    open func unEmbedFromParentViewController() {
         if let embeddedViewController = self.embeddedViewController {
             embeddedViewController.view.removeFromSuperview()
-            embeddedViewController.willMoveToParentViewController(nil)
+            embeddedViewController.willMove(toParentViewController: nil)
             embeddedViewController.removeFromParentViewController()
         }
     }

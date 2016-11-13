@@ -23,14 +23,14 @@
 
 import UIKit
 
-public class TableViewArrayOfArrayDataSource<CellType: UITableViewCell, Type: Equatable>: ArrayOfArrayDataSource<Type>, UITableViewDataSource {
+open class TableViewArrayOfArrayDataSource<CellType: UITableViewCell, Type: Equatable>: ArrayOfArrayDataSource<Type>, UITableViewDataSource {
 
 
     // MARK: - Properties
 
-    public let tableView: UITableView
-    public private(set) var presenter: TableViewCellPresenter<CellType, Type>
-    public var titleForHeaderInSectionBlock: ((section: Int) -> String?)?
+    open let tableView: UITableView
+    open fileprivate(set) var presenter: TableViewCellPresenter<CellType, Type>
+    open var titleForHeaderInSectionBlock: ((_ section: Int) -> String?)?
 
 
     // MARK: - Initialization
@@ -48,7 +48,7 @@ public class TableViewArrayOfArrayDataSource<CellType: UITableViewCell, Type: Eq
 
     // MARK: - Public Methods
 
-    public override func refreshData() {
+    open override func refreshData() {
         super.refreshData()
         self.tableView.reloadData()
     }
@@ -56,19 +56,19 @@ public class TableViewArrayOfArrayDataSource<CellType: UITableViewCell, Type: Eq
 
     // MARK: - Table View Data Source
 
-public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+open func numberOfSections(in tableView: UITableView) -> Int {
     return self.objects.count
 }
 
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard section < self.objects.count else { return 0 }
         return self.objects[section].count
     }
 
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let value = self.objectAtIndexPath(indexPath)
-        let reuseIdentifier = self.presenter.cellReuseIdentifierBlock(indexPath: indexPath)
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as? CellType
+        let reuseIdentifier = self.presenter.cellReuseIdentifierBlock(indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CellType
         if let cell = cell,
             let value = value {
             self.presenter.configureCellBlock(cell, value)
@@ -76,52 +76,52 @@ public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return cell!
     }
 
-    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let titleBlock = self.titleForHeaderInSectionBlock {
-            return titleBlock(section: section)
+            return titleBlock(section)
         }
         return nil
     }
 
-    public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    open func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if let editRowBlock = self.presenter.canEditRowAtIndexPathBlock {
-            return editRowBlock(indexPath: indexPath)
+            return editRowBlock(indexPath)
         }
         return false
     }
 
-    public func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if let commitEditingBlock = self.presenter.commitEditingStyleBlock {
-            commitEditingBlock(editingStyle: editingStyle, forRowAtIndexPath: indexPath)
+            commitEditingBlock(editingStyle, indexPath)
         }
     }
 
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if let heightForHeaderInSectionBlock = self.presenter.heightForHeaderInSectionBlock {
-            return heightForHeaderInSectionBlock(section: section)
-        }
-        return 0
-    }
+//    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if let heightForHeaderInSectionBlock = self.presenter.heightForHeaderInSectionBlock {
+//            return heightForHeaderInSectionBlock(section)
+//        }
+//        return 0
+//    }
 
-    public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if let heightForFooterInSectionBlock = self.presenter.heightForFooterInSectionBlock {
-            return heightForFooterInSectionBlock(section: section)
-        }
-        return 0
-    }
+//    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        if let heightForFooterInSectionBlock = self.presenter.heightForFooterInSectionBlock {
+//            return heightForFooterInSectionBlock(section)
+//        }
+//        return 0
+//    }
 
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let viewForHeaderInSectionBlock = self.presenter.viewForHeaderInSectionBlock {
-            return viewForHeaderInSectionBlock(section: section)
-        }
-        return nil
-    }
-
-    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if let viewForFooterInSectionBlock = self.presenter.viewForFooterInSectionBlock {
-            return viewForFooterInSectionBlock(section: section)
-        }
-        return nil
-    }
+//    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if let viewForHeaderInSectionBlock = self.presenter.viewForHeaderInSectionBlock {
+//            return viewForHeaderInSectionBlock(section)
+//        }
+//        return nil
+//    }
+//
+//    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        if let viewForFooterInSectionBlock = self.presenter.viewForFooterInSectionBlock {
+//            return viewForFooterInSectionBlock(section)
+//        }
+//        return nil
+//    }
 
 }

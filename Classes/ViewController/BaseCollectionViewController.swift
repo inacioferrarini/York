@@ -23,20 +23,20 @@
 
 import UIKit
 
-public class BaseCollectionViewController: BaseDataBasedViewController {
+open class BaseCollectionViewController: BaseDataBasedViewController {
 
 
     // MARK: - Properties
 
-    @IBOutlet public weak var collectionView: UICollectionView?
+    @IBOutlet open weak var collectionView: UICollectionView?
 
-    public var dataSource: UICollectionViewDataSource?
-    public var delegate: UICollectionViewDelegate?
+    open var dataSource: UICollectionViewDataSource?
+    open var delegate: UICollectionViewDelegate?
 
 
     // MARK: - Initialization
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         if let collectionView = self.collectionView {
@@ -61,10 +61,10 @@ public class BaseCollectionViewController: BaseDataBasedViewController {
 
     // MARK: - Child classes are expected to override these methods
 
-    public func setupCollectionView() {}
+    open func setupCollectionView() {}
 
-    public func createDataSource() -> UICollectionViewDataSource? { return nil }
+    open func createDataSource() -> UICollectionViewDataSource? { return nil }
 
-    public func createDelegate() -> UICollectionViewDelegate? { return nil }
+    open func createDelegate() -> UICollectionViewDelegate? { return nil }
 
 }

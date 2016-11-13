@@ -24,21 +24,21 @@
 import Foundation
 import CoreData
 
-public class EntityHourlySyncRule: EntityBaseSyncRules {
+open class EntityHourlySyncRule: EntityBaseSyncRules {
 
-    public class func fetchEntityHourlySyncRuleByName(name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityHourlySyncRule? {
+    open class func fetchEntityHourlySyncRuleByName(_ name: String, inManagedObjectContext context: NSManagedObjectContext) -> EntityHourlySyncRule? {
 
         guard name.characters.count > 0 else {
             return nil
         }
 
-        let request: NSFetchRequest = NSFetchRequest(entityName: self.simpleClassName())
+        let request: NSFetchRequest = NSFetchRequest<EntityHourlySyncRule>(entityName: self.simpleClassName())
         request.predicate = NSPredicate(format: "name = %@", name)
 
-        return self.lastObjectFromRequest(request, inManagedObjectContext: context) as? EntityHourlySyncRule
+        return self.lastObjectFromRequest(request, inManagedObjectContext: context)
     }
 
-    public class func entityHourlySyncRuleByName(name: String, hours: NSNumber?, inManagedObjectContext context: NSManagedObjectContext) -> EntityHourlySyncRule? {
+    open class func entityHourlySyncRuleByName(_ name: String, hours: NSNumber?, inManagedObjectContext context: NSManagedObjectContext) -> EntityHourlySyncRule? {
 
         guard name.characters.count > 0 else {
             return nil
@@ -46,7 +46,7 @@ public class EntityHourlySyncRule: EntityBaseSyncRules {
 
         var entityHourlySyncRule: EntityHourlySyncRule? = fetchEntityHourlySyncRuleByName(name, inManagedObjectContext: context)
         if entityHourlySyncRule == nil {
-            let newEntityHourlySyncRule = NSEntityDescription.insertNewObjectForEntityForName(self.simpleClassName(), inManagedObjectContext: context) as? EntityHourlySyncRule
+            let newEntityHourlySyncRule = NSEntityDescription.insertNewObject(forEntityName: self.simpleClassName(), into: context) as? EntityHourlySyncRule
             if let entity = newEntityHourlySyncRule {
                 entity.name = name
             }
@@ -60,13 +60,13 @@ public class EntityHourlySyncRule: EntityBaseSyncRules {
         return entityHourlySyncRule
     }
 
-    override public func shouldRunSyncRuleWithName(name: String, date: NSDate, inManagedObjectContext context: NSManagedObjectContext) -> Bool {
+    override open func shouldRunSyncRuleWithName(_ name: String, date: Date, inManagedObjectContext context: NSManagedObjectContext) -> Bool {
         let lastExecution = EntitySyncHistory.fetchEntityAutoSyncHistoryByName(name, inManagedObjectContext: context)
         if let lastExecution = lastExecution,
             let lastExecutionDate = lastExecution.lastExecutionDate,
             let hours = self.hours {
-                let elapsedTime = NSDate().timeIntervalSinceDate(lastExecutionDate)
-                let targetTime = NSTimeInterval(hours.intValue * 60 * 60)
+                let elapsedTime = Date().timeIntervalSince(lastExecutionDate)
+                let targetTime = TimeInterval(hours.int32Value * 60 * 60)
                 return elapsedTime >= targetTime
         }
         return true

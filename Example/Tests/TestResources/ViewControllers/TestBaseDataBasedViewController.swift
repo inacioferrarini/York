@@ -24,9 +24,9 @@
 import UIKit
 import York
 
-public class TestBaseDataBasedViewController: BaseDataBasedViewController {
+open class TestBaseDataBasedViewController: BaseDataBasedViewController {
 
-    override public func shouldSyncData() -> Bool {
+    override open func shouldSyncData() -> Bool {
         return true
     }
 

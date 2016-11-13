@@ -39,13 +39,13 @@ class TableViewArrayOfArrayDataSourceTests: XCTestCase {
     func createTableViewArrayOfArrayDataSource() -> TableViewArrayOfArrayDataSource<UITableViewCell, NSNumber> {
         let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         let tableView = TestsTableView(frame: frame)
-        tableView.cellForRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> UITableViewCell? in
+        tableView.cellForRowAtIndexPathBlock = { (indexPath: IndexPath) -> UITableViewCell? in
             return UITableViewCell()
         }
         self.registerCellForTableView(tableView)
         self.tableView = tableView
         
-        let cellReuseIdBlock: ((indexPath: NSIndexPath) -> String) = { (indexPath: NSIndexPath) -> String in
+        let cellReuseIdBlock: ((_ indexPath: IndexPath) -> String) = { (indexPath: IndexPath) -> String in
             return "TableViewCell"
         }
         self.presenter = TableViewCellPresenter<UITableViewCell, NSNumber>(
@@ -61,9 +61,9 @@ class TableViewArrayOfArrayDataSourceTests: XCTestCase {
         return dataSource
     }
     
-    func registerCellForTableView(tableView: UITableView) {
+    func registerCellForTableView(_ tableView: UITableView) {
         let tableViewCellNib = UINib(nibName: "TableViewCell", bundle: TestUtil().unitTestsBundle())
-        tableView.registerNib(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
+        tableView.register(tableViewCellNib, forCellReuseIdentifier: "TableViewCell")
     }
     
     
@@ -79,7 +79,7 @@ class TableViewArrayOfArrayDataSourceTests: XCTestCase {
 
     func test_numberOfSections_mustReturnOne() {
         let dataSource = self.createTableViewArrayOfArrayDataSource()
-        let numberOfSections = dataSource.numberOfSectionsInTableView(self.tableView)
+        let numberOfSections = dataSource.numberOfSections(in: self.tableView)
         XCTAssertEqual(numberOfSections, 3)
     }
 
@@ -103,8 +103,8 @@ class TableViewArrayOfArrayDataSourceTests: XCTestCase {
 
     func test_cellForRowAtIndexPath_mustReturnCell() {
         let dataSource = self.createTableViewArrayOfArrayDataSource()
-        let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-        dataSource.tableView(self.tableView, cellForRowAtIndexPath: indexPath)
+        let indexPath = IndexPath(item: 0, section: 0)
+        _ = dataSource.tableView(self.tableView, cellForRowAt: indexPath)
         XCTAssertTrue(self.configureCellBlockWasCalled)
     }
 
@@ -113,18 +113,18 @@ class TableViewArrayOfArrayDataSourceTests: XCTestCase {
 
     func test_canEditRowAtIndexPath_withBlock_mustReturnTrue() {
         let dataSource = self.createTableViewArrayOfArrayDataSource()
-        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
+        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: IndexPath) -> Bool in
             return true
         }
-        let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-        XCTAssertTrue(dataSource.tableView(self.tableView, canEditRowAtIndexPath: indexPath))
+        let indexPath = IndexPath(item: 0, section: 0)
+        XCTAssertTrue(dataSource.tableView(self.tableView, canEditRowAt: indexPath))
     }
 
     func test_canEditRowAtIndexPath_withoutBlock_mustReturnFalse() {
         let dataSource = self.createTableViewArrayOfArrayDataSource()
         dataSource.presenter.canEditRowAtIndexPathBlock = nil
-        let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-        XCTAssertFalse(dataSource.tableView(self.tableView, canEditRowAtIndexPath: indexPath))
+        let indexPath = IndexPath(item: 0, section: 0)
+        XCTAssertFalse(dataSource.tableView(self.tableView, canEditRowAt: indexPath))
     }
 
 
@@ -133,19 +133,19 @@ class TableViewArrayOfArrayDataSourceTests: XCTestCase {
     func test_commitEditingStyle_withBlock_mustReturnTrue() {
         var blockWasCalled: Bool = false
         let dataSource = self.createTableViewArrayOfArrayDataSource()
-        dataSource.presenter.commitEditingStyleBlock = { (editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath: NSIndexPath) -> Void in
+        dataSource.presenter.commitEditingStyleBlock = { (editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath: IndexPath) -> Void in
             blockWasCalled = true
         }
-        let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-        dataSource.tableView(self.tableView, commitEditingStyle: .None, forRowAtIndexPath: indexPath)
+        let indexPath = IndexPath(item: 0, section: 0)
+        dataSource.tableView(self.tableView, commit: .none, forRowAt: indexPath)
         XCTAssertTrue(blockWasCalled)
     }
 
     func test_commitEditingStyle_withoutBlock_mustReturnFalse() {
         let dataSource = self.createTableViewArrayOfArrayDataSource()
         dataSource.presenter.commitEditingStyleBlock = nil
-        let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-        dataSource.tableView(self.tableView, commitEditingStyle: .None, forRowAtIndexPath: indexPath)
+        let indexPath = IndexPath(item: 0, section: 0)
+        dataSource.tableView(self.tableView, commit: .none, forRowAt: indexPath)
     }
 
 }

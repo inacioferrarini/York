@@ -24,13 +24,13 @@ import UIKit
 
 class TestsTableView: UITableView {
 
-    var cellForRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> UITableViewCell?)?
+    var cellForRowAtIndexPathBlock: ((_ indexPath: IndexPath) -> UITableViewCell?)?
 
-    override func cellForRowAtIndexPath(indexPath: NSIndexPath) -> UITableViewCell? {
+    override func cellForRow(at indexPath: IndexPath) -> UITableViewCell? {
         if let block = self.cellForRowAtIndexPathBlock {
-            return block(indexPath: indexPath)
+            return block(indexPath)
         } else {
-            return super.cellForRowAtIndexPath(indexPath)
+            return super.cellForRow(at: indexPath)
         }
     }
 

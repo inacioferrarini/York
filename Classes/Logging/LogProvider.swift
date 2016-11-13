@@ -25,8 +25,8 @@ import Foundation
 
 public protocol LogProvider {
 
-    func logError(error: NSError)
-    func logErrorMessage(errorMessage: String)
-    func logInfo(message: String)
+    func logError(_ error: NSError)
+    func logErrorMessage(_ errorMessage: String)
+    func logInfo(_ message: String)
 
 }

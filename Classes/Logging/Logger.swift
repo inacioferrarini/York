@@ -23,24 +23,24 @@
 
 import UIKit
 
-public class Logger: NSObject {
+open class Logger: NSObject {
 
-    private var logProvider: LogProvider
+    fileprivate var logProvider: LogProvider
 
     public init(logProvider: LogProvider) {
         self.logProvider = logProvider
         super.init()
     }
 
-    public func logError(error: NSError) {
+    open func logError(_ error: NSError) {
         self.logProvider.logError(error)
     }
 
-    public func logErrorMessage(errorMessage: String) {
+    open func logErrorMessage(_ errorMessage: String) {
         self.logProvider.logErrorMessage(errorMessage)
     }
 
-    public func logInfo(message: String) {
+    open func logInfo(_ message: String) {
         self.logProvider.logInfo(message)
     }
 

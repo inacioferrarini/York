@@ -58,7 +58,7 @@ class EntityDailySyncRuleTests: XCTestCase {
         let context = coreDataStack.managedObjectContext
         let ruleName = TestUtil().randomString()
         if let rule = EntityDailySyncRule.entityDailySyncRuleByName(ruleName, days: nil, inManagedObjectContext:context) {
-            let shouldExecuteRule = rule.shouldRunSyncRuleWithName("", date: NSDate(), inManagedObjectContext: context)
+            let shouldExecuteRule = rule.shouldRunSyncRuleWithName("", date: Date(), inManagedObjectContext: context)
             XCTAssertTrue(shouldExecuteRule)
         }
     }
@@ -68,7 +68,7 @@ class EntityDailySyncRuleTests: XCTestCase {
         let context = coreDataStack.managedObjectContext
         let ruleName2 = TestUtil().randomString()
         if let rule = EntityDailySyncRule.entityDailySyncRuleByName(ruleName2, days: nil, inManagedObjectContext:context) {
-            let shouldExecuteRule = rule.shouldRunSyncRuleWithName("", date: NSDate(), inManagedObjectContext: context)
+            let shouldExecuteRule = rule.shouldRunSyncRuleWithName("", date: Date(), inManagedObjectContext: context)
             XCTAssertTrue(shouldExecuteRule)
         }
     }

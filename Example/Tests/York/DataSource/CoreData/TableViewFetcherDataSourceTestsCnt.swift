@@ -34,25 +34,25 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: "sectionName")
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
 
-        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
+        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: IndexPath) -> Bool in
             return true
         }
 
         helper.removeAllTestEntities()
 
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 2)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 2)
 
         dataSource.refreshData()
 
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 3)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 3)
 
         self.tableView.beginUpdates()
         let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeSection: section,
                               atIndex: 0,
-                              forChangeType: .Insert)
+                              forChangeType: .insert)
         dataSource.refreshData()
         self.tableView.endUpdates()
     }
@@ -63,19 +63,19 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
 
         helper.removeAllTestEntities()
 
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
         let entity = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1).last
 
         dataSource.refreshData()
-        dataSource.managedObjectContext.deleteObject(entity!)
+        dataSource.managedObjectContext.delete(entity!)
 
         self.tableView.beginUpdates()
         let section = FetchedResultsSectionInfo(numberOfObjects: 0, objects: nil, name: "Name", indexTitle: "Title")
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeSection: section,
                               atIndex: 0,
-                              forChangeType: .Delete)
+                              forChangeType: .delete)
         dataSource.refreshData()
         self.tableView.endUpdates()
     }
@@ -86,9 +86,9 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
 
         helper.removeAllTestEntities()
 
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 3, initialOrderValue: 1)
 
         dataSource.refreshData()
         self.tableView.beginUpdates()
@@ -96,7 +96,7 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeSection: section,
                               atIndex: 0,
-                              forChangeType: .Update)
+                              forChangeType: .update)
         dataSource.refreshData()
         self.tableView.endUpdates()
     }
@@ -106,15 +106,15 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
 
     func test_didChangeObject_forInsert_mustNotCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
+        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: IndexPath) -> Bool in
             return true
         }
         let helper = CoreDataUtil(inManagedObjectContext: self.managedObjectContext)
 
         helper.removeAllTestEntities()
 
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
-        helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 1, initialOrderValue: 1)
+        _ = helper.createTestMass(withSize: 1, usingInitialIndex: 1, inSection: 2, initialOrderValue: 1)
 
         dataSource.refreshData()
 
@@ -124,8 +124,8 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeObject: entityRule!,
                               atIndexPath: nil,
-                              forChangeType: .Insert,
-                              newIndexPath: NSIndexPath(forRow: 1, inSection: 0))
+                              forChangeType: .insert,
+                              newIndexPath: IndexPath(row: 1, section: 0))
         dataSource.refreshData()
 
         self.tableView.endUpdates()
@@ -144,8 +144,8 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeObject: entity!,
-                              atIndexPath: NSIndexPath(forRow: 1, inSection: 0),
-                              forChangeType: .Update,
+                              atIndexPath: IndexPath(row: 1, section: 0),
+                              forChangeType: .update,
                               newIndexPath: nil)
         dataSource.refreshData()
         self.tableView.endUpdates()
@@ -153,7 +153,7 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
 
     func test_didChangeObject_forDelete_mustNotCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
+        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: IndexPath) -> Bool in
             return true
         }
 
@@ -165,13 +165,13 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
 
         dataSource.refreshData()
 
-        dataSource.managedObjectContext.deleteObject(entity!)
+        dataSource.managedObjectContext.delete(entity!)
 
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeObject: entity!,
-                              atIndexPath: NSIndexPath(forRow: 2, inSection: 0),
-                              forChangeType: .Delete,
+                              atIndexPath: IndexPath(row: 2, section: 0),
+                              forChangeType: .delete,
                               newIndexPath: nil)
         dataSource.refreshData()
         self.tableView.endUpdates()
@@ -179,7 +179,7 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
 
     func test_didChangeObject_forMove_mustNotCrash() {
         let dataSource = self.createTableViewFetcherDataSource(sectionNameKeyPath: nil)
-        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: NSIndexPath) -> Bool in
+        dataSource.presenter.canEditRowAtIndexPathBlock = { (indexPath: IndexPath) -> Bool in
             return true
         }
 
@@ -194,9 +194,9 @@ class TableViewFetcherDataSourceTestsCnt: TableViewFetcherDataSourceTests {
         self.tableView.beginUpdates()
         dataSource.controller(dataSource.fetchedResultsController,
                               didChangeObject: entity!,
-                              atIndexPath: NSIndexPath(forRow: 0, inSection: 0),
-                              forChangeType: .Move,
-                              newIndexPath: NSIndexPath(forRow: 1, inSection: 0))
+                              atIndexPath: IndexPath(row: 0, section: 0),
+                              forChangeType: .move,
+                              newIndexPath: IndexPath(row: 1, section: 0))
         self.tableView.endUpdates()
     }
 

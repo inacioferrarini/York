@@ -23,13 +23,13 @@
 
 import UIKit
 
-public class FullStackAppContext: NSObject {
+open class FullStackAppContext: NSObject {
 
-    public let viewControllers: [String : UIViewController]
-    public let coreDataStack: CoreDataStack
-    public let syncRules: DataSyncRules
-    public let router: NavigationRouter
-    public let logger: Logger
+    open let viewControllers: [String : UIViewController]
+    open let coreDataStack: CoreDataStack
+    open let syncRules: DataSyncRules
+    open let router: NavigationRouter
+    open let logger: Logger
 
     public init(viewControllers: [String : UIViewController], coreDataStack: CoreDataStack, syncRules: DataSyncRules, router: NavigationRouter, logger: Logger) {
         self.viewControllers = viewControllers

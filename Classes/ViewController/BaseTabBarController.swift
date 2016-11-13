@@ -23,12 +23,12 @@
 
 import UIKit
 
-public class BaseTabBarController: UITabBarController {
+open class BaseTabBarController: UITabBarController {
 
 
     // MARK: - Initialization
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         self.applyAppTheme()
     }
@@ -36,7 +36,7 @@ public class BaseTabBarController: UITabBarController {
 
     // MARK: - App Theme
 
-    public func applyAppTheme() {
+    open func applyAppTheme() {
     }
 
 }

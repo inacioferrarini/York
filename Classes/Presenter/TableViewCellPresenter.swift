@@ -24,19 +24,19 @@
 import UIKit
 import CoreData
 
-public class TableViewCellPresenter<CellType: UITableViewCell, ValueType: Any>: NSObject {
+open class TableViewCellPresenter<CellType: UITableViewCell, ValueType: Any>: NSObject {
 
-    public var configureCellBlock: ((CellType, ValueType) -> Void)
-    public var cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)
-    public var canEditRowAtIndexPathBlock: ((indexPath: NSIndexPath) -> Bool)?
-    public var commitEditingStyleBlock: ((editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath: NSIndexPath) -> Void)?
+    open var configureCellBlock: ((CellType, ValueType) -> Void)
+    open var cellReuseIdentifierBlock: ((_ indexPath: IndexPath) -> String)
+    open var canEditRowAtIndexPathBlock: ((_ indexPath: IndexPath) -> Bool)?
+    open var commitEditingStyleBlock: ((_ editingStyle: UITableViewCellEditingStyle, _ forRowAtIndexPath: IndexPath) -> Void)?
 
-    public var heightForHeaderInSectionBlock: ((section: NSInteger) -> CGFloat)?
-    public var heightForFooterInSectionBlock: ((section: NSInteger) -> CGFloat)?
-    public var viewForHeaderInSectionBlock: ((section: NSInteger) -> UIView?)?
-    public var viewForFooterInSectionBlock: ((section: NSInteger) -> UIView?)?
+//    open var heightForHeaderInSectionBlock: ((_ section: NSInteger) -> CGFloat)?
+//    open var heightForFooterInSectionBlock: ((_ section: NSInteger) -> CGFloat)?
+//    open var viewForHeaderInSectionBlock: ((_ section: NSInteger) -> UIView?)?
+//    open var viewForFooterInSectionBlock: ((_ section: NSInteger) -> UIView?)?
 
-    public init(configureCellBlock: ((CellType, ValueType) -> Void), cellReuseIdentifierBlock: ((indexPath: NSIndexPath) -> String)) {
+    public init(configureCellBlock: @escaping ((CellType, ValueType) -> Void), cellReuseIdentifierBlock: @escaping ((_ indexPath: IndexPath) -> String)) {
         self.configureCellBlock = configureCellBlock
         self.cellReuseIdentifierBlock = cellReuseIdentifierBlock
         super.init()

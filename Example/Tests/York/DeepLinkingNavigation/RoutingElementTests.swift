@@ -37,7 +37,7 @@ class RoutingElementTests: XCTestCase {
     // MARK: - Supporting Methods
 
     func createRoute() -> RoutingElement {
-        return RoutingElement(path: PresentationPath(pattern: RoutingElementTests.pattern), handler: { (parameters: [NSObject : AnyObject]) -> Bool in
+        return RoutingElement(path: PresentationPath(pattern: RoutingElementTests.pattern), handler: { (parameters: [AnyHashable: Any]) -> Bool in
             RoutingElementTests.blockExecutionTest = "testExecuted"
             return true
         })
@@ -48,7 +48,7 @@ class RoutingElementTests: XCTestCase {
 
     func test_routingElementFields_configureHandlerBlock() {
         let route = self.createRoute()
-        route.handler(["" : ""])
+        _ = route.handler(["" : ""])
         XCTAssertEqual(RoutingElementTests.blockExecutionTest, "testExecuted")
     }
 

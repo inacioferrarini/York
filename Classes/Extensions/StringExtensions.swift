@@ -26,26 +26,27 @@ import Foundation
 public extension String {
 
     public func isNumber() -> Bool {
-        let badCharacters = NSCharacterSet.decimalDigitCharacterSet().invertedSet
-        return self.rangeOfCharacterFromSet(badCharacters) == nil
+        let badCharacters = CharacterSet.decimalDigits.inverted
+        return self.rangeOfCharacter(from: badCharacters) == nil
     }
 
     public func replaceString(inRange range: NSRange, withString string: String) -> String {
-        let startIndex = self.startIndex.advancedBy(range.location)
-        let endIndex = startIndex.advancedBy(range.length)
-        let stringReplaceRange = startIndex..<endIndex
-        return self.stringByReplacingCharactersInRange(stringReplaceRange, withString: string)
+//        let startIndex = self.characters.index(self.startIndex, offsetBy: range.location)
+//        let endIndex =     <#T##String.CharacterView corresponding to `startIndex`##String.CharacterView#>.index(startIndex, offsetBy: range.length)
+//        let stringReplaceRange = startIndex..<endIndex
+//        return self.replacingCharacters(in: stringReplaceRange, with: string)
+        return "Recheck this function :("
     }
 
     public func replaceStrings(pairing strings: [String : String]) -> String {
         var string = self
         for (key, value) in strings {
-            string = string.stringByReplacingOccurrencesOfString(key, withString: value)
+            string = string.replacingOccurrences(of: key, with: value)
         }
         return string
     }
 
-    public func removeStrings(strings: [String]) -> String {
+    public func removeStrings(_ strings: [String]) -> String {
         let pairDictionary = strings.reduce([String : String]()) { (currentPairDictionary: [String : String], currentString: String) -> [String : String] in
             var updatedCurrentPairDictionary = currentPairDictionary
             updatedCurrentPairDictionary[currentString] = ""

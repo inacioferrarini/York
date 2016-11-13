@@ -81,10 +81,10 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         self.sectionNameKeyPath = nil
         self.cacheName = nil
 
-        let dataSource = ErrorProneFetcherDataSource<EntityTest>(entityName: self.entityName,
-                                                                 sortDescriptors: self.sortDescriptors,
-                                                                 managedObjectContext: self.managedObjectContext,
-                                                                 logger: self.logger)
+        let dataSource = ErrorProneFetcherDataSource(entityName: self.entityName,
+                                                     sortDescriptors: self.sortDescriptors,
+                                                     managedObjectContext: self.managedObjectContext,
+                                                     logger: self.logger)
 
         return dataSource
     }
@@ -205,7 +205,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         self.coreDataStack.saveContext()
         dataSource.refreshData()
 
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        let indexPath = IndexPath(row: 0, section: 0)
         let entityAtIndexPath = dataSource.objectAtIndexPath(indexPath)
         XCTAssertEqual(entityAtIndexPath, entity!)
     }
@@ -225,7 +225,7 @@ class FetcherDataSourceTests: BaseFetcherDataSourceTests {
         dataSource.refreshData()
 
         let entityIndexPath = dataSource.indexPathForObject(entity!)!
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        let indexPath = IndexPath(row: 0, section: 0)
         XCTAssertEqual(entityIndexPath, indexPath)
     }
 
