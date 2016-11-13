@@ -7,14 +7,14 @@ language: objective-c
 before_install:
 - ./install_swiftlint.sh
 - ./install_homebrew.sh
-- brew install swiftlint
+# - brew install swiftlint
 - gem install bundler
 - bundle install
 - bundle exec pod repo update > /dev/null
 - bundle exec pod install --project-directory=Example
 script:
 - cd Classes
-#- swiftlint
+# - swiftlint
 - cd ..
 - set -o pipefail
 - xcodebuild -workspace Example/York.xcworkspace -scheme TravisCI test -sdk iphonesimulator10.0 -destination "platform=iOS Simulator,name=iPhone 6" | xcpretty -c
