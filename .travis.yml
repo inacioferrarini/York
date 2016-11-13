@@ -7,15 +7,9 @@ language: objective-c
 before_install:
 - ./install_swiftlint.sh
 - ./install_homebrew.sh
-#- rvm get stable
-#- rvm upgrade 2.3.1
-#- ./install_rbenv.sh
-#- rbenv install 2.3.1
-#- rbenv global 2.3.1
-#- rvm all do gem update
 - gem install bundler
 - bundle install
-- bundle exec pod repo update
+#- bundle exec pod repo update
 - bundle exec pod install --project-directory=Example
 script:
 - cd Classes
