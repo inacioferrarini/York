@@ -17,7 +17,7 @@ script:
 # - swiftlint
 - cd ..
 - set -o pipefail
-- xcodebuild -workspace Example/York.xcworkspace -scheme TravisCI test -sdk iphonesimulator10.0 -destination "platform=iOS Simulator,name=iPhone 6" | xcpretty -c
+- xcodebuild -workspace Example/York.xcworkspace -scheme TravisCI test -sdk iphonesimulator10.0 -destination "platform=iOS Simulator,name=iPhone 6"
 - pod lib lint
 after_success:
 - bash <(curl -s https://codecov.io/bash)
