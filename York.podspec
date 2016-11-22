@@ -27,9 +27,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   s.frameworks = 'UIKit', 'CoreData'
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
-  #s.dependency 'York-Swift-Try-Catch', '0.1.1'
+  
   s.dependency 'JLRoutes', '1.6'
-  #s.dependency 'SwiftHEXColors', '1.1.0'
   s.dependency 'VMaskTextField', '1.0.8'
 
   s.resources = 'Classes/**/*.xcdatamodeld'
