@@ -14,3 +14,8 @@ desc "Executes lint"
 task :lint do
   sh "bundle exec pod lib lint --verbose"
 end
+
+desc "Publishes version"
+task :publish do
+  sh "bundle exec pod trunk push York.podspec"
+end
